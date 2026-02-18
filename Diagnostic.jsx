@@ -252,7 +252,7 @@ export default function AIDiagnostic() {
       });
       
       const img = new Image();
-      img.src = "https://script.google.com/macros/s/AKfycbxaIhyr80WkLB4PcczBzYwQW27xC4s4F4BMgCegtePCAWsIvrw4oaCUm2T2EHNlQq71oA/exec?" + params.toString();
+      img.src = "https://script.google.com/macros/s/AKfycbw92ORegQTur0ZSf0YB3GAIETLXT6IjxshV6SAMLdkwffHElAl4mcLLbGACb7JOP7r3Pg/exec?" + params.toString();
     }
   }, [phase]);
 
