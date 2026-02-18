@@ -232,6 +232,34 @@ export default function AIDiagnostic() {
   const answeredCount = Object.keys(answers).length;
   const globalIndex = currentSection * 5 + currentQuestion;
 
+  // Send results to Google Sheet when assessment is completed
+  useEffect(() => {
+    if (phase === "results") {
+      const { sectionScores, grandTotal, tier } = calculateResults();
+      const leadershipScore = sectionScores[1].score;
+      const sentimentScore = sectionScores[2].score;
+      const hasEmpathyGap = leadershipScore >= 20 && (leadershipScore - sentimentScore) >= 8;
+      
+      fetch("https://script.google.com/macros/s/AKfycbxaIhyr80WkLB4PcczBzYwQW27xC4s4F4BMgCegtePCAWsIvrw4oaCUm2T2EHNlQq71oA/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          overallScore: grandTotal,
+          tier: tier.label,
+          sections: {
+            clarity: sectionScores[0].score,
+            leadership: sectionScores[1].score,
+            sentiment: sectionScores[2].score,
+            culture: sectionScores[3].score,
+            foundations: sectionScores[4].score,
+          },
+          empathyGap: hasEmpathyGap,
+        }),
+      }).catch(() => {});
+    }
+  }, [phase]);
+
   const handleRate = (value) => {
     const key = `${currentSection}-${currentQuestion}`;
     setAnswers((prev) => ({ ...prev, [key]: value }));
