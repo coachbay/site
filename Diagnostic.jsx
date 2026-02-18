@@ -590,7 +590,7 @@ export default function AIDiagnostic() {
               marginTop: 24,
               textAlign: "center",
             }}>
-              <p style={{ color: "#fff", fontSize: 16, fontWeight: 600, margin: "0 0 6px" }}>
+              <p style={{ color: DARK, fontSize: 16, fontWeight: 600, margin: "0 0 6px" }}>
                 Want help accelerating your AI journey?
               </p>
               <p style={{ color: MID, fontSize: 14, margin: "0 0 12px" }}>
