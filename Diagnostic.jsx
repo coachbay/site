@@ -387,7 +387,7 @@ export default function AIDiagnostic() {
             fontSize: 13,
             marginTop: 8,
           }}>
-            Tomas Bay · <a href="mailto:coach@coachbay.com" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.com</a>
+            Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
           </p>
         </div>
       </div>
@@ -596,13 +596,13 @@ export default function AIDiagnostic() {
               <p style={{ color: MID, fontSize: 14, margin: "0 0 12px" }}>
                 Get in touch with Tomas Bay
               </p>
-              <a href="mailto:coach@coachbay.com" style={{
+              <a href="mailto:coach@coachbay.ai" style={{
                 color: CYAN,
                 fontSize: 15,
                 fontWeight: 600,
                 textDecoration: "none",
               }}>
-                coach@coachbay.com
+                coach@coachbay.ai
               </a>
             </div>
           </div>
