@@ -240,41 +240,19 @@ export default function AIDiagnostic() {
       const sentimentScore = sectionScores[2].score;
       const hasEmpathyGap = leadershipScore >= 20 && (leadershipScore - sentimentScore) >= 8;
       
-      try {
-        const iframe = document.createElement("iframe");
-        iframe.name = "hidden-sheet";
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-        
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "https://script.google.com/macros/s/AKfycbxaIhyr80WkLB4PcczBzYwQW27xC4s4F4BMgCegtePCAWsIvrw4oaCUm2T2EHNlQq71oA/exec";
-        form.target = "hidden-sheet";
-        
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "data";
-        input.value = JSON.stringify({
-          overallScore: grandTotal,
-          tier: tier.label,
-          sections: {
-            clarity: sectionScores[0].score,
-            leadership: sectionScores[1].score,
-            sentiment: sectionScores[2].score,
-            culture: sectionScores[3].score,
-            foundations: sectionScores[4].score,
-          },
-          empathyGap: hasEmpathyGap,
-        });
-        form.appendChild(input);
-        document.body.appendChild(form);
-        form.submit();
-        
-        setTimeout(() => {
-          document.body.removeChild(form);
-          document.body.removeChild(iframe);
-        }, 5000);
-      } catch (err) {}
+      const params = new URLSearchParams({
+        score: grandTotal,
+        tier: tier.label,
+        clarity: sectionScores[0].score,
+        leadership: sectionScores[1].score,
+        sentiment: sectionScores[2].score,
+        culture: sectionScores[3].score,
+        foundations: sectionScores[4].score,
+        gap: hasEmpathyGap ? "Yes" : "No",
+      });
+      
+      const img = new Image();
+      img.src = "https://script.google.com/macros/s/AKfycbxaIhyr80WkLB4PcczBzYwQW27xC4s4F4BMgCegtePCAWsIvrw4oaCUm2T2EHNlQq71oA/exec?" + params.toString();
     }
   }, [phase]);
 
