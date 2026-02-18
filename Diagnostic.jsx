@@ -382,6 +382,13 @@ export default function AIDiagnostic() {
           }}>
             Designed by CoachBay
           </p>
+          <p style={{
+            color: "#475569",
+            fontSize: 13,
+            marginTop: 8,
+          }}>
+            Tomas Bay · <a href="mailto:coach@coachbay.com" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.com</a>
+          </p>
         </div>
       </div>
     );
@@ -573,8 +580,31 @@ export default function AIDiagnostic() {
               ← Retake Assessment
             </button>
             <p style={{ color: "#94a3b8", fontSize: 12, marginTop: 24 }}>
-              Designed by CoachBay · coach@coachbay.com
+              Designed by CoachBay
             </p>
+            <div style={{
+              background: `${CYAN}10`,
+              border: `1.5px solid ${CYAN}33`,
+              borderRadius: 16,
+              padding: "24px 28px",
+              marginTop: 24,
+              textAlign: "center",
+            }}>
+              <p style={{ color: "#fff", fontSize: 16, fontWeight: 600, margin: "0 0 6px" }}>
+                Want help accelerating your AI journey?
+              </p>
+              <p style={{ color: MID, fontSize: 14, margin: "0 0 12px" }}>
+                Get in touch with Tomas Bay
+              </p>
+              <a href="mailto:coach@coachbay.com" style={{
+                color: CYAN,
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: "none",
+              }}>
+                coach@coachbay.com
+              </a>
+            </div>
           </div>
         </div>
       </div>
