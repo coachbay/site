@@ -604,10 +604,10 @@ export default function AIDiagnostic() {
           margin: "0 auto",
           width: "100%",
         }}>
-          <span style={{ fontSize: 13, color: MID }}>
+          <span style={{ fontSize: 16, color: MID, fontWeight: 700 }}>
             {section.icon} {section.title}
           </span>
-          <span style={{ fontSize: 13, color: MID }}>
+          <span style={{ fontSize: 16, color: MID, fontWeight: 700 }}>
             {globalIndex + 1} of {totalQuestions}
           </span>
         </div>
@@ -639,7 +639,7 @@ export default function AIDiagnostic() {
               color: CYAN,
               padding: "4px 14px",
               borderRadius: 100,
-              fontSize: 12,
+              fontSize: 15,
               fontWeight: 600,
               marginBottom: 8,
               letterSpacing: 0.5,
@@ -649,7 +649,7 @@ export default function AIDiagnostic() {
           )}
 
           {currentQuestion === 0 && (
-            <p style={{ color: MID, fontSize: 13, margin: "4px 0 24px", lineHeight: 1.5 }}>
+            <p style={{ color: MID, fontSize: 16, margin: "4px 0 24px", lineHeight: 1.5 }}>
               {section.subtitle}
             </p>
           )}
@@ -685,8 +685,8 @@ export default function AIDiagnostic() {
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", padding: "0 4px" }}>
-            <span style={{ fontSize: 11, color: "#9ca3af" }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: "#9ca3af" }}>Strongly Agree</span>
+            <span style={{ fontSize: 14, color: "#9ca3af" }}>Strongly Disagree</span>
+            <span style={{ fontSize: 14, color: "#9ca3af" }}>Strongly Agree</span>
           </div>
         </div>
       </div>
