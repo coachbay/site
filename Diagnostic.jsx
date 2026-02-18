@@ -8,6 +8,19 @@ const RED_ACCENT = "#ef4444";
 
 const sections = [
   {
+    id: "clarity",
+    title: "Strategic Clarity",
+    subtitle: "Do you know what you're actually trying to achieve with AI?",
+    icon: "🎯",
+    questions: [
+      "We can name the top 3 business problems AI should help us solve",
+      "Our AI ambitions are connected to our broader business strategy, not a separate initiative",
+      "We're focused on a small number of high-impact use cases (not trying to do everything)",
+      "We measure success in business outcomes (time saved, quality improved), not tool adoption",
+      "We have a realistic timeline for meaningful results, measured in months not weeks",
+    ],
+  },
+  {
     id: "leadership",
     title: "Leadership Readiness",
     subtitle: "Do the people at the top actually use AI themselves?",
@@ -57,19 +70,6 @@ const sections = [
       "There is a budget or willingness to invest in AI tools and training",
       "We can identify 5 to 10 people who would eagerly join a Pilot Squad tomorrow",
       "We have at least one clear, specific use case where AI could make a visible difference",
-    ],
-  },
-  {
-    id: "clarity",
-    title: "Strategic Clarity",
-    subtitle: "Do you know what you're actually trying to achieve with AI?",
-    icon: "🎯",
-    questions: [
-      "We can name the top 3 business problems AI should help us solve",
-      "Our AI ambitions are connected to our broader business strategy, not a separate initiative",
-      "We're focused on a small number of high-impact use cases (not trying to do everything)",
-      "We measure success in business outcomes (time saved, quality improved), not tool adoption",
-      "We have a realistic timeline for meaningful results, measured in months not weeks",
     ],
   },
 ];
@@ -532,8 +532,8 @@ export default function AIDiagnostic() {
 
           {/* Empathy Gap Insight */}
           {(() => {
-            const leadershipScore = sectionScores[0].score;
-            const sentimentScore = sectionScores[1].score;
+            const leadershipScore = sectionScores[1].score;
+            const sentimentScore = sectionScores[2].score;
             const gap = leadershipScore - sentimentScore;
             if (gap >= 5) {
               return (
