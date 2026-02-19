@@ -13,10 +13,44 @@ const RobotIcon = () => (
   </svg>
 );
 
+const CompanyIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+    <rect x="8" y="12" width="24" height="22" rx="2" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
+    <rect x="14" y="6" width="12" height="28" rx="1" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
+    <rect x="18" y="10" width="4" height="4" rx="0.5" fill="#00BCD4"/>
+    <rect x="18" y="18" width="4" height="4" rx="0.5" fill="#00BCD4"/>
+    <rect x="18" y="26" width="4" height="4" rx="0.5" fill="#00BCD4"/>
+    <rect x="11" y="18" width="3" height="3" rx="0.5" fill="#00BCD4"/>
+    <rect x="11" y="24" width="3" height="3" rx="0.5" fill="#00BCD4"/>
+    <rect x="26" y="18" width="3" height="3" rx="0.5" fill="#00BCD4"/>
+    <rect x="26" y="24" width="3" height="3" rx="0.5" fill="#00BCD4"/>
+  </svg>
+);
+
+const LeaderIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+    <circle cx="20" cy="13" r="6" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
+    <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M20 4l1.5 3 3.5.5-2.5 2.5.5 3.5L20 12l-3 1.5.5-3.5L15 7.5l3.5-.5z" fill="#00BCD4"/>
+  </svg>
+);
+
+const TeamIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+    <circle cx="20" cy="12" r="5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
+    <circle cx="9" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/>
+    <circle cx="31" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/>
+    <path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M3 34c0-3.866 2.686-7 6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <path d="M37 34c0-3.866-2.686-7-6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
+  </svg>
+);
+
+const cardIcons = { company: <CompanyIcon />, leader: <LeaderIcon />, team: <TeamIcon /> };
+
 const cards = [
   {
     id: "company",
-    icon: "🏢",
     title: "For Companies",
     subtitle: "AI Readiness Diagnostic",
     description: "Is your organisation ready to adopt AI? Assess your strategic clarity, leadership readiness, employee sentiment, culture of change, and practical foundations.",
@@ -25,7 +59,6 @@ const cards = [
   },
   {
     id: "leader",
-    icon: "👔",
     title: "For Leaders",
     subtitle: "AI Leadership Diagnostic",
     description: "How effectively are you using AI as a strategic thinking partner? Assess your current usage, habits, depth, trust, and the impact AI is having on your leadership.",
@@ -34,7 +67,6 @@ const cards = [
   },
   {
     id: "team",
-    icon: "👥",
     title: "For Teams",
     subtitle: "Personal AI Diagnostic",
     description: "How are you using AI as an individual? Discover where you are on the AI adoption curve and unlock the roles of Assistant, Coach, Expert, Creative, and Conductor.",
@@ -125,7 +157,7 @@ export default function LandingPage({ onNavigate }) {
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            <div style={{ fontSize: 36, marginBottom: 16 }}>{card.icon}</div>
+            <div style={{ fontSize: 36, marginBottom: 16 }}>{cardIcons[card.id]}</div>
             <h2 style={{
               fontFamily: "'DM Serif Display', serif",
               fontSize: 22,
