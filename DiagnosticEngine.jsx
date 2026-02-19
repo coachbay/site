@@ -184,6 +184,23 @@ export default function DiagnosticEngine({
     doc.setTextColor(0, 188, 212); // CYAN
     doc.text("coach@coachbay.ai", margin, 40);
 
+    // Robot icon (top right of header)
+    const rx = pageW - margin - 10;
+    const ry = 26;
+    doc.setFillColor(0, 188, 212);
+    doc.circle(rx, ry, 8, "F");
+    doc.setFillColor(255, 255, 255);
+    doc.circle(rx - 3.2, ry - 1.5, 1.9, "F");
+    doc.circle(rx + 3.2, ry - 1.5, 1.9, "F");
+    doc.setFillColor(26, 26, 46);
+    doc.circle(rx - 2.7, ry - 1.2, 1.1, "F");
+    doc.circle(rx + 3.7, ry - 1.2, 1.1, "F");
+    doc.setDrawColor(0, 188, 212);
+    doc.setLineWidth(0.8);
+    doc.line(rx, ry - 8, rx, ry - 12);
+    doc.setFillColor(0, 188, 212);
+    doc.circle(rx, ry - 13, 1.4, "F");
+
     y = 60;
 
     // ========== OVERALL SCORE ==========
