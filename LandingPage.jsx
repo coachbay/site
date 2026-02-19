@@ -29,9 +29,8 @@ const CompanyIcon = () => (
 
 const LeaderIcon = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="13" r="6" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
-    <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-    <path d="M20 4l1.5 3 3.5.5-2.5 2.5.5 3.5L20 12l-3 1.5.5-3.5L15 7.5l3.5-.5z" fill="#00BCD4"/>
+    <circle cx="20" cy="14" r="7" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
+    <path d="M7 36c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
   </svg>
 );
 
