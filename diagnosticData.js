@@ -69,7 +69,7 @@ export const companyConfig = {
       subtitle: "Are the basics in place to actually start?",
       icon: "🔧",
       questions: [
-        "Employees have access to at least one AI tool (ChatGPT, Claude, Copilot, etc.)",
+        "Employees have access to at least one paid AI tool (ChatGPT, Claude, Copilot, etc.)",
         "We have basic guidelines about what data can and can't go into AI tools",
         "There is a budget or willingness to invest in AI tools and training",
         "We can identify 5 to 10 people who would eagerly join a Pilot Squad tomorrow",
