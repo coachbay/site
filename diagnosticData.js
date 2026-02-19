@@ -297,7 +297,7 @@ export const teamConfig = {
       subtitle: "How confident are you with AI tools?",
       icon: "🔧",
       questions: [
-        "I have used AI tools beyond what my organisation officially provides",
+        "I have used AI tools beyond what my organisation officially provides to do work",
         "I can usually get a useful response from AI without multiple attempts",
         "I go back and forth with AI to refine and improve results",
         "I have figured out my own tips and techniques for getting better AI results",
