@@ -157,7 +157,7 @@ export const leaderConfig = {
       subtitle: "Has AI become part of your routine?",
       icon: "📅",
       questions: [
-        "I use AI tools at least a few times per week",
+        "I use AI tools daily",
         "AI is one of the first places I go when starting a new task or project",
         "I have a regular workflow or routine that includes AI",
         "I find myself reaching for AI more often now than I did three months ago",
@@ -183,7 +183,7 @@ export const leaderConfig = {
       subtitle: "How do you evaluate and use AI output?",
       icon: "🧭",
       questions: [
-        "I review and edit AI output rather than accepting it as-is",
+        "I can describe what makes a good AI prompt versus a poor one",
         "I feel confident I can tell when AI gives me a poor or inaccurate response",
         "I use AI output as a starting point for my own thinking, not a final answer",
         "I am comfortable sharing with colleagues that I used AI to help with my work",
@@ -275,7 +275,7 @@ export const teamConfig = {
         "I use AI to learn new things or understand unfamiliar topics quickly",
         "I use AI to check my work, get feedback, or improve what I've written",
         "I use AI to brainstorm ideas or think through problems from different angles",
-        "I use AI to save time on repetitive tasks so I can focus on higher-value work",
+        "I critically evaluate AI responses before using them in my work",
       ],
     },
     {
@@ -284,7 +284,7 @@ export const teamConfig = {
       subtitle: "Has AI become part of how you work?",
       icon: "📅",
       questions: [
-        "I use AI tools at least a few times per week",
+        "I use AI tools daily",
         "Using AI feels like a natural part of how I work now",
         "I have built AI into at least one regular workflow or process",
         "My AI usage has increased noticeably over the past few months",
@@ -311,7 +311,7 @@ export const teamConfig = {
       icon: "💬",
       questions: [
         "I feel confident using AI for tasks that matter, not just simple ones",
-        "I critically evaluate AI responses before using them in my work",
+        "I have learned something new about AI in the last month",
         "I am open about using AI with my colleagues and manager",
         "I feel encouraged by my team or organisation to use AI",
         "I believe AI makes my work better, not just faster",
