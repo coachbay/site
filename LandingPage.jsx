@@ -222,6 +222,137 @@ export default function LandingPage({ onNavigate }) {
         ))}
       </div>
 
+      {/* How I Help Section */}
+      <div style={{
+        maxWidth: 960,
+        margin: "0 auto",
+        padding: "20px 24px 60px",
+      }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 32,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            How I Help
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        </div>
+
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 24,
+          justifyContent: "center",
+        }}>
+          {/* Companies */}
+          <div style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            padding: "32px 28px",
+            width: 280,
+          }}>
+            <div style={{ marginBottom: 16 }}><CompanyIcon /></div>
+            <h3 style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontSize: 20, color: "#fff", margin: "0 0 4px",
+            }}>Companies</h3>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+              AI Change Management
+            </p>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
+              I help organisations roll out AI without the usual resistance. My approach is "Stop Pushing, Start Pulling" — instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
+            </p>
+            <a href="mailto:coach@coachbay.ai" style={{
+              display: "inline-block",
+              border: `1.5px solid ${CYAN}`,
+              color: CYAN,
+              borderRadius: 10,
+              padding: "10px 24px",
+              fontSize: 14,
+              fontWeight: 600,
+              textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif",
+              transition: "all 0.2s ease",
+            }}>
+              Let's talk →
+            </a>
+          </div>
+
+          {/* Leaders */}
+          <div style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            padding: "32px 28px",
+            width: 280,
+          }}>
+            <div style={{ marginBottom: 16 }}><LeaderIcon /></div>
+            <h3 style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontSize: 20, color: "#fff", margin: "0 0 4px",
+            }}>Leaders</h3>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+              AI as a Thinking Partner
+            </p>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
+              I help leaders use AI for the decisions that actually matter — not just emails and summaries. Using the CRIT framework (Context, Role, Interview, Task), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
+            </p>
+            <a href="mailto:coach@coachbay.ai" style={{
+              display: "inline-block",
+              border: `1.5px solid ${CYAN}`,
+              color: CYAN,
+              borderRadius: 10,
+              padding: "10px 24px",
+              fontSize: 14,
+              fontWeight: 600,
+              textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif",
+              transition: "all 0.2s ease",
+            }}>
+              Let's talk →
+            </a>
+          </div>
+
+          {/* Teams */}
+          <div style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            padding: "32px 28px",
+            width: 280,
+          }}>
+            <div style={{ marginBottom: 16 }}><TeamIcon /></div>
+            <h3 style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontSize: 20, color: "#fff", margin: "0 0 4px",
+            }}>Teams</h3>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+              Hands-On AI Workshops
+            </p>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
+              I help individuals discover the five roles AI can play for them: Assistant, Coach, Expert, Creative, and the Conductor that orchestrates them all. Through hands-on workshops where people experience AI, not just hear about it.
+            </p>
+            <a href="mailto:coach@coachbay.ai" style={{
+              display: "inline-block",
+              border: `1.5px solid ${CYAN}`,
+              color: CYAN,
+              borderRadius: 10,
+              padding: "10px 24px",
+              fontSize: 14,
+              fontWeight: 600,
+              textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif",
+              transition: "all 0.2s ease",
+            }}>
+              Let's talk →
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <div style={{
         textAlign: "center",
