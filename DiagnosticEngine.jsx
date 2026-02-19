@@ -6,7 +6,7 @@ const MID = "#6b7280";
 const LIGHT_BG = "#f8fafb";
 const RED_ACCENT = "#ef4444";
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw92ORegQTur0ZSf0YB3GAIETLXT6IjxshV6SAMLdkwffHElAl4mcLLbGACb7JOP7r3Pg/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxH5SYpKqHgJkWO9eTMkvQyruC_RrG7hM7npUMDkuvx2ilJY1OU8CywAQNOOC8mZJjaiA/exec";
 
 function ScoreRing({ score, max, color, size = 120, strokeWidth = 10 }) {
   const radius = (size - strokeWidth) / 2;
