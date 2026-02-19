@@ -253,6 +253,8 @@ export default function LandingPage({ onNavigate }) {
             borderRadius: 20,
             padding: "32px 28px",
             width: 280,
+            display: "flex",
+            flexDirection: "column",
           }}>
             <div style={{ marginBottom: 16 }}><CompanyIcon /></div>
             <h3 style={{
@@ -262,8 +264,8 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               AI Change Management
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
-              I help organisations roll out AI without the usual resistance. My approach is "Stop Pushing, Start Pulling" — instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+              I help organisations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
               display: "inline-block",
@@ -276,6 +278,7 @@ export default function LandingPage({ onNavigate }) {
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
+              alignSelf: "flex-start",
             }}>
               Let's talk →
             </a>
@@ -288,6 +291,8 @@ export default function LandingPage({ onNavigate }) {
             borderRadius: 20,
             padding: "32px 28px",
             width: 280,
+            display: "flex",
+            flexDirection: "column",
           }}>
             <div style={{ marginBottom: 16 }}><LeaderIcon /></div>
             <h3 style={{
@@ -297,8 +302,8 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               AI as a Thinking Partner
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
-              I help leaders use AI for the decisions that actually matter — not just emails and summaries. Using the CRIT framework (Context, Role, Interview, Task), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+              I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the CRIT framework (Context, Role, Interview, Task), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
               display: "inline-block",
@@ -311,6 +316,7 @@ export default function LandingPage({ onNavigate }) {
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
+              alignSelf: "flex-start",
             }}>
               Let's talk →
             </a>
@@ -323,6 +329,8 @@ export default function LandingPage({ onNavigate }) {
             borderRadius: 20,
             padding: "32px 28px",
             width: 280,
+            display: "flex",
+            flexDirection: "column",
           }}>
             <div style={{ marginBottom: 16 }}><TeamIcon /></div>
             <h3 style={{
@@ -332,7 +340,7 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               Hands-On AI Workshops
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px" }}>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help individuals discover the five roles AI can play for them: Assistant, Coach, Expert, Creative, and the Conductor that orchestrates them all. Through hands-on workshops where people experience AI, not just hear about it.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -346,6 +354,7 @@ export default function LandingPage({ onNavigate }) {
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
+              alignSelf: "flex-start",
             }}>
               Let's talk →
             </a>
