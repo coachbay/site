@@ -303,7 +303,7 @@ export default function LandingPage({ onNavigate }) {
               AI as a Thinking Partner
             </p>
             <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
-              I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the CRIT framework (Context, Role, Interview, Task), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
+              I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the 4D framework (Define, Discover, Debate, Deliver), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
               display: "inline-block",
