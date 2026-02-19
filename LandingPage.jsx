@@ -87,15 +87,7 @@ export default function LandingPage({ onNavigate }) {
         }}>
           Helping leaders and teams get comfortable with AI
         </p>
-        <p style={{
-          color: "#94a3b8",
-          fontSize: 15,
-          lineHeight: 1.7,
-          margin: "0 auto",
-          maxWidth: 520,
-        }}>
-          20 years of experience in leadership, communication, innovation, and change management — now focused on helping organisations adopt AI with confidence.
-        </p>
+
       </div>
 
       {/* Cards Section */}
