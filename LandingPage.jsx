@@ -263,7 +263,7 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
               AI Change Management
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help organisations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -301,7 +301,7 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
               AI as a Thinking Partner
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the 4D framework (Define, Discover, Debate, Deliver), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -339,7 +339,7 @@ export default function LandingPage({ onNavigate }) {
             <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
               Hands-On AI Workshops
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help individuals discover the five roles AI can play for them: Assistant, Coach, Expert, Creative, and the Conductor that orchestrates them all. Through hands-on workshops where people experience AI, not just hear about it.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
