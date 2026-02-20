@@ -103,18 +103,20 @@ export default function DiagnosticEngine({
 
   const handleRate = (value) => {
     const key = `${currentSection}-${currentQuestion}`;
+    const isNewAnswer = answers[key] === undefined;
     setAnswers((prev) => ({ ...prev, [key]: value }));
+    if (!isNewAnswer) return; // Don't auto-advance when changing an existing answer
     setTimeout(() => {
       if (currentQuestion < 4) {
         setAnimating(true);
         setTimeout(() => {
-          setCurrentQuestion((q) => q + 1);
+          setCurrentQuestion((q) => Math.min(q + 1, 4));
           setAnimating(false);
         }, 200);
       } else if (currentSection < sections.length - 1) {
         setAnimating(true);
         setTimeout(() => {
-          setCurrentSection((s) => s + 1);
+          setCurrentSection((s) => Math.min(s + 1, sections.length - 1));
           setCurrentQuestion(0);
           setAnimating(false);
         }, 200);
