@@ -174,7 +174,7 @@ export default function LandingPage({ onNavigate }) {
               {card.subtitle}
             </p>
             <p style={{
-              color: "#94a3b8",
+              color: "#cbd5e1",
               fontSize: 16,
               lineHeight: 1.7,
               margin: "0 0 24px",
@@ -210,7 +210,7 @@ export default function LandingPage({ onNavigate }) {
               {card.buttonText}
             </button>
             <p style={{
-              color: "#64748b",
+              color: "#94a3b8",
               fontSize: 14,
               textAlign: "center",
               margin: "12px 0 0",
