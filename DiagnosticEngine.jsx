@@ -1,4 +1,3 @@
-import jsPDF from "jspdf";
 import { useState, useEffect, useRef } from "react";
 
 const CYAN = "#00BCD4";
@@ -7,7 +6,7 @@ const MID = "#6b7280";
 const LIGHT_BG = "#f8fafb";
 const RED_ACCENT = "#ef4444";
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxH5SYpKqHgJkWO9eTMkvQyruC_RrG7hM7npUMDkuvx2ilJY1OU8CywAQNOOC8mZJjaiA/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_hrHvkJGB2saiK0pr3lEhZqdA4gdOub_FynmcaHDc9JzFFhfGPCJYTqd0Ln8c3toRqA/exec";
 
 function ScoreRing({ score, max, color, size = 120, strokeWidth = 10 }) {
   const radius = (size - strokeWidth) / 2;
@@ -83,8 +82,11 @@ export default function DiagnosticEngine({
         score: grandTotal,
         tier: tier.label,
       });
-      sectionScores.forEach((sec) => {
+      sectionScores.forEach((sec, si) => {
         params.append(sec.id, sec.score);
+        for (let qi = 0; qi < 5; qi++) {
+          params.append(`${sec.id}_q${qi + 1}`, answers[`${si}-${qi}`] || 0);
+        }
       });
       if (empathyGap) {
         const ls = sectionScores.find(s => s.id === empathyGap.leadershipId);
@@ -143,247 +145,6 @@ export default function DiagnosticEngine({
     return { sectionScores, grandTotal, tier };
   };
 
-
-  const generatePDF = () => {
-    const { sectionScores, grandTotal, tier } = calculateResults();
-    const doc = new jsPDF({ unit: "mm", format: "a4" });
-    const pageW = 210;
-    const margin = 20;
-    const contentW = pageW - margin * 2;
-    let y = 0;
-
-    // Helper: wrap text and return lines
-    const wrapText = (text, maxWidth, fontSize) => {
-      doc.setFontSize(fontSize);
-      return doc.splitTextToSize(text, maxWidth);
-    };
-
-    // Helper: hex to RGB
-    const hexToRgb = (hex) => {
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-      return [r, g, b];
-    };
-
-    // ========== HEADER ==========
-    doc.setFillColor(26, 26, 46); // DARK
-    doc.rect(0, 0, pageW, 48, "F");
-
-    doc.setFontSize(24);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255);
-    doc.text(title, margin, 22);
-
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(148, 163, 184);
-    doc.text("CoachBay.ai", margin, 32);
-
-    doc.setFontSize(10);
-    doc.setTextColor(0, 188, 212); // CYAN
-    doc.text("coach@coachbay.ai", margin, 40);
-
-    // Robot icon (top right of header)
-    const rx = pageW - margin - 10;
-    const ry = 26;
-    doc.setFillColor(0, 188, 212);
-    doc.circle(rx, ry, 8, "F");
-    doc.setFillColor(255, 255, 255);
-    doc.circle(rx - 3.2, ry - 1.5, 1.9, "F");
-    doc.circle(rx + 3.2, ry - 1.5, 1.9, "F");
-    doc.setFillColor(26, 26, 46);
-    doc.circle(rx - 2.7, ry - 1.2, 1.1, "F");
-    doc.circle(rx + 3.7, ry - 1.2, 1.1, "F");
-    doc.setDrawColor(0, 188, 212);
-    doc.setLineWidth(0.8);
-    doc.line(rx, ry - 8, rx, ry - 12);
-    doc.setFillColor(0, 188, 212);
-    doc.circle(rx, ry - 13, 1.4, "F");
-
-    y = 60;
-
-    // ========== OVERALL SCORE ==========
-    // Score circle (simulated)
-    const [tr, tg, tb] = hexToRgb(tier.color);
-    doc.setDrawColor(tr, tg, tb);
-    doc.setLineWidth(1.5);
-    doc.circle(margin + 18, y + 18, 16);
-
-    doc.setFontSize(28);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(tr, tg, tb);
-    doc.text(String(grandTotal), margin + 18, y + 16, { align: "center" });
-
-    doc.setFontSize(9);
-    doc.setTextColor(107, 114, 128);
-    doc.setFont("helvetica", "normal");
-    doc.text("/ 125", margin + 18, y + 23, { align: "center" });
-
-    // Tier label
-    doc.setFontSize(18);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(tr, tg, tb);
-    doc.text(tier.label, margin + 44, y + 10);
-
-    // Tier summary
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(75, 85, 99);
-    const summaryLines = wrapText(tier.summary, contentW - 44, 10);
-    doc.text(summaryLines, margin + 44, y + 18);
-
-    y += 18 + summaryLines.length * 5 + 12;
-
-    // ========== YOUR NEXT MOVE ==========
-    doc.setFillColor(tr, tg, tb);
-    doc.rect(margin, y, 3, 0.1, "F"); // Will size after measuring
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(26, 26, 46);
-    doc.text("Your Next Move", margin + 8, y + 6);
-
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(55, 65, 81);
-    const actionLines = wrapText(tier.action, contentW - 12, 10);
-    doc.text(actionLines, margin + 8, y + 13);
-
-    const moveBoxH = 16 + actionLines.length * 5;
-    // Draw left border for the box
-    doc.setFillColor(tr, tg, tb);
-    doc.rect(margin, y, 3, moveBoxH, "F");
-    // Light background
-    doc.setFillColor(tr, tg, tb, 0.06);
-
-    y += moveBoxH + 12;
-
-    // ========== SECTION BREAKDOWN ==========
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(26, 26, 46);
-    doc.text("Section Breakdown", margin, y);
-    y += 10;
-
-    sectionScores.forEach((sec) => {
-      const pct = sec.score / 25;
-      const level = pct < 0.5 ? "low" : pct < 0.75 ? "mid" : "high";
-      const barColor = pct < 0.5 ? "#ef4444" : pct < 0.75 ? "#f59e0b" : "#10b981";
-      const [br, bg, bb] = hexToRgb(barColor);
-      const advice = sectionAdvice[sec.id]?.[level] || "";
-
-      // Check if we need a new page
-      const adviceLines = wrapText(advice, contentW - 8, 9);
-      const blockHeight = 30 + adviceLines.length * 4.5;
-      if (y + blockHeight > 280) {
-        doc.addPage();
-        y = 20;
-      }
-
-      // Section title and score
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(26, 26, 46);
-      doc.text(sec.title, margin, y);
-
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(br, bg, bb);
-      doc.text(`${sec.score} / 25`, margin + contentW, y, { align: "right" });
-
-      y += 6;
-
-      // Progress bar background
-      doc.setFillColor(229, 231, 235);
-      doc.roundedRect(margin, y, contentW, 4, 2, 2, "F");
-
-      // Progress bar fill
-      doc.setFillColor(br, bg, bb);
-      const barW = Math.max(contentW * pct, 4);
-      doc.roundedRect(margin, y, barW, 4, 2, 2, "F");
-
-      y += 8;
-
-      // Advice text
-      doc.setFillColor(br, bg, bb);
-      doc.rect(margin, y, 2, adviceLines.length * 4.5 + 4, "F");
-
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(75, 85, 99);
-      doc.text(adviceLines, margin + 6, y + 4);
-
-      y += adviceLines.length * 4.5 + 12;
-    });
-
-    // ========== EMPATHY GAP ==========
-    if (empathyGap) {
-      const ls = sectionScores.find(s => s.id === empathyGap.leadershipId);
-      const es = sectionScores.find(s => s.id === empathyGap.sentimentId);
-      if (ls && es && (ls.score - es.score) >= 5) {
-        if (y + 40 > 280) {
-          doc.addPage();
-          y = 20;
-        }
-
-        doc.setFillColor(26, 26, 46);
-        const gapText = `Your Leadership Readiness score (${ls.score}) is significantly higher than your Employee Sentiment score (${es.score}). This is the classic Empathy Gap, where leaders are more excited about AI than their teams. The risk is pushing initiatives that create compliance, not buy-in. Focus on understanding how employees actually feel before launching anything.`;
-        const gapLines = wrapText(gapText, contentW - 20, 10);
-        const gapH = 18 + gapLines.length * 5;
-        doc.roundedRect(margin, y, contentW, gapH, 3, 3, "F");
-
-        doc.setFontSize(10);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(0, 188, 212);
-        doc.text("EMPATHY GAP DETECTED", margin + 10, y + 8);
-
-        doc.setFontSize(10);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(226, 232, 240);
-        doc.text(gapLines, margin + 10, y + 16);
-
-        y += gapH + 10;
-      }
-    }
-
-    // ========== FOOTER ==========
-    if (y + 30 > 280) {
-      doc.addPage();
-      y = 20;
-    }
-
-    y += 5;
-    doc.setDrawColor(229, 231, 235);
-    doc.line(margin, y, margin + contentW, y);
-    y += 8;
-
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(26, 26, 46);
-    doc.text("Want help accelerating your AI journey?", margin, y);
-    y += 6;
-
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(107, 114, 128);
-    doc.text("Get in touch with Tomas Bay", margin, y);
-    y += 6;
-
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(0, 188, 212);
-    doc.text("coach@coachbay.ai", margin, y);
-
-    doc.setFontSize(8);
-    doc.setTextColor(148, 163, 184);
-    doc.text("coachbay.ai", margin + contentW, y, { align: "right" });
-
-    // Save
-    const filename = `CoachBay - ${title.replace(/\s+/g, " ")}.pdf`;
-    doc.save(filename);
-  };
-
   const canFinish = answeredCount === totalQuestions;
   const section = sections[currentSection];
   const question = section?.questions[currentQuestion];
@@ -436,7 +197,7 @@ export default function DiagnosticEngine({
             onMouseEnter={(e) => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = `0 8px 32px ${CYAN}66`; }}
             onMouseLeave={(e) => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = `0 8px 32px ${CYAN}44`; }}
           >
-            Start Assessment →
+            Start Assessment â†’
           </button>
           <div style={{ marginTop: 32 }}>
             <button
@@ -447,14 +208,14 @@ export default function DiagnosticEngine({
                 textDecoration: "underline", textUnderlineOffset: 4,
               }}
             >
-              ← Back to CoachBay.ai
+              â† Back to CoachBay.ai
             </button>
           </div>
           <p style={{ color: "#475569", fontSize: 12, marginTop: 24 }}>
             Designed by CoachBay
           </p>
           <p style={{ color: "#475569", fontSize: 13, marginTop: 8 }}>
-            Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
+            Tomas Bay Â· <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
           </p>
         </div>
       </div>
@@ -511,7 +272,7 @@ export default function DiagnosticEngine({
             padding: "20px 24px", marginBottom: 40,
           }}>
             <div style={{ fontWeight: 700, color: DARK, fontSize: 15, marginBottom: 8 }}>
-              ✦ Your Next Move
+              âœ¦ Your Next Move
             </div>
             <p style={{ color: "#374151", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
               {tier.action}
@@ -573,7 +334,7 @@ export default function DiagnosticEngine({
                   borderRadius: 16, padding: 28, marginTop: 24, marginBottom: 24,
                 }}>
                   <div style={{ color: CYAN, fontWeight: 700, fontSize: 14, marginBottom: 8, letterSpacing: 1 }}>
-                    ⚠ EMPATHY GAP DETECTED
+                    âš  EMPATHY GAP DETECTED
                   </div>
                   <p style={{ color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
                     Your Leadership Readiness score ({ls.score}) is significantly higher than your Employee Sentiment score ({es.score}). This is the classic Empathy Gap, where leaders are more excited about AI than their teams. The risk is pushing initiatives that create compliance, not buy-in. Focus on understanding how employees actually feel before launching anything.
@@ -588,17 +349,6 @@ export default function DiagnosticEngine({
           <div style={{ textAlign: "center", marginTop: 40, paddingBottom: 40 }}>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <button
-                onClick={generatePDF}
-                style={{
-                  background: CYAN, color: "#fff", border: "none",
-                  borderRadius: 12, padding: "12px 28px", fontSize: 14, fontWeight: 600,
-                  cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
-                  boxShadow: `0 6px 24px ${CYAN}44`,
-                }}
-              >
-                Download Results (PDF)
-              </button>
-              <button
                 onClick={() => {
                   setPhase("intro");
                   setCurrentSection(0);
@@ -611,7 +361,7 @@ export default function DiagnosticEngine({
                   cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                ← Retake Assessment
+                â† Retake Assessment
               </button>
               <button
                 onClick={onBack}
@@ -743,7 +493,7 @@ export default function DiagnosticEngine({
             fontFamily: "'DM Sans', sans-serif", fontWeight: 500, padding: "8px 16px",
           }}
         >
-          ← Back
+          â† Back
         </button>
         {canFinish && (
           <button
@@ -755,7 +505,7 @@ export default function DiagnosticEngine({
               boxShadow: `0 6px 24px ${CYAN}44`,
             }}
           >
-            See My Results →
+            See My Results â†’
           </button>
         )}
       </div>
