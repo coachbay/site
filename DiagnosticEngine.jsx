@@ -197,7 +197,7 @@ export default function DiagnosticEngine({
             onMouseEnter={(e) => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = `0 8px 32px ${CYAN}66`; }}
             onMouseLeave={(e) => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = `0 8px 32px ${CYAN}44`; }}
           >
-            Start Assessment â†’
+            Start Assessment →
           </button>
           <div style={{ marginTop: 32 }}>
             <button
@@ -208,14 +208,14 @@ export default function DiagnosticEngine({
                 textDecoration: "underline", textUnderlineOffset: 4,
               }}
             >
-              â† Back to CoachBay.ai
+              ← Back to CoachBay.ai
             </button>
           </div>
           <p style={{ color: "#475569", fontSize: 12, marginTop: 24 }}>
             Designed by CoachBay
           </p>
           <p style={{ color: "#475569", fontSize: 13, marginTop: 8 }}>
-            Tomas Bay Â· <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
+            Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
           </p>
         </div>
       </div>
@@ -272,7 +272,7 @@ export default function DiagnosticEngine({
             padding: "20px 24px", marginBottom: 40,
           }}>
             <div style={{ fontWeight: 700, color: DARK, fontSize: 15, marginBottom: 8 }}>
-              âœ¦ Your Next Move
+              ✦ Your Next Move
             </div>
             <p style={{ color: "#374151", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
               {tier.action}
@@ -334,7 +334,7 @@ export default function DiagnosticEngine({
                   borderRadius: 16, padding: 28, marginTop: 24, marginBottom: 24,
                 }}>
                   <div style={{ color: CYAN, fontWeight: 700, fontSize: 14, marginBottom: 8, letterSpacing: 1 }}>
-                    âš  EMPATHY GAP DETECTED
+                    ⚠ EMPATHY GAP DETECTED
                   </div>
                   <p style={{ color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
                     Your Leadership Readiness score ({ls.score}) is significantly higher than your Employee Sentiment score ({es.score}). This is the classic Empathy Gap, where leaders are more excited about AI than their teams. The risk is pushing initiatives that create compliance, not buy-in. Focus on understanding how employees actually feel before launching anything.
@@ -361,7 +361,7 @@ export default function DiagnosticEngine({
                   cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                â† Retake Assessment
+                ← Retake Assessment
               </button>
               <button
                 onClick={onBack}
@@ -493,7 +493,7 @@ export default function DiagnosticEngine({
             fontFamily: "'DM Sans', sans-serif", fontWeight: 500, padding: "8px 16px",
           }}
         >
-          â† Back
+          ← Back
         </button>
         {canFinish && (
           <button
@@ -505,7 +505,7 @@ export default function DiagnosticEngine({
               boxShadow: `0 6px 24px ${CYAN}44`,
             }}
           >
-            See My Results â†’
+            See My Results →
           </button>
         )}
       </div>
