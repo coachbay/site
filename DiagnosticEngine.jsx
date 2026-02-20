@@ -441,7 +441,7 @@ export default function DiagnosticEngine({
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "12px 24px", maxWidth: 640, margin: "0 auto", width: "100%",
         }}>
-          <span style={{ fontSize: 16, color: MID, fontWeight: 700 }}>
+          <span style={{ fontSize: 18, color: DARK, fontWeight: 700 }}>
             {section.icon} {section.title}
           </span>
           <span style={{ fontSize: 16, color: MID, fontWeight: 700 }}>
