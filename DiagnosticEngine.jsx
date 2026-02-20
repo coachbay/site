@@ -67,6 +67,7 @@ export default function DiagnosticEngine({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [animating, setAnimating] = useState(false);
+  const [copied, setCopied] = useState(false);
   const questionRef = useRef(null);
 
   const totalQuestions = sections.length * 5;
@@ -373,6 +374,23 @@ export default function DiagnosticEngine({
               >
                 Back to CoachBay.ai
               </button>
+              <button
+                onClick={() => {
+                  const text = `I just took the ${title} from CoachBay.ai and scored ${grandTotal}/125 — "${tier.label}." Take yours at coachbay.ai`;
+                  navigator.clipboard.writeText(text).then(() => {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  });
+                }}
+                style={{
+                  background: copied ? "#10b981" : CYAN, border: "none", color: "#fff",
+                  borderRadius: 12, padding: "12px 28px", fontSize: 14, fontWeight: 600,
+                  cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                {copied ? "Copied! ✓" : "Share Result"}
+              </button>
             </div>
             <p style={{ color: "#94a3b8", fontSize: 12, marginTop: 24 }}>
               Designed by CoachBay
@@ -453,7 +471,7 @@ export default function DiagnosticEngine({
             </div>
           )}
           {currentQuestion === 0 && (
-            <p style={{ color: MID, fontSize: 16, margin: "4px 0 24px", lineHeight: 1.5 }}>
+            <p style={{ color: "#4b5563", fontSize: 16, margin: "4px 0 24px", lineHeight: 1.5 }}>
               {section.subtitle}
             </p>
           )}
@@ -461,7 +479,7 @@ export default function DiagnosticEngine({
             background: "#fff", borderRadius: 20, padding: "32px 28px",
             boxShadow: "0 4px 24px rgba(0,0,0,0.06)", marginBottom: 32,
           }}>
-            <p style={{ fontSize: 18, color: DARK, lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+            <p style={{ fontSize: 19, color: DARK, lineHeight: 1.6, margin: 0, fontWeight: 600 }}>
               {question}
             </p>
           </div>
@@ -471,8 +489,8 @@ export default function DiagnosticEngine({
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", padding: "0 4px" }}>
-            <span style={{ fontSize: 14, color: "#9ca3af" }}>Strongly Disagree</span>
-            <span style={{ fontSize: 14, color: "#9ca3af" }}>Strongly Agree</span>
+            <span style={{ fontSize: 14, color: "#6b7280" }}>Strongly Disagree</span>
+            <span style={{ fontSize: 14, color: "#6b7280" }}>Strongly Agree</span>
           </div>
         </div>
       </div>

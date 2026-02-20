@@ -167,7 +167,7 @@ export default function LandingPage({ onNavigate }) {
             </h2>
             <p style={{
               color: CYAN,
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: 600,
               margin: "0 0 16px",
             }}>
@@ -175,7 +175,7 @@ export default function LandingPage({ onNavigate }) {
             </p>
             <p style={{
               color: "#94a3b8",
-              fontSize: 14,
+              fontSize: 15,
               lineHeight: 1.7,
               margin: "0 0 24px",
               flex: 1,
@@ -211,7 +211,7 @@ export default function LandingPage({ onNavigate }) {
             </button>
             <p style={{
               color: "#64748b",
-              fontSize: 12,
+              fontSize: 13,
               textAlign: "center",
               margin: "12px 0 0",
             }}>
@@ -260,10 +260,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Companies</h3>
-            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 14, fontWeight: 600, margin: "0 0 16px" }}>
               AI Change Management
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help organisations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -298,10 +298,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Leaders</h3>
-            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 14, fontWeight: 600, margin: "0 0 16px" }}>
               AI as a Thinking Partner
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the 4D framework (Define, Discover, Debate, Deliver), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -336,10 +336,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Teams</h3>
-            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 14, fontWeight: 600, margin: "0 0 16px" }}>
               Hands-On AI Workshops
             </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help individuals discover the five roles AI can play for them: Assistant, Coach, Expert, Creative, and the Conductor that orchestrates them all. Through hands-on workshops where people experience AI, not just hear about it.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -370,7 +370,7 @@ export default function LandingPage({ onNavigate }) {
         maxWidth: 600,
         margin: "0 auto",
       }}>
-        <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 8px" }}>
+        <p style={{ color: "#64748b", fontSize: 14, margin: "0 0 8px" }}>
           Designed by CoachBay
         </p>
         <p style={{ color: "#94a3b8", fontSize: 14, margin: "0 0 12px" }}>
@@ -378,7 +378,7 @@ export default function LandingPage({ onNavigate }) {
         </p>
         <a href="https://coachbay.com" target="_blank" rel="noopener noreferrer" style={{
           color: "#64748b",
-          fontSize: 13,
+          fontSize: 14,
           textDecoration: "none",
         }}>
           coachbay.com →
