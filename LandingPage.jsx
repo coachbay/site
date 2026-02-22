@@ -30,7 +30,7 @@ const CompanyIcon = () => (
 const LeaderIcon = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
     <circle cx="20" cy="14" r="7" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
-    <path d="M7 36c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M7 37c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
   </svg>
 );
 
@@ -39,9 +39,9 @@ const TeamIcon = () => (
     <circle cx="20" cy="12" r="5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
     <circle cx="9" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/>
     <circle cx="31" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/>
-    <path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-    <path d="M3 34c0-3.866 2.686-7 6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    <path d="M37 34c0-3.866-2.686-7-6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <path d="M10 30c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M3 30c0-3.866 2.686-7 6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <path d="M37 30c0-3.866-2.686-7-6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
   </svg>
 );
 
@@ -54,7 +54,7 @@ const cards = [
     subtitle: "AI Readiness Diagnostic",
     description: "Is your organisation ready to adopt AI? Assess your strategic clarity, leadership readiness, employee sentiment, culture of change, and practical foundations.",
     buttonText: "Take the Assessment",
-    detail: "25 questions · 10 minutes",
+    detail: "25 questions Â· 10 minutes",
   },
   {
     id: "leader",
@@ -62,7 +62,7 @@ const cards = [
     subtitle: "AI Leadership Diagnostic",
     description: "How effectively are you using AI as a strategic thinking partner? Assess your current usage, habits, depth, trust, and the impact AI is having on your leadership.",
     buttonText: "Take the Assessment",
-    detail: "25 questions · 8 minutes",
+    detail: "25 questions Â· 8 minutes",
   },
   {
     id: "team",
@@ -70,7 +70,7 @@ const cards = [
     subtitle: "Personal AI Diagnostic",
     description: "How are you using AI as an individual? Discover where you are on the AI adoption curve and unlock the roles of Assistant, Coach, Expert, Creative, and Conductor.",
     buttonText: "Take the Assessment",
-    detail: "25 questions · 8 minutes",
+    detail: "25 questions Â· 8 minutes",
   },
 ];
 
@@ -167,15 +167,15 @@ export default function LandingPage({ onNavigate }) {
             </h2>
             <p style={{
               color: CYAN,
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: 600,
               margin: "0 0 16px",
             }}>
               {card.subtitle}
             </p>
             <p style={{
-              color: "#cbd5e1",
-              fontSize: 16,
+              color: "#94a3b8",
+              fontSize: 14,
               lineHeight: 1.7,
               margin: "0 0 24px",
               flex: 1,
@@ -190,7 +190,7 @@ export default function LandingPage({ onNavigate }) {
                 border: "none",
                 borderRadius: 12,
                 padding: "12px 24px",
-                fontSize: 16,
+                fontSize: 15,
                 fontWeight: 600,
                 cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif",
@@ -210,8 +210,8 @@ export default function LandingPage({ onNavigate }) {
               {card.buttonText}
             </button>
             <p style={{
-              color: "#94a3b8",
-              fontSize: 14,
+              color: "#64748b",
+              fontSize: 12,
               textAlign: "center",
               margin: "12px 0 0",
             }}>
@@ -260,10 +260,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Companies</h3>
-            <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               AI Change Management
             </p>
-            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help organisations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -272,14 +272,14 @@ export default function LandingPage({ onNavigate }) {
               color: CYAN,
               borderRadius: 10,
               padding: "10px 24px",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 600,
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk →
+              Let's talk â†’
             </a>
           </div>
 
@@ -298,10 +298,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Leaders</h3>
-            <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               AI as a Thinking Partner
             </p>
-            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help leaders use AI for the decisions that actually matter, not just emails and summaries. Using the 4D framework (Define, Discover, Debate, Deliver), I show you how to turn AI into a strategic thinking partner that sharpens your judgment.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -310,14 +310,14 @@ export default function LandingPage({ onNavigate }) {
               color: CYAN,
               borderRadius: 10,
               padding: "10px 24px",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 600,
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk →
+              Let's talk â†’
             </a>
           </div>
 
@@ -336,10 +336,10 @@ export default function LandingPage({ onNavigate }) {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 20, color: "#fff", margin: "0 0 4px",
             }}>Teams</h3>
-            <p style={{ color: CYAN, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>
+            <p style={{ color: CYAN, fontSize: 13, fontWeight: 600, margin: "0 0 16px" }}>
               Hands-On AI Workshops
             </p>
-            <p style={{ color: "#cbd5e1", fontSize: 16, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
+            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
               I help individuals discover the five roles AI can play for them: Assistant, Coach, Expert, Creative, and the Conductor that orchestrates them all. Through hands-on workshops where people experience AI, not just hear about it.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
@@ -348,14 +348,14 @@ export default function LandingPage({ onNavigate }) {
               color: CYAN,
               borderRadius: 10,
               padding: "10px 24px",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 600,
               textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk →
+              Let's talk â†’
             </a>
           </div>
         </div>
@@ -370,18 +370,18 @@ export default function LandingPage({ onNavigate }) {
         maxWidth: 600,
         margin: "0 auto",
       }}>
-        <p style={{ color: "#64748b", fontSize: 15, margin: "0 0 8px" }}>
+        <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 8px" }}>
           Designed by CoachBay
         </p>
-        <p style={{ color: "#94a3b8", fontSize: 15, margin: "0 0 12px" }}>
-          Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
+        <p style={{ color: "#94a3b8", fontSize: 14, margin: "0 0 12px" }}>
+          Tomas Bay Â· <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
         </p>
         <a href="https://coachbay.com" target="_blank" rel="noopener noreferrer" style={{
           color: "#64748b",
-          fontSize: 15,
+          fontSize: 13,
           textDecoration: "none",
         }}>
-          coachbay.com →
+          coachbay.com â†’
         </a>
       </div>
     </div>
