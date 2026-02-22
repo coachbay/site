@@ -361,6 +361,112 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* How I Work Section */}
+      <div style={{
+        maxWidth: 960,
+        margin: "0 auto",
+        padding: "20px 24px 60px",
+      }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 32,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            Working with Clients
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        </div>
+
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 24,
+          justifyContent: "center",
+        }}>
+          {[
+            {
+              step: "01",
+              title: "Discover",
+              description: "I start by understanding where you actually are with AI. Not where you think you should be. That means listening to leaders, understanding what employees are really doing, and identifying where the biggest opportunities lie.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="18" cy="18" r="10" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <line x1="25" y1="25" x2="33" y2="33" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              step: "02",
+              title: "Design",
+              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan that makes sense for where you are right now.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <line x1="13" y1="16" x2="27" y2="16" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="13" y1="22" x2="27" y2="22" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="13" y1="28" x2="21" y2="28" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              step: "03",
+              title: "Delivery",
+              description: "I work alongside your team to make AI real. Through workshops, pilot squads, and hands-on coaching that builds genuine capability, not just awareness.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 6 C20 6 26 10 26 20 L26 26 L20 30 L14 26 L14 20 C14 10 20 6 20 6Z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+                  <circle cx="20" cy="18" r="3" stroke={CYAN} strokeWidth="2" fill="none"/>
+                  <path d="M14 24 L10 28 L10 32 L14 30" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <path d="M26 24 L30 28 L30 32 L26 30" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <path d="M17 30 L17 34 M20 31 L20 35 M23 30 L23 34" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+          ].map((item) => (
+            <div key={item.step} style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 20,
+              padding: "32px 28px",
+              width: 280,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+            }}>
+              <div style={{
+                background: `${CYAN}18`,
+                borderRadius: 16,
+                padding: 14,
+                marginBottom: 16,
+                display: "inline-flex",
+              }}>
+                {item.icon}
+              </div>
+              <div style={{
+                color: CYAN, fontSize: 12, fontWeight: 700,
+                letterSpacing: 2, marginBottom: 8,
+              }}>
+                STEP {item.step}
+              </div>
+              <h3 style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 22, color: "#fff", margin: "0 0 16px",
+              }}>
+                {item.title}
+              </h3>
+              <p style={{
+                color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: 0,
+              }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Footer */}
       <div style={{
         textAlign: "center",
