@@ -433,16 +433,8 @@ export default function LandingPage({ onNavigate }) {
               width: 280,
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
             }}>
-              <div style={{
-                background: `${CYAN}18`,
-                borderRadius: 16,
-                padding: 14,
-                marginBottom: 16,
-                display: "inline-flex",
-              }}>
+              <div style={{ marginBottom: 16 }}>
                 {item.icon}
               </div>
               <div style={{
