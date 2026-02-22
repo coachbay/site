@@ -116,7 +116,7 @@ export default function LandingPage({ onNavigate }) {
           margin: "0 0 12px",
           fontWeight: 500,
         }}>
-          Helping leaders and teams get comfortable with AI
+          Most organisations don't know where they are with AI. These diagnostics show you exactly where you stand.
         </p>
 
       </div>
