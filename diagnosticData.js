@@ -6,7 +6,7 @@ const RED_ACCENT = "#ef4444";
 // ============================================
 export const companyConfig = {
   title: "AI Readiness Diagnostic",
-  subtitle: "Where does your organisation actually sit on the AI adoption curve?",
+  subtitle: "Where does your organization actually sit on the AI adoption curve?",
   description: "25 questions across 5 dimensions. Takes about 10 minutes.\nBe honest. This is a mirror, not a report card.",
   diagnosticType: "Company",
   empathyGap: { leadershipId: "leadership", sentimentId: "sentiment" },
@@ -46,14 +46,14 @@ export const companyConfig = {
         "Employees feel safe experimenting with AI without fear of judgment",
         "People talk openly about using AI at work (not hiding it)",
         "Employees see AI as a tool that helps them, not a threat to their job",
-        "There are people in the organisation already playing with AI on their own",
+        "There are people in the organization already playing with AI on their own",
         "We've actually asked employees how they feel about AI (not assumed)",
       ],
     },
     {
       id: "culture",
       title: "Culture of Change",
-      subtitle: "Does your organisation have the muscle to adopt something new?",
+      subtitle: "Does your organization have the muscle to adopt something new?",
       icon: "🔄",
       questions: [
         "When we introduce new tools or processes, people generally give them a fair try",
@@ -80,7 +80,7 @@ export const companyConfig = {
   tierData: [
     {
       range: [100, 125], label: "Ready to Accelerate", color: "#10b981",
-      summary: "Your organisation has the foundations in place. Leadership is engaged, employees are willing, and you have clarity on what you're trying to achieve.",
+      summary: "Your organization has the foundations in place. Leadership is engaged, employees are willing, and you have clarity on what you're trying to achieve.",
       action: "Skip the awareness phase. Go straight to forming a Pilot Squad, a small group of 5 to 10 early adopters who solve real problems with AI. Focus on creating visible wins fast and scaling from there.",
     },
     {
@@ -91,11 +91,11 @@ export const companyConfig = {
     {
       range: [50, 74], label: "Groundwork Needed", color: "#f59e0b",
       summary: "There's interest but not enough safety, clarity, or trust to launch an initiative yet. Pushing ahead now risks creating \"prisoners\", compliance without buy-in.",
-      action: "Start with leadership. Leaders need to use AI themselves first because you can't coach what you haven't practised. Focus on building psychological safety and identifying your natural early adopters. A 60-minute AI Kickoff workshop can open the door without forcing anything.",
+      action: "Start with leadership. Leaders need to use AI themselves first because you can't coach what you haven't practiced. Focus on building psychological safety and identifying your natural early adopters. A 60-minute AI Kickoff workshop can open the door without forcing anything.",
     },
     {
       range: [0, 49], label: "Not Yet. And That's Okay", color: RED_ACCENT,
-      summary: "Your organisation isn't ready for an AI initiative right now. That doesn't mean it's a failure. It means other things need to come first: trust, change fatigue, leadership alignment, or basic access to tools.",
+      summary: "Your organization isn't ready for an AI initiative right now. That doesn't mean it's a failure. It means other things need to come first: trust, change fatigue, leadership alignment, or basic access to tools.",
       action: "Don't force it. Work on the underlying culture of change first. Start with one-on-one conversations with leaders about what's really getting in the way. Come back to AI once the foundation of trust is stronger.",
     },
   ],
@@ -107,7 +107,7 @@ export const companyConfig = {
     },
     leadership: {
       low: "Leaders are delegating AI without experiencing it themselves. Before rolling out anything, get leaders hands-on. Have each one spend 30 minutes using AI on a real work problem. You can't credibly lead a change you haven't lived through.",
-      mid: "Leadership is engaged but may not be modelling the behaviour consistently. Make AI usage visible at the top. Share what you're using it for in team meetings, show your prompts, and be honest about what didn't work.",
+      mid: "Leadership is engaged but may not be modeling the behavior consistently. Make AI usage visible at the top. Share what you're using it for in team meetings, show your prompts, and be honest about what didn't work.",
       high: "Leadership readiness is strong. Your leaders are walking the talk. Now use that credibility to create safety for others. When the CEO says \"I tried this and it was terrible at first,\" it gives everyone permission to be imperfect.",
     },
     sentiment: {
@@ -116,8 +116,8 @@ export const companyConfig = {
       high: "Employees are open and willing. This is your fuel. Don't waste it with heavy-handed rollouts. Channel this energy into a Pilot Squad where their enthusiasm can produce visible results.",
     },
     culture: {
-      low: "This isn't an AI problem. It's a trust and change fatigue problem. Your organisation has been through too many initiatives that didn't stick. Address the underlying culture before adding more change. AI will still be there when you're ready.",
-      mid: "The organisation can handle change but needs proof that this time is different. Start small, show results quickly, and critically, don't over-promise. Under-promise and over-deliver to rebuild change credibility.",
+      low: "This isn't an AI problem. It's a trust and change fatigue problem. Your organization has been through too many initiatives that didn't stick. Address the underlying culture before adding more change. AI will still be there when you're ready.",
+      mid: "The organization can handle change but needs proof that this time is different. Start small, show results quickly, and critically, don't over-promise. Under-promise and over-deliver to rebuild change credibility.",
       high: "Your change muscle is strong. People are willing to try new things and trust that leadership has their back. Use this to move fast. Your biggest risk is actually moving too slowly and losing the momentum.",
     },
     foundations: {
@@ -134,7 +134,7 @@ export const companyConfig = {
 export const leaderConfig = {
   title: "AI Leadership Diagnostic",
   subtitle: "How are you using AI today as a leader?",
-  description: "25 questions across 5 dimensions. Takes about 8 minutes.\nThis is about your personal AI journey, not your organisation's.",
+  description: "25 questions across 5 dimensions. Takes about 8 minutes.\nThis is about your personal AI journey, not your organization's.",
   diagnosticType: "Leader",
   empathyGap: null,
   sections: [
@@ -147,7 +147,7 @@ export const leaderConfig = {
         "I use AI to help with routine tasks like drafting emails, summarising documents, or preparing agendas",
         "I use AI to think through complex decisions or strategic challenges",
         "I use AI to prepare for important meetings, presentations, or difficult conversations",
-        "I use AI to analyse information, spot patterns, or stress-test my assumptions",
+        "I use AI to analyze information, spot patterns, or stress-test my assumptions",
         "I use AI to generate new ideas or explore different perspectives on a problem",
       ],
     },
@@ -208,7 +208,7 @@ export const leaderConfig = {
     {
       range: [100, 125], label: "AI-Powered Leader", color: "#10b981",
       summary: "AI is woven into how you lead. You use it for strategic thinking, not just productivity. You're not just keeping up, you're setting the pace.",
-      action: "You're ready to multiply your impact. Start coaching others on what you've learned. Share your prompts, show your process, and help your team see what's possible. You are the early adopter your organisation needs to see.",
+      action: "You're ready to multiply your impact. Start coaching others on what you've learned. Share your prompts, show your process, and help your team see what's possible. You are the early adopter your organization needs to see.",
     },
     {
       range: [75, 99], label: "Active Explorer", color: CYAN,
@@ -261,7 +261,7 @@ export const leaderConfig = {
 export const teamConfig = {
   title: "Personal AI Diagnostic",
   subtitle: "How are you using AI in your work today?",
-  description: "25 questions across 5 dimensions. Takes about 8 minutes.\nThis is about you, not your team or organisation.",
+  description: "25 questions across 5 dimensions. Takes about 8 minutes.\nThis is about you, not your team or organization.",
   diagnosticType: "Team",
   empathyGap: null,
   sections: [
@@ -297,7 +297,7 @@ export const teamConfig = {
       subtitle: "How confident are you with AI tools?",
       icon: "🔧",
       questions: [
-        "I have used AI tools beyond what my organisation officially provides to do work",
+        "I have used AI tools beyond what my organization officially provides to do work",
         "I can usually get a useful response from AI without multiple attempts",
         "I go back and forth with AI to refine and improve results",
         "I have figured out my own tips and techniques for getting better AI results",
@@ -313,7 +313,7 @@ export const teamConfig = {
         "I feel confident using AI for tasks that matter, not just simple ones",
         "I have learned something new about AI in the last month",
         "I am open about using AI with my colleagues and manager",
-        "I feel encouraged by my team or organisation to use AI",
+        "I feel encouraged by my team or organization to use AI",
         "I believe AI makes my work better, not just faster",
       ],
     },

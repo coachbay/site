@@ -52,7 +52,7 @@ const cards = [
     id: "company",
     title: "For Companies",
     subtitle: "AI Readiness Diagnostic",
-    description: "Is your organisation ready to adopt AI? Assess your strategic clarity, leadership readiness, employee sentiment, culture of change, and practical foundations.",
+    description: "Is your organization ready to adopt AI? Assess your strategic clarity, leadership readiness, employee sentiment, culture of change, and practical foundations.",
     buttonText: "Take the Assessment",
     detail: "25 questions · 10 minutes",
   },
@@ -116,7 +116,7 @@ export default function LandingPage({ onNavigate }) {
           margin: "0 0 12px",
           fontWeight: 500,
         }}>
-          Most organisations don't know where they are with AI. These diagnostics show you exactly where you stand.
+          Most organizations don't know where they are with AI. These diagnostics show you exactly where you stand.
         </p>
 
       </div>
@@ -264,7 +264,7 @@ export default function LandingPage({ onNavigate }) {
               AI Change Management
             </p>
             <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>
-              I help organisations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
+              I help organizations roll out AI without the usual resistance. Instead of mandating AI adoption, I help you build momentum through early adopters and visible wins. Using Pilot Squads, workshops, and diagnostics to get things moving.
             </p>
             <a href="mailto:coach@coachbay.ai" style={{
               display: "inline-block",
@@ -400,7 +400,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "02",
               title: "Design",
-              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
+              description: "I put together a program that fits your organization, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
