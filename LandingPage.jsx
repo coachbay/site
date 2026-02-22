@@ -54,7 +54,7 @@ const cards = [
     subtitle: "AI Readiness Diagnostic",
     description: "Is your organisation ready to adopt AI? Assess your strategic clarity, leadership readiness, employee sentiment, culture of change, and practical foundations.",
     buttonText: "Take the Assessment",
-    detail: "25 questions Â· 10 minutes",
+    detail: "25 questions · 10 minutes",
   },
   {
     id: "leader",
@@ -62,7 +62,7 @@ const cards = [
     subtitle: "AI Leadership Diagnostic",
     description: "How effectively are you using AI as a strategic thinking partner? Assess your current usage, habits, depth, trust, and the impact AI is having on your leadership.",
     buttonText: "Take the Assessment",
-    detail: "25 questions Â· 8 minutes",
+    detail: "25 questions · 8 minutes",
   },
   {
     id: "team",
@@ -70,7 +70,7 @@ const cards = [
     subtitle: "Personal AI Diagnostic",
     description: "How are you using AI as an individual? Discover where you are on the AI adoption curve and unlock the roles of Assistant, Coach, Expert, Creative, and Conductor.",
     buttonText: "Take the Assessment",
-    detail: "25 questions Â· 8 minutes",
+    detail: "25 questions · 8 minutes",
   },
 ];
 
@@ -279,7 +279,7 @@ export default function LandingPage({ onNavigate }) {
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk â†’
+              Let's talk →
             </a>
           </div>
 
@@ -317,7 +317,7 @@ export default function LandingPage({ onNavigate }) {
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk â†’
+              Let's talk →
             </a>
           </div>
 
@@ -355,7 +355,7 @@ export default function LandingPage({ onNavigate }) {
               transition: "all 0.2s ease",
               alignSelf: "flex-start",
             }}>
-              Let's talk â†’
+              Let's talk →
             </a>
           </div>
         </div>
@@ -389,7 +389,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "01",
               title: "Discover",
-              description: "I start by understanding where you actually are with AI. Not where you think you should be. That means listening to leaders, understanding what employees are really doing, and identifying where the biggest opportunities lie.",
+              description: "I start by understanding where you actually are with AI. Not where you think you should be. That means listening to leaders, talking to employees, and finding where the real opportunities are.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <circle cx="18" cy="18" r="10" stroke={CYAN} strokeWidth="2.5" fill="none"/>
@@ -400,7 +400,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "02",
               title: "Design",
-              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan that makes sense for where you are right now.",
+              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
@@ -413,7 +413,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "03",
               title: "Delivery",
-              description: "I work alongside your team to make AI real. Through workshops, pilot squads, and hands-on coaching that builds genuine capability, not just awareness.",
+              description: "I work alongside your team to make AI real. Through workshops, pilot squads, and practical coaching that builds genuine capability, not just awareness.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <path d="M20 6 C20 6 26 10 26 20 L26 26 L20 30 L14 26 L14 20 C14 10 20 6 20 6Z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
@@ -480,14 +480,14 @@ export default function LandingPage({ onNavigate }) {
           Designed by CoachBay
         </p>
         <p style={{ color: "#94a3b8", fontSize: 14, margin: "0 0 12px" }}>
-          Tomas Bay Â· <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
+          Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
         </p>
         <a href="https://coachbay.com" target="_blank" rel="noopener noreferrer" style={{
           color: "#64748b",
           fontSize: 13,
           textDecoration: "none",
         }}>
-          coachbay.com â†’
+          coachbay.com →
         </a>
       </div>
     </div>
