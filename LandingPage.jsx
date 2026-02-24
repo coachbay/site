@@ -113,10 +113,19 @@ export default function LandingPage({ onNavigate }) {
           color: "#e2e8f0",
           fontSize: 20,
           lineHeight: 1.6,
+          margin: "0 0 4px",
+          fontWeight: 500,
+        }}>
+          Most organizations don't know where they are with AI.
+        </p>
+        <p style={{
+          color: "#e2e8f0",
+          fontSize: 20,
+          lineHeight: 1.6,
           margin: "0 0 12px",
           fontWeight: 500,
         }}>
-          Most organizations don't know where they are with AI. These diagnostics show you exactly where you stand.
+          These diagnostics show you exactly where you stand.
         </p>
 
       </div>
