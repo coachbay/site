@@ -348,27 +348,10 @@ export default function LandingPage({ onNavigate }) {
               <p style={{
                 color: "#94a3b8",
                 fontSize: 15,
-                margin: "0 0 20px",
+                margin: "0",
               }}>
                 {sprint.detail}
               </p>
-              <a href="mailto:coach@coachbay.ai" style={{
-                display: "block",
-                textAlign: "center",
-                background: CYAN,
-                color: "#fff",
-                border: "none",
-                borderRadius: 12,
-                padding: "12px 24px",
-                fontSize: 15,
-                fontWeight: 600,
-                textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif",
-                boxShadow: `0 6px 24px ${CYAN}44`,
-                transition: "all 0.2s ease",
-              }}>
-                Get in touch
-              </a>
             </div>
           ))}
         </div>
@@ -415,6 +398,37 @@ export default function LandingPage({ onNavigate }) {
           }}>
             Short virtual sessions after each Sprint to reinforce learning and build lasting habits.
           </p>
+        </div>
+
+        {/* Sprint CTA */}
+        <div style={{
+          textAlign: "center",
+          marginTop: 36,
+        }}>
+          <p style={{
+            color: "#e2e8f0",
+            fontSize: 18,
+            fontWeight: 500,
+            margin: "0 0 16px",
+          }}>
+            Interested in a Sprint?
+          </p>
+          <a href="mailto:coach@coachbay.ai" style={{
+            display: "inline-block",
+            background: CYAN,
+            color: "#fff",
+            border: "none",
+            borderRadius: 12,
+            padding: "14px 32px",
+            fontSize: 16,
+            fontWeight: 600,
+            textDecoration: "none",
+            fontFamily: "'DM Sans', sans-serif",
+            boxShadow: `0 6px 24px ${CYAN}44`,
+            transition: "all 0.2s ease",
+          }}>
+            Get in touch
+          </a>
         </div>
       </div>
 
