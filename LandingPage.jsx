@@ -83,6 +83,7 @@ const sprints = [
     tagline: "for skills",
     detail: "Half day sprint for managers, team leads, and specialists.",
     description: "Discover four AI roles that go far beyond basic chat. For anyone still using AI mainly as an assistant who wants to unlock its real potential.",
+    pdf: "/CoachBay_Core_Sprint.pdf",
   },
   {
     id: "strategy",
@@ -91,6 +92,7 @@ const sprints = [
     tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
     description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
+    pdf: "/CoachBay_Strategy_Sprint.pdf",
   },
   {
     id: "change",
@@ -99,6 +101,7 @@ const sprints = [
     tagline: "for adoption",
     detail: "Half day sprint for leaders driving AI adoption.",
     description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organization.",
+    pdf: "/CoachBay_Change_Sprint.pdf",
   },
 ];
 
@@ -403,10 +406,40 @@ export default function LandingPage({ onNavigate }) {
               <p style={{
                 color: "#94a3b8",
                 fontSize: 15,
-                margin: "0",
+                margin: "0 0 20px",
               }}>
                 {sprint.detail}
               </p>
+              <a
+                href={sprint.pdf}
+                download
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  color: CYAN,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  fontFamily: "'DM Sans', sans-serif",
+                  textDecoration: "none",
+                  padding: "10px 20px",
+                  border: `1.5px solid ${CYAN}`,
+                  borderRadius: 10,
+                  transition: "all 0.2s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = `${CYAN}18`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Download Sprint Overview
+              </a>
             </div>
           ))}
         </div>
