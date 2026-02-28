@@ -634,13 +634,51 @@ export default function LandingPage({ onNavigate }) {
           About
         </h2>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        <div style={{ marginTop: 24, marginBottom: 24, display: "flex", justifyContent: "center" }}>
+          <img
+            src="/tomas.jpg"
+            alt="Tomas Bay"
+            style={{
+              width: 140,
+              height: 140,
+              borderRadius: "50%",
+              objectFit: "cover",
+              objectPosition: "center 20%",
+              border: `3px solid ${CYAN}44`,
+            }}
+          />
+        </div>
+        <p style={{
+          color: "#e2e8f0",
+          fontSize: 16,
+          lineHeight: 1.8,
+          margin: "0 0 16px",
+        }}>
+          I'm Tomas Bay, a leadership and change consultant based in Hong Kong.
+        </p>
+        <p style={{
+          color: "#e2e8f0",
+          fontSize: 16,
+          lineHeight: 1.8,
+          margin: "0 0 16px",
+        }}>
+          Over 30 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.
+        </p>
+        <p style={{
+          color: "#e2e8f0",
+          fontSize: 16,
+          lineHeight: 1.8,
+          margin: "0 0 16px",
+        }}>
+          In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.
+        </p>
         <p style={{
           color: "#e2e8f0",
           fontSize: 16,
           lineHeight: 1.8,
           margin: "0 0 24px",
         }}>
-          I'm Tomas Bay. In January 2023, I started using ChatGPT for work. Since then, I have built a deep practical toolkit across multiple AI platforms. Through my work at Swire as Principal Consultant, I have helped individuals, leaders, and teams get more out of AI and become more effective at work. Now I do the same for other organizations through sprints, diagnostics, and coaching.
+          I built CoachBay to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.
         </p>
         <a href="mailto:coach@coachbay.ai" style={{
           display: "inline-block",
