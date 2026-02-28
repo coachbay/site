@@ -94,7 +94,7 @@ const sprints = [
     title: "Strategy Sprint",
     tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
-    description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgement, not just save time.",
+    description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
   },
   {
     id: "change",
@@ -102,7 +102,7 @@ const sprints = [
     title: "Change Sprint",
     tagline: "for adoption",
     detail: "Half day sprint for leaders driving AI adoption.",
-    description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organisation.",
+    description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organization.",
   },
 ];
 
@@ -112,7 +112,7 @@ const diagnostics = [
     icon: <CompanyIcon />,
     title: "For Companies",
     subtitle: "AI Readiness Diagnostic",
-    description: "See where your organisation actually stands with AI across five dimensions. So you can decide what to focus on next.",
+    description: "See where your organization actually stands with AI across five dimensions. So you can decide what to focus on next.",
     detail: "25 questions \u00b7 10 minutes",
   },
   {
@@ -183,7 +183,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.7,
           margin: "0",
         }}>
-          I help leaders and organisations adopt AI<br />in a way that actually sticks.
+          I help leaders and organizations adopt AI<br />in a way that actually sticks.
         </p>
         <a
           href="#diagnostics"
@@ -237,7 +237,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 16px",
         }}>
-          Organisations buy tools, write policies, and roll out training.<br />Then wonder why nothing changes.
+          Organizations buy tools, write policies, and roll out training.<br />Then wonder why nothing changes.
         </p>
         <p style={{
           color: "#94a3b8",
@@ -271,7 +271,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            From personal AI skills<br />to organisational adoption.
+            From personal AI skills<br />to organizational adoption.
           </p>
           <p style={{
             color: "#94a3b8",
@@ -446,7 +446,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "02",
               title: "Design",
-              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
+              description: "I put together a program that fits your organization, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
@@ -527,7 +527,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            Take a free diagnostic.<br />Get personalised results in minutes.
+            Take a free diagnostic.<br />Get personalized results in minutes.
           </p>
         </div>
 
@@ -638,7 +638,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 24px",
         }}>
-          I'm Tomas Bay. I help leaders and teams get comfortable with AI through practical sprints, diagnostics, and coaching. Not slides and theory. Real experience with real tools on real problems.
+          I'm Tomas Bay. In January 2023, I started using ChatGPT for work. Since then, I have built a deep practical toolkit across multiple AI platforms. Through my work at Swire, I have helped individuals, leaders, and teams get more out of AI and become more effective at work. Now I do the same for other organizations through sprints, diagnostics, and coaching.
         </p>
         <a href="mailto:coach@coachbay.ai" style={{
           display: "inline-block",
