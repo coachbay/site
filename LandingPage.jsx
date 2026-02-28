@@ -182,7 +182,7 @@ export default function LandingPage({ onNavigate }) {
               lineHeight: 1.7,
               margin: "0 0 8px",
             }}>
-              I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
+              My name is Tomas Bay, I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
             </p>
             <p style={{
               color: "#94a3b8",
