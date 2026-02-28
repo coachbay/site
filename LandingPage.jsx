@@ -34,15 +34,12 @@ const CompassIcon = () => (
   </svg>
 );
 
-const MagnetIcon = () => (
+const ChangeIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <path d="M14 20v-6a10 10 0 0 1 20 0v6" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-    <rect x="10" y="20" width="8" height="14" rx="2" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
-    <rect x="30" y="20" width="8" height="14" rx="2" stroke="#00BCD4" strokeWidth="2.5" fill="none"/>
-    <line x1="10" y1="26" x2="18" y2="26" stroke="#00BCD4" strokeWidth="2"/>
-    <line x1="30" y1="26" x2="38" y2="26" stroke="#00BCD4" strokeWidth="2"/>
-    <path d="M9 38c3-2 5-3 7-3M32 35c2 0 4 1 7 3" stroke="#00BCD4" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
-    <path d="M7 42c4-2 6-3 9-3M32 39c3 0 5 1 9 3" stroke="#00BCD4" strokeWidth="1.5" strokeLinecap="round" opacity="0.25"/>
+    <path d="M14 16c0 0 4 8 10 8s10-8 10-8" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M14 28c0 0 4 8 10 8s10-8 10-8" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M10 20l4-4 4 4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M30 32l4 4 4-4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
   </svg>
 );
 
@@ -97,7 +94,7 @@ const sprints = [
   },
   {
     id: "change",
-    icon: <MagnetIcon />,
+    icon: <ChangeIcon />,
     title: "Change Sprint",
     tagline: "for adoption",
     detail: "Half day sprint for leaders driving AI adoption.",
@@ -476,16 +473,8 @@ export default function LandingPage({ onNavigate }) {
               description: "I work alongside your team to make AI real. Through sprints, pilot squads, and practical coaching that builds genuine capability, not just awareness.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="7" stroke={CYAN} strokeWidth="2.5" fill="none"/>
-                  <circle cx="20" cy="20" r="3" fill={CYAN}/>
-                  <line x1="20" y1="4" x2="20" y2="10" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="20" y1="30" x2="20" y2="36" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="4" y1="20" x2="10" y2="20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="30" y1="20" x2="36" y2="20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="8.7" y1="8.7" x2="13" y2="13" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="27" y1="27" x2="31.3" y2="31.3" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="8.7" y1="31.3" x2="13" y2="27" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="27" y1="13" x2="31.3" y2="8.7" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <path d="M28 8a8 8 0 0 0-11.3 11.3l-9.4 9.4a3 3 0 0 0 0 4.2l0 0a3 3 0 0 0 4.2 0l9.4-9.4A8 8 0 0 0 28 8z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+                  <path d="M25 9l3 3" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
                 </svg>
               ),
             },
