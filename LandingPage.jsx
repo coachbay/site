@@ -13,12 +13,11 @@ const RobotIcon = () => (
   </svg>
 );
 
-const RocketIcon = () => (
+const SkillsIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <path d="M24 6c0 0-12 8-12 22v4l6 6h12l6-6v-4C36 14 24 6 24 6z" stroke="#00BCD4" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-    <circle cx="24" cy="22" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/>
-    <path d="M18 34l-4 4v4l4-2M30 34l4 4v4l-4-2" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M21 38v4M24 39v4M27 38v4" stroke="#00BCD4" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M24 6a14 14 0 0 0-8 25.4V36a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4.6A14 14 0 0 0 24 6z" stroke="#00BCD4" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+    <line x1="20" y1="42" x2="28" y2="42" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M24 16v8M20 20h8" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
 
@@ -82,7 +81,7 @@ const TeamIcon = () => (
 const sprints = [
   {
     id: "core",
-    icon: <RocketIcon />,
+    icon: <SkillsIcon />,
     title: "Core Sprint",
     tagline: "for skills",
     detail: "Half day sprint for managers, team leads, and specialists.",
@@ -389,6 +388,12 @@ export default function LandingPage({ onNavigate }) {
           marginLeft: "auto",
           marginRight: "auto",
         }}>
+          <div style={{ marginBottom: 16, display: "flex", justifyContent: "center" }}>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <line x1="10" y1="6" x2="10" y2="36" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M10 6h18l-5 7 5 7H10" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+            </svg>
+          </div>
           <h3 style={{
             fontFamily: "'DM Serif Display', serif",
             fontSize: 20,
@@ -471,11 +476,16 @@ export default function LandingPage({ onNavigate }) {
               description: "I work alongside your team to make AI real. Through sprints, pilot squads, and practical coaching that builds genuine capability, not just awareness.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M20 6 C20 6 26 10 26 20 L26 26 L20 30 L14 26 L14 20 C14 10 20 6 20 6Z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-                  <circle cx="20" cy="18" r="3" stroke={CYAN} strokeWidth="2" fill="none"/>
-                  <path d="M14 24 L10 28 L10 32 L14 30" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                  <path d="M26 24 L30 28 L30 32 L26 30" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                  <path d="M17 30 L17 34 M20 31 L20 35 M23 30 L23 34" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="20" cy="20" r="7" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <circle cx="20" cy="20" r="3" fill={CYAN}/>
+                  <line x1="20" y1="4" x2="20" y2="10" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="20" y1="30" x2="20" y2="36" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="4" y1="20" x2="10" y2="20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="30" y1="20" x2="36" y2="20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="8.7" y1="8.7" x2="13" y2="13" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="27" y1="27" x2="31.3" y2="31.3" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="8.7" y1="31.3" x2="13" y2="27" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <line x1="27" y1="13" x2="31.3" y2="8.7" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
                 </svg>
               ),
             },
