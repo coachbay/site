@@ -51,14 +51,16 @@ body {
 .hero-layout {
   display: flex;
   align-items: center;
-  gap: 48px;
-  max-width: 900px;
+  gap: 56px;
+  max-width: 860px;
   margin: 0 auto;
   text-align: left;
+  padding: 0 40px;
 }
 
 .hero-text {
   flex: 1;
+  max-width: 520px;
 }
 
 .hero-photo {
@@ -86,9 +88,20 @@ body {
     flex-direction: column;
     text-align: center;
     gap: 28px;
+    padding: 0;
   }
 
   .hero-photo {
     order: -1;
+  }
+
+  .hero-photo-circle {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .hero-photo-img {
+    width: 180px !important;
+    height: 180px !important;
   }
 }

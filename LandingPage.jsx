@@ -206,9 +206,9 @@ export default function LandingPage({ onNavigate }) {
             </a>
           </div>
           <div className="hero-photo">
-            <div style={{
-              width: 200,
-              height: 200,
+            <div className="hero-photo-circle" style={{
+              width: 240,
+              height: 240,
               borderRadius: "50%",
               overflow: "hidden",
               border: `3px solid ${CYAN}44`,
@@ -217,9 +217,10 @@ export default function LandingPage({ onNavigate }) {
               <img
                 src="/tomas.jpg"
                 alt="Tomas Bay"
+                className="hero-photo-img"
                 style={{
-                  width: 200,
-                  height: 200,
+                  width: 240,
+                  height: 240,
                   borderRadius: "50%",
                   objectFit: "cover",
                   objectPosition: "center 15%",
