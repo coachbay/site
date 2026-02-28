@@ -175,18 +175,18 @@ export default function LandingPage({ onNavigate }) {
           color: "#e2e8f0",
           fontSize: 20,
           lineHeight: 1.6,
-          margin: "0 0 8px",
+          margin: "0 0 12px",
           fontWeight: 500,
         }}>
-          Helping leaders and teams use AI effectively
+          Helping leaders and teams<br />use AI effectively
         </p>
         <p style={{
           color: "#94a3b8",
           fontSize: 16,
-          lineHeight: 1.6,
+          lineHeight: 1.8,
           margin: "0",
         }}>
-          Practical tools. Clear thinking. Progress you can see.
+          Practical tools.<br />Clear thinking.<br />Progress you can see.
         </p>
       </div>
 
