@@ -635,6 +635,7 @@ export default function LandingPage({ onNavigate }) {
         </h2>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         <div style={{ marginTop: 24, marginBottom: 24, display: "flex", justifyContent: "center" }}>
+          <div style={{ width: 140, height: 140, borderRadius: "50%", overflow: "hidden", border: `3px solid ${CYAN}44` }}>
           <img
             src="/tomas.jpg"
             alt="Tomas Bay"
@@ -643,10 +644,11 @@ export default function LandingPage({ onNavigate }) {
               height: 140,
               borderRadius: "50%",
               objectFit: "cover",
-              objectPosition: "center 20%",
-              border: `3px solid ${CYAN}44`,
+              objectPosition: "center 15%",
+              transform: "scale(1.4)",
             }}
           />
+          </div>
         </div>
         <p style={{
           color: "#e2e8f0",
@@ -678,7 +680,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 24px",
         }}>
-          I built CoachBay to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.
+          I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.
         </p>
         <a href="mailto:coach@coachbay.ai" style={{
           display: "inline-block",
