@@ -177,33 +177,60 @@ export default function LandingPage({ onNavigate }) {
               Most AI initiatives start with tools.<br className="mobile-br" />{" "}The best ones start with people.
             </h1>
             <p style={{
-              color: "#94a3b8",
+              color: "#e2e8f0",
               fontSize: 17,
               lineHeight: 1.7,
-              margin: "0 0 28px",
+              margin: "0 0 8px",
             }}>
               I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
             </p>
-            <a
-              href="#diagnostics"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("diagnostics")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              style={{
-                display: "inline-block",
-                color: CYAN,
-                fontSize: 15,
-                fontWeight: 600,
-                textDecoration: "none",
-                border: `1.5px solid ${CYAN}44`,
-                borderRadius: 10,
-                padding: "10px 24px",
-                transition: "all 0.2s ease",
-              }}
-            >
-              Not sure where to start?<br className="mobile-br" />{" "}Try a free diagnostic
-            </a>
+            <p style={{
+              color: "#94a3b8",
+              fontSize: 15,
+              lineHeight: 1.6,
+              margin: "0 0 28px",
+            }}>
+              30 years helping leaders navigate change<br className="mobile-br" />{" "}across Europe and Asia Pacific.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <a
+                href="mailto:coach@coachbay.ai"
+                style={{
+                  display: "inline-block",
+                  background: CYAN,
+                  color: "#fff",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  borderRadius: 10,
+                  padding: "10px 24px",
+                  transition: "all 0.2s ease",
+                  boxShadow: `0 6px 24px ${CYAN}44`,
+                }}
+              >
+                Get in touch
+              </a>
+              <a
+                href="#diagnostics"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("diagnostics")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                style={{
+                  display: "inline-block",
+                  color: CYAN,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  border: `1.5px solid ${CYAN}44`,
+                  borderRadius: 10,
+                  padding: "10px 24px",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                Try a free diagnostic
+              </a>
+            </div>
           </div>
           <div className="hero-photo">
             <div className="hero-photo-circle" style={{
@@ -553,7 +580,7 @@ export default function LandingPage({ onNavigate }) {
               </button>
               <p style={{
                 color: "#64748b",
-                fontSize: 11,
+                fontSize: 13,
                 textAlign: "center",
                 margin: "10px 0 0",
               }}>
