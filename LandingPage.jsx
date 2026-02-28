@@ -138,70 +138,97 @@ export default function LandingPage({ onNavigate }) {
     }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
 
-      {/* Hero Section */}
+      {/* Brand Bar */}
       <div style={{
         textAlign: "center",
-        padding: "60px 24px 48px",
-        maxWidth: 720,
-        margin: "0 auto",
+        padding: "32px 24px 0",
       }}>
-        <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>
-          <RobotIcon />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+            <circle cx="50" cy="55" r="30" fill="#00BCD4"/>
+            <circle cx="38" cy="50" r="7" fill="#fff"/>
+            <circle cx="62" cy="50" r="7" fill="#fff"/>
+            <circle cx="40" cy="51" r="4" fill="#1a1a2e"/>
+            <circle cx="64" cy="51" r="4" fill="#1a1a2e"/>
+            <line x1="50" y1="25" x2="50" y2="15" stroke="#00BCD4" strokeWidth="3"/>
+            <circle cx="50" cy="12" r="5" fill="#00BCD4"/>
+          </svg>
+          <span style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 22,
+            color: "#fff",
+          }}>
+            CoachBay<span style={{ color: CYAN }}>.ai</span>
+          </span>
         </div>
-        <h1 style={{
-          fontFamily: "'DM Serif Display', serif",
-          fontSize: 42,
-          color: "#fff",
-          margin: "0 0 8px",
-          lineHeight: 1.2,
-        }}>
-          CoachBay<span style={{ color: CYAN }}>.ai</span>
-        </h1>
-        <div style={{
-          width: 60,
-          height: 3,
-          background: CYAN,
-          margin: "20px auto",
-          borderRadius: 2,
-        }} />
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 21,
-          lineHeight: 1.5,
-          margin: "0 0 16px",
-          fontWeight: 500,
-        }}>
-          Most AI initiatives start with tools.<br className="mobile-br" />{" "}The best ones start with people.
-        </p>
-        <p style={{
-          color: "#94a3b8",
-          fontSize: 16,
-          lineHeight: 1.7,
-          margin: "0",
-        }}>
-          I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
-        </p>
-        <a
-          href="#diagnostics"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("diagnostics")?.scrollIntoView({ behavior: "smooth" });
-          }}
-          style={{
-            display: "inline-block",
-            marginTop: 28,
-            color: CYAN,
-            fontSize: 15,
-            fontWeight: 600,
-            textDecoration: "none",
-            border: `1.5px solid ${CYAN}44`,
-            borderRadius: 10,
-            padding: "10px 24px",
-            transition: "all 0.2s ease",
-          }}
-        >
-          Not sure where to start?<br className="mobile-br" />{" "}Try a free diagnostic
-        </a>
+      </div>
+
+      {/* Hero Section */}
+      <div style={{ padding: "48px 24px 56px" }}>
+        <div className="hero-layout">
+          <div className="hero-text">
+            <h1 style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontSize: 40,
+              color: "#fff",
+              margin: "0 0 20px",
+              lineHeight: 1.25,
+            }}>
+              Most AI initiatives start with tools.<br className="mobile-br" />{" "}The best ones start with people.
+            </h1>
+            <p style={{
+              color: "#94a3b8",
+              fontSize: 17,
+              lineHeight: 1.7,
+              margin: "0 0 28px",
+            }}>
+              I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
+            </p>
+            <a
+              href="#diagnostics"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("diagnostics")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                display: "inline-block",
+                color: CYAN,
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: "none",
+                border: `1.5px solid ${CYAN}44`,
+                borderRadius: 10,
+                padding: "10px 24px",
+                transition: "all 0.2s ease",
+              }}
+            >
+              Not sure where to start?<br className="mobile-br" />{" "}Try a free diagnostic
+            </a>
+          </div>
+          <div className="hero-photo">
+            <div style={{
+              width: 200,
+              height: 200,
+              borderRadius: "50%",
+              overflow: "hidden",
+              border: `3px solid ${CYAN}44`,
+              boxShadow: `0 8px 32px rgba(0,0,0,0.3)`,
+            }}>
+              <img
+                src="/tomas.jpg"
+                alt="Tomas Bay"
+                style={{
+                  width: 200,
+                  height: 200,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  objectPosition: "center 15%",
+                  transform: "scale(1.4)",
+                }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Problem Section */}

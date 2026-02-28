@@ -47,6 +47,24 @@ body {
   margin-right: auto;
 }
 
+/* Hero layout: side by side on desktop */
+.hero-layout {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-photo {
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .mobile-br {
     display: block;
@@ -62,5 +80,15 @@ body {
 
   .pitstop-card {
     max-width: 400px;
+  }
+
+  .hero-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .hero-photo {
+    order: -1;
   }
 }
