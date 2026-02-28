@@ -210,18 +210,18 @@ export default function LandingPage({ onNavigate }) {
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
           <p style={{
-            color: "#94a3b8",
-            fontSize: 15,
+            color: "#e2e8f0",
+            fontSize: 17,
             lineHeight: 1.6,
             margin: "0",
           }}>
             From personal AI skills to organizational adoption.
           </p>
           <p style={{
-            color: "#64748b",
-            fontSize: 13,
+            color: "#94a3b8",
+            fontSize: 15,
             lineHeight: 1.6,
-            margin: "8px 0 0",
+            margin: "12px 0 0",
           }}>
             Each Sprint works standalone, or they can be sequenced as a journey for maximum impact.
           </p>
