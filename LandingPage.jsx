@@ -264,9 +264,9 @@ export default function LandingPage({ onNavigate }) {
 
       {/* Problem Section */}
       <div style={{
-        maxWidth: 860,
+        maxWidth: 960,
         margin: "0 auto",
-        padding: "0 24px 48px",
+        padding: "0 48px 48px",
       }}>
         <div style={{
           background: "rgba(255,255,255,0.04)",
