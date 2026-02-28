@@ -171,7 +171,7 @@ export default function LandingPage({ onNavigate }) {
           margin: "0 0 16px",
           fontWeight: 500,
         }}>
-          Most AI initiatives start with tools.<br />The successful ones start with people.
+          Most AI initiatives start with tools.<br />The best ones start with people.
         </p>
         <p style={{
           color: "#94a3b8",
