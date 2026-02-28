@@ -279,6 +279,95 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* How I Work With You Section */}
+      <div style={{
+        maxWidth: 960,
+        margin: "0 auto",
+        padding: "20px 24px 40px",
+      }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 30,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            How I Work With You
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        </div>
+
+        <div className="steps-grid" style={{ padding: "0 24px" }}>
+          {[
+            {
+              step: "01",
+              title: "Discover",
+              description: "I start by understanding where you actually are with AI. Not where you think you should be. That means listening to leaders, talking to employees, and finding where the real opportunities are.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="18" cy="18" r="10" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <line x1="25" y1="25" x2="33" y2="33" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              step: "02",
+              title: "Design",
+              description: "I put together a program that fits your organization, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <line x1="13" y1="16" x2="27" y2="16" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="13" y1="22" x2="27" y2="22" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="13" y1="28" x2="21" y2="28" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+            {
+              step: "03",
+              title: "Deliver",
+              description: "I work alongside your team to make AI real. Through sprints, pilot squads, and practical coaching that builds genuine capability, not just awareness.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M28 8a8 8 0 0 0-11.3 11.3l-9.4 9.4a3 3 0 0 0 0 4.2l0 0a3 3 0 0 0 4.2 0l9.4-9.4A8 8 0 0 0 28 8z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+                  <path d="M25 9l3 3" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+          ].map((item) => (
+            <div key={item.step} style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 20,
+              padding: "32px 28px",
+              display: "flex",
+              flexDirection: "column",
+            }}>
+              <div style={{ marginBottom: 16 }}>
+                {item.icon}
+              </div>
+              <div style={{
+                color: CYAN, fontSize: 12, fontWeight: 700,
+                letterSpacing: 2, marginBottom: 8,
+              }}>
+                STEP {item.step}
+              </div>
+              <h3 style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 22, color: "#fff", margin: "0 0 16px",
+              }}>
+                {item.title}
+              </h3>
+              <p style={{
+                color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0,
+              }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Sprints Section */}
       <div style={{
         maxWidth: 960,
@@ -301,7 +390,7 @@ export default function LandingPage({ onNavigate }) {
             color: "#fff",
             margin: "0 0 8px",
           }}>
-            Three AI Sprints.<br className="mobile-br" />{" "}One Journey.
+            Three Ways to Start
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
           <p style={{
@@ -310,7 +399,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            From personal AI skills<br className="mobile-br" />{" "}to organizational adoption.
+            Each Sprint is a half day session that delivers real results, not just awareness.
           </p>
           <p style={{
             color: "#94a3b8",
@@ -318,7 +407,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "12px 0 0",
           }}>
-            Each Sprint works standalone, or they can be<br className="mobile-br" />{" "}sequenced as a journey for maximum impact.
+            They work standalone, or can be sequenced as a journey for maximum impact.
           </p>
         </div>
 
@@ -455,95 +544,6 @@ export default function LandingPage({ onNavigate }) {
           }}>
             Get in touch
           </a>
-        </div>
-      </div>
-
-      {/* Working with Clients Section */}
-      <div style={{
-        maxWidth: 960,
-        margin: "0 auto",
-        padding: "60px 24px 40px",
-      }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{
-            fontFamily: "'DM Serif Display', serif",
-            fontSize: 30,
-            color: "#fff",
-            margin: "0 0 8px",
-          }}>
-            How We Work Together
-          </h2>
-          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
-        </div>
-
-        <div className="steps-grid" style={{ padding: "0 24px" }}>
-          {[
-            {
-              step: "01",
-              title: "Discover",
-              description: "I start by understanding where you actually are with AI. Not where you think you should be. That means listening to leaders, talking to employees, and finding where the real opportunities are.",
-              icon: (
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="18" cy="18" r="10" stroke={CYAN} strokeWidth="2.5" fill="none"/>
-                  <line x1="25" y1="25" x2="33" y2="33" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
-              ),
-            },
-            {
-              step: "02",
-              title: "Design",
-              description: "I put together a program that fits your organization, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
-              icon: (
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
-                  <line x1="13" y1="16" x2="27" y2="16" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-                  <line x1="13" y1="22" x2="27" y2="22" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-                  <line x1="13" y1="28" x2="21" y2="28" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              ),
-            },
-            {
-              step: "03",
-              title: "Deliver",
-              description: "I work alongside your team to make AI real. Through sprints, pilot squads, and practical coaching that builds genuine capability, not just awareness.",
-              icon: (
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M28 8a8 8 0 0 0-11.3 11.3l-9.4 9.4a3 3 0 0 0 0 4.2l0 0a3 3 0 0 0 4.2 0l9.4-9.4A8 8 0 0 0 28 8z" stroke={CYAN} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-                  <path d="M25 9l3 3" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              ),
-            },
-          ].map((item) => (
-            <div key={item.step} style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: 20,
-              padding: "32px 28px",
-              display: "flex",
-              flexDirection: "column",
-            }}>
-              <div style={{ marginBottom: 16 }}>
-                {item.icon}
-              </div>
-              <div style={{
-                color: CYAN, fontSize: 12, fontWeight: 700,
-                letterSpacing: 2, marginBottom: 8,
-              }}>
-                STEP {item.step}
-              </div>
-              <h3 style={{
-                fontFamily: "'DM Serif Display', serif",
-                fontSize: 22, color: "#fff", margin: "0 0 16px",
-              }}>
-                {item.title}
-              </h3>
-              <p style={{
-                color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0,
-              }}>
-                {item.description}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 
