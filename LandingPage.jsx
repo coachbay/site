@@ -321,21 +321,37 @@ export default function LandingPage({ onNavigate }) {
         <div style={{
           textAlign: "center",
           marginTop: 28,
-          padding: "16px 24px",
-          background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.06)",
-          borderRadius: 12,
-          maxWidth: 640,
+          padding: "28px 28px 24px",
+          background: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 20,
+          width: 280,
           marginLeft: "auto",
           marginRight: "auto",
         }}>
+          <h3 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 20,
+            color: "#fff",
+            margin: "0 0 4px",
+          }}>
+            Optional Pit Stops
+          </h3>
+          <p style={{
+            color: CYAN,
+            fontSize: 14,
+            fontWeight: 600,
+            margin: "0 0 16px",
+          }}>
+            for habits
+          </p>
           <p style={{
             color: "#94a3b8",
-            fontSize: 13,
-            lineHeight: 1.6,
+            fontSize: 14,
+            lineHeight: 1.7,
             margin: 0,
           }}>
-            <span style={{ color: CYAN, fontWeight: 600 }}>Optional Pit Stops:</span> Each Sprint can be followed by two 1 hour follow up sessions (max 6 people) to turn learning into lasting habits.
+            Each Sprint can be followed by two 1 hour follow up sessions (max 6 people) to turn learning into lasting habits.
           </p>
         </div>
       </div>
