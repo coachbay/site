@@ -40,9 +40,9 @@ body {
   margin: 0 auto;
 }
 
-/* Pit Stops: centered, wider on desktop */
+/* Pit Stops: full width on desktop, constrained on mobile */
 .pitstop-card {
-  max-width: 480px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
 }
