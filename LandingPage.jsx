@@ -385,6 +385,7 @@ export default function LandingPage({ onNavigate }) {
         </div>
 
         {/* Pit Stops note */}
+        <div style={{ padding: "0 24px" }}>
         <div className="pitstop-card" style={{
           textAlign: "center",
           marginTop: 28,
@@ -392,6 +393,7 @@ export default function LandingPage({ onNavigate }) {
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: 20,
+          width: "100%",
         }}>
           <div style={{ marginBottom: 16, display: "flex", justifyContent: "center" }}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -424,8 +426,7 @@ export default function LandingPage({ onNavigate }) {
             Short virtual sessions after each Sprint to reinforce learning and build lasting habits.
           </p>
         </div>
-
-        {/* Sprint CTA */}
+        </div>
         <div style={{
           textAlign: "center",
           marginTop: 36,
