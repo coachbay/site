@@ -256,6 +256,14 @@ export default function LandingPage({ onNavigate }) {
         padding: "20px 24px 20px",
       }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <path d="M14 38V18l10-12 10 12v20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              <line x1="14" y1="26" x2="34" y2="26" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+              <line x1="14" y1="32" x2="34" y2="32" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="24" cy="20" r="3" stroke={CYAN} strokeWidth="2" fill="none"/>
+            </svg>
+          </div>
           <h2 style={{
             fontFamily: "'DM Serif Display', serif",
             fontSize: 30,
@@ -638,7 +646,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 24px",
         }}>
-          I'm Tomas Bay. In January 2023, I started using ChatGPT for work. Since then, I have built a deep practical toolkit across multiple AI platforms. Through my work at Swire, I have helped individuals, leaders, and teams get more out of AI and become more effective at work. Now I do the same for other organizations through sprints, diagnostics, and coaching.
+          I'm Tomas Bay. In January 2023, I started using ChatGPT for work. Since then, I have built a deep practical toolkit across multiple AI platforms. Through my work at Swire as Principal Consultant, I have helped individuals, leaders, and teams get more out of AI and become more effective at work. Now I do the same for other organizations through sprints, diagnostics, and coaching.
         </p>
         <a href="mailto:coach@coachbay.ai" style={{
           display: "inline-block",
