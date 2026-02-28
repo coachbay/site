@@ -179,7 +179,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.7,
           margin: "0",
         }}>
-          I help leaders and organizations adopt AI<br />in a way that actually sticks.
+          I help leaders and organizations adopt AI.<br />In a way that actually sticks.
         </p>
         <a
           href="#diagnostics"
