@@ -624,6 +624,117 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* How It Works Section */}
+      <div style={{
+        maxWidth: 960,
+        margin: "0 auto",
+        padding: "20px 24px 60px",
+      }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ marginBottom: 16 }}>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <path d="M12 24h8m8 0h8" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+              <circle cx="24" cy="24" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+              <path d="M24 8v8m0 16v8" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 30,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            How It Works
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        </div>
+
+        <div className="card-grid" style={{ padding: "0 24px" }}>
+          {[
+            {
+              step: "01",
+              title: "We Figure Out What Fits",
+              description: "It starts with a conversation. We talk through where your organization is with AI, what you are trying to achieve, and which sprint makes sense for your situation.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M8 28c0-2 4-3 6-3s3 1 3 3" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+                  <circle cx="14" cy="19" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <path d="M23 28c0-2 4-3 6-3s3 1 3 3" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+                  <circle cx="26" cy="19" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                </svg>
+              ),
+            },
+            {
+              step: "02",
+              title: "You Experience It",
+              description: "Your team works through a focused, practical sprint. Not slides and theory. Hands on experience with AI that builds real capability and confidence.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <rect x="6" y="10" width="28" height="18" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <circle cx="20" cy="19" r="5" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+                  <path d="M18 19l2 2 4-4" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+              ),
+            },
+            {
+              step: "03",
+              title: "We Make It Stick",
+              description: "After the sprint, we follow up to make sure the momentum continues. That means reviewing what worked, what to do next, and how to keep your team moving forward.",
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 8v24" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                  <path d="M12 16l8-8 8 8" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <line x1="10" y1="32" x2="30" y2="32" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+                </svg>
+              ),
+            },
+          ].map((item) => (
+            <div key={item.step} style={{
+              background: "rgba(255,255,255,0.06)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 20,
+              padding: "36px 28px 32px",
+              display: "flex",
+              flexDirection: "column",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+              e.currentTarget.style.border = `1px solid ${CYAN}44`;
+              e.currentTarget.style.transform = "translateY(-4px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+              e.currentTarget.style.border = "1px solid rgba(255,255,255,0.1)";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+            >
+              <div style={{ marginBottom: 16 }}>
+                {item.icon}
+              </div>
+              <div style={{
+                color: CYAN, fontSize: 12, fontWeight: 700,
+                letterSpacing: 2, marginBottom: 8,
+              }}>
+                STEP {item.step}
+              </div>
+              <h3 style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 22, color: "#fff", margin: "0 0 16px",
+              }}>
+                {item.title}
+              </h3>
+              <p style={{
+                color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0,
+              }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* About Section */}
       <div style={{
         maxWidth: 640,
