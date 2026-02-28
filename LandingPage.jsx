@@ -233,7 +233,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 16px",
         }}>
-          Organizations buy tools, write policies, and roll out training.<br />Then wonder why nothing changes.
+          Organizations buy tools, write policies,<br />and roll out training.<br />Then wonder why nothing changes.
         </p>
         <p style={{
           color: "#94a3b8",
@@ -413,7 +413,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.7,
             margin: 0,
           }}>
-            Each Sprint can be followed by short virtual sessions to reinforce what was learned and turn new skills into lasting habits.
+            Each Sprint can be followed by short<br />virtual sessions to reinforce what was learned<br />and turn new skills into lasting habits.
           </p>
         </div>
       </div>
