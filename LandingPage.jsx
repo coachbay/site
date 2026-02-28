@@ -83,29 +83,26 @@ const sprints = [
   {
     id: "core",
     icon: <RocketIcon />,
-    label: "Lead with AI",
     title: "Core Sprint",
     tagline: "for skills",
     detail: "Half day sprint for managers, team leads, and specialists.",
-    description: "Use four AI roles as your personal team. For anyone still using AI mainly as an assistant who wants to get much more from it.",
+    description: "Discover four AI roles that go far beyond basic chat. For anyone still using AI mainly as an assistant who wants to unlock its real potential.",
   },
   {
     id: "strategy",
     icon: <CompassIcon />,
-    label: "Lead with AI",
     title: "Strategy Sprint",
     tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
-    description: "Use AI as a thinking partner on real strategy questions. For leaders who want AI to sharpen their strategic thinking, not just save time.",
+    description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
   },
   {
     id: "change",
     icon: <MagnetIcon />,
-    label: "Lead with AI",
     title: "Change Sprint",
     tagline: "for adoption",
     detail: "Half day sprint for leaders driving AI adoption.",
-    description: "Drive team adoption using pull, not push. For leaders driving AI adoption across their organization or a large department.",
+    description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organisation.",
   },
 ];
 
@@ -115,7 +112,7 @@ const diagnostics = [
     icon: <CompanyIcon />,
     title: "For Companies",
     subtitle: "AI Readiness Diagnostic",
-    description: "Is your organization ready to adopt AI? Assess strategic clarity, leadership readiness, employee sentiment, and more.",
+    description: "Is your organisation ready to adopt AI? Assess strategic clarity, leadership readiness, employee sentiment, and more.",
     detail: "25 questions \u00b7 10 minutes",
   },
   {
@@ -129,9 +126,9 @@ const diagnostics = [
   {
     id: "team",
     icon: <TeamIcon />,
-    title: "For Teams",
+    title: "For Individuals",
     subtitle: "Personal AI Diagnostic",
-    description: "How are you using AI as an individual? Discover where you stand on the AI adoption curve.",
+    description: "How are you using AI day to day? Discover where you stand and what to focus on next.",
     detail: "25 questions \u00b7 8 minutes",
   },
 ];
@@ -148,7 +145,7 @@ export default function LandingPage({ onNavigate }) {
       {/* Hero Section */}
       <div style={{
         textAlign: "center",
-        padding: "60px 24px 40px",
+        padding: "60px 24px 48px",
         maxWidth: 720,
         margin: "0 auto",
       }}>
@@ -173,20 +170,46 @@ export default function LandingPage({ onNavigate }) {
         }} />
         <p style={{
           color: "#e2e8f0",
-          fontSize: 20,
-          lineHeight: 1.6,
-          margin: "0 0 12px",
+          fontSize: 21,
+          lineHeight: 1.5,
+          margin: "0 0 16px",
           fontWeight: 500,
         }}>
-          Helping leaders and teams<br />use AI effectively
+          Most AI initiatives start with tools.<br />The successful ones start with people.
         </p>
         <p style={{
           color: "#94a3b8",
           fontSize: 16,
+          lineHeight: 1.7,
+          margin: "0",
+        }}>
+          I help leaders and organisations adopt AI<br />in a way that actually sticks.
+        </p>
+      </div>
+
+      {/* Problem Section */}
+      <div style={{
+        maxWidth: 640,
+        margin: "0 auto",
+        padding: "20px 24px 48px",
+        textAlign: "center",
+      }}>
+        <h2 style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontSize: 26,
+          color: "#fff",
+          margin: "0 0 8px",
+        }}>
+          Why Most AI Initiatives Stall
+        </h2>
+        <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        <p style={{
+          color: "#94a3b8",
+          fontSize: 15,
           lineHeight: 1.8,
           margin: "0",
         }}>
-          Practical tools.<br />Clear thinking.<br />Progress you can see.
+          Organisations buy tools, write policies, and roll out training. Then wonder why nothing changes. The problem is rarely the technology. It is whether leaders use AI themselves, whether employees feel safe to experiment, and whether the culture is ready for change.
         </p>
       </div>
 
@@ -212,7 +235,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            From personal AI skills<br />to organizational adoption.
+            From personal AI skills<br />to organisational adoption.
           </p>
           <p style={{
             color: "#94a3b8",
@@ -256,14 +279,6 @@ export default function LandingPage({ onNavigate }) {
               }}
             >
               <div style={{ marginBottom: 16 }}>{sprint.icon}</div>
-              <p style={{
-                color: "#94a3b8",
-                fontSize: 13,
-                fontWeight: 500,
-                margin: "0 0 2px",
-              }}>
-                {sprint.label}
-              </p>
               <h2 style={{
                 fontFamily: "'DM Serif Display', serif",
                 fontSize: 24,
@@ -395,7 +410,7 @@ export default function LandingPage({ onNavigate }) {
             {
               step: "02",
               title: "Design",
-              description: "I put together a program that fits your organization, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
+              description: "I put together a programme that fits your organisation, your people, and your pace. No generic playbooks. Just a clear, practical plan for where you are right now.",
               icon: (
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <rect x="8" y="8" width="24" height="28" rx="3" stroke={CYAN} strokeWidth="2.5" fill="none"/>
@@ -467,7 +482,7 @@ export default function LandingPage({ onNavigate }) {
             color: "#fff",
             margin: "0 0 8px",
           }}>
-            See Where You Stand
+            Not Sure Where to Start?
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
           <p style={{
@@ -476,15 +491,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            Free AI diagnostics with personalised results.
-          </p>
-          <p style={{
-            color: "#94a3b8",
-            fontSize: 15,
-            lineHeight: 1.6,
-            margin: "8px 0 0",
-          }}>
-            See where you are and what to focus on next.
+            Take a free diagnostic.<br />Get personalised results in minutes.
           </p>
         </div>
 
@@ -571,6 +578,48 @@ export default function LandingPage({ onNavigate }) {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* About Section */}
+      <div style={{
+        maxWidth: 640,
+        margin: "0 auto",
+        padding: "40px 24px 48px",
+        textAlign: "center",
+      }}>
+        <h2 style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontSize: 26,
+          color: "#fff",
+          margin: "0 0 8px",
+        }}>
+          About
+        </h2>
+        <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        <p style={{
+          color: "#94a3b8",
+          fontSize: 15,
+          lineHeight: 1.8,
+          margin: "0 0 24px",
+        }}>
+          I'm Tomas Bay. I help leaders and teams get comfortable with AI through hands on sprints, diagnostics, and practical coaching. Not slides and theory. Real experience with real tools on real problems.
+        </p>
+        <a href="mailto:coach@coachbay.ai" style={{
+          display: "inline-block",
+          background: CYAN,
+          color: "#fff",
+          border: "none",
+          borderRadius: 12,
+          padding: "14px 32px",
+          fontSize: 16,
+          fontWeight: 600,
+          textDecoration: "none",
+          fontFamily: "'DM Sans', sans-serif",
+          boxShadow: `0 6px 24px ${CYAN}44`,
+          transition: "all 0.2s ease",
+        }}>
+          coach@coachbay.ai
+        </a>
       </div>
 
       {/* Footer */}
