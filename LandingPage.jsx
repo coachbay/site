@@ -86,9 +86,8 @@ const sprints = [
     label: "Lead with AI",
     title: "Core Sprint",
     tagline: "for skills",
-    audience: "Managers, team leads, specialists",
+    detail: "Half day sprint for managers, team leads, and specialists",
     description: "Use four AI roles as your personal team. For anyone still using AI mainly as an assistant who wants to get much more from it.",
-    format: "3.5 to 4 hour interactive session",
   },
   {
     id: "strategy",
@@ -96,9 +95,8 @@ const sprints = [
     label: "Lead with AI",
     title: "Strategy Sprint",
     tagline: "for thinking",
-    audience: "Senior managers and executives",
+    detail: "Half day sprint for senior managers and executives",
     description: "Use AI as a thinking partner on real strategy questions. For leaders who want AI to sharpen their strategic thinking, not just save time.",
-    format: "3.5 to 4 hour interactive session",
   },
   {
     id: "change",
@@ -106,9 +104,8 @@ const sprints = [
     label: "Lead with AI",
     title: "Change Sprint",
     tagline: "for adoption",
-    audience: "Leaders driving AI adoption",
+    detail: "Half day sprint for leaders driving AI adoption",
     description: "Drive team adoption using pull, not push. For leaders driving AI adoption across their organization or a large department.",
-    format: "3.5 to 4 hour interactive session",
   },
 ];
 
@@ -293,18 +290,11 @@ export default function LandingPage({ onNavigate }) {
                 {sprint.description}
               </p>
               <p style={{
-                color: "#64748b",
-                fontSize: 12,
-                margin: "0 0 4px",
-              }}>
-                {sprint.audience}
-              </p>
-              <p style={{
-                color: "#64748b",
-                fontSize: 12,
+                color: "#94a3b8",
+                fontSize: 13,
                 margin: "0 0 20px",
               }}>
-                {sprint.format}
+                {sprint.detail}
               </p>
               <a href="mailto:coach@coachbay.ai" style={{
                 display: "block",
