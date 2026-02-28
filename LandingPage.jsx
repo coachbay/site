@@ -351,7 +351,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.7,
             margin: 0,
           }}>
-            Each Sprint can be followed by two 1 hour follow up sessions (max 6 people) to turn learning into lasting habits.
+            Each Sprint can be followed by short virtual sessions to reinforce what was learned and turn new skills into lasting habits.
           </p>
         </div>
       </div>
