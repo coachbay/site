@@ -179,7 +179,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.7,
           margin: "0",
         }}>
-          I help leaders and organizations adopt AI.<br />In a way that actually sticks.
+          I help leaders and organizations adopt AI<br />in a way that actually sticks.
         </p>
         <a
           href="#diagnostics"
@@ -200,7 +200,7 @@ export default function LandingPage({ onNavigate }) {
             transition: "all 0.2s ease",
           }}
         >
-          Not sure where to start? Try a free diagnostic
+          Not sure where to start?<br />Try a free diagnostic
         </a>
       </div>
 
