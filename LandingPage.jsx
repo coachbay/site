@@ -94,7 +94,7 @@ const sprints = [
     title: "Strategy Sprint",
     tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
-    description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
+    description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgement, not just save time.",
   },
   {
     id: "change",
@@ -204,7 +204,7 @@ export default function LandingPage({ onNavigate }) {
             transition: "all 0.2s ease",
           }}
         >
-          Not sure where to start? Take a free diagnostic
+          Not sure where to start? Try a free diagnostic
         </a>
       </div>
 
@@ -215,6 +215,13 @@ export default function LandingPage({ onNavigate }) {
         padding: "20px 24px 48px",
         textAlign: "center",
       }}>
+        <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="18" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+            <line x1="24" y1="14" x2="24" y2="26" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
+            <circle cx="24" cy="32" r="2" fill={CYAN}/>
+          </svg>
+        </div>
         <h2 style={{
           fontFamily: "'DM Serif Display', serif",
           fontSize: 26,
@@ -225,12 +232,20 @@ export default function LandingPage({ onNavigate }) {
         </h2>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         <p style={{
+          color: "#e2e8f0",
+          fontSize: 17,
+          lineHeight: 1.8,
+          margin: "0 0 16px",
+        }}>
+          Organisations buy tools, write policies, and roll out training.<br />Then wonder why nothing changes.
+        </p>
+        <p style={{
           color: "#94a3b8",
           fontSize: 15,
           lineHeight: 1.8,
           margin: "0",
         }}>
-          Organisations buy tools, write policies, and roll out training. Then wonder why nothing changes. The problem is rarely the technology. It is whether leaders use AI themselves, whether employees feel safe to experiment, and whether the culture is ready for change.
+          The problem is rarely the technology.<br />It is whether leaders use AI themselves,<br />whether employees feel safe to experiment,<br />and whether the culture is ready for change.
         </p>
       </div>
 
@@ -618,12 +633,12 @@ export default function LandingPage({ onNavigate }) {
         </h2>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         <p style={{
-          color: "#94a3b8",
-          fontSize: 15,
+          color: "#e2e8f0",
+          fontSize: 16,
           lineHeight: 1.8,
           margin: "0 0 24px",
         }}>
-          I'm Tomas Bay. I help leaders and teams get comfortable with AI through hands on sprints, diagnostics, and practical coaching. Not slides and theory. Real experience with real tools on real problems.
+          I'm Tomas Bay. I help leaders and teams get comfortable with AI through practical sprints, diagnostics, and coaching. Not slides and theory. Real experience with real tools on real problems.
         </p>
         <a href="mailto:coach@coachbay.ai" style={{
           display: "inline-block",
@@ -652,18 +667,15 @@ export default function LandingPage({ onNavigate }) {
         maxWidth: 600,
         margin: "0 auto",
       }}>
-        <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 8px" }}>
+        <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 12px" }}>
           Designed by CoachBay
-        </p>
-        <p style={{ color: "#94a3b8", fontSize: 14, margin: "0 0 12px" }}>
-          Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
         </p>
         <a href="https://coachbay.com" target="_blank" rel="noopener noreferrer" style={{
           color: "#64748b",
           fontSize: 13,
           textDecoration: "none",
         }}>
-          coachbay.com →
+          coachbay.com
         </a>
       </div>
     </div>
