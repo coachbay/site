@@ -234,43 +234,49 @@ export default function LandingPage({ onNavigate }) {
 
       {/* Problem Section */}
       <div style={{
-        maxWidth: 640,
+        maxWidth: 860,
         margin: "0 auto",
-        padding: "20px 24px 48px",
-        textAlign: "center",
+        padding: "0 24px 48px",
       }}>
-        <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="18" stroke={CYAN} strokeWidth="2.5" fill="none"/>
-            <line x1="24" y1="14" x2="24" y2="26" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-            <circle cx="24" cy="32" r="2" fill={CYAN}/>
-          </svg>
+        <div style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 20,
+          padding: "48px 40px",
+          textAlign: "center",
+        }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 26,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            Why Most AI Initiatives Stall
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+          <p style={{
+            color: "#e2e8f0",
+            fontSize: 17,
+            lineHeight: 1.8,
+            margin: "0 0 16px",
+            maxWidth: 560,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}>
+            Organizations buy tools, write policies,<br className="mobile-br" />{" "}and roll out training.<br className="mobile-br" />{" "}Then wonder why nothing changes.
+          </p>
+          <p style={{
+            color: "#94a3b8",
+            fontSize: 15,
+            lineHeight: 1.8,
+            margin: "0",
+            maxWidth: 560,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}>
+            The problem is rarely the technology.<br className="mobile-br" />{" "}It is whether leaders use AI themselves,<br className="mobile-br" />{" "}whether employees feel safe to experiment,<br className="mobile-br" />{" "}and whether the culture is ready for change.
+          </p>
         </div>
-        <h2 style={{
-          fontFamily: "'DM Serif Display', serif",
-          fontSize: 26,
-          color: "#fff",
-          margin: "0 0 8px",
-        }}>
-          Why Most AI Initiatives Stall
-        </h2>
-        <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 17,
-          lineHeight: 1.8,
-          margin: "0 0 16px",
-        }}>
-          Organizations buy tools, write policies,<br className="mobile-br" />{" "}and roll out training.<br className="mobile-br" />{" "}Then wonder why nothing changes.
-        </p>
-        <p style={{
-          color: "#94a3b8",
-          fontSize: 15,
-          lineHeight: 1.8,
-          margin: "0",
-        }}>
-          The problem is rarely the technology.<br className="mobile-br" />{" "}It is whether leaders use AI themselves,<br className="mobile-br" />{" "}whether employees feel safe to experiment,<br className="mobile-br" />{" "}and whether the culture is ready for change.
-        </p>
       </div>
 
       {/* Sprints Section */}
