@@ -112,7 +112,7 @@ const diagnostics = [
     icon: <CompanyIcon />,
     title: "For Companies",
     subtitle: "AI Readiness Diagnostic",
-    description: "Is your organisation ready to adopt AI? Assess strategic clarity, leadership readiness, employee sentiment, and more.",
+    description: "See where your organisation actually stands with AI across five dimensions. So you can decide what to focus on next.",
     detail: "25 questions \u00b7 10 minutes",
   },
   {
@@ -185,6 +185,27 @@ export default function LandingPage({ onNavigate }) {
         }}>
           I help leaders and organisations adopt AI<br />in a way that actually sticks.
         </p>
+        <a
+          href="#diagnostics"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("diagnostics")?.scrollIntoView({ behavior: "smooth" });
+          }}
+          style={{
+            display: "inline-block",
+            marginTop: 28,
+            color: CYAN,
+            fontSize: 15,
+            fontWeight: 600,
+            textDecoration: "none",
+            border: `1.5px solid ${CYAN}44`,
+            borderRadius: 10,
+            padding: "10px 24px",
+            transition: "all 0.2s ease",
+          }}
+        >
+          Not sure where to start? Take a free diagnostic
+        </a>
       </div>
 
       {/* Problem Section */}
@@ -470,7 +491,7 @@ export default function LandingPage({ onNavigate }) {
       </div>
 
       {/* Diagnostics Section */}
-      <div style={{
+      <div id="diagnostics" style={{
         maxWidth: 960,
         margin: "0 auto",
         padding: "40px 24px 40px",
