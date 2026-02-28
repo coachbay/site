@@ -445,7 +445,7 @@ export default function LandingPage({ onNavigate }) {
             color: "#fff",
             margin: "0 0 8px",
           }}>
-            Working with Clients
+            How It Works
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         </div>
