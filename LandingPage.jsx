@@ -455,12 +455,20 @@ export default function LandingPage({ onNavigate }) {
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
           <p style={{
-            color: "#94a3b8",
-            fontSize: 15,
+            color: "#e2e8f0",
+            fontSize: 17,
             lineHeight: 1.6,
             margin: "0",
           }}>
-            Free AI diagnostics with personalised results and advice.
+            Free AI diagnostics with personalised results.
+          </p>
+          <p style={{
+            color: "#94a3b8",
+            fontSize: 15,
+            lineHeight: 1.6,
+            margin: "8px 0 0",
+          }}>
+            See where you are and what to focus on next.
           </p>
         </div>
 
