@@ -8,3 +8,59 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Mobile-only line break: hidden on desktop, visible on mobile */
+.mobile-br {
+  display: none;
+}
+
+/* Card grid: responsive columns */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* How It Works: 3 columns on desktop */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Pit Stops: centered, wider on desktop */
+.pitstop-card {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .mobile-br {
+    display: block;
+  }
+
+  .card-grid,
+  .card-grid-2,
+  .steps-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .pitstop-card {
+    max-width: 400px;
+  }
+}

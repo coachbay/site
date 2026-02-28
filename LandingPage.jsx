@@ -171,7 +171,7 @@ export default function LandingPage({ onNavigate }) {
           margin: "0 0 16px",
           fontWeight: 500,
         }}>
-          Most AI initiatives start with tools.<br />The best ones start with people.
+          Most AI initiatives start with tools.<br className="mobile-br" />{" "}The best ones start with people.
         </p>
         <p style={{
           color: "#94a3b8",
@@ -179,7 +179,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.7,
           margin: "0",
         }}>
-          I help leaders and organizations adopt AI<br />in a way that actually sticks.
+          I help leaders and organizations adopt AI<br className="mobile-br" />{" "}in a way that actually sticks.
         </p>
         <a
           href="#diagnostics"
@@ -200,7 +200,7 @@ export default function LandingPage({ onNavigate }) {
             transition: "all 0.2s ease",
           }}
         >
-          Not sure where to start?<br />Try a free diagnostic
+          Not sure where to start?<br className="mobile-br" />{" "}Try a free diagnostic
         </a>
       </div>
 
@@ -233,7 +233,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0 0 16px",
         }}>
-          Organizations buy tools, write policies,<br />and roll out training.<br />Then wonder why nothing changes.
+          Organizations buy tools, write policies,<br className="mobile-br" />{" "}and roll out training.<br className="mobile-br" />{" "}Then wonder why nothing changes.
         </p>
         <p style={{
           color: "#94a3b8",
@@ -241,7 +241,7 @@ export default function LandingPage({ onNavigate }) {
           lineHeight: 1.8,
           margin: "0",
         }}>
-          The problem is rarely the technology.<br />It is whether leaders use AI themselves,<br />whether employees feel safe to experiment,<br />and whether the culture is ready for change.
+          The problem is rarely the technology.<br className="mobile-br" />{" "}It is whether leaders use AI themselves,<br className="mobile-br" />{" "}whether employees feel safe to experiment,<br className="mobile-br" />{" "}and whether the culture is ready for change.
         </p>
       </div>
 
@@ -267,7 +267,7 @@ export default function LandingPage({ onNavigate }) {
             color: "#fff",
             margin: "0 0 8px",
           }}>
-            Three AI Sprints.<br />One Journey.
+            Three AI Sprints.<br className="mobile-br" />{" "}One Journey.
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
           <p style={{
@@ -276,7 +276,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            From personal AI skills<br />to organizational adoption.
+            From personal AI skills<br className="mobile-br" />{" "}to organizational adoption.
           </p>
           <p style={{
             color: "#94a3b8",
@@ -284,16 +284,11 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "12px 0 0",
           }}>
-            Each Sprint works standalone, or they can be<br />sequenced as a journey for maximum impact.
+            Each Sprint works standalone, or they can be<br className="mobile-br" />{" "}sequenced as a journey for maximum impact.
           </p>
         </div>
 
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 24,
-          justifyContent: "center",
-        }}>
+        <div className="card-grid" style={{ padding: "0 24px" }}>
           {sprints.map((sprint) => (
             <div
               key={sprint.id}
@@ -303,7 +298,6 @@ export default function LandingPage({ onNavigate }) {
                 border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 20,
                 padding: "36px 28px 32px",
-                width: 300,
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.3s ease",
@@ -357,16 +351,13 @@ export default function LandingPage({ onNavigate }) {
         </div>
 
         {/* Pit Stops note */}
-        <div style={{
+        <div className="pitstop-card" style={{
           textAlign: "center",
           marginTop: 28,
           padding: "28px 28px 24px",
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: 20,
-          width: 300,
-          marginLeft: "auto",
-          marginRight: "auto",
         }}>
           <div style={{ marginBottom: 16, display: "flex", justifyContent: "center" }}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -450,12 +441,7 @@ export default function LandingPage({ onNavigate }) {
           <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         </div>
 
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 24,
-          justifyContent: "center",
-        }}>
+        <div className="steps-grid" style={{ padding: "0 24px" }}>
           {[
             {
               step: "01",
@@ -498,7 +484,6 @@ export default function LandingPage({ onNavigate }) {
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: 20,
               padding: "32px 28px",
-              width: 300,
               display: "flex",
               flexDirection: "column",
             }}>
@@ -549,16 +534,11 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            Take a free diagnostic.<br />Get personalized results in minutes.
+            Take a free diagnostic.<br className="mobile-br" />{" "}Get personalized results in minutes.
           </p>
         </div>
 
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 20,
-          justifyContent: "center",
-        }}>
+        <div className="card-grid-2" style={{ padding: "0 24px" }}>
           {diagnostics.map((diag) => (
             <div
               key={diag.id}
@@ -567,7 +547,6 @@ export default function LandingPage({ onNavigate }) {
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: 16,
                 padding: "28px 24px 24px",
-                width: 300,
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.3s ease",
@@ -610,9 +589,9 @@ export default function LandingPage({ onNavigate }) {
               <button
                 onClick={() => onNavigate(diag.id)}
                 style={{
-                  background: "none",
-                  border: `1.5px solid ${CYAN}`,
-                  color: CYAN,
+                  background: CYAN,
+                  border: "none",
+                  color: "#fff",
                   borderRadius: 10,
                   padding: "10px 24px",
                   fontSize: 15,
@@ -621,6 +600,7 @@ export default function LandingPage({ onNavigate }) {
                   fontFamily: "'DM Sans', sans-serif",
                   transition: "all 0.2s ease",
                   width: "100%",
+                  boxShadow: `0 6px 24px ${CYAN}44`,
                 }}
               >
                 Take the Assessment
