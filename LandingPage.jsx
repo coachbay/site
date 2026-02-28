@@ -413,7 +413,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.7,
             margin: 0,
           }}>
-            Each Sprint can be followed by short<br />virtual sessions to reinforce what was learned<br />and turn new skills into lasting habits.
+            Short virtual sessions after each Sprint to reinforce learning and build lasting habits.
           </p>
         </div>
       </div>
