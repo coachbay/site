@@ -263,10 +263,10 @@ export default function LandingPage({ onNavigate }) {
             marginLeft: "auto",
             marginRight: "auto",
           }}>
-            Organizations buy tools, write policies,<br className="mobile-br" />{" "}and roll out training.<br className="mobile-br" />{" "}Then wonder why nothing changes.
+            Organizations buy tools, write policies, and roll out training. Then wonder why nothing changes.
           </p>
           <p style={{
-            color: "#94a3b8",
+            color: "#e2e8f0",
             fontSize: 15,
             lineHeight: 1.8,
             margin: "0",
@@ -274,7 +274,7 @@ export default function LandingPage({ onNavigate }) {
             marginLeft: "auto",
             marginRight: "auto",
           }}>
-            The problem is rarely the technology.<br className="mobile-br" />{" "}It is whether leaders use AI themselves,<br className="mobile-br" />{" "}whether employees feel safe to experiment,<br className="mobile-br" />{" "}and whether the culture is ready for change.
+            The problem is rarely the technology. It is whether leaders use AI themselves, whether employees feel safe to experiment, and whether the culture is ready for change.
           </p>
         </div>
       </div>
