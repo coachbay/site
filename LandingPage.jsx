@@ -258,10 +258,11 @@ export default function LandingPage({ onNavigate }) {
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <path d="M14 38V18l10-12 10 12v20" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-              <line x1="14" y1="26" x2="34" y2="26" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-              <line x1="14" y1="32" x2="34" y2="32" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
-              <circle cx="24" cy="20" r="3" stroke={CYAN} strokeWidth="2" fill="none"/>
+              <circle cx="10" cy="24" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+              <circle cx="24" cy="24" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+              <circle cx="38" cy="24" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
+              <line x1="14" y1="24" x2="20" y2="24" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
+              <line x1="28" y1="24" x2="34" y2="24" stroke={CYAN} strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </div>
           <h2 style={{
