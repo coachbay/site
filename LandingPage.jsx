@@ -212,7 +212,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "0",
           }}>
-            From personal AI skills to organizational adoption.
+            From personal AI skills<br />to organizational adoption.
           </p>
           <p style={{
             color: "#94a3b8",
@@ -220,7 +220,7 @@ export default function LandingPage({ onNavigate }) {
             lineHeight: 1.6,
             margin: "12px 0 0",
           }}>
-            Each Sprint works standalone, or they can be sequenced as a journey for maximum impact.
+            Each Sprint works standalone, or they can be<br />sequenced as a journey for maximum impact.
           </p>
         </div>
 
