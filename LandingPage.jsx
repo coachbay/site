@@ -303,7 +303,7 @@ export default function LandingPage({ onNavigate }) {
                 border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 20,
                 padding: "36px 28px 32px",
-                width: 280,
+                width: 300,
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.3s ease",
@@ -330,15 +330,15 @@ export default function LandingPage({ onNavigate }) {
               </h2>
               <p style={{
                 color: CYAN,
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: 600,
                 margin: "0 0 16px",
               }}>
                 {sprint.tagline}
               </p>
               <p style={{
-                color: "#94a3b8",
-                fontSize: 14,
+                color: "#e2e8f0",
+                fontSize: 15,
                 lineHeight: 1.7,
                 margin: "0 0 16px",
                 flex: 1,
@@ -347,7 +347,7 @@ export default function LandingPage({ onNavigate }) {
               </p>
               <p style={{
                 color: "#94a3b8",
-                fontSize: 13,
+                fontSize: 15,
                 margin: "0 0 20px",
               }}>
                 {sprint.detail}
@@ -381,7 +381,7 @@ export default function LandingPage({ onNavigate }) {
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: 20,
-          width: 280,
+          width: 300,
           marginLeft: "auto",
           marginRight: "auto",
         }}>
@@ -401,15 +401,15 @@ export default function LandingPage({ onNavigate }) {
           </h3>
           <p style={{
             color: CYAN,
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: 600,
             margin: "0 0 16px",
           }}>
             for habits
           </p>
           <p style={{
-            color: "#94a3b8",
-            fontSize: 14,
+            color: "#e2e8f0",
+            fontSize: 15,
             lineHeight: 1.7,
             margin: 0,
           }}>
@@ -484,7 +484,7 @@ export default function LandingPage({ onNavigate }) {
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: 20,
               padding: "32px 28px",
-              width: 280,
+              width: 300,
               display: "flex",
               flexDirection: "column",
             }}>
@@ -504,7 +504,7 @@ export default function LandingPage({ onNavigate }) {
                 {item.title}
               </h3>
               <p style={{
-                color: "#94a3b8", fontSize: 14, lineHeight: 1.7, margin: 0,
+                color: "#e2e8f0", fontSize: 15, lineHeight: 1.7, margin: 0,
               }}>
                 {item.description}
               </p>
@@ -553,7 +553,7 @@ export default function LandingPage({ onNavigate }) {
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: 16,
                 padding: "28px 24px 24px",
-                width: 280,
+                width: 300,
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.3s ease",
@@ -578,15 +578,15 @@ export default function LandingPage({ onNavigate }) {
               </h3>
               <p style={{
                 color: CYAN,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 margin: "0 0 12px",
               }}>
                 {diag.subtitle}
               </p>
               <p style={{
-                color: "#94a3b8",
-                fontSize: 13,
+                color: "#e2e8f0",
+                fontSize: 15,
                 lineHeight: 1.7,
                 margin: "0 0 20px",
                 flex: 1,
@@ -601,7 +601,7 @@ export default function LandingPage({ onNavigate }) {
                   color: CYAN,
                   borderRadius: 10,
                   padding: "10px 24px",
-                  fontSize: 14,
+                  fontSize: 15,
                   fontWeight: 600,
                   cursor: "pointer",
                   fontFamily: "'DM Sans', sans-serif",
