@@ -111,7 +111,7 @@ export default function LandingPage({ onNavigate }) {
             <a className="nav-text-link" onClick={() => scrollTo("process")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Process</a>
             <a className="nav-text-link" onClick={() => scrollTo("diagnostics")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Diagnostics</a>
             <a className="nav-text-link" onClick={() => scrollTo("about")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>About</a>
-            <a href="mailto:coach@coachbay.ai" style={{
+            <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
               display: "inline-block", background: CYAN, color: "#fff",
               fontSize: 15, fontWeight: 600, textDecoration: "none",
               borderRadius: 8, padding: "8px 20px",
@@ -137,7 +137,7 @@ export default function LandingPage({ onNavigate }) {
               25 years helping leaders navigate change<br className="mobile-br" /> across Asia Pacific.
             </p>
             <div className="hero-buttons" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              <a href="mailto:coach@coachbay.ai" style={{
+              <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
                 textDecoration: "none", borderRadius: 10, padding: "12px 28px",
@@ -236,7 +236,7 @@ export default function LandingPage({ onNavigate }) {
 
         <div style={{ textAlign: "center", marginTop: 36 }}>
           <p style={{ color: "#1e293b", fontSize: 18, fontWeight: 500, margin: "0 0 16px" }}>Interested in a Sprint?</p>
-          <a href="mailto:coach@coachbay.ai" style={{
+          <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             background: CYAN, color: "#fff", borderRadius: 10,
             padding: "14px 32px", fontSize: 16, fontWeight: 600,
@@ -318,7 +318,8 @@ export default function LandingPage({ onNavigate }) {
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>Over 30 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 28px" }}>I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.</p>
-              <a href="mailto:coach@coachbay.ai" style={{
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: CYAN, color: "#fff", borderRadius: 10,
                 padding: "14px 32px", fontSize: 16, fontWeight: 600,
@@ -327,6 +328,16 @@ export default function LandingPage({ onNavigate }) {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 Get in touch
               </a>
+              <a href="https://www.linkedin.com/in/coachbay/" target="_blank" rel="noopener noreferrer" style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                color: "#475569", fontSize: 16, fontWeight: 600, textDecoration: "none",
+                border: "1.5px solid #e2e8f0", borderRadius: 10, padding: "14px 28px",
+                fontFamily: "'DM Sans', sans-serif",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#475569"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              </div>
             </div>
             <div className="about-photo" style={{ flex: "0 0 auto", display: "flex", justifyContent: "center", width: "100%", maxWidth: 260 }}>
               <div style={{ width: 260, height: 320, borderRadius: 16, overflow: "hidden", border: `3px solid ${CYAN}22` }}>
@@ -345,7 +356,13 @@ export default function LandingPage({ onNavigate }) {
             <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 15, color: "#1e293b" }}>CoachBay<span style={{ color: CYAN }}>.ai</span></span>
           </div>
           <p style={{ color: "#94a3b8", fontSize: 15, margin: 0 }}>Designed by CoachBay</p>
-          <a href="https://coachbay.ai" style={{ color: "#94a3b8", fontSize: 15, textDecoration: "none" }}>coachbay.ai</a>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <a href="https://www.linkedin.com/in/coachbay/" target="_blank" rel="noopener noreferrer" style={{ color: "#94a3b8", display: "flex", alignItems: "center", gap: 6, fontSize: 15, textDecoration: "none" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#94a3b8"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://coachbay.ai" style={{ color: "#94a3b8", fontSize: 15, textDecoration: "none" }}>coachbay.ai</a>
+          </div>
         </div>
       </div>
     </div>
