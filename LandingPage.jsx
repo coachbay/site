@@ -36,10 +36,7 @@ const CompassIcon = () => (
 
 const ChangeIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <path d="M14 16c0 0 4 8 10 8s10-8 10-8" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-    <path d="M14 28c0 0 4 8 10 8s10-8 10-8" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-    <path d="M10 20l4-4 4 4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M30 32l4 4 4-4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M29 12a7.5 7.5 0 0 0-6.4 11.1L14 31.7a3 3 0 0 0 4.2 4.2l8.6-8.6A7.5 7.5 0 0 0 29 12zm0 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 1 0-9z" stroke="#00BCD4" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
   </svg>
 );
 
