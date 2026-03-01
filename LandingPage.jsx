@@ -171,9 +171,9 @@ export default function LandingPage({ onNavigate }) {
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 24px", borderRadius: 2 }} />
           <p style={{ color: "#e2e8f0", fontSize: 17, lineHeight: 1.8, margin: "0 0 16px" }}>
-            Organizations buy tools, write policies, and roll out training. Then wonder why nothing changes.
+            Organizations buy tools, write policies, and roll out training.<br /> Then wonder why nothing changes.
           </p>
-          <p style={{ color: "#e2e8f0", fontSize: 15, lineHeight: 1.8, margin: "0" }}>
+          <p style={{ color: "#e2e8f0", fontSize: 17, lineHeight: 1.8, margin: "0" }}>
             The problem is rarely the technology. It is whether leaders use AI themselves, whether employees feel safe to experiment, and whether the culture is ready for change.
           </p>
         </div>
