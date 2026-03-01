@@ -189,6 +189,9 @@ export default function LandingPage({ onNavigate }) {
           <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
             Each Sprint is a half day session that delivers real results, not just awareness. They work standalone, or can be sequenced as a journey for maximum impact.
           </p>
+          <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.6, margin: "12px auto 0", maxWidth: 560, textAlign: "center" }}>
+            Delivered virtually or in person. Designed for teams of 8 to 20.
+          </p>
         </div>
 
         <div className="card-grid" style={{ padding: "0 24px" }}>
@@ -315,7 +318,7 @@ export default function LandingPage({ onNavigate }) {
           <div className="about-flex" style={{ display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ flex: "1 1 340px", textAlign: "left" }}>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>I'm Tomas Bay, a leadership and change consultant based in Hong Kong.</p>
-              <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>Over 30 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.</p>
+              <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>Over 25 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 28px" }}>I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
