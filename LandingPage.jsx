@@ -279,7 +279,7 @@ export default function LandingPage({ onNavigate }) {
       {/* Diagnostics */}
       <div id="diagnostics" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Not Sure Where to Start?</h2>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Find Out Where You Stand</h2>
           <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Take a free diagnostic.<br className="mobile-br" /> Get personalized results in minutes.</p>
         </div>
         <div className="card-grid-2" style={{ padding: "0 24px" }}>
