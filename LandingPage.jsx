@@ -526,13 +526,6 @@ export default function LandingPage({ onNavigate }) {
         padding: "20px 24px 60px",
       }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ marginBottom: 16 }}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <path d="M12 24h8m8 0h8" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-              <circle cx="24" cy="24" r="4" stroke={CYAN} strokeWidth="2.5" fill="none"/>
-              <path d="M24 8v8m0 16v8" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round"/>
-            </svg>
-          </div>
           <h2 style={{
             fontFamily: "'DM Serif Display', serif",
             fontSize: 30,
