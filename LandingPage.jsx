@@ -208,7 +208,7 @@ export default function LandingPage({ onNavigate }) {
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${CYAN}15`, display: "flex", alignItems: "center", justifyContent: "center", color: CYAN, fontSize: 16, fontWeight: 700 }}>{s.num}</div>
+                <div style={{ width: 48, height: 48, borderRadius: "50%", background: `${CYAN}15`, display: "flex", alignItems: "center", justifyContent: "center", color: CYAN, fontSize: 22, fontWeight: 700 }}>{s.num}</div>
                 <div>
                   <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: 0 }}>{s.title}</h3>
                   <p style={{ color: CYAN, fontSize: 15, fontWeight: 600, margin: 0 }}>{s.tagline}</p>
