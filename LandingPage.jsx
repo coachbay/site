@@ -731,84 +731,104 @@ export default function LandingPage({ onNavigate }) {
 
       {/* About Section */}
       <div style={{
-        maxWidth: 640,
+        maxWidth: 960,
         margin: "0 auto",
         padding: "40px 24px 48px",
-        textAlign: "center",
       }}>
-        <h2 style={{
-          fontFamily: "'DM Serif Display', serif",
-          fontSize: 26,
-          color: "#fff",
-          margin: "0 0 8px",
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 30,
+            color: "#fff",
+            margin: "0 0 8px",
+          }}>
+            About
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
+        </div>
+        <div style={{
+          background: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 20,
+          padding: "40px 36px",
+          display: "flex",
+          gap: 40,
+          alignItems: "center",
+          flexWrap: "wrap",
         }}>
-          About
-        </h2>
-        <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
-        <div style={{ marginTop: 24, marginBottom: 24, display: "flex", justifyContent: "center" }}>
-          <div style={{ width: 140, height: 140, borderRadius: "50%", overflow: "hidden", border: `3px solid ${CYAN}44` }}>
-          <img
-            src="/tomas.jpg"
-            alt="Tomas Bay"
-            style={{
-              width: 140,
-              height: 140,
-              borderRadius: "50%",
-              objectFit: "cover",
-              objectPosition: "center 15%",
-              transform: "scale(1.4)",
-            }}
-          />
+          <div style={{ flex: "1 1 340px", textAlign: "left" }}>
+            <p style={{
+              color: "#e2e8f0",
+              fontSize: 16,
+              lineHeight: 1.8,
+              margin: "0 0 16px",
+            }}>
+              I'm Tomas Bay, a leadership and change consultant based in Hong Kong.
+            </p>
+            <p style={{
+              color: "#e2e8f0",
+              fontSize: 16,
+              lineHeight: 1.8,
+              margin: "0 0 16px",
+            }}>
+              Over 30 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.
+            </p>
+            <p style={{
+              color: "#e2e8f0",
+              fontSize: 16,
+              lineHeight: 1.8,
+              margin: "0 0 16px",
+            }}>
+              In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.
+            </p>
+            <p style={{
+              color: "#e2e8f0",
+              fontSize: 16,
+              lineHeight: 1.8,
+              margin: "0 0 24px",
+            }}>
+              I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.
+            </p>
+            <a href="mailto:coach@coachbay.ai" style={{
+              display: "inline-block",
+              background: CYAN,
+              color: "#fff",
+              border: "none",
+              borderRadius: 12,
+              padding: "14px 32px",
+              fontSize: 16,
+              fontWeight: 600,
+              textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif",
+              boxShadow: `0 6px 24px ${CYAN}44`,
+              transition: "all 0.2s ease",
+            }}>
+              coach@coachbay.ai
+            </a>
+          </div>
+          <div style={{
+            flex: "0 0 auto",
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            maxWidth: 200,
+          }}>
+            <div style={{ width: 180, height: 180, borderRadius: "50%", overflow: "hidden", border: `3px solid ${CYAN}44` }}>
+              <img
+                src="/tomas.jpg"
+                alt="Tomas Bay"
+                style={{
+                  width: 180,
+                  height: 180,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  objectPosition: "center 15%",
+                  transform: "scale(1.4)",
+                }}
+              />
+            </div>
           </div>
         </div>
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 16,
-          lineHeight: 1.8,
-          margin: "0 0 16px",
-        }}>
-          I'm Tomas Bay, a leadership and change consultant based in Hong Kong.
-        </p>
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 16,
-          lineHeight: 1.8,
-          margin: "0 0 16px",
-        }}>
-          Over 30 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.
-        </p>
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 16,
-          lineHeight: 1.8,
-          margin: "0 0 16px",
-        }}>
-          In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.
-        </p>
-        <p style={{
-          color: "#e2e8f0",
-          fontSize: 16,
-          lineHeight: 1.8,
-          margin: "0 0 24px",
-        }}>
-          I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.
-        </p>
-        <a href="mailto:coach@coachbay.ai" style={{
-          display: "inline-block",
-          background: CYAN,
-          color: "#fff",
-          border: "none",
-          borderRadius: 12,
-          padding: "14px 32px",
-          fontSize: 16,
-          fontWeight: 600,
-          textDecoration: "none",
-          fontFamily: "'DM Sans', sans-serif",
-          boxShadow: `0 6px 24px ${CYAN}44`,
-          transition: "all 0.2s ease",
-        }}>
-          coach@coachbay.ai
-        </a>
       </div>
 
       {/* Footer */}
