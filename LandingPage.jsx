@@ -803,7 +803,7 @@ export default function LandingPage({ onNavigate }) {
               boxShadow: `0 6px 24px ${CYAN}44`,
               transition: "all 0.2s ease",
             }}>
-              coach@coachbay.ai
+              Get in touch
             </a>
           </div>
           <div style={{
