@@ -10,7 +10,7 @@
 
 // Master script URL for client assessments
 // (Update this after deploying the Apps Script — see setup guide)
-export const CLIENT_SCRIPT_URL = "";
+export const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8OhBY3oGNkJEq-u-2T2FdweRrGYDm3sCQ3qkpseoIAOLg-wZJRTM9xFUqzGDyAtdk/exec";
 
 const clients = {
   // Example:
