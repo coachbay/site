@@ -383,7 +383,7 @@ export default function TeamDashboard() {
               <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
               <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
               <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
-                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
+                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 14, fontWeight: 600 }} />
                 {sorted.map((d, i) => (
                   <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
                 ))}
