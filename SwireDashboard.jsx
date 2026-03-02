@@ -214,7 +214,7 @@ export default function TeamDashboard() {
           padding: "24px 20px",
           marginBottom: 28,
         }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 12px", fontWeight: 400 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 12px", fontWeight: 400 }}>
             Executive Summary
           </h2>
           <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.65, margin: 0 }}>
@@ -296,7 +296,7 @@ export default function TeamDashboard() {
             borderRadius: 14,
             padding: "24px 20px",
           }}>
-            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 20px", fontWeight: 400 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 20px", fontWeight: 400 }}>
               Where the Team Sits
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -395,7 +395,7 @@ export default function TeamDashboard() {
           padding: "24px 20px",
           marginBottom: 28,
         }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
             Individual Scores
           </h2>
           <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px" }}>Each bar represents one team member (anonymized), colored by tier</p>
@@ -451,7 +451,7 @@ export default function TeamDashboard() {
           padding: "24px 20px",
           marginBottom: 28,
         }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
             Section Breakdown
           </h2>
           <p style={{ fontSize: 13, color: "#475569", margin: "0 0 20px" }}>Average, minimum, and maximum for each of the 5 assessed areas</p>
@@ -515,7 +515,7 @@ export default function TeamDashboard() {
           padding: "24px 20px",
           marginBottom: 28,
         }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 16px", fontWeight: 400 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 16px", fontWeight: 400 }}>
             Key Takeaways
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -565,7 +565,7 @@ export default function TeamDashboard() {
           padding: "24px 20px",
           marginBottom: 28,
         }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 16px", fontWeight: 400 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 16px", fontWeight: 400 }}>
             Recommended Next Steps
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
