@@ -5,7 +5,7 @@ import LandingPage from './LandingPage'
 import DiagnosticEngine from './DiagnosticEngine'
 import SwireDashboard from './SwireDashboard'
 import ClientAssessment from './ClientAssessment'
-import clients from './clientConfig'
+import clients, { CLIENT_SCRIPT_URL } from './clientConfig'
 import { companyConfig, leaderConfig, teamConfig } from './diagnosticData'
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
           <ClientAssessment
             clientSlug={slug}
             clientName={client.name}
-            scriptUrl={client.scriptUrl}
+            scriptUrl={CLIENT_SCRIPT_URL}
           />
           <Analytics />
         </>
