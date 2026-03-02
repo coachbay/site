@@ -45,7 +45,7 @@ const diagnosticOptions = [
   },
 ];
 
-export default function ClientAssessment({ clientSlug, clientName, scriptUrl }) {
+export default function ClientAssessment({ clientSlug, clientName, scriptUrl, assessments }) {
   const [phase, setPhase] = useState("collect"); // collect → pick → diagnostic
   const [respondentName, setRespondentName] = useState("");
   const [respondentEmail, setRespondentEmail] = useState("");
@@ -54,6 +54,9 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl }) 
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  // Filter to only the assessments assigned to this client
+  const availableOptions = diagnosticOptions.filter(opt => assessments.includes(opt.key));
+
   const handleContinue = () => {
     if (!respondentName.trim() || !respondentEmail.trim()) return;
     if (!isValidEmail(respondentEmail.trim())) {
@@ -61,7 +64,13 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl }) 
       return;
     }
     setEmailError("");
-    setPhase("pick");
+    // If only one assessment, skip the picker
+    if (availableOptions.length === 1) {
+      setSelectedDiagnostic(availableOptions[0]);
+      setPhase("diagnostic");
+    } else {
+      setPhase("pick");
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -77,7 +86,8 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl }) 
 
   const goBackToPick = () => {
     setSelectedDiagnostic(null);
-    setPhase("pick");
+    // If only one assessment, go back to name/email form
+    setPhase(availableOptions.length === 1 ? "collect" : "pick");
   };
 
   // Phase 3: Run the diagnostic
@@ -138,7 +148,7 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl }) 
 
           {/* Diagnostic cards */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {diagnosticOptions.map((option) => (
+            {availableOptions.map((option) => (
               <button
                 key={option.key}
                 onClick={() => handleSelectDiagnostic(option)}

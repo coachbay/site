@@ -33,6 +33,7 @@ export default function App() {
             clientSlug={slug}
             clientName={client.name}
             scriptUrl={CLIENT_SCRIPT_URL}
+            assessments={client.assessments || ["company", "leader", "team"]}
           />
           <Analytics />
         </>
