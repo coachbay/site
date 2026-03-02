@@ -198,8 +198,8 @@ export default function DiagnosticEngine({
     doc.circle(rx - 3.2, ry - 1.5, 1.9, "F");
     doc.circle(rx + 3.2, ry - 1.5, 1.9, "F");
     doc.setFillColor(26, 26, 46);
-    doc.circle(rx - 2.7, ry - 1.2, 1.1, "F");
-    doc.circle(rx + 3.7, ry - 1.2, 1.1, "F");
+    doc.circle(rx - 2.7, ry - 1.35, 1.25, "F");
+    doc.circle(rx + 3.7, ry - 1.35, 1.25, "F");
     doc.setDrawColor(0, 188, 212);
     doc.setLineWidth(0.8);
     doc.line(rx, ry - 8, rx, ry - 12);
@@ -410,8 +410,8 @@ export default function DiagnosticEngine({
               <circle cx="50" cy="55" r="30" fill="#00BCD4"/>
               <circle cx="38" cy="50" r="7" fill="#fff"/>
               <circle cx="62" cy="50" r="7" fill="#fff"/>
-              <circle cx="40" cy="51" r="4" fill="#1a1a2e"/>
-              <circle cx="64" cy="51" r="4" fill="#1a1a2e"/>
+              <circle cx="40" cy="50.5" r="4.5" fill="#1a1a2e"/>
+              <circle cx="64" cy="50.5" r="4.5" fill="#1a1a2e"/>
               <line x1="50" y1="25" x2="50" y2="15" stroke="#00BCD4" strokeWidth="3"/>
               <circle cx="50" cy="12" r="5" fill="#00BCD4"/>
             </svg>
