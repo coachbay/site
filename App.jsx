@@ -3,10 +3,22 @@ import './index.css'
 import { Analytics } from '@vercel/analytics/react'
 import LandingPage from './LandingPage'
 import DiagnosticEngine from './DiagnosticEngine'
+import SwireDashboard from './SwireDashboard'
 import { companyConfig, leaderConfig, teamConfig } from './diagnosticData'
 
 export default function App() {
+  const path = window.location.pathname;
   const [page, setPage] = useState("landing");
+
+  // URL-based routes (direct links)
+  if (path === "/swire-dashboard") {
+    return (
+      <>
+        <SwireDashboard />
+        <Analytics />
+      </>
+    );
+  }
 
   const goHome = () => {
     setPage("landing");
