@@ -336,11 +336,11 @@ export default function TeamDashboard() {
             </h2>
             <p style={{ fontSize: 14, color: "#475569", margin: "0 0 4px" }}>Average scores across 5 dimensions (out of 25)</p>
             <ResponsiveContainer width="100%" height={380}>
-              <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="58%">
+              <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="50%">
                 <PolarGrid stroke="#cbd5e1" />
                 <PolarAngleAxis
                   dataKey="subject"
-                  tick={{ fill: "#475569", fontSize: 14, fontWeight: 500 }}
+                  tick={{ fill: "#475569", fontSize: 12, fontWeight: 500 }}
                 />
                 <PolarRadiusAxis
                   domain={[0, 25]}
@@ -377,13 +377,13 @@ export default function TeamDashboard() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 20, right: 25, bottom: 10, left: 10 }}
+              margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
-              <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
+              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
+              <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
               <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
-                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 14, fontWeight: 600 }} />
+                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
                 {sorted.map((d, i) => (
                   <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
                 ))}
