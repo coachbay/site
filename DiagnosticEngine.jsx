@@ -62,6 +62,7 @@ export default function DiagnosticEngine({
   diagnosticType,
   empathyGap,
   onBack,
+  clientMode,
 }) {
   const [phase, setPhase] = useState("intro");
   const [currentSection, setCurrentSection] = useState(0);
@@ -78,11 +79,28 @@ export default function DiagnosticEngine({
   useEffect(() => {
     if (phase === "results") {
       const { sectionScores, grandTotal, tier } = calculateResults();
+
+      // Determine which script URL to use
+      const trackingUrl = (clientMode && clientMode.scriptUrl)
+        ? clientMode.scriptUrl
+        : GOOGLE_SCRIPT_URL;
+
+      // Skip tracking if no URL available
+      if (!trackingUrl) return;
+
       const params = new URLSearchParams({
         type: diagnosticType,
         score: grandTotal,
         tier: tier.label,
       });
+
+      // Add respondent info in client mode
+      if (clientMode) {
+        params.append("name", clientMode.respondentName);
+        params.append("email", clientMode.respondentEmail);
+        params.append("company", clientMode.clientCompany);
+      }
+
       sectionScores.forEach((sec, si) => {
         params.append(sec.id, sec.score);
         for (let qi = 0; qi < 5; qi++) {
@@ -97,7 +115,7 @@ export default function DiagnosticEngine({
         }
       }
       const img = new Image();
-      img.src = GOOGLE_SCRIPT_URL + "?" + params.toString();
+      img.src = trackingUrl + "?" + params.toString();
     }
   }, [phase]);
 
@@ -172,8 +190,9 @@ export default function DiagnosticEngine({
     };
 
     // ========== HEADER ==========
+    const headerH = clientMode ? 56 : 48;
     doc.setFillColor(26, 26, 46); // DARK
-    doc.rect(0, 0, pageW, 48, "F");
+    doc.rect(0, 0, pageW, headerH, "F");
 
     doc.setFontSize(24);
     doc.setFont("helvetica", "bold");
@@ -183,11 +202,17 @@ export default function DiagnosticEngine({
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(148, 163, 184);
-    doc.text("CoachBay.ai", margin, 32);
+    doc.text(clientMode ? `${clientMode.clientCompany} | CoachBay.ai` : "CoachBay.ai", margin, 32);
 
     doc.setFontSize(10);
     doc.setTextColor(0, 188, 212); // CYAN
     doc.text("coach@coachbay.ai", margin, 40);
+
+    if (clientMode) {
+      doc.setFontSize(9);
+      doc.setTextColor(148, 163, 184);
+      doc.text(`Completed by: ${clientMode.respondentName} (${clientMode.respondentEmail})`, margin, 50);
+    }
 
     // Robot icon (top right of header)
     const rx = pageW - margin - 10;
@@ -206,7 +231,7 @@ export default function DiagnosticEngine({
     doc.setFillColor(0, 188, 212);
     doc.circle(rx, ry - 13, 1.4, "F");
 
-    y = 60;
+    y = clientMode ? 68 : 60;
 
     // ========== OVERALL SCORE ==========
     // Score circle (simulated)
@@ -416,6 +441,11 @@ export default function DiagnosticEngine({
               <circle cx="50" cy="12" r="5" fill="#00BCD4"/>
             </svg>
           </div>
+          {clientMode && (
+            <p style={{ color: CYAN, fontSize: 14, fontWeight: 600, letterSpacing: 1, margin: "0 0 8px", textTransform: "uppercase" }}>
+              {clientMode.clientCompany}
+            </p>
+          )}
           <h1 style={{
             fontFamily: "'DM Serif Display', serif",
             fontSize: 36, color: "#fff", margin: "0 0 8px", lineHeight: 1.2,
@@ -452,7 +482,7 @@ export default function DiagnosticEngine({
                 textDecoration: "underline", textUnderlineOffset: 4,
               }}
             >
-              ← Back to CoachBay.ai
+              ← {clientMode ? "Back to assessments" : "Back to CoachBay.ai"}
             </button>
           </div>
           <p style={{ color: "#475569", fontSize: 12, marginTop: 24 }}>
@@ -626,7 +656,7 @@ export default function DiagnosticEngine({
                   cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                Back to CoachBay.ai
+                {clientMode ? "Back to assessments" : "Back to CoachBay.ai"}
               </button>
             </div>
             <p style={{ color: "#94a3b8", fontSize: 12, marginTop: 24 }}>
