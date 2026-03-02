@@ -356,16 +356,16 @@ export default function TeamDashboard() {
             borderRadius: 14,
             padding: "24px 20px",
           }}>
-            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 8px", fontWeight: 400 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 8px", fontWeight: 400 }}>
               Team Capability Profile
             </h2>
-            <p style={{ fontSize: 13, color: "#475569", margin: "0 0 4px" }}>Average scores across 5 dimensions (out of 25)</p>
-            <ResponsiveContainer width="100%" height={310}>
-              <RadarChart data={radarData} cx="50%" cy="54%" outerRadius="62%">
+            <p style={{ fontSize: 14, color: "#475569", margin: "0 0 4px" }}>Average scores across 5 dimensions (out of 25)</p>
+            <ResponsiveContainer width="100%" height={380}>
+              <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="72%">
                 <PolarGrid stroke="#cbd5e1" />
                 <PolarAngleAxis
                   dataKey="subject"
-                  tick={{ fill: "#475569", fontSize: 12 }}
+                  tick={{ fill: "#475569", fontSize: 14, fontWeight: 500 }}
                 />
                 <PolarRadiusAxis
                   domain={[0, 25]}
