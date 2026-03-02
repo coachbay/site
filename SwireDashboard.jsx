@@ -336,7 +336,7 @@ export default function TeamDashboard() {
             </h2>
             <p style={{ fontSize: 14, color: "#475569", margin: "0 0 4px" }}>Average scores across 5 dimensions (out of 25)</p>
             <ResponsiveContainer width="100%" height={380}>
-              <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="72%">
+              <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="58%">
                 <PolarGrid stroke="#cbd5e1" />
                 <PolarAngleAxis
                   dataKey="subject"
@@ -377,7 +377,7 @@ export default function TeamDashboard() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 20, right: 10, bottom: 10, left: 10 }}
+              margin={{ top: 20, right: 25, bottom: 10, left: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
