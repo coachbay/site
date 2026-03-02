@@ -64,13 +64,7 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
       return;
     }
     setEmailError("");
-    // If only one assessment, skip the picker
-    if (availableOptions.length === 1) {
-      setSelectedDiagnostic(availableOptions[0]);
-      setPhase("diagnostic");
-    } else {
-      setPhase("pick");
-    }
+    setPhase("pick");
   };
 
   const handleKeyDown = (e) => {
@@ -86,8 +80,7 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
 
   const goBackToPick = () => {
     setSelectedDiagnostic(null);
-    // If only one assessment, go back to name/email form
-    setPhase(availableOptions.length === 1 ? "collect" : "pick");
+    setPhase("pick");
   };
 
   // Phase 3: Run the diagnostic
@@ -241,7 +234,7 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
           fontFamily: "'DM Serif Display', serif",
           fontSize: 32, color: "#fff", margin: "0 0 8px", lineHeight: 1.2,
         }}>
-          AI Readiness Assessment
+          AI Assessment
         </h1>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         <p style={{ color: "#e2e8f0", fontSize: 16, lineHeight: 1.7, margin: "0 0 36px" }}>
