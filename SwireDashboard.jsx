@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   RadarChart,
   Radar,
@@ -11,7 +10,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  LabelList,
   Cell,
 } from "recharts";
 
@@ -81,31 +80,7 @@ const radarData = sectionAvgs.map((s) => ({
 
 const sorted = [...teamData].sort((a, b) => a.total - b.total);
 
-const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload?.length) return null;
-  return (
-    <div style={{
-      background: "#fff",
-      border: "1px solid rgba(0, 188, 212, 0.3)",
-      borderRadius: 8,
-      padding: "10px 14px",
-      fontSize: 13,
-      color: "#1e293b",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-    }}>
-      <div style={{ fontWeight: 600, marginBottom: 4 }}>{label}</div>
-      {payload.map((p, i) => (
-        <div key={i} style={{ color: p.color || "#00BCD4" }}>
-          {p.name}: {p.value}/25
-        </div>
-      ))}
-    </div>
-  );
-};
-
 export default function TeamDashboard() {
-  const [hoveredMember, setHoveredMember] = useState(null);
-
   const lowestSection = sectionAvgs.reduce((a, b) => (a.avg < b.avg ? a : b));
   const highestSection = sectionAvgs.reduce((a, b) => (a.avg > b.avg ? a : b));
   const gap = Math.round((highestSection.avg - lowestSection.avg) * 10) / 10;
@@ -402,32 +377,13 @@ export default function TeamDashboard() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+              margin={{ top: 20, right: 10, bottom: 10, left: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
               <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 12 }} axisLine={{ stroke: "#e2e8f0" }} />
-              <Tooltip
-                content={({ active, payload }) => {
-                  if (!active || !payload?.length) return null;
-                  const d = payload[0].payload;
-                  return (
-                    <div style={{
-                      background: "#fff",
-                      border: `1px solid ${tierColors[d.tier]}60`,
-                      borderRadius: 8,
-                      padding: "10px 14px",
-                      fontSize: 13,
-                      color: "#1e293b",
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                    }}>
-                      <div style={{ fontWeight: 600 }}>{d.name}: {d.total}/125</div>
-                      <div style={{ color: tierColors[d.tier], marginTop: 2 }}>{d.tier}</div>
-                    </div>
-                  );
-                }}
-              />
               <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
+                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
                 {sorted.map((d, i) => (
                   <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
                 ))}
