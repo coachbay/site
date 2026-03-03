@@ -30,6 +30,11 @@ const clients = {
     name: "Demo Company",
     assessments: ["company", "leader", "team"],
   },
+
+  "sprops-digital": {
+    name: "Swire Properties",
+    assessments: ["company", "leader", "team"],
+  },
 };
 
 export default clients;
