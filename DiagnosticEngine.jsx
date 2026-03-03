@@ -69,6 +69,7 @@ export default function DiagnosticEngine({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [animating, setAnimating] = useState(false);
+  const [autoAdvancing, setAutoAdvancing] = useState(false);
   const questionRef = useRef(null);
 
   const totalQuestions = sections.length * 5;
@@ -124,12 +125,14 @@ export default function DiagnosticEngine({
     const isNewAnswer = answers[key] === undefined;
     setAnswers((prev) => ({ ...prev, [key]: value }));
     if (!isNewAnswer) return; // Don't auto-advance when changing an existing answer
+    setAutoAdvancing(true);
     setTimeout(() => {
       if (currentQuestion < 4) {
         setAnimating(true);
         setTimeout(() => {
           setCurrentQuestion((q) => Math.min(q + 1, 4));
           setAnimating(false);
+          setAutoAdvancing(false);
         }, 200);
       } else if (currentSection < sections.length - 1) {
         setAnimating(true);
@@ -137,7 +140,10 @@ export default function DiagnosticEngine({
           setCurrentSection((s) => Math.min(s + 1, sections.length - 1));
           setCurrentQuestion(0);
           setAnimating(false);
+          setAutoAdvancing(false);
         }, 200);
+      } else {
+        setAutoAdvancing(false);
       }
     }, 300);
   };
@@ -797,7 +803,7 @@ export default function DiagnosticEngine({
         >
           ← Back
         </button>
-        {currentAnswer !== undefined && !(currentSection === sections.length - 1 && currentQuestion === 4) && (
+        {currentAnswer !== undefined && !autoAdvancing && !(currentSection === sections.length - 1 && currentQuestion === 4) && (
           <button
             onClick={goForward}
             style={{
