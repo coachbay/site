@@ -504,8 +504,8 @@ export default function SwirePropertiesDashboard() {
               },
               {
                 icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="20" height="16" rx="3" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><rect x="16" y="18" width="20" height="16" rx="3" stroke="#00BCD4" strokeWidth="2.5" fill="none"/></svg>,
-                title: "One team member needs targeted support",
-                text: "While 16 of 17 are in the Building Momentum or AI-Fluent tiers, one team member scored 59, well below the group. This isn't a warning, it's an opportunity. With the right pairing and a few early wins, this person can move quickly. A buddy system with one of the AI-Fluent colleagues would be the simplest first step.",
+                title: "Your most advanced users have moved beyond Copilot",
+                text: "Swire Properties has invested in Copilot, but the highest-scoring team members are reaching for other tools like Perplexity, DeepSeek, and Manus to get their work done. This is a common pattern: when the official tool doesn't cover every use case, people find alternatives. It's worth understanding what they're using these tools for and whether Copilot is meeting the team's actual needs.",
               },
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
