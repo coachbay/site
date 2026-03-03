@@ -510,6 +510,19 @@ export default function TeamDashboard() {
                 </div>
               </div>
             </div>
+            <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <span style={{
+                width: 28, height: 28, borderRadius: "50%", background: "#00BCD4", color: "#fff",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 14, fontWeight: 700, flexShrink: 0, marginTop: 1,
+              }}>3</span>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "#1e293b", marginBottom: 4 }}>Build daily habits, not just skills</div>
+                <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.55 }}>
+                  Frequency is one of the team's weakest areas. The goal is not more training, it is connecting AI to tasks people already do every day. Identify 2 to 3 common workflows (drafting guest communications, preparing shift handover notes, summarizing feedback) and show the team how AI slots into those routines. Consistency matters more than sophistication.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
