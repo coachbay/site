@@ -79,22 +79,22 @@ export const companyConfig = {
   ],
   tierData: [
     {
-      range: [100, 125], label: "Ready to Accelerate", color: "#10b981",
+      range: [101, 125], label: "Ready to Accelerate", color: "#10b981",
       summary: "Your organization has the foundations in place. Leadership is engaged, employees are willing, and you have clarity on what you're trying to achieve.",
       action: "Skip the awareness phase. Go straight to forming a Pilot Squad, a small group of 5 to 10 early adopters who solve real problems with AI. Focus on creating visible wins fast and scaling from there.",
     },
     {
-      range: [75, 99], label: "Ready to Start, With Focus", color: CYAN,
+      range: [76, 100], label: "Ready to Start, With Focus", color: CYAN,
       summary: "You have pockets of readiness but some gaps. Most likely, leadership is keen but employees are uncertain, or you have enthusiasm but lack structure.",
       action: "Start with the curious. Don't try to fix every gap first. Launch a small pilot and let the results build the case. Get your early adopters their first real AI experience this week using a simple prompt framework like CRIT (Context, Role, Interview, Task).",
     },
     {
-      range: [50, 74], label: "Groundwork Needed", color: "#f59e0b",
+      range: [51, 75], label: "Groundwork Needed", color: "#f59e0b",
       summary: "There's interest but not enough safety, clarity, or trust to launch an initiative yet. Pushing ahead now risks creating \"prisoners\", compliance without buy-in.",
       action: "Start with leadership. Leaders need to use AI themselves first because you can't coach what you haven't practiced. Focus on building psychological safety and identifying your natural early adopters. A 60-minute AI Kickoff workshop can open the door without forcing anything.",
     },
     {
-      range: [0, 49], label: "Not Yet. And That's Okay", color: RED_ACCENT,
+      range: [25, 50], label: "Not Yet. And That's Okay", color: RED_ACCENT,
       summary: "Your organization isn't ready for an AI initiative right now. That doesn't mean it's a failure. It means other things need to come first: trust, change fatigue, leadership alignment, or basic access to tools.",
       action: "Don't force it. Work on the underlying culture of change first. Start with one-on-one conversations with leaders about what's really getting in the way. Come back to AI once the foundation of trust is stronger.",
     },
@@ -206,22 +206,22 @@ export const leaderConfig = {
   ],
   tierData: [
     {
-      range: [100, 125], label: "AI-Powered Leader", color: "#10b981",
+      range: [101, 125], label: "AI-Powered Leader", color: "#10b981",
       summary: "AI is woven into how you lead. You use it for strategic thinking, not just productivity. You're not just keeping up, you're setting the pace.",
       action: "You're ready to multiply your impact. Start coaching others on what you've learned. Share your prompts, show your process, and help your team see what's possible. You are the early adopter your organization needs to see.",
     },
     {
-      range: [75, 99], label: "Active Explorer", color: CYAN,
+      range: [76, 100], label: "Active Explorer", color: CYAN,
       summary: "You're using AI regularly and seeing real results. You have good habits forming but there's room to go deeper, especially in using AI for strategic thinking and decision-making.",
       action: "Push into the uncomfortable. Try using AI for your biggest challenge this week, not just the routine stuff. Use the CRIT framework (Context, Role, Interview, Task) to structure a conversation with AI about a strategic decision you're facing.",
     },
     {
-      range: [50, 74], label: "Getting Started", color: "#f59e0b",
+      range: [51, 75], label: "Getting Started", color: "#f59e0b",
       summary: "You've dipped into AI but it hasn't become a habit yet. You probably use it for simple tasks and haven't explored its potential as a thinking partner.",
       action: "Pick one recurring task in your week and commit to using AI for it every time. It could be preparing for a meeting, drafting a communication, or thinking through a decision. Build the muscle through repetition, not ambition.",
     },
     {
-      range: [0, 49], label: "Untapped Potential", color: RED_ACCENT,
+      range: [25, 50], label: "Untapped Potential", color: RED_ACCENT,
       summary: "AI could transform how you lead, but you haven't started yet. That's not a criticism, it's an opportunity. Most leaders are in the same position.",
       action: "Start with one conversation. Open an AI tool and ask it: \"I'm a leader dealing with [your biggest challenge]. Ask me questions to help me think this through.\" That single experience often changes everything.",
     },
@@ -333,22 +333,22 @@ export const teamConfig = {
   ],
   tierData: [
     {
-      range: [100, 125], label: "AI-Fluent", color: "#10b981",
+      range: [101, 125], label: "AI-Fluent", color: "#10b981",
       summary: "AI is a natural part of how you work. You use it confidently, you know its limits, and it's genuinely making you more effective. You're not just using AI, you're thinking with it.",
       action: "You're ready to help others. Share what you've learned with your team. Show them your prompts, explain your process, and help them get their first real win with AI. The best way to learn is to teach.",
     },
     {
-      range: [75, 99], label: "Building Momentum", color: CYAN,
+      range: [76, 100], label: "Building Momentum", color: CYAN,
       summary: "You're developing real AI skills and using them regularly. You've moved past the curiosity stage and into genuine daily use. There's still room to go deeper.",
       action: "Challenge yourself to use AI for something you've never tried before this week. Move beyond writing and research into problem-solving, decision-making, or learning a new skill. AI can be your assistant, coach, expert, and creative partner.",
     },
     {
-      range: [50, 74], label: "Early Days", color: "#f59e0b",
+      range: [51, 75], label: "Early Days", color: "#f59e0b",
       summary: "You've started using AI but haven't found your rhythm yet. You probably use it for a few simple tasks and aren't sure where else it could help.",
       action: "Pick one thing you do every week that takes more time than it should. Commit to trying it with AI for three weeks straight. The goal isn't perfection, it's building a habit. Once you find one workflow that clicks, the rest follows naturally.",
     },
     {
-      range: [0, 49], label: "Untapped Potential", color: RED_ACCENT,
+      range: [25, 50], label: "Untapped Potential", color: RED_ACCENT,
       summary: "There's a world of AI capability waiting for you. You haven't started yet, or you've only scratched the surface. That's perfectly fine because everyone starts here.",
       action: "Start with something small and personal. Ask AI to help you draft an email, summarise a document, or explain a concept you've been meaning to learn. The first experience should feel easy and useful, not overwhelming.",
     },
