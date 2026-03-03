@@ -367,7 +367,7 @@ export default function SwirePropertiesDashboard() {
           </div>
         </div>
 
-        {/* Individual Scores Bar Chart */}
+        {/* Score Distribution */}
         <div className="print-page-break">
         <div style={{
           background: "#f8fafc",
@@ -377,30 +377,49 @@ export default function SwirePropertiesDashboard() {
           marginBottom: 28,
         }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
-            Individual Scores
+            Score Distribution
           </h2>
-          <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px" }}>Each bar represents one team member (anonymized), colored by tier</p>
+          <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px" }}>How many team members fall into each scoring range</p>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
-              data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 8, right: 30, bottom: 10, left: 10 }}
+              data={[
+                { range: "0\u201362", count: teamData.filter(d => d.total <= 62).length, color: "#ef4444" },
+                { range: "63\u201382", count: teamData.filter(d => d.total >= 63 && d.total <= 82).length, color: "#f59e0b" },
+                { range: "83\u201399", count: teamData.filter(d => d.total >= 83 && d.total <= 99).length, color: "#3b82f6" },
+                { range: "100\u2013125", count: teamData.filter(d => d.total >= 100).length, color: "#00BCD4" },
+              ]}
+              margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={false} axisLine={{ stroke: "#e2e8f0" }} />
-              <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
-              <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
-                {sorted.map((d, i) => (
-                  <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+              <XAxis dataKey="range" tick={{ fill: "#475569", fontSize: 13 }} axisLine={{ stroke: "#e2e8f0" }} />
+              <YAxis allowDecimals={false} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
+              <Bar dataKey="count" radius={[6, 6, 0, 0]} maxBarSize={80}>
+                <LabelList dataKey="count" position="top" style={{ fill: "#1e293b", fontSize: 14, fontWeight: 600 }} />
+                {[
+                  { color: "#ef4444" },
+                  { color: "#f59e0b" },
+                  { color: "#3b82f6" },
+                  { color: "#00BCD4" },
+                ].map((item, i) => (
+                  <Cell key={i} fill={item.color} fillOpacity={0.8} />
                 ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
 
-          {/* Average line label */}
-          <div style={{ textAlign: "center", marginTop: 8 }}>
-            <span style={{ fontSize: 13, color: "#475569" }}>
-              Team average: <span style={{ color: "#00BCD4", fontWeight: 600 }}>{teamAvg}</span>/125
-            </span>
+          {/* Legend */}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 16, marginTop: 8 }}>
+            {[
+              { label: "Untapped Potential", color: "#ef4444" },
+              { label: "Early Days", color: "#f59e0b" },
+              { label: "Building Momentum", color: "#3b82f6" },
+              { label: "AI-Fluent", color: "#00BCD4" },
+            ].map((item) => (
+              <span key={item.label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#475569" }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: item.color, display: "inline-block" }} />
+                {item.label}
+              </span>
+            ))}
           </div>
         </div>
 
