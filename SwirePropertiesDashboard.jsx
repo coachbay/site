@@ -383,13 +383,12 @@ export default function SwirePropertiesDashboard() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
+              margin={{ top: 8, right: 30, bottom: 10, left: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} interval={0} />
+              <XAxis dataKey="name" tick={false} axisLine={{ stroke: "#e2e8f0" }} />
               <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
               <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
-                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
                 {sorted.map((d, i) => (
                   <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
                 ))}
