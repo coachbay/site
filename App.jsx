@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import LandingPage from './LandingPage'
 import DiagnosticEngine from './DiagnosticEngine'
 import SwireDashboard from './SwireDashboard'
+import SwirePropertiesDashboard from './SwirePropertiesDashboard'
 import ClientAssessment from './ClientAssessment'
 import clients, { CLIENT_SCRIPT_URL } from './clientConfig'
 import { companyConfig, leaderConfig, teamConfig } from './diagnosticData'
@@ -17,6 +18,15 @@ export default function App() {
     return (
       <>
         <SwireDashboard />
+        <Analytics />
+      </>
+    );
+  }
+
+  if (path === "/sprops-dashboard") {
+    return (
+      <>
+        <SwirePropertiesDashboard />
         <Analytics />
       </>
     );
