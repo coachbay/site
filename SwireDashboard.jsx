@@ -10,8 +10,6 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  LabelList,
-  Cell,
 } from "recharts";
 
 const teamData = [
@@ -77,8 +75,6 @@ const radarData = sectionAvgs.map((s) => ({
   team: s.avg,
   fullMark: 25,
 }));
-
-const sorted = [...teamData].sort((a, b) => a.total - b.total);
 
 export default function TeamDashboard() {
   const lowestSection = sectionAvgs.reduce((a, b) => (a.avg < b.avg ? a : b));
@@ -277,7 +273,7 @@ export default function TeamDashboard() {
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {tierOrder.map((t) => {
                 const count = tierCounts.find((tc) => tc.tier === t).count;
-                const pct = Math.round((count / 11) * 100);
+                const pct = Math.round((count / teamData.length) * 100);
                 return (
                   <div key={t}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
@@ -361,45 +357,8 @@ export default function TeamDashboard() {
           </div>
         </div>
 
-        {/* Individual Scores Bar Chart */}
-        <div className="print-page-break">
-        <div style={{
-          background: "#f8fafc",
-          border: "1px solid #e2e8f0",
-          borderRadius: 14,
-          padding: "24px 20px",
-          marginBottom: 28,
-        }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
-            Individual Scores
-          </h2>
-          <p style={{ fontSize: 13, color: "#475569", margin: "0 0 16px" }}>Each bar represents one team member (anonymized), colored by tier</p>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart
-              data={sorted.map((d, i) => ({ name: `#${i + 1}`, total: d.total, tier: d.tier }))}
-              margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} interval={0} />
-              <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
-              <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
-                <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
-                {sorted.map((d, i) => (
-                  <Cell key={i} fill={tierColors[d.tier]} fillOpacity={0.8} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-
-          {/* Average line label */}
-          <div style={{ textAlign: "center", marginTop: 8 }}>
-            <span style={{ fontSize: 13, color: "#475569" }}>
-              Team average: <span style={{ color: "#00BCD4", fontWeight: 600 }}>{teamAvg}</span>/125
-            </span>
-          </div>
-        </div>
-
         {/* Section Deep Dive */}
+        <div className="print-page-break">
         <div style={{
           background: "#f8fafc",
           border: "1px solid #e2e8f0",
