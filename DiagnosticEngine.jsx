@@ -151,6 +151,23 @@ export default function DiagnosticEngine({
     }
   };
 
+  const goForward = () => {
+    if (currentQuestion < 4) {
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrentQuestion((q) => q + 1);
+        setAnimating(false);
+      }, 200);
+    } else if (currentSection < sections.length - 1) {
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrentSection((s) => s + 1);
+        setCurrentQuestion(0);
+        setAnimating(false);
+      }, 200);
+    }
+  };
+
   const calculateResults = () => {
     const sectionScores = sections.map((sec, si) => {
       let total = 0;
@@ -780,6 +797,19 @@ export default function DiagnosticEngine({
         >
           ← Back
         </button>
+        {currentAnswer !== undefined && !(currentSection === sections.length - 1 && currentQuestion === 4) && (
+          <button
+            onClick={goForward}
+            style={{
+              background: CYAN, color: "#fff", border: "none", borderRadius: 12,
+              padding: "12px 28px", fontSize: 15, fontWeight: 600,
+              cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+              boxShadow: `0 6px 24px ${CYAN}44`,
+            }}
+          >
+            Next →
+          </button>
+        )}
         {canFinish && (
           <button
             onClick={() => setPhase("results")}
