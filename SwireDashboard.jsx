@@ -167,7 +167,7 @@ export default function TeamDashboard() {
           }}>
             Team AI Readiness Dashboard
           </h1>
-          <p style={{ fontSize: 17, color: "#334155", margin: "0 0 4px", fontWeight: 500 }}>
+          <p style={{ fontSize: 22, color: "#334155", margin: "0 0 4px", fontWeight: 500 }}>
             Swire Hotels
           </p>
           <p style={{ fontSize: 15, color: "#475569", margin: "0 0 2px" }}>
@@ -380,7 +380,7 @@ export default function TeamDashboard() {
               margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
+              <XAxis dataKey="name" tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} interval={0} />
               <YAxis domain={[0, 125]} tick={{ fill: "#475569", fontSize: 11 }} axisLine={{ stroke: "#e2e8f0" }} />
               <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
                 <LabelList dataKey="total" position="top" style={{ fill: "#1e293b", fontSize: 11, fontWeight: 600 }} />
