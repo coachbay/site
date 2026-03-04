@@ -8,18 +8,14 @@ export default async function handler(req, res) {
     if (company) url += "&company=" + encodeURIComponent(company);
     if (type) url += "&type=" + encodeURIComponent(type);
 
-    const response = await fetch(url, {
-      redirect: "follow",
-      headers: { "Accept": "application/json" }
-    });
-
+    const response = await fetch(url, { redirect: "follow" });
     const text = await response.text();
 
     let data;
     try {
       data = JSON.parse(text);
     } catch (e) {
-      return res.status(500).json({ error: "Script returned non-JSON", raw: text.slice(0, 300) });
+      return res.status(500).json({ error: "Invalid response from script", raw: text.slice(0, 200) });
     }
 
     res.setHeader("Access-Control-Allow-Origin", "*");
