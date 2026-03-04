@@ -75,9 +75,9 @@ export default function ClientResultsDashboard() {
   const chartRef = useRef(null)
   const chartInstance = useRef(null)
 
-  // On mount — load tab list to discover companies
+  // On mount — load client list
   useEffect(() => {
-    loadTabs()
+    loadClients()
   }, [])
 
   useEffect(() => {
@@ -88,33 +88,22 @@ export default function ClientResultsDashboard() {
     if (rows.length && headers.length) drawChart()
   }, [rows, headers])
 
-  async function loadTabs() {
+  async function loadClients() {
     setLoading(true)
     setError(null)
     try {
       const res = await fetch("/api/client-results")
       if (!res.ok) throw new Error(`Server error ${res.status}`)
-      const data = await res.json()
-      if (!Array.isArray(data)) throw new Error("Unexpected response")
+      const clients = await res.json()
 
-      setTabs(data)
-
-      // Extract unique companies from tabs like "Swire Properties - Team"
-      const companySet = new Set()
-      data.forEach(tab => {
-        const match = tab.match(/^(.+) - (Company|Leader|Team)$/)
-        if (match) companySet.add(match[1])
-      })
-      const companyList = Array.from(companySet).sort()
+      const companyList = Object.keys(clients).sort()
       setCompanies(companyList)
+      setTabs(clients)
 
       if (companyList.length > 0) {
-        setActiveCompany(companyList[0])
-        // Find first available type for this company
-        const firstType = ["Team", "Leader", "Company"].find(t =>
-          data.includes(companyList[0] + " - " + t)
-        )
-        setActiveType(firstType || "Team")
+        const first = companyList[0]
+        setActiveCompany(first)
+        setActiveType(clients[first][0])
       }
     } catch (e) {
       setError("Could not load client list: " + e.message)
@@ -190,7 +179,7 @@ export default function ClientResultsDashboard() {
   const sectionCols = headers.map((h, i) => ({ label: h, i })).filter(({ label }) => label.endsWith(" Total"))
 
   // Types available for the active company
-  const availableTypes = ["Team", "Leader", "Company"].filter(t => tabs.includes((activeCompany || "") + " - " + t))
+  const availableTypes = (tabs[activeCompany] || [])
 
   return (
     <div style={{ minHeight: "100vh", background: DARK, fontFamily: "'DM Sans', sans-serif", color: "#e2e8f0" }}>
