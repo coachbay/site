@@ -9,27 +9,45 @@ The client shares this URL with their leadership team. It shows team assessment 
 2. URL slug (e.g. sprops-dashboard)
 3. Who it is prepared for (name + title, e.g. Christine Ling, HR Director)
 4. Team data. Per person you need:
-   - Total score (out of 125)
-   - Tier (see thresholds below)
-   - 5 section scores (each out of 25): use, frequency, skills, confidence, impact
+   - Total score and tier (see thresholds below)
+   - Section scores (see dimensions below)
 5. Executive summary: a paragraph summarizing what the data shows
 6. Key takeaways: 4 to 6 insights specific to this client results
 7. Recommended next steps: 2 to 3 actions for the client
 
 If Tomas only provides the raw scores, Claude can calculate tiers and write the summary/takeaways/next steps based on the data patterns.
 
-## Tier Thresholds (same for all three diagnostics)
-All three assessments have 25 questions scored 1 to 5. The effective scoring range is 25 to 125. Tiers are based on average score per question:
+## Assessment Structures
 
-- 25 to 50: Bottom tier (avg 1 to 2 per question = not engaged)
-- 51 to 75: Second tier (avg 2 to 3 = experimenting, not consistent)
-- 76 to 100: Third tier (avg 3 to 4 = regular use, still developing)
-- 101 to 125: Top tier (avg 4 to 5 = embedded in how they work)
+### Company Assessment (5 sections x 5 questions = 25 total, max 125)
+Sections (each out of 25): Strategic Clarity, Leadership Readiness, Employee Sentiment, Culture of Change, Practical Foundations
 
-Tier labels vary by diagnostic:
-- Team: Untapped Potential, Early Days, Building Momentum, AI-Fluent
-- Leader: Untapped Potential, Getting Started, Active Explorer, AI-Powered Leader
-- Company: Not Yet And That Is Okay, Groundwork Needed, Ready to Start With Focus, Ready to Accelerate
+Tiers:
+- 25 to 49: Not Yet. And That's Okay
+- 50 to 74: Groundwork Needed
+- 75 to 99: Ready to Start, With Focus
+- 100 to 112: Ready to Accelerate
+- 113 to 125: AI-Driven Organization
+
+### Leader Assessment (6 sections x 4 questions = 24 total, max 120)
+Sections (each out of 20): Integration, Depth, Deletion, Enabling, Judgment, Environment
+
+Tiers:
+- 24 to 48: Untapped Potential
+- 49 to 72: Getting Started
+- 73 to 96: Active Explorer
+- 97 to 108: AI Advanced
+- 109 to 120: AI Pioneer
+
+### Personal/Team Assessment (6 sections x 4 questions = 24 total, max 120)
+Sections (each out of 20): Integration, Depth, Deletion, Influence, Judgment, Environment
+
+Tiers:
+- 24 to 48: Starting Out
+- 49 to 72: Early Progress
+- 73 to 96: Gaining Momentum
+- 97 to 108: AI Advanced
+- 109 to 120: AI Pioneer
 
 ## Steps
 
@@ -46,7 +64,8 @@ Replace these parts with the new client data:
 Component name: Rename the function export to match the new file name
 
 Team data array (top of file):
-One object per team member with id, total, tier, use, frequency, skills, confidence, impact
+One object per team member with id, total, tier, and section scores.
+Note: section count and max scores depend on which assessment was used (see structures above).
 
 Header section:
 - Client name
@@ -89,10 +108,10 @@ Page 1: Overview
 - Executive Summary paragraph
 - Three stat cards: Team Average, Score Range, Key Insight (biggest gap)
 - Tier Distribution (Where the Team Sits) with colored bars per tier
-- Radar chart (team capability profile across 5 dimensions)
+- Radar chart (team capability profile across all dimensions)
 
 Page 2: Detail
-- Section Breakdown with min/avg/max bars for each of the 5 areas
+- Section Breakdown with min/avg/max bars for each dimension
 
 Page 3: Insights
 - Key Takeaways (4 to 6 items with icons)
@@ -103,7 +122,7 @@ Page 3: Insights
 - White background (#ffffff), dark text (#1e293b)
 - DM Sans body, DM Serif Display headings
 - Primary accent: #00BCD4 (CoachBay cyan)
-- Tier colors: red (#ef4444), amber (#f59e0b), blue (#3b82f6), cyan (#00BCD4)
+- Tier colors: red (#ef4444), amber (#f59e0b), blue (#3b82f6), teal (#0d9488), cyan (#00BCD4)
 - Card style: #f8fafc background, 1px #e2e8f0 border, 14px border radius
 - Uses recharts library (already installed) for all charts
 - Print-optimized with page break classes
