@@ -7,6 +7,7 @@ import SwireDashboard from './SwireDashboard'
 import SwirePropertiesDashboard from './SwirePropertiesDashboard'
 import ClientAssessment from './ClientAssessment'
 import ResultsDashboard from './ResultsDashboard'
+import ClientResultsDashboard from './ClientResultsDashboard'
 import clients, { CLIENT_SCRIPT_URL } from './clientConfig'
 import { companyConfig, leaderConfig, teamConfig } from './diagnosticData'
 
@@ -15,6 +16,15 @@ export default function App() {
   const [page, setPage] = useState("landing");
 
   // URL-based routes (direct links)
+  if (path === "/client-results") {
+    return (
+      <>
+        <ClientResultsDashboard />
+        <Analytics />
+      </>
+    );
+  }
+
   if (path === "/results") {
     return (
       <>
