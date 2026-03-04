@@ -72,9 +72,11 @@ export default function DiagnosticEngine({
   const [autoAdvancing, setAutoAdvancing] = useState(false);
   const questionRef = useRef(null);
 
-  const totalQuestions = sections.length * 5;
+  const questionsPerSection = sections.map(s => s.questions.length);
+  const totalQuestions = questionsPerSection.reduce((sum, n) => sum + n, 0);
+  const maxScore = totalQuestions * 5;
   const answeredCount = Object.keys(answers).length;
-  const globalIndex = currentSection * 5 + currentQuestion;
+  const globalIndex = questionsPerSection.slice(0, currentSection).reduce((sum, n) => sum + n, 0) + currentQuestion;
 
   // Send results to Google Sheet
   useEffect(() => {
@@ -104,7 +106,7 @@ export default function DiagnosticEngine({
 
       sectionScores.forEach((sec, si) => {
         params.append(sec.id, sec.score);
-        for (let qi = 0; qi < 5; qi++) {
+        for (let qi = 0; qi < sec.questions.length; qi++) {
           params.append(`${sec.id}_q${qi + 1}`, answers[`${si}-${qi}`] || 0);
         }
       });
@@ -126,11 +128,12 @@ export default function DiagnosticEngine({
     setAnswers((prev) => ({ ...prev, [key]: value }));
     if (!isNewAnswer) return; // Don't auto-advance when changing an existing answer
     setAutoAdvancing(true);
+    const qCount = questionsPerSection[currentSection];
     setTimeout(() => {
-      if (currentQuestion < 4) {
+      if (currentQuestion < qCount - 1) {
         setAnimating(true);
         setTimeout(() => {
-          setCurrentQuestion((q) => Math.min(q + 1, 4));
+          setCurrentQuestion((q) => Math.min(q + 1, qCount - 1));
           setAnimating(false);
           setAutoAdvancing(false);
         }, 200);
@@ -152,13 +155,15 @@ export default function DiagnosticEngine({
     if (currentQuestion > 0) {
       setCurrentQuestion((q) => q - 1);
     } else if (currentSection > 0) {
+      const prevQCount = questionsPerSection[currentSection - 1];
       setCurrentSection((s) => s - 1);
-      setCurrentQuestion(4);
+      setCurrentQuestion(prevQCount - 1);
     }
   };
 
   const goForward = () => {
-    if (currentQuestion < 4) {
+    const qCount = questionsPerSection[currentSection];
+    if (currentQuestion < qCount - 1) {
       setAnimating(true);
       setTimeout(() => {
         setCurrentQuestion((q) => q + 1);
@@ -177,10 +182,10 @@ export default function DiagnosticEngine({
   const calculateResults = () => {
     const sectionScores = sections.map((sec, si) => {
       let total = 0;
-      for (let qi = 0; qi < 5; qi++) {
+      for (let qi = 0; qi < sec.questions.length; qi++) {
         total += answers[`${si}-${qi}`] || 0;
       }
-      return { ...sec, score: total };
+      return { ...sec, score: total, maxScore: sec.questions.length * 5 };
     });
     const grandTotal = sectionScores.reduce((sum, s) => sum + s.score, 0);
     const tier = tierData.find(
@@ -271,7 +276,7 @@ export default function DiagnosticEngine({
     doc.setFontSize(9);
     doc.setTextColor(107, 114, 128);
     doc.setFont("helvetica", "normal");
-    doc.text("/ 125", margin + 18, y + 23, { align: "center" });
+    doc.text("/ " + maxScore, margin + 18, y + 23, { align: "center" });
 
     // Tier label
     doc.setFontSize(18);
@@ -320,7 +325,7 @@ export default function DiagnosticEngine({
     y += 10;
 
     sectionScores.forEach((sec) => {
-      const pct = sec.score / 25;
+      const pct = sec.score / sec.maxScore;
       const level = pct < 0.5 ? "low" : pct < 0.75 ? "mid" : "high";
       const barColor = pct < 0.5 ? "#ef4444" : pct < 0.75 ? "#f59e0b" : "#10b981";
       const [br, bg, bb] = hexToRgb(barColor);
@@ -343,7 +348,7 @@ export default function DiagnosticEngine({
       doc.setFontSize(12);
       doc.setFont("helvetica", "bold");
       doc.setTextColor(br, bg, bb);
-      doc.text(`${sec.score} / 25`, margin + contentW, y, { align: "right" });
+      doc.text(`${sec.score} / ${sec.maxScore}`, margin + contentW, y, { align: "right" });
 
       y += 6;
 
@@ -545,7 +550,7 @@ export default function DiagnosticEngine({
             border: `2px solid ${tier.color}22`,
           }}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-              <ScoreRing score={grandTotal} max={125} color={tier.color} size={140} strokeWidth={12} />
+              <ScoreRing score={grandTotal} max={maxScore} color={tier.color} size={140} strokeWidth={12} />
             </div>
             <div style={{
               display: "inline-block",
@@ -583,7 +588,7 @@ export default function DiagnosticEngine({
           }}>Section Breakdown</h2>
 
           {sectionScores.map((sec) => {
-            const pct = sec.score / 25;
+            const pct = sec.score / sec.maxScore;
             const level = pct < 0.5 ? "low" : pct < 0.75 ? "mid" : "high";
             const barColor = pct < 0.5 ? RED_ACCENT : pct < 0.75 ? "#f59e0b" : "#10b981";
             const advice = sectionAdvice[sec.id]?.[level] || "";
@@ -598,7 +603,7 @@ export default function DiagnosticEngine({
                     <span style={{ fontWeight: 700, color: DARK, fontSize: 15 }}>{sec.title}</span>
                   </div>
                   <span style={{ fontWeight: 700, color: barColor, fontSize: 18 }}>
-                    {sec.score}<span style={{ color: MID, fontWeight: 400, fontSize: 13 }}> / 25</span>
+                    {sec.score}<span style={{ color: MID, fontWeight: 400, fontSize: 13 }}> / {sec.maxScore}</span>
                   </span>
                 </div>
                 <div style={{ height: 8, background: "#e5e7eb", borderRadius: 100, overflow: "hidden", marginBottom: 16 }}>
@@ -803,7 +808,7 @@ export default function DiagnosticEngine({
         >
           ← Back
         </button>
-        {currentAnswer !== undefined && !autoAdvancing && !(currentSection === sections.length - 1 && currentQuestion === 4) && (
+        {currentAnswer !== undefined && !autoAdvancing && !(currentSection === sections.length - 1 && currentQuestion === questionsPerSection[currentSection] - 1) && (
           <button
             onClick={goForward}
             style={{

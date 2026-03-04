@@ -75,14 +75,14 @@ const diagnostics = [
   {
     id: "leader", icon: <LeaderIcon />,
     label: "FOR LEADERS", subtitle: "AI Leadership Diagnostic",
-    description: "How effectively are you using AI as a leader? Assess your usage, habits, depth, trust, and impact.",
-    detail: "25 questions \u00b7 8 minutes",
+    description: "How is AI changing how you lead? Assess how you use AI, enable your team, and create the conditions for adoption.",
+    detail: "24 questions \u00b7 8 minutes",
   },
   {
     id: "team", icon: <TeamIcon />,
     label: "FOR INDIVIDUALS", subtitle: "Personal AI Diagnostic",
     description: "How are you using AI day to day? Discover where you stand and what to focus on next.",
-    detail: "25 questions \u00b7 8 minutes",
+    detail: "24 questions \u00b7 8 minutes",
   },
 ];
 
