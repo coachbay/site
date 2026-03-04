@@ -13,7 +13,7 @@
 // =============================================
 
 // Master script URL for client assessments
-export const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwxr1req7SIzNQFOkfMgMfdpdUUoMGp-5BBg31Jf9g6DHYZ1Mf-2ApvpNicrGS9yO_Jg/exec";
+export const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0gXOqf619DoeCgqh8XJJVKXzgOtkQ0uc8ewU6nWOT9lWefoEYrBX73vVPy0VXgbBFPA/exec";
 
 const clients = {
   // Examples:
