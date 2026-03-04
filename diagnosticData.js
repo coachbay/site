@@ -182,18 +182,6 @@ export const leaderConfig = {
       ],
     },
     {
-      id: "enabling",
-      title: "Enabling",
-      subtitle: "Are you helping your team adopt AI, or just expecting them to figure it out?",
-      icon: "🤝",
-      questions: [
-        "I have shared my own AI prompts, workflows, or techniques with my team",
-        "I encourage my team to try AI, even if it does not work perfectly at first",
-        "I have helped at least one person on my team move from basic AI use to something more meaningful",
-        "I make time for my team to learn and experiment with AI, not just expect them to figure it out on their own",
-      ],
-    },
-    {
       id: "judgment",
       title: "Judgment",
       subtitle: "Do you use AI wisely and model that for others?",
@@ -203,6 +191,18 @@ export const leaderConfig = {
         "I know when AI is the wrong tool for a leadership decision and I choose not to use it",
         "I know that AI can sound certain even when it is wrong, and I check for that",
         "I can explain to others why I used AI and how I checked the result",
+      ],
+    },
+    {
+      id: "enabling",
+      title: "Enabling",
+      subtitle: "Are you helping your team adopt AI, or just expecting them to figure it out?",
+      icon: "🤝",
+      questions: [
+        "I have shared my own AI prompts, workflows, or techniques with my team",
+        "I encourage my team to try AI, even if it does not work perfectly at first",
+        "I have helped at least one person on my team move from basic AI use to something more meaningful",
+        "I make time for my team to learn and experiment with AI, not just expect them to figure it out on their own",
       ],
     },
     {
