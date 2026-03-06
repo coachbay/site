@@ -125,6 +125,13 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
               </svg>
             </div>
             <p style={{ color: CYAN, fontSize: 18, fontWeight: 600, letterSpacing: 1, margin: "0 0 8px", textTransform: "uppercase" }}>
+              {clientName}
+            </p>
+            <h1 style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontSize: 28, color: "#fff", margin: "0 0 8px", lineHeight: 1.3,
+            }}>
+              Choose Your Assessment
             </h1>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
             <p style={{ color: "#94a3b8", fontSize: 15, margin: 0 }}>
@@ -220,6 +227,13 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
 
         {/* Company name */}
         <p style={{ color: CYAN, fontSize: 18, fontWeight: 600, letterSpacing: 1, margin: "0 0 8px", textTransform: "uppercase" }}>
+          {clientName}
+        </p>
+        <h1 style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontSize: 32, color: "#fff", margin: "0 0 8px", lineHeight: 1.2,
+        }}>
+          AI Assessment
         </h1>
         <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto", borderRadius: 2 }} />
         <p style={{ color: "#e2e8f0", fontSize: 16, lineHeight: 1.7, margin: "0 0 36px" }}>
