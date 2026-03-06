@@ -5,6 +5,7 @@ const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTL4-Si-hnlm
 const CLIENTS = {
   "Swire Properties": ["Company", "Leader", "Team"],
   "Demo Company": ["Company", "Leader", "Team"],
+  "Finnair": ["Team"],
 };
 
 export default async function handler(req, res) {
