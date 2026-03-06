@@ -35,6 +35,11 @@ const clients = {
     name: "Swire Properties",
     assessments: ["company", "leader", "team"],
   },
+
+  "finnair-sym": {
+    name: "Finnair",
+    assessments: ["team"],
+  },
 };
 
 export default clients;
