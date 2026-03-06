@@ -470,7 +470,7 @@ export default function DiagnosticEngine({
             </svg>
           </div>
           {clientMode && (
-            <p style={{ color: CYAN, fontSize: 14, fontWeight: 600, letterSpacing: 1, margin: "0 0 8px", textTransform: "uppercase" }}>
+            <p style={{ color: CYAN, fontSize: 18, fontWeight: 600, letterSpacing: 1, margin: "0 0 8px", textTransform: "uppercase" }}>
               {clientMode.clientCompany}
             </p>
           )}
