@@ -3,6 +3,7 @@ import './index.css'
 import { Analytics } from '@vercel/analytics/react'
 import LandingPage from './LandingPage'
 import DiagnosticEngine from './DiagnosticEngine'
+import DisruptionSprint from './DisruptionSprint'
 import SwireDashboard from './SwireDashboard'
 import SwirePropertiesDashboard from './SwirePropertiesDashboard'
 import ClientAssessment from './ClientAssessment'
@@ -20,6 +21,15 @@ export default function App() {
     return (
       <>
         <ClientResultsDashboard />
+        <Analytics />
+      </>
+    );
+  }
+
+  if (path === "/disruption-sprint") {
+    return (
+      <>
+        <DisruptionSprint />
         <Analytics />
       </>
     );
