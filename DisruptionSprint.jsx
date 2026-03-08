@@ -542,6 +542,51 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   const bizTextareaRef = useRef(null);
   useEffect(() => { if (screen === "biz_q") bizTextareaRef.current?.focus(); }, [bizQIndex, screen]);
 
+  // ── Session persistence — save on every screen change, restore on load ────────
+  const SESSION_KEY = "disruption_sprint_session";
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(SESSION_KEY);
+      if (saved) {
+        const s = JSON.parse(saved);
+        if (s.screen && s.screen !== "gate") {
+          setScreen(s.screen);
+          if (s.archetypeId) setArchetypeId(s.archetypeId);
+          if (s.bizAnswers) setBizAnswers(s.bizAnswers);
+          if (s.bizQIndex != null) setBizQIndex(s.bizQIndex);
+          if (s.industry) setIndustry(s.industry);
+          if (s.startupName) setStartupName(s.startupName);
+          if (s.aiReadiness != null) setAiReadiness(s.aiReadiness);
+          if (s.attackerConvo) setAttackerConvo(s.attackerConvo);
+          if (s.complaints) setComplaints(s.complaints);
+          if (s.attackPlan) setAttackPlan(s.attackPlan);
+          if (s.likelihood != null) setLikelihood(s.likelihood);
+          if (s.impact != null) setImpact(s.impact);
+          if (s.ericAnswers) setEricAnswers(s.ericAnswers);
+          if (s.ericIndex != null) setEricIndex(s.ericIndex);
+          if (s.defendConvo) setDefendConvo(s.defendConvo);
+          if (s.actionPlan) setActionPlan(s.actionPlan);
+          if (s.planOwner) setPlanOwner(s.planOwner);
+        }
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    try {
+      if (screen === "gate") { sessionStorage.removeItem(SESSION_KEY); return; }
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        screen, archetypeId, bizAnswers, bizQIndex, industry, startupName,
+        aiReadiness, attackerConvo, complaints, attackPlan,
+        likelihood, impact, ericAnswers, ericIndex,
+        defendConvo, actionPlan, planOwner
+      }));
+    } catch {}
+  }, [screen, archetypeId, bizAnswers, bizQIndex, industry, startupName,
+      aiReadiness, attackerConvo, complaints, attackPlan,
+      likelihood, impact, ericAnswers, ericIndex,
+      defendConvo, actionPlan, planOwner]);
+
   function go(s) { setScreen(s); window.scrollTo(0, 0); }
   const AI_READINESS_LABELS = ["No AI in use — experimenting informally at best", "Some tools adopted — no strategy or coordination", "Active pilots underway — a few people driving it", "AI embedded in key workflows — leadership engaged", "AI is a core operational capability — strategy and governance in place"];
   function bizSummary() { return BIZ_QUESTIONS.map(q => `${q.q}\n${bizAnswers[q.id] || ""}`).join("\n\n") + `\n\nAI Readiness: ${aiReadiness}/5 — ${AI_READINESS_LABELS[aiReadiness - 1]}`; }
@@ -1239,6 +1284,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               setEricIndex(0); setEricAnswers({}); setEricInput(""); setEricSkeptic(null);
               setDefendConvo([]); setActionPlan(""); setPlanOwner("");
               setCodeInput(""); setCodeError(false);
+              sessionStorage.removeItem("disruption_sprint_session");
               go("gate");
             }}>Run Another Sprint</button>
           </div>
