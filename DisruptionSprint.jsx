@@ -6,6 +6,7 @@ const VALID_CODES = ["DISRUPT2026", "COACHBAY", "SPRINT"];
 
 // ─── AI helper ────────────────────────────────────────────────────────────────
 async function callClaude(messages, systemPrompt = "", retries = 3) {
+  let lastError = "no response";
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
       const res = await fetch("/api/claude", {
@@ -19,14 +20,13 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         }),
       });
       const data = await res.json();
-      console.log("API response status:", res.status, JSON.stringify(data).slice(0, 200));
       const text = data.content?.[0]?.text;
       if (text) return text;
-      if (data.error) console.error("API error:", JSON.stringify(data.error));
-    } catch (e) { console.error("Fetch error:", e); }
+      lastError = data.error?.message || JSON.stringify(data).slice(0, 150);
+    } catch (e) { lastError = e.message; }
     if (attempt < retries - 1) await new Promise(r => setTimeout(r, 1500));
   }
-  return "Connection error. Please try again.";
+  return "Connection error: " + lastError;
 }
 
 // ─── Archetypes ───────────────────────────────────────────────────────────────
@@ -200,13 +200,14 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
   const [questionCount, setQuestionCount] = useState(0);
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const bottomRef = useRef(null);
 
   function loadFirst() {
     setLoading(true);
     setFailed(false);
     callClaude([{ role: "user", content: initialUserMessage }], systemPrompt).then(msg => {
-      if (msg.startsWith("Connection error")) { setLoading(false); setFailed(true); return; }
+      if (msg.startsWith("Connection error")) { setLoading(false); setFailed(true); setErrorMsg(msg); return; }
       setHistory([{ role: "ai", text: msg }]);
       setLoading(false);
     });
@@ -233,7 +234,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
       setHistory(history); // roll back user message from display
       setCurrentAnswer(ans); // restore their answer
       setQuestionCount(questionCount);
-      setLoading(false); setFailed(true); return;
+      setLoading(false); setFailed(true); setErrorMsg(msg); return;
     }
     const final = [...newHistory, { role: "ai", text: msg }];
     setHistory(final);
@@ -258,7 +259,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
         {failed && (
           <div style={{ marginBottom: 18 }}>
-            <div style={S.errorBox}>Connection error. Check your signal and try again.</div>
+            <div style={S.errorBox}>{errorMsg || "Connection error. Check your signal and try again."}</div>
             <div style={{ ...S.row, marginTop: 12 }} className="cb-row">
               <button style={S.btnPrimary} onClick={isInitialFail ? loadFirst : handleAnswer}>Try Again</button>
             </div>
