@@ -96,7 +96,7 @@ const ERIC = [
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
-const FONTS = `@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap'); @keyframes spin { to { transform: rotate(360deg); } } textarea:focus, input:focus { outline: none; border-color: rgba(0,188,212,0.6) !important; } input[type=range] { accent-color: #00BCD4; } @media (max-width: 600px) { .cb-row { flex-direction: column-reverse !important; } .cb-row button { width: 100% !important; text-align: center; } .cb-grid-3 { grid-template-columns: 1fr !important; } .cb-grid-2 { grid-template-columns: 1fr !important; } .cb-row-center { flex-direction: column !important; align-items: stretch !important; } .cb-row-center button { width: 100% !important; text-align: center; } }`;
+const FONTS = `@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap'); @keyframes spin { to { transform: rotate(360deg); } } textarea:focus, input:focus { outline: none; border-color: rgba(0,188,212,0.6) !important; } input[type=range] { accent-color: #00BCD4; } @media (max-width: 600px) { .cb-row { flex-direction: column-reverse !important; } .cb-row button { width: 100% !important; text-align: center; } .cb-grid-3 { grid-template-columns: 1fr !important; } .cb-grid-2 { grid-template-columns: 1fr !important; } .cb-row-center { flex-direction: column !important; align-items: stretch !important; } .cb-row-center button { width: 100% !important; text-align: center; } .cb-welcome-robot { display: none !important; } textarea { resize: none !important; } }`;
 
 const S = {
   wrap: { minHeight: "100vh", background: "#1a1a2e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "clamp(20px, 4vh, 40px) clamp(12px, 4vw, 24px)", fontFamily: "'DM Sans', system-ui, sans-serif", color: "#e2e8f0", boxSizing: "border-box" },
@@ -125,7 +125,7 @@ const S = {
   summaryBox: { background: "rgba(0,188,212,0.06)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 12, padding: "20px 24px", marginBottom: 16, fontSize: 15, lineHeight: 1.7, color: "#cbd5e1" },
   discussionBox: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "18px 22px", marginBottom: 22 },
   skepticBox: { background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 12, padding: "16px 20px", marginTop: 14 },
-  sliderLabel: { display: "flex", justifyContent: "space-between", fontSize: 15, color: "#94a3b8", marginBottom: 7 },
+  sliderLabel: { display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "2px 8px", fontSize: 15, color: "#94a3b8", marginBottom: 7 },
   sliderValue: { fontSize: 19, fontWeight: 700, color: "#00BCD4" },
   errorBox: { background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 8, padding: "12px 16px", fontSize: 14, color: "#fca5a5", marginTop: 12 },
 };
@@ -586,7 +586,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={{ ...S.card, position: "relative" }}>
-          {robotIcon && <img src={robotIcon} width="44" height="57" alt="CoachBay" style={{ position: "absolute", top: 24, right: 28 }} />}
+          {robotIcon && <img src={robotIcon} width="44" height="57" alt="CoachBay" className="cb-welcome-robot" style={{ position: "absolute", top: 24, right: 28 }} />}
           <PageHeader />
           <ProgressBar pct={2} />
           <h1 style={{ ...S.h1, fontSize: "clamp(30px, 5vw, 44px)", marginBottom: 16 }}>
