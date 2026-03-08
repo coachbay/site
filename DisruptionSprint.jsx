@@ -694,7 +694,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={28} />
           <div style={S.phase}>Phase 1: One Last Detail</div>
           <h2 style={S.h2}>How AI-ready is your organisation right now?</h2>
-          <p style={S.body}>This helps calibrate the attack and the defense to where you actually are — not where you want to be.</p>
+          <p style={S.body}>This helps calibrate the attack and the defense to where you actually are, not where you want to be.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 22, margin: "0 0 22px" }}>
             <div>
               <div style={S.sliderLabel}>
