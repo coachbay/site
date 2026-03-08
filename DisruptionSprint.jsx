@@ -528,6 +528,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   const archetype = ARCHETYPES.find(a => a.id === archetypeId) || ARCHETYPES[0];
 
+  const bizTextareaRef = useRef(null);
+  useEffect(() => { if (screen === "biz_q") bizTextareaRef.current?.focus(); }, [bizQIndex, screen]);
+
   function go(s) { setScreen(s); window.scrollTo(0, 0); }
   function bizSummary() { return BIZ_QUESTIONS.map(q => `${q.q}\n${bizAnswers[q.id] || ""}`).join("\n\n"); }
   function ericSummary() { return ERIC.map(e => `${e.title}: ${ericAnswers[e.id] || ""}`).join("\n"); }
@@ -587,7 +590,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <style>{FONTS}</style>
         <div style={{ ...S.card, position: "relative" }}>
           {robotIcon && <img src={robotIcon} width="44" height="57" alt="CoachBay" className="cb-welcome-robot" style={{ position: "absolute", top: 24, right: 28 }} />}
-          <PageHeader />
+          <PageHeader robotIcon={robotIcon} />
           <ProgressBar pct={2} />
           <h1 style={{ ...S.h1, fontSize: "clamp(30px, 5vw, 44px)", marginBottom: 16 }}>
             Who is coming<br />for your business?
@@ -608,8 +611,6 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   // ── Business questions ────────────────────────────────────────────────────────
   if (screen === "biz_q") {
     const q = BIZ_QUESTIONS[bizQIndex];
-    const bizTextareaRef = useRef(null);
-    useEffect(() => { bizTextareaRef.current?.focus(); }, [bizQIndex]);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
