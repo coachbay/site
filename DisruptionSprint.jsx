@@ -599,7 +599,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <style>{FONTS}</style>
         <div style={{ ...S.card, position: "relative" }}>
           {robotIcon && <img src={robotIcon} width="44" height="57" alt="CoachBay" className="cb-welcome-robot" style={{ position: "absolute", top: 24, right: 28 }} />}
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={2} />
           <h1 style={{ ...S.h1, fontSize: "clamp(30px, 5vw, 44px)", marginBottom: 16 }}>
             Who is coming<br />for your business?
