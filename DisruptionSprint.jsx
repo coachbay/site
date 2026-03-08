@@ -194,14 +194,20 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
   const [loading, setLoading] = useState(true);
   const [questionCount, setQuestionCount] = useState(0);
   const [done, setDone] = useState(false);
+  const [failed, setFailed] = useState(false);
   const bottomRef = useRef(null);
 
-  useEffect(() => {
+  function loadFirst() {
+    setLoading(true);
+    setFailed(false);
     callClaude([{ role: "user", content: initialUserMessage }], systemPrompt).then(msg => {
+      if (msg.startsWith("Connection error")) { setLoading(false); setFailed(true); return; }
       setHistory([{ role: "ai", text: msg }]);
       setLoading(false);
     });
-  }, []);
+  }
+
+  useEffect(() => { loadFirst(); }, []);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [history, loading]);
 
@@ -214,9 +220,16 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
     const newHistory = [...history, { role: "user", text: ans }];
     setHistory(newHistory);
     setLoading(true);
+    setFailed(false);
     const msgs = [{ role: "user", content: initialUserMessage }];
     for (const h of newHistory) msgs.push(h.role === "ai" ? { role: "assistant", content: h.text } : { role: "user", content: h.text });
     const msg = await callClaude(msgs, systemPrompt);
+    if (msg.startsWith("Connection error")) {
+      setHistory(history); // roll back user message from display
+      setCurrentAnswer(ans); // restore their answer
+      setQuestionCount(questionCount);
+      setLoading(false); setFailed(true); return;
+    }
     const final = [...newHistory, { role: "ai", text: msg }];
     setHistory(final);
     setLoading(false);
@@ -224,6 +237,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
   }
 
   const lastAI = history.filter(h => h.role === "ai").slice(-1)[0];
+  const isInitialFail = failed && history.length === 0;
 
   return (
     <div style={S.wrap}>
@@ -237,7 +251,15 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         ))}
         {lastAI && <div style={S.aiBubble}>{lastAI.text}</div>}
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
-        {!loading && !done && (
+        {failed && (
+          <div style={{ marginBottom: 18 }}>
+            <div style={S.errorBox}>Connection error. Check your signal and try again.</div>
+            <div style={{ ...S.row, marginTop: 12 }} className="cb-row">
+              <button style={S.btnPrimary} onClick={isInitialFail ? loadFirst : handleAnswer}>Try Again</button>
+            </div>
+          </div>
+        )}
+        {!loading && !failed && !done && (
           <>
             <textarea autoComplete="off" style={S.textarea} placeholder="Type your team's answer here..." value={currentAnswer} onChange={e => setCurrentAnswer(e.target.value)} />
             <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={handleAnswer}>Submit Answer</button></div>
