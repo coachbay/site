@@ -239,7 +239,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
         {!loading && !done && (
           <>
-            <textarea style={S.textarea} placeholder="Type your team's answer here..." value={currentAnswer} onChange={e => setCurrentAnswer(e.target.value)} />
+            <textarea autoComplete="off" style={S.textarea} placeholder="Type your team's answer here..." value={currentAnswer} onChange={e => setCurrentAnswer(e.target.value)} />
             <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={handleAnswer}>Submit Answer</button></div>
           </>
         )}
@@ -677,7 +677,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.phase}>Phase 1: Set the Scene · {q.label}</div>
           <h2 style={S.h2}>{q.q}</h2>
           <p style={S.hint}>{q.hint}</p>
-          <textarea ref={bizTextareaRef} style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} />
+          <textarea ref={bizTextareaRef} autoComplete="off" style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} />
           <div style={S.row} className="cb-row">
             {bizQIndex > 0 && (
               <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>← Back</button>
@@ -1077,7 +1077,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.hint}>{e.detail}</p>
           {!submitted ? (
             <>
-              <textarea style={S.textarea} placeholder={e.hint} value={ericInput} onChange={ev => setEricInput(ev.target.value)} autoFocus />
+              <textarea autoComplete="off" style={S.textarea} placeholder={e.hint} value={ericInput} onChange={ev => setEricInput(ev.target.value)} autoFocus />
               <div style={S.row} className="cb-row">
                 {ericIndex === 0 && (
                   <button style={S.btnSecondary} onClick={() => go("defend_intro")}>← Back</button>
