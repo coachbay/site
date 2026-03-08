@@ -522,6 +522,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   const [complaints, setComplaints] = useState("");
   const [attackPlan, setAttackPlan] = useState("");
 
+  const [aiReadiness, setAiReadiness] = useState(3);
+
   const [likelihood, setLikelihood] = useState(3);
   const [impact, setImpact] = useState(3);
 
@@ -541,7 +543,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   useEffect(() => { if (screen === "biz_q") bizTextareaRef.current?.focus(); }, [bizQIndex, screen]);
 
   function go(s) { setScreen(s); window.scrollTo(0, 0); }
-  function bizSummary() { return BIZ_QUESTIONS.map(q => `${q.q}\n${bizAnswers[q.id] || ""}`).join("\n\n"); }
+  const AI_READINESS_LABELS = ["No AI in use — experimenting informally at best", "Some tools adopted — no strategy or coordination", "Active pilots underway — a few people driving it", "AI embedded in key workflows — leadership engaged", "AI is a core operational capability — strategy and governance in place"];
+  function bizSummary() { return BIZ_QUESTIONS.map(q => `${q.q}\n${bizAnswers[q.id] || ""}`).join("\n\n") + `\n\nAI Readiness: ${aiReadiness}/5 — ${AI_READINESS_LABELS[aiReadiness - 1]}`; }
   function ericSummary() { return ERIC.map(e => `${e.title}: ${ericAnswers[e.id] || ""}`).join("\n"); }
 
   function handleDownloadPDF() {
@@ -666,7 +669,51 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
           <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
-            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("archetype_select"); }}>Continue →</button>
+            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("ai_readiness"); }}>Continue →</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── AI Readiness ──────────────────────────────────────────────────────────────
+  if (screen === "ai_readiness") {
+    const labels = ["No AI in use", "Some tools, no strategy", "Active pilots underway", "Embedded in key workflows", "Core operational capability"];
+    const descriptions = [
+      "The team is aware of AI but not using it in any structured way.",
+      "A few tools have been adopted by individuals. No coordinated approach.",
+      "Real experiments are running. A small group is leading the charge.",
+      "AI is being used in meaningful workflows. Leadership is paying attention.",
+      "AI is a strategic asset. Governance, strategy, and execution are in place.",
+    ];
+    return (
+      <div style={S.wrap}>
+        <style>{FONTS}</style>
+        <div style={S.card}>
+          <PageHeader />
+          <ProgressBar pct={28} />
+          <div style={S.phase}>Phase 1: One Last Detail</div>
+          <h2 style={S.h2}>How AI-ready is your organisation right now?</h2>
+          <p style={S.body}>This helps calibrate the attack and the defense to where you actually are — not where you want to be.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 22, margin: "0 0 22px" }}>
+            <div>
+              <div style={S.sliderLabel}>
+                <span>AI Readiness</span>
+                <span style={S.sliderValue}>{aiReadiness}/5</span>
+              </div>
+              <input type="range" min={1} max={5} step={1} value={aiReadiness} style={{ width: "100%", cursor: "pointer" }} onChange={e => setAiReadiness(Number(e.target.value))} />
+              <div style={{ ...S.sliderLabel, marginTop: 4, fontSize: 12 }}>
+                <span>No AI in use</span><span>Core capability</span>
+              </div>
+            </div>
+          </div>
+          <div style={{ padding: "14px 18px", background: "rgba(0,188,212,0.06)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 10, marginBottom: 22 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#00BCD4", marginBottom: 4 }}>{labels[aiReadiness - 1]}</div>
+            <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>{descriptions[aiReadiness - 1]}</p>
+          </div>
+          <div style={S.row} className="cb-row">
+            <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
+            <button style={S.btnPrimary} onClick={() => go("archetype_select")}>Continue →</button>
           </div>
         </div>
       </div>
@@ -699,7 +746,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             ))}
           </div>
           <div style={S.row} className="cb-row">
-            <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
+            <button style={S.btnSecondary} onClick={() => go("ai_readiness")}>← Back</button>
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attacker_intro")}>Meet the Attacker →</button>
           </div>
         </div>
@@ -1054,7 +1101,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <AIConversation
         robotIcon={robotIcon} phaseLabel="Phase 3: Defense Stress Test" progressPct={90}
         systemPrompt={archetype.defenseRole(startupName)}
-        initialUserMessage={`Attack scenario:\n\n${attackPlan}\n\nEric defense:\n\n${ericSummary()}\n\nAsk up to three questions about our capabilities and constraints, one at a time, then identify the weakest part.`}
+        initialUserMessage={`Attack scenario:\n\n${attackPlan}\n\nEric defense:\n\n${ericSummary()}\n\nAI Readiness: ${aiReadiness}/5 — ${AI_READINESS_LABELS[aiReadiness - 1]}\n\nAsk up to three questions about our capabilities and constraints, one at a time, then identify the weakest part.`}
         maxQuestions={3} completeLabel="Generate 90-Day Plan"
         onComplete={convo => { setDefendConvo(convo); go("plan_generating"); }}
       />
@@ -1186,7 +1233,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <button style={S.btnSecondary} onClick={() => {
               setArchetypeId("startup");
               setBizAnswers({}); setBizQIndex(0); setBizInput("");
-              setIndustry(""); setStartupName("");
+              setIndustry(""); setStartupName(""); setAiReadiness(3);
               setAttackerConvo([]); setComplaints(""); setAttackPlan("");
               setLikelihood(3); setImpact(3);
               setEricIndex(0); setEricAnswers({}); setEricInput(""); setEricSkeptic(null);
