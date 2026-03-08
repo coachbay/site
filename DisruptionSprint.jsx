@@ -229,7 +229,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
     <div style={S.wrap}>
       <style>{FONTS}</style>
       <div style={S.card}>
-        <PageHeader robotIcon={robotIcon} archetypeColor={archetypeColor} />
+        <PageHeader archetypeColor={archetypeColor} />
         <ProgressBar pct={progressPct || 50} />
         {phaseLabel && <div style={S.phase}>{phaseLabel}</div>}
         {history.slice(0, -1).map((h, i) => (
@@ -260,7 +260,7 @@ function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabe
     <div style={S.wrap}>
       <style>{FONTS}</style>
       <div style={S.card}>
-        <PageHeader robotIcon={robotIcon} archetypeColor={archetypeColor} />
+        <PageHeader archetypeColor={archetypeColor} />
         <ProgressBar pct={progressPct || 60} />
         {phaseLabel && <div style={S.phase}>{phaseLabel}</div>}
         {!result ? (
@@ -624,7 +624,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={5 + (bizQIndex / BIZ_QUESTIONS.length) * 18} />
           <div style={S.phase}>Phase 1: Set the Scene · {q.label}</div>
           <h2 style={S.h2}>{q.q}</h2>
@@ -658,7 +658,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={26} />
           <div style={S.phase}>Phase 1: One Last Detail</div>
           <h2 style={S.h2}>What sector or industry are you in?</h2>
@@ -679,7 +679,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={30} />
           <div style={S.phase}>Phase 2: Choose Your Attacker</div>
           <h2 style={S.h2}>Who is coming for you?</h2>
@@ -713,7 +713,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={34} />
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: {archetype.title}</div>
           <h2 style={S.h2}>Meet the team that is coming for you.</h2>
@@ -739,7 +739,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={38} />
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: {archetype.title}</div>
           <h2 style={S.h2}>Give the attacker a name.</h2>
@@ -790,7 +790,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={53} />
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: The Voice of Your Customers</div>
           <h2 style={S.h2}>This is what they are already saying.</h2>
@@ -829,7 +829,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={62} />
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: The Attack</div>
           <h2 style={S.h2}>Here is how <span style={{ color: archetype.color }}>{startupName}</span> beats you.</h2>
@@ -855,7 +855,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={66} />
           <div style={S.phase}>Phase 2: Score the Threat</div>
           <h2 style={S.h2}>How serious is this attack?</h2>
@@ -891,7 +891,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={70} />
           <div style={S.phase}>Phase 3: Defend</div>
           <h2 style={S.h2}>Before you defend, take a moment.</h2>
@@ -915,7 +915,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={{ ...S.wrap, justifyContent: "flex-start", paddingTop: 40 }}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} archetypeColor={archetype.color} />
+          <PageHeader archetypeColor={archetype.color} />
           <ProgressBar pct={70} />
           <div style={S.phase}>Session Review</div>
           <h2 style={S.h2}>What we know so far.</h2>
@@ -935,7 +935,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={73} />
           <div style={S.phase}>Phase 3: Defend</div>
           <h2 style={S.h2}>Build your response with ERIC.</h2>
@@ -977,7 +977,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={75 + (ericIndex / ERIC.length) * 9} />
           <div style={S.phase}>Phase 3: ERIC · {ericIndex + 1} of 4</div>
           <div style={S.letterBadge}>{e.letter}</div>
@@ -1036,7 +1036,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={86} />
           <div style={S.phase}>Phase 3: Stress Testing the Defense</div>
           <h2 style={S.h2}>Now let's find the weakest part.</h2>
@@ -1081,7 +1081,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       <div style={S.wrap}>
         <style>{FONTS}</style>
         <div style={S.card}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={97} />
           <div style={S.phase}>Phase 3: Your First Step</div>
           <h2 style={S.h2}>Your 90-day response plan.</h2>
@@ -1114,7 +1114,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             details[open] summary .toggle-arrow { transform: rotate(90deg); }`}
         </style>
         <div style={{ ...S.card, maxWidth: 820 }}>
-          <PageHeader robotIcon={robotIcon} />
+          <PageHeader />
           <ProgressBar pct={100} />
 
           {/* Hero */}
