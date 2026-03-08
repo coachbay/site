@@ -5,23 +5,26 @@ import jsPDF from "jspdf";
 const VALID_CODES = ["DISRUPT2026", "COACHBAY", "SPRINT"];
 
 // ─── AI helper ────────────────────────────────────────────────────────────────
-async function callClaude(messages, systemPrompt = "") {
-  try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages,
-      }),
-    });
-    const data = await res.json();
-    return data.content?.[0]?.text || "No response received.";
-  } catch {
-    return "Connection error. Please try again.";
+async function callClaude(messages, systemPrompt = "", retries = 3) {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: systemPrompt,
+          messages,
+        }),
+      });
+      const data = await res.json();
+      const text = data.content?.[0]?.text;
+      if (text) return text;
+    } catch {}
+    if (attempt < retries - 1) await new Promise(r => setTimeout(r, 1500));
   }
+  return "Connection error. Please try again.";
 }
 
 // ─── Archetypes ───────────────────────────────────────────────────────────────
