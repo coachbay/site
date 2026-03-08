@@ -25,3 +25,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: e.message });
   }
 }
+// force redeploy Sun Mar  8 17:47:54 UTC 2026
