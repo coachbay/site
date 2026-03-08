@@ -224,7 +224,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         <ProgressBar pct={progressPct || 50} />
         {phaseLabel && <div style={S.phase}>{phaseLabel}</div>}
         {history.slice(0, -1).map((h, i) => (
-          <div key={i} style={S.userBubble}>{h.text}</div>
+          <div key={i} style={h.role === "ai" ? { ...S.aiBubble, opacity: 0.45, marginBottom: 8, fontSize: 15 } : S.userBubble}>{h.text}</div>
         ))}
         {lastAI && <div style={S.aiBubble}>{lastAI.text}</div>}
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
@@ -615,7 +615,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.hint}>e.g. Commercial aviation, container shipping, luxury hospitality, commercial real estate, enterprise software</p>
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
           <div style={S.row}>
-            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); go("biz_q"); }}>← Back</button>
+            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
             <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("archetype_select"); }}>Continue →</button>
           </div>
         </div>
@@ -1102,7 +1102,17 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <button style={{ ...S.btnPrimary, opacity: pdfGenerating ? 0.6 : 1, minWidth: 190 }} onClick={handleDownloadPDF} disabled={pdfGenerating}>
               {pdfGenerating ? "Generating PDF..." : "Download PDF Summary"}
             </button>
-            <button style={S.btnSecondary} onClick={() => go("gate")}>Run Another Sprint</button>
+            <button style={S.btnSecondary} onClick={() => {
+              setArchetypeId("startup");
+              setBizAnswers({}); setBizQIndex(0); setBizInput("");
+              setIndustry(""); setStartupName("");
+              setAttackerConvo([]); setComplaints(""); setAttackPlan("");
+              setLikelihood(3); setImpact(3);
+              setEricIndex(0); setEricAnswers({}); setEricInput(""); setEricSkeptic(null);
+              setDefendConvo([]); setActionPlan(""); setPlanOwner("");
+              setCodeInput(""); setCodeError(false);
+              go("gate");
+            }}>Run Another Sprint</button>
           </div>
         </div>
       </div>
