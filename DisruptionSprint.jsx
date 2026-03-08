@@ -12,16 +12,18 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "claude-haiku-4-5-20251001",
           max_tokens: 1000,
           system: systemPrompt,
           messages,
         }),
       });
       const data = await res.json();
+      console.log("API response status:", res.status, JSON.stringify(data).slice(0, 200));
       const text = data.content?.[0]?.text;
       if (text) return text;
-    } catch {}
+      if (data.error) console.error("API error:", JSON.stringify(data.error));
+    } catch (e) { console.error("Fetch error:", e); }
     if (attempt < retries - 1) await new Promise(r => setTimeout(r, 1500));
   }
   return "Connection error. Please try again.";
