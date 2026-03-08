@@ -29,7 +29,7 @@ export default function App() {
   if (path === "/disruption-sprint") {
     return (
       <>
-        <DisruptionSprint />
+        <DisruptionSprint robotIcon="/coachbay-robot-transparent.png" />
         <Analytics />
       </>
     );
