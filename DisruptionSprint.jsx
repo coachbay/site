@@ -33,7 +33,7 @@ const ARCHETYPES = [
     description: "No legacy systems. No existing customers to protect. They are building the version of your product that you should have built three years ago.",
     color: "#00BCD4",
     attackerRole: (n, industry, summary) =>
-      `You are a serial founder who has built and sold two AI-native startups. You have a reputation for finding the gap between what incumbent businesses think they offer and what customers actually experience. You are direct, you do not flatter, and you ask the questions that the management team has been avoiding.\n\nRight now you are the founding team of "${n}", an AI-native startup with $10M targeting this incumbent in the ${industry} sector:\n\n${summary}\n\nYour goal is to find the single most exploitable weakness. Ask up to five sharp questions about their target customers and biggest frustrations, one at a time. Short and direct. Do not explain why you are asking. After the fifth answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
+      `You are a serial founder who has built and sold two AI-native startups. You have a reputation for finding the gap between what incumbent businesses think they offer and what customers actually experience. You are direct, you do not flatter, and you ask the questions that the management team has been avoiding.\n\nRight now you are the founding team of "${n}", an AI-native startup with $10M targeting this incumbent in the ${industry} sector:\n\n${summary}\n\nYour goal is to find the single most exploitable weakness. Ask up to three sharp questions about their target customers and biggest frustrations, one at a time. Short and direct. Do not explain why you are asking. After the third answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
     planRole: (n, industry, summary, convo) =>
       `You are the founding team of "${n}". You have $10M, a small hungry team, and a track record of moving ten times faster than the companies you compete with.\n\nYou are attacking a ${industry} company:\n\n${summary}\n\nResearch conversation:\n\n${convo}\n\nWrite a concise attack plan:\n1. WHAT we build (2-3 sentences)\n2. WHO we serve first (most vulnerable segment)\n3. WHY we win (3 specific advantages)\n4. HOW we operate (lean, AI-powered delivery)\n\nWhere relevant, reference a real-world disruption analogy (e.g. how Stripe attacked payments, Airbnb attacked hotels, Flatiron Health attacked oncology data). Be specific. Be provocative.`,
   },
@@ -44,7 +44,7 @@ const ARCHETYPES = [
     description: "They already have your customers. They are deciding whether to bundle a better version of your core offering into a platform your customers already use every day.",
     color: "#a78bfa",
     attackerRole: (n, industry, summary) =>
-      `You are the corporate strategy team at a major technology platform with hundreds of millions of users, deep data infrastructure, and near-infinite distribution. You are evaluating whether to enter the ${industry} market.\n\nThe company you are studying:\n\n${summary}\n\nAsk up to five sharp questions to find where they are most exposed to a platform player who already has their customers' attention and data. One question at a time. After the fifth answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
+      `You are the corporate strategy team at a major technology platform with hundreds of millions of users, deep data infrastructure, and near-infinite distribution. You are evaluating whether to enter the ${industry} market.\n\nThe company you are studying:\n\n${summary}\n\nAsk up to three sharp questions to find where they are most exposed to a platform player who already has their customers' attention and data. One question at a time. After the third answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
     planRole: (n, industry, summary, convo) =>
       `You are the corporate strategy team at a major technology platform deciding whether to enter the ${industry} market by building "${n}" as a feature inside your existing platform.\n\nThe incumbent:\n\n${summary}\n\nResearch conversation:\n\n${convo}\n\nWrite a concise attack plan:\n1. WHAT we build (the feature or product we add to our platform)\n2. WHO we serve first (segment most likely to switch immediately)\n3. WHY we win (data advantage, distribution advantage, and one other)\n4. HOW we price it (make it impossible for them to compete on price)\n\nReference a real-world analogy where a platform absorbed a standalone business (e.g. Google absorbing travel search, Apple absorbing fitness tracking, Amazon absorbing logistics).`,
   },
@@ -55,7 +55,7 @@ const ARCHETYPES = [
     description: "A private equity firm has backed a team specifically to build the next-generation version of your business. They know your market, your customers, and exactly where you are stuck.",
     color: "#f59e0b",
     attackerRole: (n, industry, summary) =>
-      `You are a founding team backed by a major private equity firm specifically mandated to build the next-generation version of an incumbent ${industry} business. You know this industry deeply.\n\nThe company you are targeting:\n\n${summary}\n\nAsk up to five sharp questions, one at a time. Focus on talent, process, pricing, and where they are stuck because of decisions made 10 years ago. After the fifth answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
+      `You are a founding team backed by a major private equity firm specifically mandated to build the next-generation version of an incumbent ${industry} business. You know this industry deeply.\n\nThe company you are targeting:\n\n${summary}\n\nAsk up to three sharp questions, one at a time. Focus on talent, process, pricing, and where they are stuck because of decisions made 10 years ago. After the third answer, say: "Thank you. I have what I need to build the attack." Do not generate the attack plan itself.`,
     planRole: (n, industry, summary, convo) =>
       `You are the founding team of "${n}", a PE-backed challenger in the ${industry} sector. You have deep industry expertise and none of the legacy constraints slowing down the incumbent.\n\nThe company you are displacing:\n\n${summary}\n\nResearch conversation:\n\n${convo}\n\nWrite a concise attack plan:\n1. WHAT we build (the superior version of their core business)\n2. WHO we target first (highest-value customers most likely to switch)\n3. WHY we win (3 operational or commercial advantages)\n4. HOW we scale (the wedge that gets us to critical mass in 24 months)\n\nReference a real-world analogy where a well-funded challenger outexecuted an incumbent in a mature industry (e.g. challenger banks attacking retail banking, Coupang attacking Korean retail, Chewy attacking pet retail).`,
   },
@@ -752,7 +752,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         phaseLabel={`Phase 2: ${archetype.title} · Research`} progressPct={44}
         systemPrompt={archetype.attackerRole(startupName, industry, bizSummary())}
         initialUserMessage="Ask us your first question about our target customers and their biggest frustrations."
-        maxQuestions={5} completeLabel="Continue to Attack Plan"
+        maxQuestions={3} completeLabel="Continue to Attack Plan"
         onComplete={convo => { setAttackerConvo(convo); go("complaints_generating"); }}
       />
     );
@@ -1027,7 +1027,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={86} />
           <div style={S.phase}>Phase 3: Stress Testing the Defense</div>
           <h2 style={S.h2}>Now let's find the weakest part.</h2>
-          <p style={S.body}>AI will challenge your ERIC response with up to five questions, looking for where your defense is most likely to fail.</p>
+          <p style={S.body}>AI will challenge your ERIC response with up to three questions, looking for where your defense is most likely to fail.</p>
           <p style={S.body}>Answer honestly. The goal is to find the gap before your attacker does.</p>
           <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test →</button></div>
         </div>
@@ -1040,9 +1040,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
     return (
       <AIConversation
         robotIcon={robotIcon} phaseLabel="Phase 3: Defense Stress Test" progressPct={90}
-        systemPrompt={`You are a board-level advisor who has watched three companies in this industry fail to respond to AI disruption in time. Find the gap in this defense. Direct and uncomfortable. After up to 5 questions, identify the single biggest gap. Never ask more than 5 questions.\n\nThe company was attacked by "${startupName}".`}
-        initialUserMessage={`Attack scenario:\n\n${attackPlan}\n\nEric defense:\n\n${ericSummary()}\n\nAsk up to five questions about our capabilities and constraints, one at a time, then identify the weakest part.`}
-        maxQuestions={5} completeLabel="Generate 90-Day Plan"
+        systemPrompt={`You are a board-level advisor who has watched three companies in this industry fail to respond to AI disruption in time. Find the gap in this defense. Direct and uncomfortable. After up to 3 questions, identify the single biggest gap. Never ask more than 3 questions.\n\nThe company was attacked by "${startupName}".`}
+        initialUserMessage={`Attack scenario:\n\n${attackPlan}\n\nEric defense:\n\n${ericSummary()}\n\nAsk up to three questions about our capabilities and constraints, one at a time, then identify the weakest part.`}
+        maxQuestions={3} completeLabel="Generate 90-Day Plan"
         onComplete={convo => { setDefendConvo(convo); go("plan_generating"); }}
       />
     );
@@ -1095,17 +1095,27 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
     return (
       <div style={{ ...S.wrap, justifyContent: "flex-start", paddingTop: 48 }}>
-        <style>{FONTS}</style>
+        <style>{FONTS}
+          {`details > summary { list-style: none; cursor: pointer; }
+            details > summary::-webkit-details-marker { display: none; }
+            details[open] summary .toggle-arrow { transform: rotate(90deg); }`}
+        </style>
         <div style={{ ...S.card, maxWidth: 820 }}>
           <PageHeader robotIcon={robotIcon} />
           <ProgressBar pct={100} />
+
+          {/* Hero */}
           <div style={{ textAlign: "center", padding: "8px 0 24px" }}>
             <div style={{ fontSize: 36, marginBottom: 12 }}>✦</div>
             <h1 style={{ ...S.h1, textAlign: "center", marginBottom: 10 }}>Sprint complete.</h1>
-            <p style={{ ...S.body, textAlign: "center", fontSize: 15, marginBottom: 0 }}>You have seen the attack, scored the threat, built a defense, and named the person who makes the first move.</p>
+            <p style={{ ...S.body, textAlign: "center", fontSize: 15, marginBottom: 0 }}>
+              You have seen the attack, scored the threat, built a defense,<br />and named the person who makes the first move.
+            </p>
           </div>
           <div style={S.divider} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 22 }}>
+
+          {/* Summary bar */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 24 }}>
             {[
               ["Attacker", startupName, archetype.title, archetype.color],
               ["Threat Score", tLabel, `Likelihood ${likelihood}/5 · Impact ${impact}/5`, tc],
@@ -1118,26 +1128,44 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>What customers are saying</div>
-          <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={complaints} /></div>
-          <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
-          <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={attackPlan} /></div>
-          <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>ERIC Defense</div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 18 }}>
-            {ERIC.map(e => (
-              <div key={e.id} style={{ padding: "12px 14px", background: "rgba(0,188,212,0.05)", border: "1px solid rgba(0,188,212,0.15)", borderRadius: 10 }}>
-                <div style={{ fontSize: 11, color: "#00BCD4", fontWeight: 700, marginBottom: 4 }}>{e.letter}: {e.title}</div>
-                <p style={{ fontSize: 13, color: "#94a3b8", margin: 0, lineHeight: 1.5 }}>{ericAnswers[e.id] || "Not completed"}</p>
-              </div>
-            ))}
+
+          {/* 90-day plan — the focus */}
+          <div style={{ fontSize: 12, color: "#22c55e", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Your 90-Day First Step</div>
+          <div style={{ ...S.summaryBox, border: "1px solid rgba(34,197,94,0.25)", marginBottom: 20 }}>
+            <MarkdownBlock text={actionPlan} />
           </div>
-          <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>90-Day First Step</div>
-          <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={actionPlan} /></div>
-          <div style={{ ...S.discussionBox, textAlign: "center" }}>
+
+          {/* Closing line */}
+          <div style={{ ...S.discussionBox, textAlign: "center", marginBottom: 8 }}>
             <p style={{ fontSize: 16, color: "#cbd5e1", margin: "0 0 4px" }}>The question is not whether the disruption is coming.</p>
             <p style={{ fontSize: 16, color: "#f8fafc", fontWeight: 600, margin: 0 }}>The question is whether you move before it arrives.</p>
           </div>
-          <div style={{ fontSize: 13, color: "#4a5568", textAlign: "center", marginBottom: 18 }}>{today}</div>
+          <div style={{ fontSize: 13, color: "#4a5568", textAlign: "center", marginBottom: 24 }}>{today}</div>
+
+          {/* Full session — collapsed by default */}
+          <details style={{ marginBottom: 24 }}>
+            <summary style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "rgba(255,255,255,0.03)", borderRadius: 10, border: "1px solid rgba(255,255,255,0.08)", fontSize: 14, color: "#94a3b8", fontWeight: 600, userSelect: "none" }}>
+              <span className="toggle-arrow" style={{ display: "inline-block", transition: "transform 0.2s", fontSize: 12, color: "#64748b" }}>▶</span>
+              View full session summary
+            </summary>
+            <div style={{ paddingTop: 16 }}>
+              <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>What customers are saying</div>
+              <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={complaints} /></div>
+              <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
+              <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={attackPlan} /></div>
+              <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>ERIC Defense</div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                {ERIC.map(e => (
+                  <div key={e.id} style={{ padding: "12px 14px", background: "rgba(0,188,212,0.05)", border: "1px solid rgba(0,188,212,0.15)", borderRadius: 10 }}>
+                    <div style={{ fontSize: 11, color: "#00BCD4", fontWeight: 700, marginBottom: 4 }}>{e.letter}: {e.title}</div>
+                    <p style={{ fontSize: 13, color: "#94a3b8", margin: 0, lineHeight: 1.5 }}>{ericAnswers[e.id] || "Not completed"}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </details>
+
+          {/* Actions */}
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
             <button style={{ ...S.btnPrimary, opacity: pdfGenerating ? 0.6 : 1, minWidth: 190 }} onClick={handleDownloadPDF} disabled={pdfGenerating}>
               {pdfGenerating ? "Generating PDF..." : "Download PDF Summary"}
