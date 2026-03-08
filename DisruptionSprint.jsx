@@ -709,7 +709,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </div>
           <div style={{ padding: "14px 18px", background: "rgba(0,188,212,0.06)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 10, marginBottom: 22 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#00BCD4", marginBottom: 4 }}>{labels[aiReadiness - 1]}</div>
-            <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>{descriptions[aiReadiness - 1]}</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>{descriptions[aiReadiness - 1]}</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
@@ -739,7 +739,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
                   <div>
                     <div style={{ fontWeight: 700, color: "#f8fafc", fontSize: 15, marginBottom: 2 }}>{a.title}</div>
                     <div style={{ color: a.color, fontSize: 13, fontWeight: 600, marginBottom: 5 }}>{a.tagline}</div>
-                    <div style={{ color: "#94a3b8", fontSize: 13, lineHeight: 1.5 }}>{a.description}</div>
+                    <div style={{ color: "#cbd5e1", fontSize: 13, lineHeight: 1.5 }}>{a.description}</div>
                   </div>
                 </div>
               </div>
@@ -845,7 +845,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.summaryBox}><MarkdownBlock text={complaints} /></div>
           <div style={S.discussionBox}>
             <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
-            <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attack_generating")}>Build the Attack Plan →</button>
@@ -883,7 +883,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.summaryBox}><MarkdownBlock text={attackPlan} /></div>
           <div style={S.discussionBox}>
             <p style={{ fontSize: 15, color: "#cbd5e1", fontWeight: 600, margin: "0 0 4px" }}>Discuss with your team before moving on.</p>
-            <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
@@ -944,7 +944,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>Before you defend, take a moment.</h2>
           <div style={S.discussionBox}>
             <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 10px", lineHeight: 1.65 }}>You just scored this attack as <strong style={{ color: tc }}>{tLabel}</strong>.</p>
-            <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 8px" }}>Discuss this as a team before moving on:</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 8px" }}>Discuss this as a team before moving on:</p>
             <p style={{ fontSize: 17, color: "#f8fafc", margin: 0, fontWeight: 600, lineHeight: 1.5 }}>What is the one thing about this attack you could realistically act on in the next 90 days?</p>
           </div>
           <div style={S.row} className="cb-row">
@@ -991,7 +991,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             {ERIC.map(e => (
               <div key={e.id} style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", borderRadius: 10 }}>
                 <span style={{ color: "#00BCD4", fontWeight: 700, fontSize: 14 }}>{e.letter}: {e.title}</span>
-                <p style={{ color: "#94a3b8", fontSize: 13, margin: "4px 0 0", lineHeight: 1.4 }}>{e.q}</p>
+                <p style={{ color: "#cbd5e1", fontSize: 13, margin: "4px 0 0", lineHeight: 1.4 }}>{e.q}</p>
               </div>
             ))}
           </div>
@@ -1047,7 +1047,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <>
               <div style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", borderRadius: 10, marginBottom: 12 }}>
                 <div style={{ fontSize: 11, color: "#4a5568", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 5 }}>Your answer</div>
-                <p style={{ color: "#94a3b8", fontSize: 14, margin: 0, lineHeight: 1.6 }}>{ericAnswers[e.id]}</p>
+                <p style={{ color: "#cbd5e1", fontSize: 14, margin: 0, lineHeight: 1.6 }}>{ericAnswers[e.id]}</p>
               </div>
               {ericSkeptic === "loading" ? (
                 <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", background: "rgba(239,68,68,0.06)", borderRadius: 12 }}>
@@ -1135,7 +1135,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.summaryBox}><MarkdownBlock text={actionPlan} /></div>
           <div style={{ ...S.discussionBox, marginTop: 4 }}>
             <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Before you leave this room: assign the owner.</p>
-            <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 12px" }}>Who is responsible for making the first step happen?</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 12px" }}>Who is responsible for making the first step happen?</p>
             <input style={{ ...S.input, height: 50, fontSize: 16 }} placeholder="e.g. Jane Chen, Chief Digital Officer" value={planOwner} onChange={e => setPlanOwner(e.target.value)} />
           </div>
           <div style={S.row} className="cb-row">
