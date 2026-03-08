@@ -396,27 +396,49 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
 
   sectionBand("What Your Customers Are Already Saying", CYAN, NAVY);
 
-  const complaintParts = complaints.split(/\*\*Complaint \d+:\*\*/).map(s => s.trim()).filter(Boolean);
+  // Robust complaint parsing with fallbacks for varied AI formatting
+  function parseComplaints(text) {
+    let parts = text.split(/\*\*Complaint\s*\d+[^*]*\*\*:?/i).map(s => s.trim()).filter(Boolean);
+    if (parts.length >= 2) return parts.slice(0, 3);
+    parts = text.split(/\n(?=\d+[\.\)])/m).map(s => s.replace(/^\d+[\.\)]\s*/, "").trim()).filter(Boolean);
+    if (parts.length >= 2) return parts.slice(0, 3);
+    parts = text.split(/\n\s*\n/).map(s => s.trim()).filter(s => s.length > 20);
+    if (parts.length >= 2) return parts.slice(0, 3);
+    return [text.trim()];
+  }
+  const complaintParts = parseComplaints(complaints);
   const labels = ["Complaint 1", "Complaint 2", "Complaint 3"];
   complaintParts.forEach((text, i) => {
-    drawCard(labels[i] || `Complaint ${i + 1}`, text, [232, 248, 251], [178, 235, 242], [0, 151, 167]);
+    drawCard(labels[i] || `Complaint ${i + 1}`, text.replace(/\*\*/g, ""), [232, 248, 251], [178, 235, 242], [0, 151, 167]);
   });
 
   y += 4;
   sectionBand(`Attack Plan: ${startupName}`, NAVY, CYAN);
 
-  const atkLines = attackPlan.split("\n").filter(l => l.trim());
-  let currentLabel = "", currentBody = "";
-  for (const line of atkLines) {
-    if (/^\d+\./.test(line) || line.startsWith("**")) {
-      if (currentLabel) drawCard(currentLabel, currentBody.trim(), [241, 245, 249], [226, 232, 240], [0, 151, 167]);
-      currentLabel = line.replace(/\*\*/g, "").trim();
-      currentBody = "";
-    } else {
-      currentBody += " " + line;
+  // Robust attack plan parsing — numbered sections, bold headers, or plain paragraphs
+  function parseAttackPlan(text) {
+    const lines = text.split("\n").filter(l => l.trim());
+    const sections = [];
+    let label = "", body = "";
+    for (const line of lines) {
+      if (/^\d+[\.\)]/.test(line) || (line.startsWith("**") && line.endsWith("**")) || (line.startsWith("**") && line.includes(":"))) {
+        if (label) sections.push({ label, body: body.trim() });
+        label = line.replace(/\*\*/g, "").replace(/^\d+[\.\)]\s*/, "").trim();
+        body = "";
+      } else {
+        body += " " + line;
+      }
     }
+    if (label) sections.push({ label, body: body.trim() });
+    // Fallback: treat double-newline paragraphs as sections
+    if (sections.length === 0) {
+      return text.split(/\n\s*\n/).filter(s => s.trim().length > 10).map((s, i) => ({ label: `Point ${i + 1}`, body: s.replace(/\*\*/g, "").trim() }));
+    }
+    return sections;
   }
-  if (currentLabel) drawCard(currentLabel, currentBody.trim(), [241, 245, 249], [226, 232, 240], [0, 151, 167]);
+  parseAttackPlan(attackPlan).forEach(({ label, body }) => {
+    drawCard(label, body, [241, 245, 249], [226, 232, 240], [0, 151, 167]);
+  });
 
   // ── PAGE 3: ERIC + 90-Day Plan ────────────────────────────────────────────
   addPage();
@@ -437,18 +459,31 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   y += 4;
   sectionBand("90-Day First Step", [22, 101, 52], WHITE);
 
-  const planParts = actionPlan.split("\n").filter(l => l.trim());
-  let pLabel = "", pBody = "";
-  for (const line of planParts) {
-    if (line.startsWith("**") && line.includes(":")) {
-      if (pLabel) drawCard(pLabel, pBody.trim(), [240, 253, 244], [187, 247, 208], [22, 101, 52]);
-      pLabel = line.replace(/\*\*/g, "").replace(":", "").trim();
-      pBody = "";
-    } else {
-      pBody += " " + line.replace(/\*\*/g, "");
+  // Robust 90-day plan parsing — bold LABEL: headers or plain paragraphs
+  function parsePlan(text) {
+    const lines = text.split("\n").filter(l => l.trim());
+    const sections = [];
+    let label = "", body = "";
+    for (const line of lines) {
+      const isBoldHeader = line.startsWith("**") && (line.endsWith("**") || line.includes(":**"));
+      const isNumbered = /^\d+[\.\)]/.test(line);
+      if (isBoldHeader || isNumbered) {
+        if (label) sections.push({ label, body: body.trim() });
+        label = line.replace(/\*\*/g, "").replace(/^\d+[\.\)]\s*/, "").replace(/:$/, "").trim();
+        body = "";
+      } else {
+        body += " " + line.replace(/\*\*/g, "");
+      }
     }
+    if (label) sections.push({ label, body: body.trim() });
+    if (sections.length === 0) {
+      return text.split(/\n\s*\n/).filter(s => s.trim().length > 10).map((s, i) => ({ label: `Step ${i + 1}`, body: s.replace(/\*\*/g, "").trim() }));
+    }
+    return sections;
   }
-  if (pLabel) drawCard(pLabel, pBody.trim(), [240, 253, 244], [187, 247, 208], [22, 101, 52]);
+  parsePlan(actionPlan).forEach(({ label, body }) => {
+    drawCard(label, body, [240, 253, 244], [187, 247, 208], [22, 101, 52]);
+  });
 
   // Owner bar
   checkY(12);
