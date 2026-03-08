@@ -596,7 +596,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.body}>This session helps you see the attack before it arrives, and build a response while you still have time.</p>
           <div style={S.divider} />
           <p style={S.hint}>About 60 minutes. One person types. Everyone contributes.</p>
-          <div style={S.row}>
+          <div style={{ ...S.row, justifyContent: "space-between" }}>
+            <button style={S.btnSecondary} onClick={() => go("gate")}>← Back</button>
             <button style={S.btnPrimary} onClick={() => go("biz_q")}>Start the Sprint →</button>
           </div>
         </div>
@@ -607,6 +608,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   // ── Business questions ────────────────────────────────────────────────────────
   if (screen === "biz_q") {
     const q = BIZ_QUESTIONS[bizQIndex];
+    const bizTextareaRef = useRef(null);
+    useEffect(() => { bizTextareaRef.current?.focus(); }, [bizQIndex]);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
@@ -616,7 +619,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.phase}>Phase 1: Set the Scene · {q.label}</div>
           <h2 style={S.h2}>{q.q}</h2>
           <p style={S.hint}>{q.hint}</p>
-          <textarea style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} autoFocus />
+          <textarea ref={bizTextareaRef} style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} />
           <div style={S.row}>
             {bizQIndex > 0 && (
               <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>← Back</button>
@@ -625,7 +628,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               if (!bizInput.trim()) return;
               const updated = { ...bizAnswers, [q.id]: bizInput.trim() };
               setBizAnswers(updated);
-              setBizInput("");
+              const nextId = BIZ_QUESTIONS[bizQIndex + 1]?.id;
+              const nextVal = nextId ? (updated[nextId] || "") : "";
+              setBizInput(nextVal);
               if (bizQIndex < BIZ_QUESTIONS.length - 1) setBizQIndex(bizQIndex + 1);
               else go("industry_q");
             }}>
