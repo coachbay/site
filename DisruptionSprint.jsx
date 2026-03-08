@@ -599,7 +599,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.body}>This session helps you see the attack before it arrives, and build a response while you still have time.</p>
           <div style={S.divider} />
           <p style={S.hint}>About 60 minutes. One person types. Everyone contributes.</p>
-          <div style={{ ...S.row, justifyContent: "space-between" }}>
+          <div style={{ ...S.row, justifyContent: "space-between" }} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("gate")}>← Back</button>
             <button style={S.btnPrimary} onClick={() => go("biz_q")}>Start the Sprint →</button>
           </div>
