@@ -117,7 +117,7 @@ const S = {
   h1: { fontFamily: "'DM Serif Display', Georgia, serif", fontSize: "clamp(28px, 4vw, 42px)", lineHeight: 1.2, color: "#f8fafc", margin: "0 0 16px 0" },
   h2: { fontFamily: "'DM Serif Display', Georgia, serif", fontSize: "clamp(20px, 3vw, 30px)", lineHeight: 1.25, color: "#f8fafc", margin: "0 0 12px 0" },
   body: { fontSize: 17, lineHeight: 1.65, color: "#cbd5e1", margin: "0 0 24px 0" },
-  hint: { fontSize: 15, color: "#94a3b8", lineHeight: 1.5, marginBottom: 18 },
+  hint: { fontSize: 15, color: "#cbd5e1", lineHeight: 1.5, marginBottom: 18 },
   textarea: { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 10, padding: "16px 18px", fontSize: 16, lineHeight: 1.6, color: "#e2e8f0", resize: "vertical", minHeight: 110, boxSizing: "border-box", outline: "none", fontFamily: "'DM Sans', system-ui, sans-serif" },
   input: { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 10, padding: "15px 18px", fontSize: 17, color: "#e2e8f0", boxSizing: "border-box", outline: "none", fontFamily: "'DM Sans', system-ui, sans-serif" },
   btnPrimary: { background: "#00BCD4", color: "#0f172a", border: "none", borderRadius: 10, padding: "15px 32px", fontSize: 16, fontWeight: 700, cursor: "pointer", letterSpacing: "0.02em", fontFamily: "'DM Sans', system-ui, sans-serif" },
