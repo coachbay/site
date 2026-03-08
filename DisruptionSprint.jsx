@@ -96,11 +96,11 @@ const ERIC = [
 ];
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
-const FONTS = `@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap'); @keyframes spin { to { transform: rotate(360deg); } } textarea:focus, input:focus { outline: none; border-color: rgba(0,188,212,0.6) !important; } input[type=range] { accent-color: #00BCD4; }`;
+const FONTS = `@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap'); @keyframes spin { to { transform: rotate(360deg); } } textarea:focus, input:focus { outline: none; border-color: rgba(0,188,212,0.6) !important; } input[type=range] { accent-color: #00BCD4; } @media (max-width: 600px) { .cb-row { flex-direction: column-reverse !important; } .cb-row button { width: 100% !important; text-align: center; } .cb-grid-3 { grid-template-columns: 1fr !important; } .cb-grid-2 { grid-template-columns: 1fr !important; } .cb-row-center { flex-direction: column !important; align-items: stretch !important; } .cb-row-center button { width: 100% !important; text-align: center; } }`;
 
 const S = {
-  wrap: { minHeight: "100vh", background: "#1a1a2e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 24px", fontFamily: "'DM Sans', system-ui, sans-serif", color: "#e2e8f0", boxSizing: "border-box" },
-  card: { width: "100%", maxWidth: 760, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 16, padding: "48px 52px", boxSizing: "border-box" },
+  wrap: { minHeight: "100vh", background: "#1a1a2e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "clamp(20px, 4vh, 40px) clamp(12px, 4vw, 24px)", fontFamily: "'DM Sans', system-ui, sans-serif", color: "#e2e8f0", boxSizing: "border-box" },
+  card: { width: "100%", maxWidth: 760, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 16, padding: "clamp(24px, 5vw, 48px) clamp(18px, 6vw, 52px)", boxSizing: "border-box" },
   header: { display: "flex", alignItems: "center", gap: 10, marginBottom: 28 },
   headerText: { fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#00BCD4" },
   headerDot: { width: 3, height: 3, borderRadius: "50%", background: "rgba(0,188,212,0.4)" },
@@ -231,11 +231,11 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         {!loading && !done && (
           <>
             <textarea style={S.textarea} placeholder="Type your team's answer here..." value={currentAnswer} onChange={e => setCurrentAnswer(e.target.value)} />
-            <div style={S.row}><button style={S.btnPrimary} onClick={handleAnswer}>Submit Answer</button></div>
+            <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={handleAnswer}>Submit Answer</button></div>
           </>
         )}
         {done && !loading && (
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
+          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
         )}
         <div ref={bottomRef} />
       </div>
@@ -262,7 +262,7 @@ function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabe
         ) : (
           <>
             <div style={S.summaryBox}><MarkdownBlock text={result} /></div>
-            <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(result)}>Continue →</button></div>
+            <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(result)}>Continue →</button></div>
           </>
         )}
       </div>
@@ -564,7 +564,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             onKeyDown={e => { if (e.key === "Enter") { if (VALID_CODES.includes(codeInput.trim())) go("welcome"); else setCodeError(true); }}}
           />
           {codeError && <div style={S.errorBox}>That code is not valid. Check with your workshop facilitator.</div>}
-          <div style={{ ...S.row, justifyContent: "center", marginTop: 20 }}>
+          <div style={{ ...S.row, justifyContent: "center", marginTop: 20 }} className="cb-row-center">
             <button
               style={{ ...S.btnPrimary, opacity: codeInput.trim() ? 1 : 0.4 }}
               onClick={() => { if (VALID_CODES.includes(codeInput.trim())) go("welcome"); else setCodeError(true); }}
@@ -620,7 +620,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>{q.q}</h2>
           <p style={S.hint}>{q.hint}</p>
           <textarea ref={bizTextareaRef} style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} />
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             {bizQIndex > 0 && (
               <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>← Back</button>
             )}
@@ -654,7 +654,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>What sector or industry are you in?</h2>
           <p style={S.hint}>e.g. Commercial aviation, container shipping, luxury hospitality, commercial real estate, enterprise software</p>
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
             <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("archetype_select"); }}>Continue →</button>
           </div>
@@ -688,7 +688,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               </div>
             ))}
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attacker_intro")}>Meet the Attacker →</button>
           </div>
@@ -714,7 +714,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.body}>They have studied your business. They know where you are slow and what your customers complain about. They are designing something better.</p>
           <div style={S.divider} />
           <p style={S.hint}>Name the attacker, then help them sharpen their angle.</p>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("archetype_select")}>← Back</button>
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("name_startup")}>Continue →</button>
           </div>
@@ -735,7 +735,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>Give the attacker a name.</h2>
           <p style={S.body}>Making the threat specific makes it real.</p>
           <input style={{ ...S.input, fontSize: 20, fontWeight: 700 }} placeholder="e.g. Volta, Meridian AI, Clearpath..." value={startupName} onChange={e => setStartupName(e.target.value)} autoFocus />
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("attacker_intro")}>← Back</button>
             <button style={{ ...S.btnPrimary, background: archetype.color, opacity: startupName.trim() ? 1 : 0.4 }} onClick={() => { if (startupName.trim()) go("attack_ai"); }}>Build the Attack →</button>
           </div>
@@ -790,7 +790,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
             <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attack_generating")}>Build the Attack Plan →</button>
           </div>
         </div>
@@ -828,7 +828,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 15, color: "#cbd5e1", fontWeight: 600, margin: "0 0 4px" }}>Discuss with your team before moving on.</p>
             <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
           </div>
         </div>
@@ -864,7 +864,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <span style={{ fontSize: 15, fontWeight: 600, color: tc }}>{tLabel}</span>
             <span style={{ color: "#94a3b8", fontSize: 13, marginLeft: "auto" }}>Likelihood {likelihood} · Impact {impact}</span>
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnPrimary} onClick={() => go("defend_transition")}>Build the Defense →</button>
           </div>
         </div>
@@ -890,7 +890,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 8px" }}>Discuss this as a team before moving on:</p>
             <p style={{ fontSize: 17, color: "#f8fafc", margin: 0, fontWeight: 600, lineHeight: 1.5 }}>What is the one thing about this attack you could realistically act on in the next 90 days?</p>
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnGhost} onClick={() => go("session_review")}>Review what we know so far</button>
             <button style={S.btnPrimary} onClick={() => go("defend_intro")}>Start the Defense →</button>
           </div>
@@ -913,7 +913,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.summaryBox, marginBottom: 20 }}><MarkdownBlock text={complaints} /></div>
           <div style={{ fontSize: 12, fontWeight: 700, color: archetype.color, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
           <div style={{ ...S.summaryBox, marginBottom: 22 }}><MarkdownBlock text={attackPlan} /></div>
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_transition")}>Back to Defense →</button></div>
+          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => go("defend_transition")}>Back to Defense →</button></div>
         </div>
       </div>
     );
@@ -930,7 +930,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.phase}>Phase 3: Defend</div>
           <h2 style={S.h2}>Build your response with ERIC.</h2>
           <p style={S.body}>ERIC is a structured way to think across four dimensions. After each answer, a skeptic will challenge you.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 22 }}>
+          <div className="cb-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 22 }}>
             {ERIC.map(e => (
               <div key={e.id} style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", borderRadius: 10 }}>
                 <span style={{ color: "#00BCD4", fontWeight: 700, fontSize: 14 }}>{e.letter}: {e.title}</span>
@@ -938,7 +938,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               </div>
             ))}
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={S.btnPrimary} onClick={() => { setEricIndex(0); setEricInput(""); setEricSkeptic(null); go("eric_q"); }}>Start ERIC →</button>
           </div>
         </div>
@@ -976,7 +976,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           {!submitted ? (
             <>
               <textarea style={S.textarea} placeholder={e.hint} value={ericInput} onChange={ev => setEricInput(ev.target.value)} autoFocus />
-              <div style={S.row}>
+              <div style={S.row} className="cb-row">
                 {ericIndex > 0 && (
                   <button style={S.btnSecondary} onClick={() => { setEricSkeptic(null); setEricIndex(ericIndex - 1); setEricInput(ericAnswers[ERIC[ericIndex - 1].id] || ""); }}>← Back</button>
                 )}
@@ -1000,7 +1000,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
                 </div>
               )}
               {ericSkeptic && ericSkeptic !== "loading" && (
-                <div style={S.row}>
+                <div style={S.row} className="cb-row">
                   <button style={S.btnPrimary} onClick={() => {
                     setEricSkeptic(null);
                     if (isLast) go("defend_ai_intro");
@@ -1029,7 +1029,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>Now let's find the weakest part.</h2>
           <p style={S.body}>AI will challenge your ERIC response with up to three questions, looking for where your defense is most likely to fail.</p>
           <p style={S.body}>Answer honestly. The goal is to find the gap before your attacker does.</p>
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test →</button></div>
+          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test →</button></div>
         </div>
       </div>
     );
@@ -1078,7 +1078,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 12px" }}>Who is responsible for making the first step happen?</p>
             <input style={{ ...S.input, height: 50, fontSize: 16 }} placeholder="e.g. Jane Chen, Chief Digital Officer" value={planOwner} onChange={e => setPlanOwner(e.target.value)} />
           </div>
-          <div style={S.row}>
+          <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, opacity: planOwner.trim() ? 1 : 0.4 }} onClick={() => { if (planOwner.trim()) go("complete"); }}>Finish the Sprint →</button>
           </div>
         </div>
@@ -1115,7 +1115,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.divider} />
 
           {/* Summary bar */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 24 }}>
+          <div className="cb-grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 24 }}>
             {[
               ["Attacker", startupName, archetype.title, archetype.color],
               ["Threat Score", tLabel, `Likelihood ${likelihood}/5 · Impact ${impact}/5`, tc],
@@ -1154,7 +1154,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
               <div style={{ ...S.summaryBox, marginBottom: 18 }}><MarkdownBlock text={attackPlan} /></div>
               <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>ERIC Defense</div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              <div className="cb-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                 {ERIC.map(e => (
                   <div key={e.id} style={{ padding: "12px 14px", background: "rgba(0,188,212,0.05)", border: "1px solid rgba(0,188,212,0.15)", borderRadius: 10 }}>
                     <div style={{ fontSize: 11, color: "#00BCD4", fontWeight: 700, marginBottom: 4 }}>{e.letter}: {e.title}</div>
@@ -1166,7 +1166,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </details>
 
           {/* Actions */}
-          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }} className="cb-row-center">
             <button style={{ ...S.btnPrimary, opacity: pdfGenerating ? 0.6 : 1, minWidth: 190 }} onClick={handleDownloadPDF} disabled={pdfGenerating}>
               {pdfGenerating ? "Generating PDF..." : "Download PDF Summary"}
             </button>
