@@ -235,7 +235,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
           </>
         )}
         {done && !loading && (
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} &rarr;</button></div>
+          <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
         )}
         <div ref={bottomRef} />
       </div>
@@ -262,7 +262,7 @@ function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabe
         ) : (
           <>
             <div style={S.summaryBox}><MarkdownBlock text={result} /></div>
-            <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(result)}>Continue &rarr;</button></div>
+            <div style={S.row}><button style={S.btnPrimary} onClick={() => onComplete(result)}>Continue →</button></div>
           </>
         )}
       </div>
@@ -534,7 +534,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               style={{ ...S.btnPrimary, opacity: codeInput.trim() ? 1 : 0.4 }}
               onClick={() => { if (VALID_CODES.includes(codeInput.trim())) go("welcome"); else setCodeError(true); }}
             >
-              Enter &rarr;
+              Enter →
             </button>
           </div>
           <p style={{ textAlign: "center", fontSize: 13, color: "#4a5568", marginTop: 20, marginBottom: 0 }}>
@@ -562,7 +562,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.divider} />
           <p style={S.hint}>About 60 minutes. One person types. Everyone contributes.</p>
           <div style={S.row}>
-            <button style={S.btnPrimary} onClick={() => go("biz_q")}>Start the Sprint &rarr;</button>
+            <button style={S.btnPrimary} onClick={() => go("biz_q")}>Start the Sprint →</button>
           </div>
         </div>
       </div>
@@ -578,13 +578,13 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <div style={S.card}>
           <PageHeader robotIcon={robotIcon} />
           <ProgressBar pct={5 + (bizQIndex / BIZ_QUESTIONS.length) * 18} />
-          <div style={S.phase}>Phase 1: Set the Scene &middot; {q.label}</div>
+          <div style={S.phase}>Phase 1: Set the Scene · {q.label}</div>
           <h2 style={S.h2}>{q.q}</h2>
           <p style={S.hint}>{q.hint}</p>
           <textarea style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} autoFocus />
           <div style={S.row}>
             {bizQIndex > 0 && (
-              <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>&larr; Back</button>
+              <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>← Back</button>
             )}
             <button style={{ ...S.btnPrimary, opacity: bizInput.trim() ? 1 : 0.4 }} onClick={() => {
               if (!bizInput.trim()) return;
@@ -594,7 +594,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               if (bizQIndex < BIZ_QUESTIONS.length - 1) setBizQIndex(bizQIndex + 1);
               else go("industry_q");
             }}>
-              {bizQIndex < BIZ_QUESTIONS.length - 1 ? "Next &rarr;" : "Finish & Continue &rarr;"}
+              {bizQIndex < BIZ_QUESTIONS.length - 1 ? "Next →" : "Finish & Continue →"}
             </button>
           </div>
         </div>
@@ -615,8 +615,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.hint}>e.g. Commercial aviation, container shipping, luxury hospitality, commercial real estate, enterprise software</p>
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
           <div style={S.row}>
-            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); go("biz_q"); }}>&larr; Back</button>
-            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("archetype_select"); }}>Continue &rarr;</button>
+            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); go("biz_q"); }}>← Back</button>
+            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("archetype_select"); }}>Continue →</button>
           </div>
         </div>
       </div>
@@ -649,8 +649,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             ))}
           </div>
           <div style={S.row}>
-            <button style={S.btnSecondary} onClick={() => go("industry_q")}>&larr; Back</button>
-            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attacker_intro")}>Meet the Attacker &rarr;</button>
+            <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attacker_intro")}>Meet the Attacker →</button>
           </div>
         </div>
       </div>
@@ -675,8 +675,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.divider} />
           <p style={S.hint}>Name the attacker, then help them sharpen their angle.</p>
           <div style={S.row}>
-            <button style={S.btnSecondary} onClick={() => go("archetype_select")}>&larr; Back</button>
-            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("name_startup")}>Continue &rarr;</button>
+            <button style={S.btnSecondary} onClick={() => go("archetype_select")}>← Back</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("name_startup")}>Continue →</button>
           </div>
         </div>
       </div>
@@ -696,8 +696,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.body}>Making the threat specific makes it real.</p>
           <input style={{ ...S.input, fontSize: 20, fontWeight: 700 }} placeholder="e.g. Volta, Meridian AI, Clearpath..." value={startupName} onChange={e => setStartupName(e.target.value)} autoFocus />
           <div style={S.row}>
-            <button style={S.btnSecondary} onClick={() => go("attacker_intro")}>&larr; Back</button>
-            <button style={{ ...S.btnPrimary, background: archetype.color, opacity: startupName.trim() ? 1 : 0.4 }} onClick={() => { if (startupName.trim()) go("attack_ai"); }}>Build the Attack &rarr;</button>
+            <button style={S.btnSecondary} onClick={() => go("attacker_intro")}>← Back</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color, opacity: startupName.trim() ? 1 : 0.4 }} onClick={() => { if (startupName.trim()) go("attack_ai"); }}>Build the Attack →</button>
           </div>
         </div>
       </div>
@@ -751,7 +751,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row}>
-            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attack_generating")}>Build the Attack Plan &rarr;</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attack_generating")}>Build the Attack Plan →</button>
           </div>
         </div>
       </div>
@@ -789,7 +789,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 14, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
           </div>
           <div style={S.row}>
-            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat &rarr;</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
           </div>
         </div>
       </div>
@@ -822,10 +822,10 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", background: "rgba(255,255,255,0.04)", borderRadius: 10, marginBottom: 22 }}>
             <div style={{ width: 10, height: 10, borderRadius: "50%", background: tc }} />
             <span style={{ fontSize: 15, fontWeight: 600, color: tc }}>{tLabel}</span>
-            <span style={{ color: "#94a3b8", fontSize: 13, marginLeft: "auto" }}>Likelihood {likelihood} &middot; Impact {impact}</span>
+            <span style={{ color: "#94a3b8", fontSize: 13, marginLeft: "auto" }}>Likelihood {likelihood} · Impact {impact}</span>
           </div>
           <div style={S.row}>
-            <button style={S.btnPrimary} onClick={() => go("defend_transition")}>Build the Defense &rarr;</button>
+            <button style={S.btnPrimary} onClick={() => go("defend_transition")}>Build the Defense →</button>
           </div>
         </div>
       </div>
@@ -852,7 +852,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </div>
           <div style={S.row}>
             <button style={S.btnGhost} onClick={() => go("session_review")}>Review what we know so far</button>
-            <button style={S.btnPrimary} onClick={() => go("defend_intro")}>Start the Defense &rarr;</button>
+            <button style={S.btnPrimary} onClick={() => go("defend_intro")}>Start the Defense →</button>
           </div>
         </div>
       </div>
@@ -873,7 +873,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.summaryBox, marginBottom: 20 }}><MarkdownBlock text={complaints} /></div>
           <div style={{ fontSize: 12, fontWeight: 700, color: archetype.color, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
           <div style={{ ...S.summaryBox, marginBottom: 22 }}><MarkdownBlock text={attackPlan} /></div>
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_transition")}>Back to Defense &rarr;</button></div>
+          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_transition")}>Back to Defense →</button></div>
         </div>
       </div>
     );
@@ -899,7 +899,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             ))}
           </div>
           <div style={S.row}>
-            <button style={S.btnPrimary} onClick={() => { setEricIndex(0); setEricInput(""); setEricSkeptic(null); go("eric_q"); }}>Start ERIC &rarr;</button>
+            <button style={S.btnPrimary} onClick={() => { setEricIndex(0); setEricInput(""); setEricSkeptic(null); go("eric_q"); }}>Start ERIC →</button>
           </div>
         </div>
       </div>
@@ -929,7 +929,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <div style={S.card}>
           <PageHeader robotIcon={robotIcon} />
           <ProgressBar pct={75 + (ericIndex / ERIC.length) * 9} />
-          <div style={S.phase}>Phase 3: ERIC &middot; {ericIndex + 1} of 4</div>
+          <div style={S.phase}>Phase 3: ERIC · {ericIndex + 1} of 4</div>
           <div style={S.letterBadge}>{e.letter}</div>
           <h2 style={S.h2}>{e.title}: {e.q}</h2>
           <p style={S.hint}>{e.detail}</p>
@@ -938,9 +938,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               <textarea style={S.textarea} placeholder={e.hint} value={ericInput} onChange={ev => setEricInput(ev.target.value)} autoFocus />
               <div style={S.row}>
                 {ericIndex > 0 && (
-                  <button style={S.btnSecondary} onClick={() => { setEricSkeptic(null); setEricIndex(ericIndex - 1); setEricInput(ericAnswers[ERIC[ericIndex - 1].id] || ""); }}>&larr; Back</button>
+                  <button style={S.btnSecondary} onClick={() => { setEricSkeptic(null); setEricIndex(ericIndex - 1); setEricInput(ericAnswers[ERIC[ericIndex - 1].id] || ""); }}>← Back</button>
                 )}
-                <button style={{ ...S.btnPrimary, opacity: ericInput.trim() ? 1 : 0.4 }} onClick={submitAndGetSkeptic}>Submit &rarr;</button>
+                <button style={{ ...S.btnPrimary, opacity: ericInput.trim() ? 1 : 0.4 }} onClick={submitAndGetSkeptic}>Submit →</button>
               </div>
             </>
           ) : (
@@ -966,7 +966,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
                     if (isLast) go("defend_ai_intro");
                     else { setEricIndex(ericIndex + 1); setEricInput(ericAnswers[ERIC[ericIndex + 1]?.id] || ""); }
                   }}>
-                    {isLast ? "Finish ERIC &rarr;" : `Continue to ${ERIC[ericIndex + 1]?.title} &rarr;`}
+                    {isLast ? "Finish ERIC →" : `Continue to ${ERIC[ericIndex + 1]?.title} →`}
                   </button>
                 </div>
               )}
@@ -989,7 +989,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>Now let's find the weakest part.</h2>
           <p style={S.body}>AI will challenge your ERIC response with up to five questions, looking for where your defense is most likely to fail.</p>
           <p style={S.body}>Answer honestly. The goal is to find the gap before your attacker does.</p>
-          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test &rarr;</button></div>
+          <div style={S.row}><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test →</button></div>
         </div>
       </div>
     );
@@ -1039,7 +1039,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <input style={{ ...S.input, height: 50, fontSize: 16 }} placeholder="e.g. Jane Chen, Chief Digital Officer" value={planOwner} onChange={e => setPlanOwner(e.target.value)} />
           </div>
           <div style={S.row}>
-            <button style={{ ...S.btnPrimary, opacity: planOwner.trim() ? 1 : 0.4 }} onClick={() => { if (planOwner.trim()) go("complete"); }}>Finish the Sprint &rarr;</button>
+            <button style={{ ...S.btnPrimary, opacity: planOwner.trim() ? 1 : 0.4 }} onClick={() => { if (planOwner.trim()) go("complete"); }}>Finish the Sprint →</button>
           </div>
         </div>
       </div>
