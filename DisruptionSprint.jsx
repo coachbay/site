@@ -978,6 +978,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <>
               <textarea style={S.textarea} placeholder={e.hint} value={ericInput} onChange={ev => setEricInput(ev.target.value)} autoFocus />
               <div style={S.row} className="cb-row">
+                {ericIndex === 0 && (
+                  <button style={S.btnSecondary} onClick={() => go("defend_intro")}>← Back</button>
+                )}
                 {ericIndex > 0 && (
                   <button style={S.btnSecondary} onClick={() => { setEricSkeptic(null); setEricIndex(ericIndex - 1); setEricInput(ericAnswers[ERIC[ericIndex - 1].id] || ""); }}>← Back</button>
                 )}
