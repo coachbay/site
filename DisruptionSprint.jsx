@@ -611,7 +611,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#00BCD4", marginBottom: 14 }}>CoachBay.ai</div>
             <h1 style={{ ...S.h1, fontSize: 32, textAlign: "center", marginBottom: 12 }}>Disruption Sprint</h1>
             <p style={{ ...S.body, textAlign: "center", fontSize: 16, marginBottom: 0 }}>
-              A 60-minute workshop simulation that shows you who is coming for your business and how to respond.
+              A 60-minute exercise that shows you who is coming for your business and how to respond.
             </p>
           </div>
           <div style={S.divider} />
