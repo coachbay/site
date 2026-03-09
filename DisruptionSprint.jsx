@@ -276,7 +276,8 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
             {h.role === "ai" ? <MarkdownBlock text={h.text} /> : h.text}
           </div>
         ))}
-        {lastAI && <div style={S.aiBubble}><MarkdownBlock text={lastAI.text} /></div>}
+        {lastAI && !done && <div style={S.aiBubble}><MarkdownBlock text={lastAI.text} /></div>}
+        {done && !loading && <div style={S.aiBubble}>The attacker now has enough to build the plan.</div>}
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
         {failed && (
           <div style={{ marginBottom: 18 }}>
@@ -293,10 +294,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
           </>
         )}
         {done && !loading && (
-          <>
-            <p style={{ fontSize: 14, color: "#64748b", fontStyle: "italic", textAlign: "center", margin: "0 0 16px" }}>The attacker has enough to build the plan.</p>
-            <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
-          </>
+          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
         )}
         <div ref={bottomRef} />
       </div>
