@@ -253,9 +253,11 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
         <ProgressBar pct={progressPct || 50} />
         {phaseLabel && <div style={S.phase}>{phaseLabel}</div>}
         {history.slice(0, -1).map((h, i) => (
-          <div key={i} style={h.role === "ai" ? { ...S.aiBubble, opacity: 0.45, marginBottom: 8, fontSize: 15 } : S.userBubble}>{h.text}</div>
+          <div key={i} style={h.role === "ai" ? { ...S.aiBubble, opacity: 0.45, marginBottom: 8, fontSize: 15 } : S.userBubble}>
+            {h.role === "ai" ? <MarkdownBlock text={h.text} /> : h.text}
+          </div>
         ))}
-        {lastAI && <div style={S.aiBubble}>{lastAI.text}</div>}
+        {lastAI && <div style={S.aiBubble}><MarkdownBlock text={lastAI.text} /></div>}
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
         {failed && (
           <div style={{ marginBottom: 18 }}>
