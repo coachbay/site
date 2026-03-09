@@ -1410,9 +1410,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               ["First Step Owner", planOwner, "Check in: 30 days", "#f8fafc"],
             ].map(([label, main, sub, color]) => (
               <div key={label} style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", borderRadius: 10 }}>
-                <div style={{ fontSize: 10, color: "#64748b", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
+                <div style={{ fontSize: 10, color: "#cbd5e1", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
                 <div style={{ fontSize: 14, color, fontWeight: 700, marginBottom: 2 }}>{main}</div>
-                <div style={{ fontSize: 12, color: "#64748b" }}>{sub}</div>
+                <div style={{ fontSize: 12, color: "#cbd5e1" }}>{sub}</div>
               </div>
             ))}
           </div>
