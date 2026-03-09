@@ -926,7 +926,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   // ── Complaints generating ─────────────────────────────────────────────────────
   if (screen === "complaints_generating") {
     const convo = attackerConvo.map(h => (h.role === "ai" ? `AI: ${h.text}` : `Team: ${h.text}`)).join("\n\n");
-    const prompt = `Based on this business profile and research conversation, generate exactly 3 verbatim customer complaints this business almost certainly receives but never fully resolves.\n\nBusiness profile:\n${bizSummary()}\n\nResearch conversation:\n${convo}\n\nWrite each in the voice of an actual frustrated customer. Specific to this industry and business. 2-4 sentences each.\n\nFormat:\n**Complaint 1:**\n[text]\n\n**Complaint 2:**\n[text]\n\n**Complaint 3:**\n[text]`;
+    const prompt = `Generate exactly 3 verbatim customer complaints about the INCUMBENT business described below. These are complaints the incumbent business receives but never fully resolves.\n\nIMPORTANT: The complaints are about the INCUMBENT company (the one being attacked), NOT about the attacker "${startupName}". Do not mention "${startupName}" in the complaints.\n\nIncumbent business profile:\n${bizSummary()}\n\nResearch conversation (context only — attacker is "${startupName}"):\n${convo}\n\nWrite each complaint in the voice of an actual frustrated customer of the incumbent. Specific, emotionally real, 2-4 sentences each.\n\nFormat:\n**Complaint 1:**\n[text]\n\n**Complaint 2:**\n[text]\n\n**Complaint 3:**\n[text]`;
     return (
       <AIGenerating
         robotIcon={robotIcon} archetypeColor={archetype.color}
@@ -941,8 +941,6 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   // ── Complaints reveal ─────────────────────────────────────────────────────────
   if (screen === "complaints_reveal") {
-    const discussRef1 = React.useRef(null);
-    React.useEffect(() => { setTimeout(() => discussRef1.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }, []);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
@@ -953,12 +951,13 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>This is what they are already saying.</h2>
           <p style={S.body}><strong style={{ color: archetype.color }}>{startupName}</strong> is building for these people right now.</p>
           <div style={S.summaryBox}><MarkdownBlock text={complaints} /></div>
-          <div ref={discussRef1} style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}>
+          <div id="discuss-box-1" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
+               ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 15, color: "#f8fafc", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row} className="cb-row">
-            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("attack_generating")}>Build the Attack Plan →</button>
+            <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => { window.scrollTo(0,0); go("attack_generating"); }}>Build the Attack Plan →</button>
           </div>
         </div>
       </div>
@@ -982,8 +981,6 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   // ── Attack reveal ─────────────────────────────────────────────────────────────
   if (screen === "attack_reveal") {
-    const discussRef2 = React.useRef(null);
-    React.useEffect(() => { setTimeout(() => discussRef2.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }, []);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
@@ -994,7 +991,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>Here is how <span style={{ color: archetype.color }}>{startupName}</span> beats you.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={attackPlan} /></div>
           <p style={{ fontSize: 13, color: "#64748b", fontStyle: "italic", margin: "0 0 16px", lineHeight: 1.6 }}>This plan is based on what you have shared. Your team may know things this attacker does not.</p>
-          <div ref={discussRef2} style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}>
+          <div id="discuss-box-2" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
+               ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Discuss with your team before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong — and does that actually make you safer, or are you just hoping it is wrong?</p>
