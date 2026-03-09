@@ -407,7 +407,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     const textW = CW - 12;
     const bulletIndent = 7;
     const bulletTextW = textW - bulletIndent;
-    const LABEL_LH = 5.4, BODY_LH = 6.2;
+    const LABEL_LH = 5.0, BODY_LH = 5.4;
     const cleanLabel = clean(label);
 
     // Parse body into segments: {type: "text"|"bullet", content: string}
@@ -429,21 +429,21 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
     for (const seg of segments) {
       if (seg.type === "bullet") {
-        contentH += doc.splitTextToSize(seg.content, bulletTextW).length * BODY_LH + 1.5;
+        contentH += doc.splitTextToSize(seg.content, bulletTextW).length * BODY_LH + 1;
       } else {
-        contentH += doc.splitTextToSize(seg.content, textW).length * BODY_LH + 1.5;
+        contentH += doc.splitTextToSize(seg.content, textW).length * BODY_LH + 1;
       }
     }
-    const cardH = 6 + labelLines.length * LABEL_LH + 3 + contentH + 5;
+    const cardH = 4 + labelLines.length * LABEL_LH + 2 + contentH + 4;
     checkY(cardH + 3);
 
     doc.setFillColor(...bgRgb); doc.setDrawColor(...borderRgb); doc.setLineWidth(0.4);
     doc.roundedRect(M, y, CW, cardH, 1.5, 1.5, "FD");
-    let ty = y + 8;
+    let ty = y + 6;
 
     // Label
     doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...labelColorRgb);
-    doc.text(labelLines, M + 6, ty); ty += labelLines.length * LABEL_LH + 4;
+    doc.text(labelLines, M + 6, ty); ty += labelLines.length * LABEL_LH + 3;
 
     // Body segments
     doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...BODY);
@@ -454,14 +454,14 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
         doc.setFillColor(...BODY);
         doc.circle(M + 6 + 1.2, ty - 1.8, 0.9, "F");
         doc.text(lines, M + 6 + bulletIndent, ty);
-        ty += lines.length * BODY_LH + 1.5;
+        ty += lines.length * BODY_LH + 1;
       } else {
         const lines = doc.splitTextToSize(seg.content, textW);
         doc.text(lines, M + 6, ty);
-        ty += lines.length * BODY_LH + 1.5;
+        ty += lines.length * BODY_LH + 1;
       }
     }
-    y += cardH + 4;
+    y += cardH + 2;
   }
 
   // ── COVER ────────────────────────────────────────────────────────────────
