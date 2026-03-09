@@ -940,6 +940,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   // ── Complaints reveal ─────────────────────────────────────────────────────────
   if (screen === "complaints_reveal") {
+    const discussRef1 = React.useRef(null);
+    React.useEffect(() => { setTimeout(() => discussRef1.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }, []);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
@@ -950,8 +952,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>This is what they are already saying.</h2>
           <p style={S.body}><strong style={{ color: archetype.color }}>{startupName}</strong> is building for these people right now.</p>
           <div style={S.summaryBox}><MarkdownBlock text={complaints} /></div>
-          <div style={S.discussionBox}>
-            <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
+          <div ref={discussRef1} style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}>
+            <p style={{ fontSize: 15, color: "#f8fafc", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row} className="cb-row">
@@ -979,6 +981,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   // ── Attack reveal ─────────────────────────────────────────────────────────────
   if (screen === "attack_reveal") {
+    const discussRef2 = React.useRef(null);
+    React.useEffect(() => { setTimeout(() => discussRef2.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }, []);
     return (
       <div style={S.wrap}>
         <style>{FONTS}</style>
@@ -988,8 +992,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: The Attack</div>
           <h2 style={S.h2}>Here is how <span style={{ color: archetype.color }}>{startupName}</span> beats you.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={attackPlan} /></div>
-          <div style={S.discussionBox}>
-            <p style={{ fontSize: 15, color: "#cbd5e1", fontWeight: 600, margin: "0 0 4px" }}>Discuss with your team before moving on.</p>
+          <div ref={discussRef2} style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}>
+            <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 4px" }}>Discuss with your team before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
           </div>
           <div style={S.row} className="cb-row">
