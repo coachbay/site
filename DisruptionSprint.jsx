@@ -168,6 +168,15 @@ function ProgressBar({ pct }) {
   return <div style={S.progressBar}><div style={S.progressFill(pct)} /></div>;
 }
 
+function NoteBox({ text }) {
+  return (
+    <div style={{ background: "rgba(255,255,255,0.04)", border: "1.5px solid rgba(255,255,255,0.2)", borderRadius: 12, padding: "16px 20px", marginBottom: 20 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 8 }}>A note before you continue</div>
+      <p style={{ fontSize: 15, color: "#e2e8f0", lineHeight: 1.65, margin: 0 }}>{text}</p>
+    </div>
+  );
+}
+
 function Spinner({ small }) {
   const sz = small ? 16 : 22;
   return <div style={{ ...S.spinner, width: sz, height: sz }} />;
@@ -1068,6 +1077,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <h2 style={S.h2}>This is what they are already saying.</h2>
           <p style={S.body}><strong style={{ color: archetype.color }}>{startupName}</strong> is building for these people right now.</p>
           <div style={S.summaryBox}><MarkdownBlock text={complaints} /></div>
+          <NoteBox text="These complaints are based on what you shared. Some will hit home. Some won't apply. The question for the room is which ones you've actually heard before." />
           <div id="discuss-box-1" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 16, color: "#ffffff", margin: "0 0 6px", fontWeight: 700, letterSpacing: "0.01em" }}>Discuss before moving on.</p>
@@ -1107,7 +1117,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: The Attack</div>
           <h2 style={S.h2}>Here is how <span style={{ color: archetype.color }}>{startupName}</span> beats you.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={attackPlan} /></div>
-          <p style={{ fontSize: 13, color: "#64748b", fontStyle: "italic", margin: "0 0 16px", lineHeight: 1.6 }}>This plan is based on what you have shared. Your team may know things this attacker does not.</p>
+          <NoteBox text="This plan is built from what you shared in this session. The AI does not know everything about your business. Your team does. Use this as a provocation, not a verdict." />
           <div id="discuss-box-2" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 16, color: "#ffffff", fontWeight: 700, margin: "0 0 6px", letterSpacing: "0.01em" }}>Discuss with your team before moving on.</p>
@@ -1228,6 +1238,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               </div>
             ))}
           </div>
+          <NoteBox text="Your ERIC responses will only be as strong as the honesty in the room. The AI will challenge you, but the decisions belong to your team." />
           <div style={S.row} className="cb-row">
             <button style={S.btnGhost} onClick={() => go("session_review")}>Review what we know so far</button>
             <button style={S.btnPrimary} onClick={() => { setEricIndex(0); setEricInput(""); setEricSkeptic(null); go("eric_q"); }}>Start ERIC →</button>
@@ -1368,6 +1379,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.phase}>Phase 3: Your First Step</div>
           <h2 style={S.h2}>Your 90-day response plan.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={actionPlan} /></div>
+          <NoteBox text="This is a starting point, not a prescription. The AI has designed this based on your session. Your team knows what is actually executable. Adjust it until it is genuinely owned, not just assigned." />
           <div style={{ ...S.discussionBox, marginTop: 4 }}>
             <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Before you leave this room: assign the owner.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 12px" }}>Who is responsible for making the first step happen?</p>
