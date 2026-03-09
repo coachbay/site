@@ -14,7 +14,7 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-haiku-4-5-20251001",
-          max_tokens: 1000,
+          max_tokens: 2000,
           system: "The current year is 2026. " + (systemPrompt || ""),
           messages,
         }),
