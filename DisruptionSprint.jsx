@@ -166,11 +166,13 @@ function Spinner({ small }) {
 }
 
 function renderInline(text) {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((p, i) =>
-    p.startsWith("**") && p.endsWith("**")
-      ? <strong key={i} style={{ color: "#f8fafc", fontWeight: 700 }}>{p.slice(2, -2)}</strong>
-      : p
-  );
+  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((p, i) => {
+    if (p.startsWith("**") && p.endsWith("**") && p.length > 4)
+      return <strong key={i} style={{ color: "#f8fafc", fontWeight: 700 }}>{p.slice(2, -2)}</strong>;
+    if (p.startsWith("*") && p.endsWith("*") && p.length > 2)
+      return <em key={i} style={{ color: "#e2e8f0" }}>{p.slice(1, -1)}</em>;
+    return p;
+  });
 }
 
 function MarkdownBlock({ text }) {
@@ -179,13 +181,18 @@ function MarkdownBlock({ text }) {
     <div>
       {text.split("\n").map((line, i) => {
         if (!line.trim()) return <div key={i} style={{ height: 7 }} />;
+        if (/^---+$/.test(line.trim())) return <hr key={i} style={{ border: "none", borderTop: "1px solid #334155", margin: "12px 0" }} />;
+        if (line.startsWith("#### ")) return <p key={i} style={{ fontWeight: 700, color: "#00BCD4", fontSize: 13, margin: "10px 0 2px", textTransform: "uppercase", letterSpacing: 1 }}>{line.slice(5)}</p>;
+        if (line.startsWith("### ")) return <p key={i} style={{ fontWeight: 700, color: "#f8fafc", fontSize: 16, margin: "12px 0 4px" }}>{renderInline(line.slice(4))}</p>;
+        if (line.startsWith("## ")) return <p key={i} style={{ fontWeight: 700, color: "#00BCD4", fontSize: 14, margin: "14px 0 4px", textTransform: "uppercase", letterSpacing: 0.5 }}>{line.slice(3)}</p>;
+        if (line.startsWith("# ")) return <p key={i} style={{ fontWeight: 700, color: "#f8fafc", fontSize: 17, margin: "16px 0 6px" }}>{line.slice(2)}</p>;
         if (/^\d+\.\s/.test(line)) return <p key={i} style={{ margin: "4px 0", fontSize: 15, lineHeight: 1.65, color: "#e2e8f0" }}>{renderInline(line)}</p>;
         if (line.startsWith("- ") || line.startsWith("* ")) return (
           <p key={i} style={{ margin: "3px 0", paddingLeft: 13, fontSize: 15, lineHeight: 1.6, color: "#cbd5e1", position: "relative" }}>
             <span style={{ position: "absolute", left: 0, color: "#00BCD4" }}>·</span>{renderInline(line.slice(2))}
           </p>
         );
-        if (line.startsWith("**") && line.endsWith("**") && line.length > 4) return <p key={i} style={{ fontWeight: 700, color: "#f8fafc", fontSize: 15, margin: "9px 0 2px" }}>{line.slice(2, -2)}</p>;
+        if (line.startsWith("**") && line.endsWith("**") && line.length > 4) return <p key={i} style={{ fontWeight: 700, color: "#f8fafc", fontSize: 15, margin: "9px 0 2px" }}>{renderInline(line)}</p>;
         return <p key={i} style={{ margin: "2px 0", fontSize: 15, lineHeight: 1.7, color: "#cbd5e1" }}>{renderInline(line)}</p>;
       })}
     </div>
