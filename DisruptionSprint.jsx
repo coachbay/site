@@ -785,7 +785,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </h1>
           <p style={S.body}>A startup with $10M and no legacy constraints. A platform with 400 million users and your customers' data. A well-funded competitor with AI running every part of their operation.</p>
           <p style={S.body}>All of them are using AI to move faster, operate leaner, and find the weakness you have not fixed yet. This session helps you see the attack before it lands, and build a response while you still have time.</p>
-          <p style={{ fontSize: 16, color: "#00BCD4", fontWeight: 600, lineHeight: 1.6, margin: "0 0 20px" }}>Your session is private. We do not store or save any of your responses.</p>
+          <p style={{ fontSize: 18, color: "#00BCD4", fontWeight: 600, lineHeight: 1.6, margin: "0 0 20px" }}>Your session is private. We do not store or save any of your responses.</p>
           <div style={S.divider} />
           <div style={{ ...S.row, justifyContent: "space-between" }} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("gate")}>← Back</button>
