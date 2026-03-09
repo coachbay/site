@@ -899,7 +899,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={26} />
           <div style={S.phase}>Phase 1: One Last Detail</div>
           <h2 style={S.h2}>What sector or industry are you in?</h2>
-          <p style={S.hint}>e.g. Commercial aviation, container shipping, luxury hospitality, commercial real estate, enterprise software</p>
+          <p style={S.hint}>e.g. Logistics, legal services, retail banking, media, hospitality</p>
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
           <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
