@@ -211,7 +211,7 @@ function MarkdownBlock({ text }) {
 }
 
 // ─── AI Conversation component ────────────────────────────────────────────────
-function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuestions = 5, completeLabel = "Continue", phaseLabel, progressPct, robotIcon, archetypeColor }) {
+function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuestions = 5, completeLabel = "Continue", closingMessage = "The attacker now has enough to build the plan.", phaseLabel, progressPct, robotIcon, archetypeColor }) {
   const [history, setHistory] = useState([]);
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [loading, setLoading] = useState(true);
@@ -257,8 +257,8 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
     const final = [...newHistory, { role: "ai", text: cleanAI(msg) }];
     setHistory(final);
     setLoading(false);
-    const isClosing = /thank you[.,]?\s*i have what i need/i.test(msg) || /that('s| is) (all|everything) i need/i.test(msg);
-    if (newCount >= maxQuestions || isClosing) setDone(true);
+    const isClosing = /thank you[.,]?\s*i have what i need/i.test(msg) || /that('s| is) (all|everything) i need/i.test(msg) || /i have enough/i.test(msg);
+    if (isClosing || newCount >= maxQuestions) setDone(true);
   }
 
   const lastAI = history.filter(h => h.role === "ai").slice(-1)[0];
@@ -277,7 +277,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
           </div>
         ))}
         {lastAI && !done && <div style={S.aiBubble}><MarkdownBlock text={lastAI.text} /></div>}
-        {done && !loading && <div style={S.aiBubble}>The attacker now has enough to build the plan.</div>}
+        {done && !loading && <div style={S.aiBubble}>{closingMessage}</div>}
         {loading && <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}><Spinner /><span style={{ color: "#94a3b8", fontSize: 15 }}>Thinking...</span></div>}
         {failed && (
           <div style={{ marginBottom: 18 }}>
@@ -1034,7 +1034,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         phaseLabel={`Phase 2: ${archetype.title} · Research`} progressPct={44}
         systemPrompt={archetype.attackerRole(startupName, industry, bizSummary())}
         initialUserMessage={archetype.initialMessage}
-        maxQuestions={4} completeLabel="Continue to Attack Plan"
+        maxQuestions={10} completeLabel="Continue to Attack Plan"
         onComplete={convo => { setAttackerConvo(convo); go("complaints_generating"); }}
       />
     );
@@ -1336,7 +1336,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         robotIcon={robotIcon} phaseLabel="Phase 3: Defense Stress Test" progressPct={90}
         systemPrompt={archetype.defenseRole(startupName)}
         initialUserMessage={`Attack scenario:\n\n${attackPlan}\n\nEric defense:\n\n${ericSummary()}\n\nAI Readiness: ${aiReadiness}/5 — ${AI_READINESS_LABELS[aiReadiness - 1]}\n\nAsk up to three questions about our capabilities and constraints, one at a time, then identify the weakest part.`}
-        maxQuestions={3} completeLabel="Generate 90-Day Plan"
+        maxQuestions={10} completeLabel="Generate 90-Day Plan"
+        closingMessage="The stress test is complete."
         onComplete={convo => { setDefendConvo(convo); go("plan_generating"); }}
       />
     );
