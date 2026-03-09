@@ -1126,7 +1126,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       const updated = { ...ericAnswers, [e.id]: answer };
       setEricAnswers(updated);
       setEricSkeptic("loading");
-      const skepticPrompt = `A leadership team just answered this ERIC defense question:\n\nQuestion: ${e.title}: ${e.q}\nTheir answer: ${answer}\n\nContext: They are defending against this attack:\n${attackPlan}\n\nWrite ONE pointed skeptic reaction (1-2 sentences maximum). Start with "A skeptic would say:" Surface the gap, assumption, or avoidance. Be direct. No softening.`;
+      const skepticPrompt = `A leadership team just answered this ERIC defense question:\n\nQuestion: ${e.title}: ${e.q}\nTheir answer: "${answer}"\n\nYour job: challenge THEIR answer specifically. Is it vague? Does it actually answer the question? Does it hold up under pressure? What assumption are they making that could be wrong?\n\nWrite ONE pointed skeptic reaction (1-2 sentences maximum). Start with "A skeptic would say:" Be direct about the weakness in their specific answer. No softening.`;
       const reaction = await callClaude([{ role: "user", content: skepticPrompt }], "You are a board-level advisor who has watched companies produce impressive defense plans that never got implemented. Find the gap in every answer. Blunt. One to two sentences only.");
       setEricSkeptic(reaction);
     }
