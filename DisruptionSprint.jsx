@@ -5,6 +5,14 @@ import jsPDF from "jspdf";
 const VALID_CODES = ["DISRUPT2026", "COACHBAY", "SPRINT"];
 
 // ─── AI helper ────────────────────────────────────────────────────────────────
+function cleanAI(text) {
+  return text
+    .replace(/ — /g, " - ")
+    .replace(/— /g, " - ")
+    .replace(/ —/g, " -")
+    .replace(/—/g, " - ");
+}
+
 async function callClaude(messages, systemPrompt = "", retries = 3) {
   let lastError = "no response";
   for (let attempt = 0; attempt < retries; attempt++) {
@@ -216,9 +224,9 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
   function loadFirst() {
     setLoading(true);
     setFailed(false);
-    callClaude([{ role: "user", content: initialUserMessage }], systemPrompt).then(msg => {
+    callClaude([{ role: "user", content: initialUserMessage }], systemPrompt).then(msg => { msg = cleanAI(msg);
       if (msg.startsWith("Connection error")) { setLoading(false); setFailed(true); setErrorMsg(msg); return; }
-      setHistory([{ role: "ai", text: msg }]);
+      setHistory([{ role: "ai", text: cleanAI(msg) }]);
       setLoading(false);
     });
   }
@@ -246,7 +254,7 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
       setQuestionCount(questionCount);
       setLoading(false); setFailed(true); setErrorMsg(msg); return;
     }
-    const final = [...newHistory, { role: "ai", text: msg }];
+    const final = [...newHistory, { role: "ai", text: cleanAI(msg) }];
     setHistory(final);
     setLoading(false);
     const isClosing = /thank you[.,]?\s*i have what i need/i.test(msg) || /that('s| is) (all|everything) i need/i.test(msg);
@@ -303,7 +311,7 @@ function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabe
     setResult(null);
     callClaude([{ role: "user", content: prompt }], systemPrompt).then(msg => {
       if (msg.startsWith("Connection error")) { setFailed(true); }
-      else { setResult(msg); }
+      else { setResult(cleanAI(msg)); }
     });
   }
 
