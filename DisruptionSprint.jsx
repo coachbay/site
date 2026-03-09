@@ -7,10 +7,10 @@ const VALID_CODES = ["DISRUPT2026", "COACHBAY", "SPRINT"];
 // ─── AI helper ────────────────────────────────────────────────────────────────
 function cleanAI(text) {
   return text
-    .replace(/ — /g, " - ")
-    .replace(/— /g, " - ")
-    .replace(/ —/g, " -")
-    .replace(/—/g, " - ");
+    .replace(/ — /g, " ")
+    .replace(/— /g, " ")
+    .replace(/ —/g, " ")
+    .replace(/—/g, " ");
 }
 
 async function callClaude(messages, systemPrompt = "", retries = 3) {
@@ -23,7 +23,7 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         body: JSON.stringify({
           model: "claude-haiku-4-5-20251001",
           max_tokens: 2000,
-          system: "The current year is 2026. Write in short paragraphs of 2-3 sentences maximum. Never write a wall of text. Use line breaks generously between each idea. Never use em dashes. Use a hyphen instead. " + (systemPrompt || ""),
+          system: "The current year is 2026. Write in short paragraphs of 2-3 sentences maximum. Never write a wall of text. Use line breaks generously between each idea. Never use em dashes or hyphens. " + (systemPrompt || ""),
           messages,
         }),
       });
