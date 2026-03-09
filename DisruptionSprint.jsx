@@ -15,7 +15,7 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         body: JSON.stringify({
           model: "claude-haiku-4-5-20251001",
           max_tokens: 2000,
-          system: "The current year is 2026. " + (systemPrompt || ""),
+          system: "The current year is 2026. Write in short paragraphs of 2-3 sentences maximum. Never write a wall of text. Use line breaks generously between each idea. " + (systemPrompt || ""),
           messages,
         }),
       });
