@@ -395,19 +395,19 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   function checkY(needed) { if (y + needed > 278) addPage(); }
 
   function sectionBand(label, bgColor = CYAN, textColor = NAVY) {
-    checkY(10);
+    checkY(9);
     doc.setFillColor(...bgColor);
-    doc.roundedRect(M, y, CW, 9, 1.5, 1.5, "F");
-    doc.setFontSize(8); doc.setFont("helvetica", "bold"); doc.setTextColor(...textColor);
-    doc.text(clean(label).toUpperCase(), M + 4, y + 5.8);
-    y += 12;
+    doc.roundedRect(M, y, CW, 8, 1.5, 1.5, "F");
+    doc.setFontSize(7.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...textColor);
+    doc.text(clean(label).toUpperCase(), M + 4, y + 5.2);
+    y += 10;
   }
 
   function drawCard(label, body, bgRgb, borderRgb, labelColorRgb) {
     const textW = CW - 12;
     const bulletIndent = 7;
     const bulletTextW = textW - bulletIndent;
-    const LABEL_LH = 5.0, BODY_LH = 5.4;
+    const LABEL_LH = 4.5, BODY_LH = 4.8;
     const cleanLabel = clean(label);
 
     // Parse body into segments: {type: "text"|"bullet", content: string}
@@ -423,45 +423,45 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     }
 
     // Pre-calculate height
-    doc.setFont("helvetica", "bold"); doc.setFontSize(9);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8.5);
     const labelLines = doc.splitTextToSize(cleanLabel, textW);
     let contentH = 0;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5);
     for (const seg of segments) {
       if (seg.type === "bullet") {
-        contentH += doc.splitTextToSize(seg.content, bulletTextW).length * BODY_LH + 1;
+        contentH += doc.splitTextToSize(seg.content, bulletTextW).length * BODY_LH + 0.8;
       } else {
-        contentH += doc.splitTextToSize(seg.content, textW).length * BODY_LH + 1;
+        contentH += doc.splitTextToSize(seg.content, textW).length * BODY_LH + 0.8;
       }
     }
-    const cardH = 4 + labelLines.length * LABEL_LH + 2 + contentH + 4;
-    checkY(cardH + 3);
+    const cardH = 3.5 + labelLines.length * LABEL_LH + 1.5 + contentH + 3;
+    checkY(cardH + 2);
 
     doc.setFillColor(...bgRgb); doc.setDrawColor(...borderRgb); doc.setLineWidth(0.4);
     doc.roundedRect(M, y, CW, cardH, 1.5, 1.5, "FD");
-    let ty = y + 6;
+    let ty = y + 5;
 
     // Label
-    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...labelColorRgb);
-    doc.text(labelLines, M + 6, ty); ty += labelLines.length * LABEL_LH + 3;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...labelColorRgb);
+    doc.text(labelLines, M + 6, ty); ty += labelLines.length * LABEL_LH + 2;
 
     // Body segments
-    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...BODY);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...BODY);
     for (const seg of segments) {
       if (seg.type === "bullet") {
         const lines = doc.splitTextToSize(seg.content, bulletTextW);
         // Draw filled circle dot
         doc.setFillColor(...BODY);
-        doc.circle(M + 6 + 1.2, ty - 1.8, 0.9, "F");
+        doc.circle(M + 6 + 1.2, ty - 1.6, 0.8, "F");
         doc.text(lines, M + 6 + bulletIndent, ty);
-        ty += lines.length * BODY_LH + 1;
+        ty += lines.length * BODY_LH + 0.8;
       } else {
         const lines = doc.splitTextToSize(seg.content, textW);
         doc.text(lines, M + 6, ty);
-        ty += lines.length * BODY_LH + 1;
+        ty += lines.length * BODY_LH + 0.8;
       }
     }
-    y += cardH + 2;
+    y += cardH + 1.5;
   }
 
   // ── COVER ────────────────────────────────────────────────────────────────
@@ -545,7 +545,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     drawCard(labels[i] || `Complaint ${i + 1}`, text, [232, 248, 251], [178, 235, 242], [0, 151, 167]);
   });
 
-  y += 4;
+  y += 2;
   sectionBand(`Attack Plan: ${clean(startupName)}`, NAVY, CYAN);
 
   function parseAttackPlan(text) {
@@ -584,7 +584,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
       CYAN_LABEL);
   });
 
-  y += 4;
+  y += 2;
   sectionBand("90-Day First Step", CYAN, NAVY);
 
   function parsePlan(text) {
