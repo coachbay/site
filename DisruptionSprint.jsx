@@ -135,7 +135,7 @@ const S = {
   input: { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 10, padding: "15px 18px", fontSize: 17, color: "#e2e8f0", boxSizing: "border-box", outline: "none", fontFamily: "'DM Sans', system-ui, sans-serif" },
   btnPrimary: { background: "#00BCD4", color: "#0f172a", border: "none", borderRadius: 10, padding: "15px 32px", fontSize: 16, fontWeight: 700, cursor: "pointer", letterSpacing: "0.02em", fontFamily: "'DM Sans', system-ui, sans-serif" },
   btnSecondary: { background: "transparent", color: "#94a3b8", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 10, padding: "13px 24px", fontSize: 15, cursor: "pointer", fontFamily: "'DM Sans', system-ui, sans-serif" },
-  btnGhost: { background: "transparent", color: "#64748b", border: "none", padding: "10px 16px", fontSize: 14, cursor: "pointer", fontFamily: "'DM Sans', system-ui, sans-serif", textDecoration: "underline" },
+  btnGhost: { background: "transparent", color: "#94a3b8", border: "none", padding: "10px 16px", fontSize: 14, cursor: "pointer", fontFamily: "'DM Sans', system-ui, sans-serif", textDecoration: "underline" },
   row: { display: "flex", gap: 10, justifyContent: "flex-end", marginTop: 24, flexWrap: "wrap", alignItems: "center" },
   aiBubble: { background: "rgba(0,188,212,0.08)", border: "1px solid rgba(0,188,212,0.25)", borderRadius: 12, padding: "18px 22px", marginBottom: 18, fontSize: 17, lineHeight: 1.65, color: "#e2e8f0" },
   userBubble: { background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "10px 14px", marginBottom: 12, fontSize: 14, color: "#64748b", lineHeight: 1.5 },
