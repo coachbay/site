@@ -729,7 +729,65 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.hint}>About 60 minutes. One person types. Everyone contributes.</p>
           <div style={{ ...S.row, justifyContent: "space-between" }} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("gate")}>← Back</button>
-            <button style={S.btnPrimary} onClick={() => go("biz_q")}>Start the Sprint →</button>
+            <button style={S.btnPrimary} onClick={() => go("overview")}>Start the Sprint →</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+  // ── Overview ─────────────────────────────────────────────────────────────────
+  if (screen === "overview") {
+    const phases = [
+      {
+        number: "1",
+        title: "Set the scene",
+        desc: "Brief us on your business. Pick the type of attacker you want to pressure-test against.",
+        time: "10 min",
+      },
+      {
+        number: "2",
+        title: "See the attack",
+        desc: "The AI builds the threat. Customer complaints you are probably already getting. A full attack plan. A threat score from the room.",
+        time: "20 min",
+      },
+      {
+        number: "3",
+        title: "Build your defence",
+        desc: "Work through the ERIC framework. An AI stress-tests your thinking. You leave with a concrete 90-day first step.",
+        time: "30 min",
+      },
+    ];
+    return (
+      <div style={S.wrap}>
+        <style>{FONTS}</style>
+        <div style={S.card}>
+          <PageHeader />
+          <ProgressBar pct={3} />
+          <h2 style={{ ...S.h2, marginBottom: 6 }}>Here is how this works.</h2>
+          <p style={{ ...S.body, marginBottom: 24 }}>Three phases. About 60 minutes. One person types, everyone contributes.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 24 }}>
+            {phases.map((phase, i) => (
+              <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "16px 18px" }}>
+                <div style={{ minWidth: 36, height: 36, borderRadius: "50%", background: "#00BCD4", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 16, color: "#0f172a", flexShrink: 0 }}>{phase.number}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+                    <span style={{ fontWeight: 700, fontSize: 16, color: "#f8fafc" }}>{phase.title}</span>
+                    <span style={{ fontSize: 12, color: "#94a3b8", fontWeight: 600 }}>{phase.time}</span>
+                  </div>
+                  <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>{phase.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ background: "rgba(0,188,212,0.08)", border: "1.5px solid rgba(0,188,212,0.3)", borderRadius: 12, padding: "14px 18px", marginBottom: 24 }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: "#00BCD4", margin: "0 0 4px" }}>What you walk away with</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>A branded PDF with your attacker's plan, your ERIC defence, and a 90-day first step with a named owner and a deadline.</p>
+          </div>
+          <div style={{ ...S.row, justifyContent: "space-between" }} className="cb-row">
+            <button style={S.btnSecondary} onClick={() => go("welcome")}>← Back</button>
+            <button style={S.btnPrimary} onClick={() => go("biz_q")}>Let's go →</button>
           </div>
         </div>
       </div>
