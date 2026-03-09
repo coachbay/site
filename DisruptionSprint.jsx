@@ -405,20 +405,62 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
 
   function drawCard(label, body, bgRgb, borderRgb, labelColorRgb) {
     const textW = CW - 12;
-    const cleanLabel = clean(label);
-    const cleanBody = clean(body);
-    const labelLines = doc.setFont("helvetica", "bold").setFontSize(9) && doc.splitTextToSize(cleanLabel, textW);
-    const bodyLines = doc.setFont("helvetica", "normal").setFontSize(9.5) && doc.splitTextToSize(cleanBody, textW);
+    const bulletIndent = 7;
+    const bulletTextW = textW - bulletIndent;
     const LABEL_LH = 5.2, BODY_LH = 5.6;
-    const cardH = 6 + labelLines.length * LABEL_LH + 3 + bodyLines.length * BODY_LH + 7;
+    const cleanLabel = clean(label);
+
+    // Parse body into segments: {type: "text"|"bullet", content: string}
+    const segments = [];
+    for (const line of body.split("\n")) {
+      const t = line.trim();
+      if (!t) continue;
+      if (t.startsWith("- ") || t.startsWith("* ")) {
+        segments.push({ type: "bullet", content: clean(t.slice(2)) });
+      } else {
+        segments.push({ type: "text", content: clean(t) });
+      }
+    }
+
+    // Pre-calculate height
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9);
+    const labelLines = doc.splitTextToSize(cleanLabel, textW);
+    let contentH = 0;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    for (const seg of segments) {
+      if (seg.type === "bullet") {
+        contentH += doc.splitTextToSize(seg.content, bulletTextW).length * BODY_LH + 1.5;
+      } else {
+        contentH += doc.splitTextToSize(seg.content, textW).length * BODY_LH + 1.5;
+      }
+    }
+    const cardH = 6 + labelLines.length * LABEL_LH + 3 + contentH + 5;
     checkY(cardH + 3);
+
     doc.setFillColor(...bgRgb); doc.setDrawColor(...borderRgb); doc.setLineWidth(0.4);
     doc.roundedRect(M, y, CW, cardH, 1.5, 1.5, "FD");
     let ty = y + 8;
+
+    // Label
     doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...labelColorRgb);
-    doc.text(labelLines, M + 6, ty, { lineHeightFactor: 1.4 }); ty += labelLines.length * LABEL_LH + 4;
+    doc.text(labelLines, M + 6, ty); ty += labelLines.length * LABEL_LH + 4;
+
+    // Body segments
     doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...BODY);
-    doc.text(bodyLines, M + 6, ty, { lineHeightFactor: 1.4 });
+    for (const seg of segments) {
+      if (seg.type === "bullet") {
+        const lines = doc.splitTextToSize(seg.content, bulletTextW);
+        // Draw filled circle dot
+        doc.setFillColor(...BODY);
+        doc.circle(M + 6 + 1.2, ty - 1.8, 0.9, "F");
+        doc.text(lines, M + 6 + bulletIndent, ty);
+        ty += lines.length * BODY_LH + 1.5;
+      } else {
+        const lines = doc.splitTextToSize(seg.content, textW);
+        doc.text(lines, M + 6, ty);
+        ty += lines.length * BODY_LH + 1.5;
+      }
+    }
     y += cardH + 4;
   }
 
