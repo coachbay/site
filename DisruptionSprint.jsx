@@ -432,7 +432,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   try {
     const rw = 18, rh = rw * (1562 / 1200);
     const robotImg = new Image(); robotImg.src = "/coachbay-robot-transparent.png";
-    doc.addImage(robotImg, "PNG", W - M - rw, 14 + 4, rw, rh);
+    doc.addImage(robotImg, "PNG", W - M - rw, 14 + 6, rw, rh);
   } catch(e) {}
 
   y = 52;
@@ -469,11 +469,11 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   doc.roundedRect(M, y, LW, 10, 2, 2, "F");
   doc.setFontSize(9.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
   doc.text(threatLabel, M + LW / 2, y + 6.8, { align: "center" });
-  y += 20;
+  y += 32;
 
   // Taglines — positioned after content, not hardcoded
-  doc.setFontSize(11); doc.setFont("helvetica", "italic"); doc.setTextColor(...MUTED);
-  doc.text("The question is not whether the disruption is coming.", M, y); y += 9;
+  doc.setFontSize(14); doc.setFont("helvetica", "italic"); doc.setTextColor(...MUTED);
+  doc.text("The question is not whether the disruption is coming.", M, y); y += 11;
   doc.setFont("helvetica", "bolditalic"); doc.setTextColor(0, 151, 167);
   doc.text("The question is whether you move before it arrives.", M, y);
 
