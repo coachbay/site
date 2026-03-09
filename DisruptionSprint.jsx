@@ -166,12 +166,15 @@ function Spinner({ small }) {
 }
 
 function renderInline(text) {
-  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((p, i) => {
+  // Also handle **bold:** pattern (bold ending with colon outside the **)
+  const normalized = text.replace(/\*\*([^*]+?):\*\*/g, "**$1:**");
+  return normalized.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((p, i) => {
     if (p.startsWith("**") && p.endsWith("**") && p.length > 4)
       return <strong key={i} style={{ color: "#f8fafc", fontWeight: 700 }}>{p.slice(2, -2)}</strong>;
     if (p.startsWith("*") && p.endsWith("*") && p.length > 2)
       return <em key={i} style={{ color: "#e2e8f0" }}>{p.slice(1, -1)}</em>;
-    return p;
+    // Strip any unmatched ** or * to avoid raw asterisks showing
+    return p.replace(/\*\*/g, "").replace(/(?<!\w)\*(?!\w)/g, "");
   });
 }
 
