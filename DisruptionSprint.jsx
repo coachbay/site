@@ -23,7 +23,7 @@ async function callClaude(messages, systemPrompt = "", retries = 3) {
         body: JSON.stringify({
           model: "claude-haiku-4-5-20251001",
           max_tokens: 2000,
-          system: "The current year is 2026. Write in short paragraphs of 2-3 sentences maximum. Never write a wall of text. Use line breaks generously between each idea. " + (systemPrompt || ""),
+          system: "The current year is 2026. Write in short paragraphs of 2-3 sentences maximum. Never write a wall of text. Use line breaks generously between each idea. Never use em dashes. Use a hyphen instead. " + (systemPrompt || ""),
           messages,
         }),
       });
@@ -1251,7 +1251,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       setEricSkeptic("loading");
       const skepticPrompt = `A leadership team just answered this ERIC defense question:\n\nQuestion: ${e.title}: ${e.q}\nTheir answer: "${answer}"\n\nYour job: challenge THEIR answer specifically. Is it vague? Does it actually answer the question? Does it hold up under pressure? What assumption are they making that could be wrong?\n\nWrite ONE pointed skeptic reaction (1-2 sentences maximum). Start with "A skeptic would say:" Be direct about the weakness in their specific answer. No softening.`;
       const reaction = await callClaude([{ role: "user", content: skepticPrompt }], "You are a board-level advisor who has watched companies produce impressive defense plans that never got implemented. Find the gap in every answer. Blunt. One to two sentences only.");
-      setEricSkeptic(reaction);
+      setEricSkeptic(cleanAI(reaction));
     }
 
     return (
