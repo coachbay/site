@@ -404,21 +404,22 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   }
 
   function drawCard(label, body, bgRgb, borderRgb, labelColorRgb) {
-    const textW = CW - 8;
+    const textW = CW - 12;
     const cleanLabel = clean(label);
     const cleanBody = clean(body);
-    const labelLines = doc.setFont("helvetica", "bold").setFontSize(8.5) && doc.splitTextToSize(cleanLabel, textW);
-    const bodyLines = doc.setFont("helvetica", "normal").setFontSize(9) && doc.splitTextToSize(cleanBody, textW);
-    const cardH = 4 + labelLines.length * 4.5 + 2 + bodyLines.length * 4.8 + 5;
-    checkY(cardH + 2);
+    const labelLines = doc.setFont("helvetica", "bold").setFontSize(9) && doc.splitTextToSize(cleanLabel, textW);
+    const bodyLines = doc.setFont("helvetica", "normal").setFontSize(9.5) && doc.splitTextToSize(cleanBody, textW);
+    const LABEL_LH = 5.2, BODY_LH = 5.6;
+    const cardH = 6 + labelLines.length * LABEL_LH + 3 + bodyLines.length * BODY_LH + 7;
+    checkY(cardH + 3);
     doc.setFillColor(...bgRgb); doc.setDrawColor(...borderRgb); doc.setLineWidth(0.4);
     doc.roundedRect(M, y, CW, cardH, 1.5, 1.5, "FD");
-    let ty = y + 6;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...labelColorRgb);
-    doc.text(labelLines, M + 4, ty); ty += labelLines.length * 4.5 + 2;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...BODY);
-    doc.text(bodyLines, M + 4, ty);
-    y += cardH + 3;
+    let ty = y + 8;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...labelColorRgb);
+    doc.text(labelLines, M + 6, ty, { lineHeightFactor: 1.4 }); ty += labelLines.length * LABEL_LH + 4;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...BODY);
+    doc.text(bodyLines, M + 6, ty, { lineHeightFactor: 1.4 });
+    y += cardH + 4;
   }
 
   // ── COVER ────────────────────────────────────────────────────────────────
