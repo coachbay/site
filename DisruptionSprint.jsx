@@ -1205,7 +1205,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.summaryBox, marginBottom: 20 }}><MarkdownBlock text={complaints} /></div>
           <div style={{ fontSize: 12, fontWeight: 700, color: archetype.color, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Attack plan: {startupName}</div>
           <div style={{ ...S.summaryBox, marginBottom: 22 }}><MarkdownBlock text={attackPlan} /></div>
-          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => go("defend_transition")}>Back to Defense →</button></div>
+          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => go("defend_intro")}>Back to Defense →</button></div>
         </div>
       </div>
     );
@@ -1231,6 +1231,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             ))}
           </div>
           <div style={S.row} className="cb-row">
+            <button style={S.btnGhost} onClick={() => go("session_review")}>Review what we know so far</button>
             <button style={S.btnPrimary} onClick={() => { setEricIndex(0); setEricInput(""); setEricSkeptic(null); go("eric_q"); }}>Start ERIC →</button>
           </div>
         </div>
