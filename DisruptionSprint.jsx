@@ -763,7 +763,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               Enter →
             </button>
           </div>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#4a5568", marginTop: 20, marginBottom: 0 }}>
+          <p style={{ textAlign: "center", fontSize: 15, color: "#94a3b8", marginTop: 20, marginBottom: 0 }}>
             No code? <a href="mailto:coach@coachbay.ai" style={{ color: "#00BCD4" }}>Get in touch</a>
           </p>
         </div>
