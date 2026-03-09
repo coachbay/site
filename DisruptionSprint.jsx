@@ -992,9 +992,11 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: The Attack</div>
           <h2 style={S.h2}>Here is how <span style={{ color: archetype.color }}>{startupName}</span> beats you.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={attackPlan} /></div>
+          <p style={{ fontSize: 13, color: "#64748b", fontStyle: "italic", margin: "0 0 16px", lineHeight: 1.6 }}>This plan is based on what you have shared. Your team may know things this attacker does not.</p>
           <div ref={discussRef2} style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}>
-            <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 4px" }}>Discuss with your team before moving on.</p>
-            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
+            <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Discuss with your team before moving on.</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong — and does that actually make you safer, or are you just hoping it is wrong?</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
