@@ -137,7 +137,7 @@ const S = {
   letterBadge: { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 10, background: "rgba(0,188,212,0.12)", border: "1px solid rgba(0,188,212,0.3)", fontSize: 18, fontWeight: 700, color: "#00BCD4", marginBottom: 14, fontFamily: "'DM Serif Display', Georgia, serif" },
   divider: { borderTop: "1px solid rgba(255,255,255,0.08)", margin: "20px 0" },
   summaryBox: { background: "rgba(0,188,212,0.06)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 12, padding: "20px 24px", marginBottom: 16, fontSize: 15, lineHeight: 1.7, color: "#cbd5e1" },
-  discussionBox: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "18px 22px", marginBottom: 22 },
+  discussionBox: { background: "rgba(255,255,255,0.07)", border: "2px solid rgba(255,255,255,0.2)", borderRadius: 12, padding: "20px 24px", marginBottom: 22 },
   skepticBox: { background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 12, padding: "16px 20px", marginTop: 14 },
   sliderLabel: { display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "2px 8px", fontSize: 15, color: "#94a3b8", marginBottom: 7 },
   sliderValue: { fontSize: 19, fontWeight: 700, color: "#00BCD4" },
@@ -953,7 +953,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.summaryBox}><MarkdownBlock text={complaints} /></div>
           <div id="discuss-box-1" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
-            <p style={{ fontSize: 15, color: "#f8fafc", margin: "0 0 4px", fontWeight: 600 }}>Discuss before moving on.</p>
+            <p style={{ fontSize: 16, color: "#ffffff", margin: "0 0 6px", fontWeight: 700, letterSpacing: "0.01em" }}>Discuss before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row} className="cb-row">
@@ -993,7 +993,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={{ fontSize: 13, color: "#64748b", fontStyle: "italic", margin: "0 0 16px", lineHeight: 1.6 }}>This plan is based on what you have shared. Your team may know things this attacker does not.</p>
           <div id="discuss-box-2" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
-            <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Discuss with your team before moving on.</p>
+            <p style={{ fontSize: 16, color: "#ffffff", fontWeight: 700, margin: "0 0 6px", letterSpacing: "0.01em" }}>Discuss with your team before moving on.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong — and does that actually make you safer, or are you just hoping it is wrong?</p>
           </div>
