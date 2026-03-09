@@ -354,33 +354,27 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   const LABEL_BG = [241, 245, 249];
   const threatBg = threatLevel >= 4 ? [127, 29, 29] : threatLevel >= 3 ? [146, 64, 14] : [22, 101, 52];
 
-  let y = 0;
-  let pageNum = 1;
+  let y = 0, pageNum = 1;
 
-  // Strip all markdown syntax from text for clean PDF output
-  function cleanText(text) {
+  // Strip all markdown and special chars for clean PDF output
+  function clean(text) {
     return (text || "")
       .replace(/#{1,4}\s+/g, "")
       .replace(/\*\*([^*]+)\*\*/g, "$1")
       .replace(/\*([^*]+)\*/g, "$1")
       .replace(/^---+$/gm, "")
+      .replace(/ — /g, " - ").replace(/—/g, " - ")
+      .replace(/ – /g, " - ").replace(/–/g, " - ")
       .replace(/→/g, "->")
-      .replace(/—/g, "-")
-      .replace(/[""]/g, "\"")
-      .replace(/['']/g, "\'")
+      .replace(/[""]/g, '"')
+      .replace(/['']/g, "'")
       .replace(/…/g, "...")
-      .replace(/[^\x00-\x7F]/g, (c) => {
-        const map = { "á":"a","à":"a","â":"a","ä":"a","ã":"a","å":"a","æ":"ae","ç":"c","é":"e","è":"e","ê":"e","ë":"e","í":"i","ì":"i","î":"i","ï":"i","ñ":"n","ó":"o","ò":"o","ô":"o","ö":"o","õ":"o","ø":"o","ú":"u","ù":"u","û":"u","ü":"u","ý":"y","ÿ":"y","ß":"ss" };
-        return map[c.toLowerCase()] || "";
-      })
       .trim();
   }
 
   function addPage() {
-    doc.addPage();
-    pageNum++;
-    doc.setFillColor(...CYAN);
-    doc.rect(0, 0, W, 10, "F");
+    doc.addPage(); pageNum++;
+    doc.setFillColor(...CYAN); doc.rect(0, 0, W, 10, "F");
     doc.setFontSize(7); doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
     doc.text("COACHBAY.AI  -  DISRUPTION SPRINT", M, 6.5);
     doc.text(`PAGE ${pageNum}  -  ${today.toUpperCase()}`, W - M, 6.5, { align: "right" });
@@ -397,14 +391,14 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     doc.setFillColor(...bgColor);
     doc.roundedRect(M, y, CW, 9, 1.5, 1.5, "F");
     doc.setFontSize(8); doc.setFont("helvetica", "bold"); doc.setTextColor(...textColor);
-    doc.text(cleanText(label).toUpperCase(), M + 4, y + 5.8);
+    doc.text(clean(label).toUpperCase(), M + 4, y + 5.8);
     y += 12;
   }
 
   function drawCard(label, body, bgRgb, borderRgb, labelColorRgb) {
     const textW = CW - 8;
-    const cleanLabel = cleanText(label);
-    const cleanBody = cleanText(body);
+    const cleanLabel = clean(label);
+    const cleanBody = clean(body);
     const labelLines = doc.setFont("helvetica", "bold").setFontSize(8.5) && doc.splitTextToSize(cleanLabel, textW);
     const bodyLines = doc.setFont("helvetica", "normal").setFontSize(9) && doc.splitTextToSize(cleanBody, textW);
     const cardH = 4 + labelLines.length * 4.5 + 2 + bodyLines.length * 4.8 + 5;
@@ -419,43 +413,29 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     y += cardH + 3;
   }
 
-  // Draw robot icon with shapes (cyan circle body, eyes, antenna)
-  function drawRobot(cx, cy, size) {
-    const s = size / 32;
-    // Antenna
-    doc.setDrawColor(...CYAN); doc.setLineWidth(0.8 * s);
-    doc.line(cx, cy - 14 * s, cx, cy - 9 * s);
-    doc.setFillColor(...CYAN); doc.circle(cx, cy - 15 * s, 2 * s, "F");
-    // Body circle
-    doc.setFillColor(...CYAN); doc.circle(cx, cy, 11 * s, "F");
-    // Eyes
-    doc.setFillColor(255, 255, 255); doc.circle(cx - 3.5 * s, cy - 1 * s, 2.8 * s, "F");
-    doc.circle(cx + 3.5 * s, cy - 1 * s, 2.8 * s, "F");
-    // Pupils
-    doc.setFillColor(...NAVY); doc.circle(cx - 3.5 * s, cy - 1 * s, 1.2 * s, "F");
-    doc.circle(cx + 3.5 * s, cy - 1 * s, 1.2 * s, "F");
-    // Mouth
-    doc.setDrawColor(...NAVY); doc.setLineWidth(0.6 * s);
-    doc.line(cx - 3 * s, cy + 4 * s, cx + 3 * s, cy + 4 * s);
-  }
-
-  // ── COVER ─────────────────────────────────────────────────────────────────
+  // ── COVER ────────────────────────────────────────────────────────────────
   doc.setFillColor(255, 255, 255); doc.rect(0, 0, W, 297, "F");
   doc.setFillColor(...CYAN); doc.rect(0, 0, W, 14, "F");
   doc.setFontSize(7.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
   doc.text("COACHBAY.AI  -  DISRUPTION SPRINT", M, 8.5);
   doc.text(today.toUpperCase(), W - M, 8.5, { align: "right" });
 
-  // Robot icon on cover
-  drawRobot(W - M - 12, 42, 28);
+  // Robot PNG — top right, below header band, correct aspect ratio (1200x1562)
+  try {
+    const rw = 18, rh = rw * (1562 / 1200);
+    const robotImg = new Image(); robotImg.src = "/coachbay-robot-transparent.png";
+    doc.addImage(robotImg, "PNG", W - M - rw, 14 + 4, rw, rh);
+  } catch(e) {}
 
-  y = 40;
+  y = 32;
   doc.setFont("helvetica", "bold"); doc.setFontSize(26); doc.setTextColor(...NAVY);
   doc.text("Disruption Sprint Summary", M, y); y += 10;
   doc.setFontSize(17); doc.setTextColor(...CYAN);
-  doc.text(cleanText(startupName), M, y); y += 8;
+  doc.text(clean(startupName), M, y); y += 8;
   doc.setDrawColor(...DIVIDER); doc.setLineWidth(0.6); doc.line(M, y, W - M, y); y += 8;
 
+  // Meta rows — label box width matches threat badge (42mm)
+  const LW = 42;
   const metaRows = [
     ["ATTACKER TYPE", archetype.title],
     ["INDUSTRY", industry],
@@ -464,41 +444,41 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     ["DATE", today],
   ];
   for (const [label, val] of metaRows) {
-    const LW = 42;
     doc.setFillColor(...LABEL_BG); doc.setDrawColor(...DIVIDER); doc.setLineWidth(0.3);
     doc.roundedRect(M, y - 1, LW, 7.5, 1, 1, "FD");
     doc.setFontSize(7); doc.setFont("helvetica", "bold"); doc.setTextColor(...MUTED);
     doc.text(label, M + 2.5, y + 4.5);
     doc.setFontSize(9); doc.setFont("helvetica", "normal"); doc.setTextColor(...NAVY);
-    const valLines = doc.splitTextToSize(cleanText(val), CW - LW - 4);
+    const valLines = doc.splitTextToSize(clean(val), CW - LW - 4);
     doc.text(valLines[0], M + LW + 4, y + 4.5);
     y += 9;
   }
-
   y += 6;
-  doc.setFillColor(...threatBg);
-  doc.roundedRect(M, y, 54, 10, 2, 2, "F");
-  doc.setFontSize(9.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
-  doc.text(threatLabel, M + 27, y + 6.8, { align: "center" });
 
+  // Threat badge — same width as label boxes (42mm), left-aligned
+  doc.setFillColor(...threatBg);
+  doc.roundedRect(M, y, LW, 10, 2, 2, "F");
+  doc.setFontSize(9.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
+  doc.text(threatLabel, M + LW / 2, y + 6.8, { align: "center" });
+
+  // Taglines near bottom
   doc.setFontSize(11); doc.setFont("helvetica", "italic"); doc.setTextColor(...MUTED);
   doc.text("The question is not whether the disruption is coming.", M, 252);
   doc.setFont("helvetica", "bolditalic"); doc.setTextColor(0, 151, 167);
   doc.text("The question is whether you move before it arrives.", M, 261);
-
   doc.setFontSize(7); doc.setFont("helvetica", "normal"); doc.setTextColor(...MUTED);
   doc.setDrawColor(...DIVIDER); doc.setLineWidth(0.4); doc.line(M, 277, W - M, 277);
   doc.text("Generated by CoachBay.ai  -  coachbay.ai", M, 283);
   doc.text(today, W - M, 283, { align: "right" });
 
-  // ── PAGE 2: Complaints + Attack Plan ──────────────────────────────────────
+  // ── PAGE 2: Complaints + Attack Plan ─────────────────────────────────────
   addPage();
   sectionBand("What Your Customers Are Already Saying", CYAN, NAVY);
 
   function parseComplaints(text) {
     let parts = text.split(/\*\*Complaint\s*\d+[^*]*\*\*:?/i).map(s => s.trim()).filter(Boolean);
     if (parts.length >= 2) return parts.slice(0, 3);
-    parts = text.split(/\n(?=\d+[\.\)])/m).map(s => s.replace(/^\d+[\.\)]\s*/, "").trim()).filter(Boolean);
+    parts = text.split(/\n(?=\d+[.\)])/m).map(s => s.replace(/^\d+[\.\)]\s*/, "").trim()).filter(Boolean);
     if (parts.length >= 2) return parts.slice(0, 3);
     parts = text.split(/\n\s*\n/).map(s => s.trim()).filter(s => s.length > 20);
     if (parts.length >= 2) return parts.slice(0, 3);
@@ -511,42 +491,26 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   });
 
   y += 4;
-  sectionBand(`Attack Plan: ${startupName}`, NAVY, CYAN);
+  sectionBand(`Attack Plan: ${clean(startupName)}`, NAVY, CYAN);
 
   function parseAttackPlan(text) {
-    // Normalise: strip --- dividers, convert ## headers to section markers
-    const normalised = text
-      .replace(/^---+$/gm, "")
-      .replace(/^#{1,4}\s+(.+)$/gm, "HEADER::$1")
-      .split("\n").filter(l => l.trim());
-
-    const sections = [];
-    let label = "", body = "";
-
+    const normalised = text.replace(/^---+$/gm, "").replace(/^#{1,4}\s+(.+)$/gm, "HEADER::$1").split("\n").filter(l => l.trim());
+    const sections = []; let label = "", body = "";
     for (const line of normalised) {
       if (line.startsWith("HEADER::")) {
         if (label) sections.push({ label, body: body.trim() });
-        label = line.replace("HEADER::", "").trim();
-        body = "";
+        label = line.replace("HEADER::", "").trim(); body = "";
       } else if (/^\d+[\.\)]/.test(line) || (line.startsWith("**") && (line.endsWith("**") || line.includes(":**")))) {
         if (label) sections.push({ label, body: body.trim() });
-        label = line.replace(/\*\*/g, "").replace(/^\d+[\.\)]\s*/, "").trim();
-        body = "";
+        label = line.replace(/\*\*/g, "").replace(/^\d+[\.\)]\s*/, "").trim(); body = "";
       } else if (line.startsWith("- ") || line.startsWith("* ")) {
         body += "  - " + line.slice(2) + "\n";
-      } else {
-        body += " " + line;
-      }
+      } else { body += " " + line; }
     }
     if (label) sections.push({ label, body: body.trim() });
-
-    if (sections.length === 0) {
-      return text.split(/\n\s*\n/).filter(s => s.trim().length > 10)
-        .map((s, i) => ({ label: `Section ${i + 1}`, body: s.trim() }));
-    }
+    if (sections.length === 0) return text.split(/\n\s*\n/).filter(s => s.trim().length > 10).map((s, i) => ({ label: `Section ${i + 1}`, body: s.trim() }));
     return sections;
   }
-
   parseAttackPlan(attackPlan).forEach(({ label, body }) => {
     drawCard(label, body, [241, 245, 249], [226, 232, 240], [0, 151, 167]);
   });
@@ -570,42 +534,26 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   sectionBand("90-Day First Step", [22, 101, 52], WHITE);
 
   function parsePlan(text) {
-    const normalised = text
-      .replace(/^---+$/gm, "")
-      .replace(/^#{1,4}\s+(.+)$/gm, "HEADER::$1")
-      .split("\n").filter(l => l.trim());
-
-    const sections = [];
-    let label = "", body = "";
-
+    const normalised = text.replace(/^---+$/gm, "").replace(/^#{1,4}\s+(.+)$/gm, "HEADER::$1").split("\n").filter(l => l.trim());
+    const sections = []; let label = "", body = "";
     for (const line of normalised) {
       if (line.startsWith("HEADER::")) {
         if (label) sections.push({ label, body: body.trim() });
-        label = line.replace("HEADER::", "").trim();
-        body = "";
+        label = line.replace("HEADER::", "").trim(); body = "";
       } else if (line.startsWith("**") && (line.endsWith("**") || line.includes(":**"))) {
         if (label) sections.push({ label, body: body.trim() });
-        label = line.replace(/\*\*/g, "").replace(/:$/, "").trim();
-        body = "";
+        label = line.replace(/\*\*/g, "").replace(/:$/, "").trim(); body = "";
       } else if (/^\d+[\.\)]/.test(line)) {
         if (label) sections.push({ label, body: body.trim() });
-        label = line.replace(/^\d+[\.\)]\s*/, "").trim();
-        body = "";
+        label = line.replace(/^\d+[\.\)]\s*/, "").trim(); body = "";
       } else if (line.startsWith("- ") || line.startsWith("* ")) {
         body += "  - " + line.slice(2) + "\n";
-      } else {
-        body += " " + line.replace(/\*\*/g, "");
-      }
+      } else { body += " " + line.replace(/\*\*/g, ""); }
     }
     if (label) sections.push({ label, body: body.trim() });
-
-    if (sections.length === 0) {
-      return text.split(/\n\s*\n/).filter(s => s.trim().length > 10)
-        .map((s, i) => ({ label: `Step ${i + 1}`, body: s.trim() }));
-    }
+    if (sections.length === 0) return text.split(/\n\s*\n/).filter(s => s.trim().length > 10).map((s, i) => ({ label: `Step ${i + 1}`, body: s.trim() }));
     return sections;
   }
-
   parsePlan(actionPlan).forEach(({ label, body }) => {
     drawCard(label, body, [240, 253, 244], [187, 247, 208], [22, 101, 52]);
   });
@@ -614,9 +562,9 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
   doc.setFillColor(240, 253, 244); doc.setDrawColor(187, 247, 208); doc.setLineWidth(0.6);
   doc.roundedRect(M, y, CW, 10, 1.5, 1.5, "FD");
   doc.setFontSize(8.5); doc.setFont("helvetica", "bold"); doc.setTextColor(22, 101, 52);
-  doc.text(`Owner: ${cleanText(planOwner)}   -   Next check-in: 30 days from ${today}`, M + 4, y + 6.5);
+  doc.text(`Owner: ${clean(planOwner)}   -   Next check-in: 30 days from ${today}`, M + 4, y + 6.5);
 
-  const filename = `disruption-sprint-${cleanText(startupName).toLowerCase().replace(/\s+/g, "-")}.pdf`;
+  const filename = `disruption-sprint-${clean(startupName).toLowerCase().replace(/\s+/g, "-")}.pdf`;
   doc.save(filename);
 }
 
