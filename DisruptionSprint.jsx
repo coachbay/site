@@ -435,7 +435,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     doc.addImage(robotImg, "PNG", W - M - rw, 14 + 4, rw, rh);
   } catch(e) {}
 
-  y = 32;
+  y = 52;
   doc.setFont("helvetica", "bold"); doc.setFontSize(26); doc.setTextColor(...NAVY);
   doc.text("Disruption Sprint Summary", M, y); y += 10;
   doc.setFontSize(17); doc.setTextColor(...CYAN);
