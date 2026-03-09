@@ -239,7 +239,8 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
     const final = [...newHistory, { role: "ai", text: msg }];
     setHistory(final);
     setLoading(false);
-    if (newCount >= maxQuestions) setDone(true);
+    const isClosing = /thank you[.,]?\s*i have what i need/i.test(msg) || /that('s| is) (all|everything) i need/i.test(msg);
+    if (newCount >= maxQuestions || isClosing) setDone(true);
   }
 
   const lastAI = history.filter(h => h.role === "ai").slice(-1)[0];
