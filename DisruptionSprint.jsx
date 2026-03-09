@@ -407,7 +407,7 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     const textW = CW - 12;
     const bulletIndent = 7;
     const bulletTextW = textW - bulletIndent;
-    const LABEL_LH = 5.2, BODY_LH = 5.6;
+    const LABEL_LH = 5.4, BODY_LH = 6.2;
     const cleanLabel = clean(label);
 
     // Parse body into segments: {type: "text"|"bullet", content: string}
@@ -572,21 +572,20 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
 
   // ── PAGE 3: ERIC + 90-Day Plan ────────────────────────────────────────────
   addPage();
-  sectionBand("ERIC Defense Framework", [30, 64, 175], WHITE);
+  sectionBand("ERIC Defense Framework", NAVY, CYAN);
 
-  const ericPalettes = [
-    { bg: [239, 246, 255], border: [191, 219, 254], label: [30, 64, 175] },
-    { bg: [232, 248, 251], border: [178, 235, 242], label: [0, 151, 167] },
-    { bg: [240, 253, 244], border: [187, 247, 208], label: [22, 101, 52] },
-    { bg: [255, 251, 235], border: [253, 230, 138], label: [146, 64, 14] },
-  ];
+  const GREY_BG = [248, 250, 252], GREY_BORDER = [226, 232, 240];
+  const CYAN_BG = [224, 247, 250], CYAN_BORDER = [128, 222, 234], CYAN_LABEL = [0, 151, 167];
   ERIC.forEach((e, i) => {
-    const p = ericPalettes[i];
-    drawCard(`${e.letter} - ${e.title}`, ericAnswers[e.id] || "(not completed)", p.bg, p.border, p.label);
+    const isEven = i % 2 === 0;
+    drawCard(`${e.letter} - ${e.title}`, ericAnswers[e.id] || "(not completed)",
+      isEven ? GREY_BG : CYAN_BG,
+      isEven ? GREY_BORDER : CYAN_BORDER,
+      CYAN_LABEL);
   });
 
   y += 4;
-  sectionBand("90-Day First Step", [22, 101, 52], WHITE);
+  sectionBand("90-Day First Step", CYAN, NAVY);
 
   function parsePlan(text) {
     const normalised = text.replace(/^---+$/gm, "").replace(/^#{1,4}\s+(.+)$/gm, "HEADER::$1").split("\n").filter(l => l.trim());
@@ -609,15 +608,19 @@ function generatePDF({ startupName, archetype, industry, likelihood, impact, com
     if (sections.length === 0) return text.split(/\n\s*\n/).filter(s => s.trim().length > 10).map((s, i) => ({ label: `Step ${i + 1}`, body: s.trim() }));
     return sections;
   }
-  parsePlan(actionPlan).forEach(({ label, body }) => {
-    drawCard(label, body, [240, 253, 244], [187, 247, 208], [22, 101, 52]);
+  parsePlan(actionPlan).forEach(({ label, body }, i) => {
+    const isEven = i % 2 === 0;
+    drawCard(label, body,
+      isEven ? GREY_BG : CYAN_BG,
+      isEven ? GREY_BORDER : CYAN_BORDER,
+      CYAN_LABEL);
   });
 
   checkY(12);
-  doc.setFillColor(240, 253, 244); doc.setDrawColor(187, 247, 208); doc.setLineWidth(0.6);
+  doc.setFillColor(...GREY_BG); doc.setDrawColor(...GREY_BORDER); doc.setLineWidth(0.6);
   doc.roundedRect(M, y, CW, 10, 1.5, 1.5, "FD");
-  doc.setFontSize(8.5); doc.setFont("helvetica", "bold"); doc.setTextColor(22, 101, 52);
-  doc.text(`Owner: ${clean(planOwner)}   -   Next check-in: 30 days from ${today}`, M + 4, y + 6.5);
+  doc.setFontSize(8.5); doc.setFont("helvetica", "bold"); doc.setTextColor(...CYAN_LABEL);
+  doc.text(`Owner: ${clean(planOwner)}   -   Next check-in: 30 days from ${today}`, M + 6, y + 6.5);
 
   const filename = `disruption-sprint-${clean(startupName).toLowerCase().replace(/\s+/g, "-")}.pdf`;
   doc.save(filename);
