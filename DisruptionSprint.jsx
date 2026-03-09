@@ -293,7 +293,10 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
           </>
         )}
         {done && !loading && (
-          <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
+          <>
+            <p style={{ fontSize: 14, color: "#64748b", fontStyle: "italic", textAlign: "center", margin: "0 0 16px" }}>The attacker has enough to build the plan.</p>
+            <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(history)}>{completeLabel} →</button></div>
+          </>
         )}
         <div ref={bottomRef} />
       </div>
@@ -1113,6 +1116,10 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
             <p style={{ fontSize: 15, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong? And does that actually make you safer, or are you just hoping it is wrong?</p>
           </div>
+          <div style={{ ...S.discussionBox, marginBottom: 24 }}>
+            <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 8px", lineHeight: 1.6 }}>One more question before you build the defense:</p>
+            <p style={{ fontSize: 17, color: "#f8fafc", margin: 0, fontWeight: 600, lineHeight: 1.5 }}>What is the one thing about this attack you could realistically act on in the next 90 days?</p>
+          </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
           </div>
@@ -1150,7 +1157,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <span style={{ color: "#94a3b8", fontSize: 13, marginLeft: "auto" }}>Likelihood {likelihood} · Impact {impact}</span>
           </div>
           <div style={S.row} className="cb-row">
-            <button style={S.btnPrimary} onClick={() => go("defend_transition")}>Build the Defense →</button>
+            <button style={S.btnPrimary} onClick={() => go("defend_intro")}>Build the Defense →</button>
           </div>
         </div>
       </div>
