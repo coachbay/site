@@ -293,7 +293,19 @@ function AIConversation({ systemPrompt, initialUserMessage, onComplete, maxQuest
 // ─── AI Generating component ──────────────────────────────────────────────────
 function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabel, progressPct, robotIcon, archetypeColor }) {
   const [result, setResult] = useState(null);
-  useEffect(() => { callClaude([{ role: "user", content: prompt }], systemPrompt).then(setResult); }, []);
+  const [failed, setFailed] = useState(false);
+
+  function run() {
+    setFailed(false);
+    setResult(null);
+    callClaude([{ role: "user", content: prompt }], systemPrompt).then(msg => {
+      if (msg.startsWith("Connection error")) { setFailed(true); }
+      else { setResult(msg); }
+    });
+  }
+
+  useEffect(() => { run(); }, []);
+
   return (
     <div style={S.wrap}>
       <style>{FONTS}</style>
@@ -301,12 +313,21 @@ function AIGenerating({ prompt, systemPrompt, onComplete, loadingText, phaseLabe
         <PageHeader archetypeColor={archetypeColor} />
         <ProgressBar pct={progressPct || 60} />
         {phaseLabel && <div style={S.phase}>{phaseLabel}</div>}
-        {!result ? (
+        {!result && !failed && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18, padding: "36px 0" }}>
             <Spinner />
             <p style={{ ...S.body, textAlign: "center", marginBottom: 0 }}>{loadingText}</p>
           </div>
-        ) : (
+        )}
+        {failed && (
+          <div style={{ marginBottom: 18 }}>
+            <div style={S.errorBox}>Connection error. Check your signal and try again.</div>
+            <div style={{ ...S.row, marginTop: 12 }} className="cb-row">
+              <button style={S.btnPrimary} onClick={run}>Try Again</button>
+            </div>
+          </div>
+        )}
+        {result && (
           <>
             <div style={S.summaryBox}><MarkdownBlock text={result} /></div>
             <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => onComplete(result)}>Continue →</button></div>
