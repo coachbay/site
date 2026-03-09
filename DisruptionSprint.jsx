@@ -994,8 +994,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div id="discuss-box-2" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 16, color: "#ffffff", fontWeight: 700, margin: "0 0 6px", letterSpacing: "0.01em" }}>Discuss with your team before moving on.</p>
-            <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
-            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong — and does that actually make you safer, or are you just hoping it is wrong?</p>
+            <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 6px", lineHeight: 1.6 }}>What surprised you most? What felt most uncomfortably accurate?</p>
+            <p style={{ fontSize: 15, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>What did it get wrong? And does that actually make you safer, or are you just hoping it is wrong?</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("score_threat")}>Score the Threat →</button>
