@@ -6,6 +6,7 @@ import DiagnosticEngine from './DiagnosticEngine'
 import DisruptionSprint from './DisruptionSprint'
 import SwireDashboard from './SwireDashboard'
 import SwirePropertiesDashboard from './SwirePropertiesDashboard'
+import FinnairSymDashboard from './FinnairSymDashboard'
 import ClientAssessment from './ClientAssessment'
 import ResultsDashboard from './ResultsDashboard'
 import ClientResultsDashboard from './ClientResultsDashboard'
@@ -57,6 +58,15 @@ export default function App() {
     return (
       <>
         <SwirePropertiesDashboard />
+        <Analytics />
+      </>
+    );
+  }
+
+  if (path === "/finnair-sym-dashboard") {
+    return (
+      <>
+        <FinnairSymDashboard />
         <Analytics />
       </>
     );
