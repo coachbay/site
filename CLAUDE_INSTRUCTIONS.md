@@ -108,6 +108,38 @@ In React components, use `PDFDownloadLink` from `@react-pdf/renderer` to trigger
 
 ---
 
+## Section Icons (DiagnosticEngine.jsx)
+
+All three diagnostics use flat cyan SVG line icons from Lucide (or custom). Icons are defined in the `SECTION_ICONS` map at the top of `DiagnosticEngine.jsx`. The key in `diagnosticData.js` maps to an icon here.
+
+| Key | Icon | Used for |
+|---|---|---|
+| `target` | Target/bullseye | Strategic Clarity / Integration |
+| `leader` | Compass | Leadership Readiness |
+| `chat` | Chat bubble | Employee Sentiment |
+| `cycle` | Cycle arrows | Culture of Change |
+| `tools` | Wrench (Lucide) | Practical Foundations |
+| `brain` | Layers (Lucide) | Depth |
+| `scissors` | Scissors | Deletion |
+| `scales` | Scales | Judgment |
+| `handshake` | Users/two people (Lucide) | Enabling / Influence |
+| `leaf` | Leaf (Lucide) | Environment |
+
+**Rules:**
+- Always use flat cyan stroke icons, `stroke="#00BCD4"`, no fill
+- Use Lucide icon paths where possible — they are designed to render cleanly at small sizes
+- Never use emoji as section icons
+
+---
+
+## Disruption Sprint
+
+The Disruption Sprint lives at `/disruption-sprint` (access-code gated). It is **not shown on the landing page** — it was removed to keep the landing page clean and consistent. Share the direct URL with clients individually.
+
+The feature code lives in `DisruptionSprint.jsx`. The PDF uses `DisruptionSprintPDF.jsx` (react-pdf, canonical header template).
+
+---
+
 ## Key Files to Know
 
 | File | What It Does |
