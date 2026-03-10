@@ -218,48 +218,44 @@ export default function DiagnosticEngine({
     };
 
     // ========== HEADER ==========
-    const headerH = clientMode ? 56 : 48;
-    doc.setFillColor(26, 26, 46); // DARK
-    doc.rect(0, 0, pageW, headerH, "F");
-
-    doc.setFontSize(24);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255);
-    doc.text(title, margin, 22);
-
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(148, 163, 184);
-    doc.text(clientMode ? `${clientMode.clientCompany} | CoachBay.ai` : "CoachBay.ai", margin, 32);
-
-    doc.setFontSize(10);
-    doc.setTextColor(0, 188, 212); // CYAN
-    doc.text("coach@coachbay.ai", margin, 40);
-
-    if (clientMode) {
-      doc.setFontSize(9);
-      doc.setTextColor(148, 163, 184);
-      doc.text(`Completed by: ${clientMode.respondentName} (${clientMode.respondentEmail})`, margin, 50);
-    }
-
-    // Robot icon (top right of header)
-    const rx = pageW - margin - 10;
-    const ry = 26;
-    doc.setFillColor(0, 188, 212);
-    doc.circle(rx, ry, 8, "F");
+    const headerH = 18;
+    // White background with bottom border
     doc.setFillColor(255, 255, 255);
-    doc.circle(rx - 3.2, ry - 1.5, 1.9, "F");
-    doc.circle(rx + 3.2, ry - 1.5, 1.9, "F");
-    doc.setFillColor(26, 26, 46);
-    doc.circle(rx - 2.7, ry - 1.35, 1.25, "F");
-    doc.circle(rx + 3.7, ry - 1.35, 1.25, "F");
-    doc.setDrawColor(0, 188, 212);
-    doc.setLineWidth(0.8);
-    doc.line(rx, ry - 8, rx, ry - 12);
-    doc.setFillColor(0, 188, 212);
-    doc.circle(rx, ry - 13, 1.4, "F");
+    doc.rect(0, 0, pageW, headerH, "F");
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.4);
+    doc.line(0, headerH, pageW, headerH);
 
-    y = clientMode ? 68 : 60;
+    // Robot PNG
+    doc.addImage("/coachbay-robot-transparent.png", "PNG", margin, 2, 7.5, 9.5);
+
+    // CoachBay (navy)
+    doc.setFontSize(13);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(26, 26, 46);
+    doc.text("CoachBay", margin + 9.5, 10.5);
+
+    // .ai (cyan)
+    doc.setTextColor(0, 188, 212);
+    const cbWidth = doc.getTextWidth("CoachBay");
+    doc.text(".ai", margin + 9.5 + cbWidth, 10.5);
+
+    // Doc label (right aligned, muted)
+    doc.setFontSize(7);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(100, 116, 139);
+    doc.text(title.toUpperCase(), pageW - margin, 10.5, { align: "right" });
+
+    y = headerH + (clientMode ? 14 : 10);
+
+    // Respondent info below header if client mode
+    if (clientMode) {
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(100, 116, 139);
+      doc.text(`${clientMode.clientCompany}  ·  ${clientMode.respondentName} (${clientMode.respondentEmail})`, margin, y);
+      y += 8;
+    }
 
     // ========== OVERALL SCORE ==========
     // Score circle (simulated)

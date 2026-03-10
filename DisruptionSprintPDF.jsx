@@ -66,14 +66,14 @@ const S = StyleSheet.create({
     gap: 6,
   },
   headerLogoText: {
-    fontFamily: "DM Serif Display",
-    fontWeight: 400,
+    fontFamily: "DM Sans",
+    fontWeight: 700,
     fontSize: 18,
     color: C.navy,
   },
   headerLogoAccent: {
-    fontFamily: "DM Serif Display",
-    fontWeight: 400,
+    fontFamily: "DM Sans",
+    fontWeight: 700,
     fontSize: 18,
     color: C.cyan,
   },

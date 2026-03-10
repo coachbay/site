@@ -102,7 +102,7 @@ export default function LandingPage({ onNavigate }) {
         <div style={{ maxWidth: 1060, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <RobotIcon size={28} />
-            <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b" }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 20, color: "#1e293b" }}>
               CoachBay<span style={{ color: CYAN }}>.ai</span>
             </span>
           </div>
