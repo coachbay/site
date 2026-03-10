@@ -20,10 +20,9 @@ const SECTION_ICONS = {
     </svg>
   ),
   leader: (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="11" cy="7" r="3.5" stroke="#00BCD4" strokeWidth="1.6"/>
-      <path d="M4 19c0-3.866 3.134-7 7-7h0c3.866 0 7 3.134 7 7" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M15 3l1.5 1.5L19 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="#00BCD4" strokeWidth="2"/>
+      <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   chat: (
@@ -42,19 +41,15 @@ const SECTION_ICONS = {
     </svg>
   ),
   tools: (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14.5 3a4 4 0 00-4 5l-7 7a1.5 1.5 0 002.1 2.1l7-7a4 4 0 004.5-5.2l-2.3 2.3-1.4-1.4 2.3-2.3A4 4 0 0014.5 3z" stroke="#00BCD4" strokeWidth="1.6" strokeLinejoin="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   brain: (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 3C8 3 6 5 6 7.5c0 1-.3 1.8-.8 2.5C4.5 11 4 12 4 13.5A4.5 4.5 0 008.5 18H11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M11 3c3 0 5 2 5 4.5 0 1 .3 1.8.8 2.5.7 1 1.2 2 1.2 3.5A4.5 4.5 0 0113.5 18H11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
-      <line x1="11" y1="3" x2="11" y2="18" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M8 8.5c1 .5 2 .5 3 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
-      <path d="M11 8.5c1 .5 2 .5 3 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
-      <path d="M7.5 12.5c1 .5 2.5.5 3.5 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
-      <path d="M11 12.5c1 .5 2.5.5 3.5 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M2 12l10 5 10-5" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M2 17l10 5 10-5" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   scissors: (
@@ -75,16 +70,17 @@ const SECTION_ICONS = {
     </svg>
   ),
   handshake: (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 13l3 3 4-3h2l4 3 3-3" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M8 13L6 9l2-2h4l2 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M14 13l2-2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="9" cy="7" r="4" stroke="#00BCD4" strokeWidth="2"/>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   leaf: (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 18c1-5 3-9 8-11 3-1.2 6-1 7-1-0.5 4-2 7-5 9-2 1.4-4.5 2-7 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinejoin="round"/>
-      <line x1="4" y1="18" x2="10" y2="12" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
 };
