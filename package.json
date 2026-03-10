@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/dm-serif-display": "^5.2.8",
     "@react-pdf/renderer": "^4.3.2",
     "@vercel/analytics": "^1.1.1",
     "jspdf": "^2.5.2",

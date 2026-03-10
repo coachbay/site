@@ -10,6 +10,13 @@ Font.register({
   ],
 });
 
+Font.register({
+  family: "DM Serif Display",
+  fonts: [
+    { src: "/fonts/dm-serif-display-regular.woff2", fontWeight: 400 },
+  ],
+});
+
 Font.registerHyphenationCallback(word => [word]);
 
 // ── Colours ────────────────────────────────────────────────────────────────
@@ -44,13 +51,38 @@ const S = StyleSheet.create({
 
   // Header band — top of every page
   headerBand: {
-    backgroundColor: C.cyan,
+    backgroundColor: C.white,
     paddingHorizontal: 24,
-    paddingVertical: 7,
+    paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: C.divider,
+  },
+  headerLogo: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  headerLogoText: {
+    fontFamily: "DM Serif Display",
+    fontWeight: 400,
+    fontSize: 18,
+    color: C.navy,
+  },
+  headerLogoAccent: {
+    fontFamily: "DM Serif Display",
+    fontWeight: 400,
+    fontSize: 18,
+    color: C.cyan,
+  },
+  headerDocLabel: {
+    fontFamily: "DM Sans",
+    fontWeight: 400,
+    fontSize: 8,
+    color: C.muted,
+    letterSpacing: 0.8,
   },
   headerText: {
     fontFamily: "DM Sans",
@@ -319,10 +351,17 @@ function parseSections(text) {
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────
-function HeaderBand() {
+function HeaderBand({ docLabel }) {
   return (
     <View style={S.headerBand} fixed>
-      <Text style={S.headerText}>COACHBAY.AI  ·  DISRUPTION SPRINT</Text>
+      <View style={S.headerLogo}>
+        <Image src="/coachbay-robot-transparent.png" style={{ width: 22, height: 28 }} />
+        <View style={{ flexDirection: "row" }}>
+          <Text style={S.headerLogoText}>CoachBay</Text>
+          <Text style={S.headerLogoAccent}>.ai</Text>
+        </View>
+      </View>
+      <Text style={S.headerDocLabel}>{docLabel || ""}</Text>
     </View>
   );
 }
@@ -391,7 +430,7 @@ export default function DisruptionSprintPDF({
 
       {/* ── COVER ─────────────────────────────────────────────────────── */}
       <Page size="A4" style={S.page}>
-        <HeaderBand />
+        <HeaderBand docLabel="DISRUPTION SPRINT" />
         <Footer date={today} />
 
         <View style={S.content}>
@@ -429,7 +468,7 @@ export default function DisruptionSprintPDF({
 
       {/* ── PAGE 2: Complaints + Attack Plan ──────────────────────────── */}
       <Page size="A4" style={S.page}>
-        <HeaderBand />
+        <HeaderBand docLabel="DISRUPTION SPRINT" />
         <Footer date={today} pageLabel="Page 2" />
 
         <View style={S.content}>
@@ -448,7 +487,7 @@ export default function DisruptionSprintPDF({
 
       {/* ── PAGE 3: ERIC + 90-Day Plan ────────────────────────────────── */}
       <Page size="A4" style={S.page}>
-        <HeaderBand />
+        <HeaderBand docLabel="DISRUPTION SPRINT" />
         <Footer date={today} pageLabel="Page 3" />
 
         <View style={S.content}>

@@ -1,15 +1,7 @@
 const CYAN = "#00BCD4";
 
 const RobotIcon = ({ size = 72 }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width={size} height={size}>
-    <circle cx="50" cy="55" r="30" fill="#00BCD4"/>
-    <circle cx="38" cy="50" r="7" fill="#fff"/>
-    <circle cx="62" cy="50" r="7" fill="#fff"/>
-    <circle cx="40" cy="50.5" r="4.5" fill="#1a1a2e"/>
-    <circle cx="64" cy="50.5" r="4.5" fill="#1a1a2e"/>
-    <line x1="50" y1="25" x2="50" y2="15" stroke="#00BCD4" strokeWidth="3"/>
-    <circle cx="50" cy="12" r="5" fill="#00BCD4"/>
-  </svg>
+  <img src="/coachbay-robot-transparent.png" width={size} height={size} alt="CoachBay" />
 );
 
 const CompanyIcon = () => (
