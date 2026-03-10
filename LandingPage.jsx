@@ -253,39 +253,6 @@ export default function LandingPage({ onNavigate }) {
           </a>
         </div>
 
-        {/* Disruption Sprint */}
-        <div style={{ padding: "0 24px", marginTop: 28 }}>
-          <div style={{
-            background: "#1a1a2e", borderRadius: 16, padding: "32px 36px",
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            flexWrap: "wrap", gap: 24,
-            border: `1.5px solid ${CYAN}40`,
-          }}>
-            <div style={{ flex: 1, minWidth: 240 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: CYAN }} />
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: CYAN }}>New</span>
-              </div>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#f8fafc", margin: "0 0 4px" }}>Disruption Sprint</h3>
-              <p style={{ color: CYAN, fontSize: 15, fontWeight: 600, margin: "0 0 12px" }}>for strategy</p>
-              <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: 0, maxWidth: 480 }}>
-                A 60-minute simulation that shows who is coming for your business and how to respond.
-                Powered by AI. Built for leadership teams.
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
-              <a href="/disruption-sprint" style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                background: CYAN, color: "#0f172a", fontSize: 15, fontWeight: 700,
-                textDecoration: "none", borderRadius: 10, padding: "13px 28px",
-                whiteSpace: "nowrap",
-              }}>
-                Run a Disruption Sprint &rarr;
-              </a>
-              <p style={{ color: "#475569", fontSize: 13, margin: 0, paddingLeft: 2 }}>Access code required</p>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* How We Work Together */}
