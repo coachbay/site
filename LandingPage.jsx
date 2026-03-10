@@ -393,7 +393,7 @@ export default function LandingPage({ onNavigate }) {
         <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <RobotIcon size={20} />
-            <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 15, color: "#1e293b" }}>CoachBay<span style={{ color: CYAN }}>.ai</span></span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 15, color: "#1e293b" }}>CoachBay<span style={{ color: CYAN }}>.ai</span></span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <a href="https://www.linkedin.com/in/coachbay/" target="_blank" rel="noopener noreferrer" style={{ color: "#94a3b8", display: "flex", alignItems: "center", gap: 6, fontSize: 15, textDecoration: "none" }}>
