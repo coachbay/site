@@ -7,6 +7,88 @@ const MID = "#6b7280";
 const LIGHT_BG = "#f8fafb";
 const RED_ACCENT = "#ef4444";
 
+const SECTION_ICONS = {
+  target: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="9" stroke="#00BCD4" strokeWidth="1.6"/>
+      <circle cx="11" cy="11" r="5.5" stroke="#00BCD4" strokeWidth="1.6"/>
+      <circle cx="11" cy="11" r="2" fill="#00BCD4"/>
+      <line x1="11" y1="1" x2="11" y2="4" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="11" y1="18" x2="11" y2="21" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="1" y1="11" x2="4" y2="11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="18" y1="11" x2="21" y2="11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  leader: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="7" r="3.5" stroke="#00BCD4" strokeWidth="1.6"/>
+      <path d="M4 19c0-3.866 3.134-7 7-7h0c3.866 0 7 3.134 7 7" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M15 3l1.5 1.5L19 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  chat: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 4a1 1 0 011-1h14a1 1 0 011 1v10a1 1 0 01-1 1H7l-4 4V4z" stroke="#00BCD4" strokeWidth="1.6" strokeLinejoin="round"/>
+      <line x1="7" y1="8" x2="15" y2="8" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="7" y1="11.5" x2="12" y2="11.5" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  cycle: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 11a7 7 0 017-7 7 7 0 015.2 2.3" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M18 11a7 7 0 01-7 7 7 7 0 01-5.2-2.3" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <polyline points="15.5,3.5 17.2,6.3 14,6.8" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      <polyline points="6.5,18.5 4.8,15.7 8,15.2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  tools: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.5 3a4 4 0 00-4 5l-7 7a1.5 1.5 0 002.1 2.1l7-7a4 4 0 004.5-5.2l-2.3 2.3-1.4-1.4 2.3-2.3A4 4 0 0014.5 3z" stroke="#00BCD4" strokeWidth="1.6" strokeLinejoin="round"/>
+    </svg>
+  ),
+  brain: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 3C8 3 6 5 6 7.5c0 1-.3 1.8-.8 2.5C4.5 11 4 12 4 13.5A4.5 4.5 0 008.5 18H11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M11 3c3 0 5 2 5 4.5 0 1 .3 1.8.8 2.5.7 1 1.2 2 1.2 3.5A4.5 4.5 0 0113.5 18H11" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="11" y1="3" x2="11" y2="18" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M8 8.5c1 .5 2 .5 3 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
+      <path d="M11 8.5c1 .5 2 .5 3 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
+      <path d="M7.5 12.5c1 .5 2.5.5 3.5 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
+      <path d="M11 12.5c1 .5 2.5.5 3.5 0" stroke="#00BCD4" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+  scissors: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="6" cy="7" r="2.5" stroke="#00BCD4" strokeWidth="1.6"/>
+      <circle cx="6" cy="15" r="2.5" stroke="#00BCD4" strokeWidth="1.6"/>
+      <line x1="8.2" y1="8.2" x2="19" y2="19" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="8.2" y1="13.8" x2="19" y2="3" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  scales: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="11" y1="3" x2="11" y2="19" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="7" y1="19" x2="15" y2="19" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="4" y1="7" x2="18" y2="7" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M4 7l-2 5h4l-2-5z" stroke="#00BCD4" strokeWidth="1.4" strokeLinejoin="round"/>
+      <path d="M18 7l-2 5h4l-2-5z" stroke="#00BCD4" strokeWidth="1.4" strokeLinejoin="round"/>
+    </svg>
+  ),
+  handshake: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 13l3 3 4-3h2l4 3 3-3" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8 13L6 9l2-2h4l2 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14 13l2-2" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  leaf: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 18c1-5 3-9 8-11 3-1.2 6-1 7-1-0.5 4-2 7-5 9-2 1.4-4.5 2-7 2" stroke="#00BCD4" strokeWidth="1.6" strokeLinejoin="round"/>
+      <line x1="4" y1="18" x2="10" y2="12" stroke="#00BCD4" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+};
+
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzp7051naVvv3IGLSzg0MKZ-UmPxyAxxcIW6yMjImhJyPUEghIyquWT4IHclcUxD5r8jw/exec";
 
 function ScoreRing({ score, max, color, size = 120, strokeWidth = 10 }) {
@@ -595,7 +677,7 @@ export default function DiagnosticEngine({
               }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 22 }}>{sec.icon}</span>
+                    {SECTION_ICONS[sec.icon]}
                     <span style={{ fontWeight: 700, color: DARK, fontSize: 15 }}>{sec.title}</span>
                   </div>
                   <span style={{ fontWeight: 700, color: barColor, fontSize: 18 }}>
@@ -732,8 +814,8 @@ export default function DiagnosticEngine({
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "12px 24px", maxWidth: 640, margin: "0 auto", width: "100%",
         }}>
-          <span style={{ fontSize: 18, color: DARK, fontWeight: 700 }}>
-            {section.icon} {section.title}
+          <span style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 18, color: DARK, fontWeight: 700 }}>
+            {SECTION_ICONS[section.icon]}{section.title}
           </span>
           <span style={{ fontSize: 16, color: MID, fontWeight: 700 }}>
             {globalIndex + 1} of {totalQuestions}

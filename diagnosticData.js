@@ -16,7 +16,7 @@ export const companyConfig = {
       id: "clarity",
       title: "Strategic Clarity",
       subtitle: "Do you know what you are actually trying to achieve with AI?",
-      icon: "🎯",
+      icon: "target",
       questions: [
         "We can name the top 3 business problems AI should help us solve",
         "Our AI ambitions are connected to our broader business strategy, not a separate initiative",
@@ -29,7 +29,7 @@ export const companyConfig = {
       id: "leadership",
       title: "Leadership Readiness",
       subtitle: "Do the people at the top actually use AI themselves?",
-      icon: "👔",
+      icon: "leader",
       questions: [
         "Our senior leaders have personally used AI tools (not just seen demos)",
         "Leadership can clearly explain why AI matters for our business, beyond \"everyone else is doing it\"",
@@ -42,7 +42,7 @@ export const companyConfig = {
       id: "sentiment",
       title: "Employee Sentiment",
       subtitle: "How do the people who will actually use AI feel about it?",
-      icon: "💬",
+      icon: "chat",
       questions: [
         "Employees feel safe experimenting with AI without fear of judgment",
         "People talk openly about using AI at work (not hiding it)",
@@ -55,7 +55,7 @@ export const companyConfig = {
       id: "culture",
       title: "Culture of Change",
       subtitle: "Does your organization have the muscle to adopt something new?",
-      icon: "🔄",
+      icon: "cycle",
       questions: [
         "When we introduce new tools or processes, people generally give them a fair try",
         "We celebrate early experiments, even when they do not work perfectly",
@@ -68,7 +68,7 @@ export const companyConfig = {
       id: "foundations",
       title: "Practical Foundations",
       subtitle: "Are the basics in place to actually start?",
-      icon: "🔧",
+      icon: "tools",
       questions: [
         "Employees have access to at least one AI tool (Copilot, Gemini, ChatGPT, Claude, etc.)",
         "We have basic guidelines about what data can and cannot go into AI tools",
@@ -149,7 +149,7 @@ export const leaderConfig = {
       id: "integration",
       title: "Integration",
       subtitle: "Is AI part of how you lead, not just something you have tried?",
-      icon: "🎯",
+      icon: "target",
       questions: [
         "I use AI multiple times a week as part of how I lead",
         "I am using AI for more parts of my leadership role now than I was three months ago",
@@ -161,7 +161,7 @@ export const leaderConfig = {
       id: "depth",
       title: "Depth",
       subtitle: "Are you using AI for strategic thinking, or just admin tasks?",
-      icon: "🧠",
+      icon: "brain",
       questions: [
         "I use AI for strategic thinking, not just routine tasks like drafting emails or summarizing documents",
         "I have used AI to test my thinking before making a decision",
@@ -173,7 +173,7 @@ export const leaderConfig = {
       id: "deletion",
       title: "Deletion",
       subtitle: "Have you actually retired old processes for your team?",
-      icon: "✂️",
+      icon: "scissors",
       questions: [
         "I can name at least one report, meeting, or process that my team no longer does the old way because AI handles it",
         "I have told my team they can stop doing a task by hand because AI handles it",
@@ -185,7 +185,7 @@ export const leaderConfig = {
       id: "judgment",
       title: "Judgment",
       subtitle: "Do you use AI wisely and model that for others?",
-      icon: "⚖️",
+      icon: "scales",
       questions: [
         "I have caught and corrected a meaningful error in AI output before acting on it",
         "I know when AI is the wrong tool for a leadership decision and I choose not to use it",
@@ -197,7 +197,7 @@ export const leaderConfig = {
       id: "enabling",
       title: "Enabling",
       subtitle: "Are you helping your team adopt AI, or just expecting them to figure it out?",
-      icon: "🤝",
+      icon: "handshake",
       questions: [
         "I have shared my own AI prompts, workflows, or techniques with my team",
         "I encourage my team to try AI, even if it does not work perfectly at first",
@@ -209,7 +209,7 @@ export const leaderConfig = {
       id: "environment",
       title: "Environment",
       subtitle: "Are you creating the conditions for your team to use AI safely and well?",
-      icon: "🌱",
+      icon: "leaf",
       questions: [
         "I openly talk about my own AI use with my team, including what works and what does not",
         "I have made it clear to my team that experimenting with AI is safe and will not be held against them",
@@ -294,7 +294,7 @@ export const teamConfig = {
       id: "integration",
       title: "Integration",
       subtitle: "Has AI moved from something you try occasionally to something woven into your daily work?",
-      icon: "🎯",
+      icon: "target",
       questions: [
         "I use AI multiple times a week as part of how I get real work done",
         "I am using AI for more things now than I was three months ago",
@@ -306,7 +306,7 @@ export const teamConfig = {
       id: "depth",
       title: "Depth",
       subtitle: "Are you using AI for real thinking, or just surface tasks?",
-      icon: "🧠",
+      icon: "brain",
       questions: [
         "I use AI for tasks that require real thinking, not just formatting or summarizing",
         "I have used AI to test my thinking before making a decision",
@@ -318,7 +318,7 @@ export const teamConfig = {
       id: "deletion",
       title: "Deletion",
       subtitle: "Have you actually stopped doing things the old way?",
-      icon: "✂️",
+      icon: "scissors",
       questions: [
         "I can name at least one task or deliverable I no longer do by hand because AI handles it",
         "AI has helped me cut down or remove at least one regular meeting or report",
@@ -330,7 +330,7 @@ export const teamConfig = {
       id: "influence",
       title: "Influence",
       subtitle: "Are you helping others change how they work, or just changing your own habits?",
-      icon: "🤝",
+      icon: "handshake",
       questions: [
         "I have shared a prompt, template, or workflow with a colleague that they now use",
         "People on my team or in my network come to me with AI questions",
@@ -342,7 +342,7 @@ export const teamConfig = {
       id: "judgment",
       title: "Judgment",
       subtitle: "Do you use AI wisely, not just frequently?",
-      icon: "⚖️",
+      icon: "scales",
       questions: [
         "I have caught and corrected a meaningful error in AI output before using it",
         "I know when AI is the wrong tool and I choose not to use it in those situations",
@@ -354,7 +354,7 @@ export const teamConfig = {
       id: "environment",
       title: "Environment",
       subtitle: "Do the conditions around you actually support using AI?",
-      icon: "🌱",
+      icon: "leaf",
       questions: [
         "I feel safe experimenting with AI at work without fear of judgment or blame if something goes wrong",
         "My manager or leadership team openly encourages using AI and models it themselves",
