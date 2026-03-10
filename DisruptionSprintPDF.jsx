@@ -355,7 +355,7 @@ function HeaderBand({ docLabel }) {
   return (
     <View style={S.headerBand} fixed>
       <View style={S.headerLogo}>
-        <Image src="/coachbay-robot-transparent.png" style={{ width: 22, height: 28 }} />
+        <Image src="/coachbay-robot-transparent.png" style={{ width: 22, height: 28, marginTop: -4 }} />
         <View style={{ flexDirection: "row" }}>
           <Text style={S.headerLogoText}>CoachBay</Text>
           <Text style={S.headerLogoAccent}>.ai</Text>
