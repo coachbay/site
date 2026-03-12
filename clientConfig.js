@@ -40,6 +40,11 @@ const clients = {
     name: "Finnair",
     assessments: ["team"],
   },
+
+  "scchk-core": {
+    name: "Swire Coca-Cola",
+    assessments: ["team"],
+  },
 };
 
 export default clients;

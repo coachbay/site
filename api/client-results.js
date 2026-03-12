@@ -6,6 +6,7 @@ const CLIENTS = {
   "Swire Properties": ["Company", "Leader", "Team"],
   "Demo Company": ["Company", "Leader", "Team"],
   "Finnair": ["Team"],
+  "Swire Coca-Cola": ["Team"],
 };
 
 export default async function handler(req, res) {
