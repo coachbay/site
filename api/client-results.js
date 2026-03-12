@@ -4,7 +4,6 @@ const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTL4-Si-hnlm
 // Keep this in sync with clientConfig.js
 const CLIENTS = {
   "Swire Properties": ["Company", "Leader", "Team"],
-  "Demo Company": ["Company", "Leader", "Team"],
   "Finnair": ["Team"],
   "Swire Coca-Cola": ["Team"],
 };

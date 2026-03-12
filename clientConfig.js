@@ -26,11 +26,6 @@ const clients = {
   //   assessments: ["company", "leader"],   // two = shows picker
   // },
 
-  "demo": {
-    name: "Demo Company",
-    assessments: ["company", "leader", "team"],
-  },
-
   "sprops-digital": {
     name: "Swire Properties",
     assessments: ["company", "leader", "team"],
