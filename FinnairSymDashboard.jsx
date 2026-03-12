@@ -8,32 +8,42 @@ import {
 } from "recharts";
 
 const teamData = [
-  { id: 1, total: 61, tier: "Early Progress", integration: 10, depth: 14, deletion: 7, influence: 6, judgment: 14, environment: 10 },
-  { id: 2, total: 98, tier: "AI Advanced", integration: 19, depth: 18, deletion: 17, influence: 15, judgment: 16, environment: 13 },
-  { id: 3, total: 88, tier: "Gaining Momentum", integration: 14, depth: 16, deletion: 12, influence: 8, judgment: 19, environment: 19 },
-  { id: 4, total: 70, tier: "Early Progress", integration: 12, depth: 10, deletion: 7, influence: 9, judgment: 16, environment: 16 },
-  { id: 5, total: 83, tier: "Gaining Momentum", integration: 14, depth: 16, deletion: 9, influence: 12, judgment: 19, environment: 13 },
-  { id: 6, total: 79, tier: "Gaining Momentum", integration: 16, depth: 17, deletion: 10, influence: 11, judgment: 14, environment: 11 },
-  { id: 7, total: 70, tier: "Early Progress", integration: 12, depth: 12, deletion: 7, influence: 8, judgment: 18, environment: 13 },
-  { id: 8, total: 94, tier: "Gaining Momentum", integration: 18, depth: 16, deletion: 13, influence: 14, judgment: 17, environment: 16 },
-  { id: 9, total: 66, tier: "Early Progress", integration: 13, depth: 12, deletion: 10, influence: 8, judgment: 12, environment: 11 },
-  { id: 10, total: 87, tier: "Gaining Momentum", integration: 14, depth: 15, deletion: 9, influence: 13, judgment: 20, environment: 16 },
+  { id: 1,  name: "Heli Lehtinen",            total: 95,  tier: "Gaining Momentum", integration: 15, depth: 18, deletion: 13, influence: 18, judgment: 17, environment: 14 },
+  { id: 2,  name: "Salla Rinta-Kanto",         total: 71,  tier: "Early Progress",   integration: 14, depth: 10, deletion: 11, influence: 7,  judgment: 16, environment: 13 },
+  { id: 3,  name: "Eeva-Mari Sävelkoski",      total: 89,  tier: "Gaining Momentum", integration: 17, depth: 18, deletion: 12, influence: 13, judgment: 16, environment: 13 },
+  { id: 4,  name: "Mia Kopola",                total: 69,  tier: "Early Progress",   integration: 17, depth: 13, deletion: 8,  influence: 9,  judgment: 12, environment: 10 },
+  { id: 5,  name: "Chuqiao Yu",                total: 102, tier: "AI Advanced",      integration: 19, depth: 20, deletion: 9,  influence: 19, judgment: 18, environment: 17 },
+  { id: 6,  name: "Valter Sandell",            total: 77,  tier: "Gaining Momentum", integration: 13, depth: 19, deletion: 10, influence: 6,  judgment: 20, environment: 9  },
+  { id: 7,  name: "Johanna Helin",             total: 94,  tier: "Gaining Momentum", integration: 20, depth: 20, deletion: 14, influence: 13, judgment: 20, environment: 7  },
+  { id: 8,  name: "Anna Castello",             total: 72,  tier: "Early Progress",   integration: 12, depth: 14, deletion: 10, influence: 6,  judgment: 17, environment: 13 },
+  { id: 9,  name: "Anni Ahnger",               total: 112, tier: "AI Pioneer",       integration: 20, depth: 20, deletion: 19, influence: 20, judgment: 20, environment: 13 },
+  { id: 10, name: "Eerika Enne",               total: 61,  tier: "Early Progress",   integration: 10, depth: 14, deletion: 7,  influence: 6,  judgment: 14, environment: 10 },
+  { id: 11, name: "Jonna Vermilä-Alajääski",   total: 98,  tier: "AI Advanced",      integration: 19, depth: 18, deletion: 17, influence: 15, judgment: 16, environment: 13 },
+  { id: 12, name: "Pekka Antila",              total: 88,  tier: "Gaining Momentum", integration: 14, depth: 16, deletion: 12, influence: 8,  judgment: 19, environment: 19 },
+  { id: 13, name: "Tuire Melander",            total: 70,  tier: "Early Progress",   integration: 12, depth: 10, deletion: 7,  influence: 9,  judgment: 16, environment: 16 },
+  { id: 14, name: "Taina",                     total: 83,  tier: "Gaining Momentum", integration: 14, depth: 16, deletion: 9,  influence: 12, judgment: 19, environment: 13 },
+  { id: 15, name: "Jenni Suomela",             total: 79,  tier: "Gaining Momentum", integration: 16, depth: 17, deletion: 10, influence: 11, judgment: 14, environment: 11 },
+  { id: 16, name: "Gerben Sikkema",            total: 70,  tier: "Early Progress",   integration: 12, depth: 12, deletion: 7,  influence: 8,  judgment: 18, environment: 13 },
+  { id: 17, name: "Tommi Kiiskilä",            total: 94,  tier: "Gaining Momentum", integration: 18, depth: 16, deletion: 13, influence: 14, judgment: 17, environment: 16 },
+  { id: 18, name: "Simon Large",               total: 66,  tier: "Early Progress",   integration: 13, depth: 12, deletion: 10, influence: 8,  judgment: 12, environment: 11 },
+  { id: 19, name: "Tiina Vesterinen",          total: 87,  tier: "Gaining Momentum", integration: 14, depth: 15, deletion: 9,  influence: 13, judgment: 20, environment: 16 },
 ];
 
-const tierOrder = ["Early Progress", "Gaining Momentum", "AI Advanced"];
+const tierOrder = ["Early Progress", "Gaining Momentum", "AI Advanced", "AI Pioneer"];
 const tierColors = {
-  "Early Progress": "#f59e0b",
+  "Early Progress":   "#f59e0b",
   "Gaining Momentum": "#3b82f6",
-  "AI Advanced": "#00BCD4",
+  "AI Advanced":      "#00BCD4",
+  "AI Pioneer":       "#7c3aed",
 };
 
 const sections = ["integration", "depth", "deletion", "influence", "judgment", "environment"];
 const sectionLabels = {
   integration: "Integration",
-  depth: "Depth",
-  deletion: "Deletion",
-  influence: "Influence",
-  judgment: "Judgment",
+  depth:       "Depth",
+  deletion:    "Deletion",
+  influence:   "Influence",
+  judgment:    "Judgment",
   environment: "Environment",
 };
 
@@ -42,29 +52,33 @@ const teamAvg = Math.round(avg(teamData.map((d) => d.total)) * 10) / 10;
 const teamPct = Math.round((teamAvg / 120) * 100);
 
 const tierCounts = tierOrder.map((t) => ({
-  tier: t,
+  tier:  t,
   count: teamData.filter((d) => d.tier === t).length,
   color: tierColors[t],
 }));
 
 const sectionAvgs = sections.map((s) => ({
-  section: sectionLabels[s],
-  key: s,
-  avg: Math.round(avg(teamData.map((d) => d[s])) * 10) / 10,
-  max: Math.max(...teamData.map((d) => d[s])),
-  min: Math.min(...teamData.map((d) => d[s])),
+  section:  sectionLabels[s],
+  key:      s,
+  avg:      Math.round(avg(teamData.map((d) => d[s])) * 10) / 10,
+  max:      Math.max(...teamData.map((d) => d[s])),
+  min:      Math.min(...teamData.map((d) => d[s])),
   fullMark: 20,
 }));
 
 const radarData = sectionAvgs.map((s) => ({
-  subject: s.section,
-  team: s.avg,
+  subject:  s.section,
+  team:     s.avg,
   fullMark: 20,
 }));
 
 export default function FinnairSymDashboard() {
-  const lowestSection = sectionAvgs.reduce((a, b) => (a.avg < b.avg ? a : b));
+  const lowestSection  = sectionAvgs.reduce((a, b) => (a.avg < b.avg ? a : b));
   const highestSection = sectionAvgs.reduce((a, b) => (a.avg > b.avg ? a : b));
+  const gainCount      = tierCounts.find((t) => t.tier === "Gaining Momentum").count;
+  const earlyCount     = tierCounts.find((t) => t.tier === "Early Progress").count;
+  const advCount       = tierCounts.find((t) => t.tier === "AI Advanced").count;
+  const pioneerCount   = tierCounts.find((t) => t.tier === "AI Pioneer").count;
 
   return (
     <div style={{
@@ -93,7 +107,6 @@ export default function FinnairSymDashboard() {
             page-break-inside: avoid;
             break-inside: avoid;
           }
-          .print-compact { margin-bottom: 20px !important; }
         }
         @media screen {
           .print-page-break::before {
@@ -105,7 +118,7 @@ export default function FinnairSymDashboard() {
         }
       `}} />
 
-      {/* Header — matches Swire Properties style */}
+      {/* Header */}
       <div style={{
         background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
         borderBottom: "1px solid rgba(0,188,212,0.2)",
@@ -141,7 +154,7 @@ export default function FinnairSymDashboard() {
             Prepared for Simon Large, Chief Customer Officer
           </p>
           <p style={{ fontSize: 14, color: "#475569", margin: 0 }}>
-            AI Leadership Diagnostic results across 10 of 20 participants · March 2026 · Interim report
+            Personal AI Diagnostic results across all 19 participants · March 2026
           </p>
         </div>
       </div>
@@ -160,7 +173,7 @@ export default function FinnairSymDashboard() {
             Executive Summary
           </h2>
           <p style={{ fontSize: 15, color: "#334155", lineHeight: 1.65, margin: 0 }}>
-            The first cohort of 10 Finnair leaders shows a group average of {teamAvg}/120, placing the team solidly in the Gaining Momentum tier. Five leaders are Gaining Momentum, four are at Early Progress, and one has reached AI Advanced. The strongest dimension is Judgment ({highestSection.avg}/20): this group can evaluate AI output critically and use it as a thinking partner rather than an answer machine. The biggest growth opportunity lies in Deletion ({lowestSection.avg}/20) and Influence, the dimensions where personal AI use converts into visible leadership impact. This report covers the first 10 participants. It will be updated once the remaining 10 complete the assessment.
+            All 19 Finnair leaders have completed the Personal AI Diagnostic, with a group average of {teamAvg}/120 (69%). The team sits solidly in the Gaining Momentum tier overall: {gainCount} leaders are actively building AI habits, {advCount} have reached AI Advanced, and one has achieved the top tier, AI Pioneer. Seven leaders are at Early Progress and would benefit most from targeted support. The standout strength is Judgment ({highestSection.avg}/20): this group can critically evaluate AI output and use it as a thinking partner. The clearest growth opportunity is Deletion ({lowestSection.avg}/20), followed by Influence. These are the two dimensions where AI use becomes visible as leadership behaviour, and where the biggest gains are still available.
           </p>
         </div>
 
@@ -197,7 +210,7 @@ export default function FinnairSymDashboard() {
               {Math.min(...teamData.map(d => d.total))}&ndash;{Math.max(...teamData.map(d => d.total))}
             </div>
             <div style={{ fontSize: 14, color: "#475569", marginTop: 4 }}>
-              {Math.max(...teamData.map(d => d.total)) - Math.min(...teamData.map(d => d.total))} point spread
+              {Math.max(...teamData.map(d => d.total)) - Math.min(...teamData.map(d => d.total))} point spread across 19 people
             </div>
           </div>
 
@@ -228,7 +241,6 @@ export default function FinnairSymDashboard() {
           gap: 20,
           marginBottom: 28,
         }}>
-          {/* Tier Distribution */}
           <div style={{
             background: "#f8fafc",
             border: "1px solid #e2e8f0",
@@ -259,7 +271,6 @@ export default function FinnairSymDashboard() {
                         width: `${pct}%`,
                         background: `linear-gradient(90deg, ${tierColors[t]}, ${tierColors[t]}cc)`,
                         borderRadius: 4,
-                        transition: "width 1s ease",
                       }} />
                     </div>
                   </div>
@@ -276,13 +287,12 @@ export default function FinnairSymDashboard() {
             }}>
               <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>Summary</div>
               <div style={{ fontSize: 14, color: "#334155", lineHeight: 1.5 }}>
-                {tierCounts.find(t => t.tier === "AI Advanced").count} leader has reached AI Advanced and could champion adoption.{" "}
-                {tierCounts.find(t => t.tier === "Early Progress").count} are at Early Progress and would benefit from structured support.
+                {pioneerCount} AI Pioneer and {advCount} AI Advanced leaders are ready to champion adoption.{" "}
+                {earlyCount} are at Early Progress and would benefit from structured support.
               </div>
             </div>
           </div>
 
-          {/* Radar Chart */}
           <div style={{
             background: "#f8fafc",
             border: "1px solid #e2e8f0",
@@ -296,30 +306,15 @@ export default function FinnairSymDashboard() {
             <ResponsiveContainer width="100%" height={380}>
               <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="50%">
                 <PolarGrid stroke="#cbd5e1" />
-                <PolarAngleAxis
-                  dataKey="subject"
-                  tick={{ fill: "#475569", fontSize: 12, fontWeight: 500 }}
-                />
-                <PolarRadiusAxis
-                  domain={[0, 20]}
-                  tick={false}
-                  axisLine={false}
-                  tickCount={5}
-                />
-                <Radar
-                  name="Group Avg"
-                  dataKey="team"
-                  stroke="#00BCD4"
-                  fill="#00BCD4"
-                  fillOpacity={0.2}
-                  strokeWidth={2}
-                />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: "#475569", fontSize: 12, fontWeight: 500 }} />
+                <PolarRadiusAxis domain={[0, 20]} tick={false} axisLine={false} tickCount={5} />
+                <Radar name="Group Avg" dataKey="team" stroke="#00BCD4" fill="#00BCD4" fillOpacity={0.2} strokeWidth={2} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Section Breakdown — page 2 */}
+        {/* Section Breakdown */}
         <div className="print-page-break">
         <div style={{
           background: "#f8fafc",
@@ -331,14 +326,14 @@ export default function FinnairSymDashboard() {
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 4px", fontWeight: 400 }}>
             Section Breakdown
           </h2>
-          <p style={{ fontSize: 13, color: "#475569", margin: "0 0 20px" }}>Average, minimum, and maximum for each of the 6 assessed dimensions</p>
+          <p style={{ fontSize: 13, color: "#475569", margin: "0 0 20px" }}>Average, minimum, and maximum for each of the 6 assessed dimensions across all 19 participants</p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {sectionAvgs
               .slice()
               .sort((a, b) => a.avg - b.avg)
               .map((s) => {
-                const pct = (s.avg / 20) * 100;
+                const pct    = (s.avg / 20) * 100;
                 const minPct = (s.min / 20) * 100;
                 const maxPct = (s.max / 20) * 100;
                 return (
@@ -347,28 +342,16 @@ export default function FinnairSymDashboard() {
                       <span style={{ fontSize: 14, color: "#334155", fontWeight: 500 }}>{s.section}</span>
                       <span style={{ fontSize: 14, color: "#00BCD4", fontWeight: 600 }}>{s.avg}/20</span>
                     </div>
-                    <div style={{
-                      position: "relative",
-                      height: 12,
-                      background: "#e2e8f0",
-                      borderRadius: 6,
-                      overflow: "visible",
-                    }}>
+                    <div style={{ position: "relative", height: 12, background: "#e2e8f0", borderRadius: 6, overflow: "visible" }}>
                       <div style={{
-                        position: "absolute",
-                        height: "100%",
-                        left: `${minPct}%`,
-                        width: `${maxPct - minPct}%`,
-                        background: "rgba(0,188,212,0.15)",
-                        borderRadius: 6,
+                        position: "absolute", height: "100%",
+                        left: `${minPct}%`, width: `${maxPct - minPct}%`,
+                        background: "rgba(0,188,212,0.15)", borderRadius: 6,
                       }} />
                       <div style={{
-                        position: "absolute",
-                        height: "100%",
-                        width: `${pct}%`,
+                        position: "absolute", height: "100%", width: `${pct}%`,
                         background: "linear-gradient(90deg, #00BCD4, #00BCD4cc)",
-                        borderRadius: 6,
-                        opacity: 0.7,
+                        borderRadius: 6, opacity: 0.7,
                       }} />
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
@@ -380,9 +363,9 @@ export default function FinnairSymDashboard() {
               })}
           </div>
         </div>
-        </div>{/* end page 2 wrapper */}
+        </div>
 
-        {/* Key Takeaways — page 3 */}
+        {/* Key Takeaways */}
         <div className="print-page-break">
         <div style={{
           background: "linear-gradient(135deg, rgba(0,188,212,0.08) 0%, rgba(0,188,212,0.02) 100%)",
@@ -398,28 +381,28 @@ export default function FinnairSymDashboard() {
             {[
               {
                 icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="6" y="22" width="7" height="12" rx="1.5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><rect x="16.5" y="14" width="7" height="20" rx="1.5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><rect x="27" y="6" width="7" height="28" rx="1.5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/></svg>,
-                title: "A solid start from the first cohort",
-                text: `The group average of ${teamAvg}/120 places this cohort firmly in the Gaining Momentum tier. ${tierCounts.find(t => t.tier === "Gaining Momentum").count} of ${teamData.length} leaders are already using AI regularly, with one reaching the AI Advanced tier. This is a strong base to build from. The full picture will sharpen once the remaining 10 participants complete the assessment.`,
+                title: "A strong cohort at full picture",
+                text: `The group average of ${teamAvg}/120 places the full Finnair cohort solidly in the Gaining Momentum tier. ${gainCount} of 19 leaders are building consistent AI habits, ${advCount} have reached AI Advanced, and one has achieved AI Pioneer. Only ${earlyCount} are at Early Progress. This is a meaningfully strong result for a first diagnostic: the majority of this group is already using AI in ways that go beyond occasional experimentation.`,
               },
               {
                 icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><path d="M20 8l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" stroke="#00BCD4" strokeWidth="2.5" fill="none" strokeLinejoin="round"/></svg>,
                 title: "Critical judgment is the standout strength",
-                text: `Judgment is the highest-scoring dimension at ${sectionAvgs.find(s => s.key === "judgment").avg}/20. These leaders can evaluate AI output, recognise when it falls short, and use it as a starting point rather than an authority. That discernment is the foundation for safe, high-value AI use in a leadership context and it is not something most teams start with.`,
+                text: `Judgment is the highest-scoring dimension at ${sectionAvgs.find(s => s.key === "judgment").avg}/20. This group can evaluate AI output, recognise when it falls short, and use it as a starting point rather than an authority. That discernment is the foundation for safe, high-value AI use in a leadership context and is not something most groups start with. It suggests a culture of critical thinking that transfers well into the AI context.`,
               },
               {
                 icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><path d="M20 10v10l7 7" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
                 title: "Deletion and Influence are the biggest opportunities",
-                text: `Deletion (${sectionAvgs.find(s => s.key === "deletion").avg}/20) and Influence (${sectionAvgs.find(s => s.key === "influence").avg}/20) are the weakest dimensions. Leaders are using AI to support their own thinking but are not yet actively using it to cut unnecessary work or to visibly demonstrate AI use to their teams. These are the dimensions with the highest leadership leverage.`,
+                text: `Deletion (${sectionAvgs.find(s => s.key === "deletion").avg}/20) and Influence (${sectionAvgs.find(s => s.key === "influence").avg}/20) are the two weakest dimensions across the group. Leaders are using AI to support their own thinking but are not yet actively using it to remove unnecessary work or to demonstrate that use visibly to their teams. These are the dimensions with the highest leadership leverage and where a targeted focus would create the most visible change.`,
               },
               {
-                icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="12" r="5" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><circle cx="9" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/><circle cx="31" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/><path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/><path d="M3 34c0-3.866 2.686-7 6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/><path d="M37 34c0-3.866-2.686-7-6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
-                title: "One clear AI champion in this cohort",
-                text: "One leader has reached the AI Advanced tier with a score of 98, showing strong results across all six dimensions. This individual is the most experienced AI user in the current cohort and is a natural candidate to lead peer learning. Their habits, workflows, and prompting practices are worth making visible to the rest of the group.",
+                icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="12" r="5" stroke="#7c3aed" strokeWidth="2.5" fill="none"/><circle cx="9" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/><circle cx="31" cy="16" r="4" stroke="#00BCD4" strokeWidth="2" fill="none"/><path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#00BCD4" strokeWidth="2.5" strokeLinecap="round" fill="none"/><path d="M3 34c0-3.866 2.686-7 6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/><path d="M37 34c0-3.866-2.686-7-6-7" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
+                title: "One AI Pioneer and two AI Advanced leaders are ready to lead",
+                text: `One leader has reached the AI Pioneer tier with a score of 112, the highest possible expression of personal AI capability in this diagnostic. Two others sit at AI Advanced. These three individuals are already operating at a level well beyond the group average. Their habits, prompting practices, and workflows are worth making visible. They are natural candidates to lead peer learning and to shape what good looks like across the broader team.`,
               },
               {
                 icon: <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="20" height="16" rx="3" stroke="#00BCD4" strokeWidth="2.5" fill="none"/><rect x="16" y="18" width="20" height="16" rx="3" stroke="#00BCD4" strokeWidth="2.5" fill="none"/></svg>,
-                title: "Integration and Depth are uneven across the group",
-                text: `Integration (${sectionAvgs.find(s => s.key === "integration").avg}/20) and Depth (${sectionAvgs.find(s => s.key === "depth").avg}/20) show the widest score range within the group, with some leaders well ahead of others. This uneven distribution suggests peer learning would be highly effective: the leaders already doing this well can accelerate the rest without adding formal training burden.`,
+                title: "A wide spread signals an opportunity for peer learning",
+                text: `The 51-point gap between the lowest and highest scores (61 to 112) reflects a significant range of AI maturity within a single leadership cohort. This is not a problem to solve through more training. It is an opportunity to structure peer learning: the leaders at the top of the distribution can accelerate the rest simply by sharing what they do, making their AI habits visible, and working on real challenges together.`,
               },
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
@@ -447,16 +430,16 @@ export default function FinnairSymDashboard() {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {[
               {
-                title: "Activate your AI champion now",
-                text: "The one AI Advanced leader in this cohort is ready to help others. Consider forming a small Pilot Squad (a group of 5 to 10 early adopters working on a real challenge together with AI). Pilot Squads create visible proof of what is possible and accelerate adoption far more effectively than mandatory training programs.",
+                title: "Form a Pilot Squad from your top performers",
+                text: "With one AI Pioneer and two AI Advanced leaders already in this cohort, you have a natural starting point. A Pilot Squad is a small group of 5 to 10 early adopters working on a real business challenge together with AI. Rather than starting with training, start with a problem. Give this group a meaningful task and let them show the rest of the organisation what is possible. Visible results create pull; mandates create resistance.",
               },
               {
-                title: "Make Deletion a leadership habit",
-                text: "Deletion is the weakest dimension and it is also the most distinctly leadership-oriented one. Run a short exercise where each leader asks AI to audit one of their regular meetings, reports, or processes and identify what could be removed or simplified. This builds the habit of using AI to cut, not just to add, and signals to teams that AI is a tool for clarity, not complexity.",
+                title: "Make Deletion a team leadership habit",
+                text: "Deletion is the weakest dimension across the group and also the most distinctly leadership-oriented one. Run a short exercise where each leader asks AI to audit one of their regular meetings, reports, or recurring processes and identify what could be removed or simplified. This builds the habit of using AI to cut, not just to add, and sends a clear signal to teams that AI is a tool for clarity rather than more complexity.",
               },
               {
-                title: "Wait for the full cohort before drawing final conclusions",
-                text: "This interim report covers 10 of 20 participants. The second cohort may shift the tier distribution and section averages meaningfully. A final combined report will give a more complete picture for planning a team-wide AI program. In the meantime, the patterns above are strong enough to begin targeted conversations.",
+                title: "Use the score spread as an asset, not a problem",
+                text: `The 51-point range across this group is not a gap to close with a uniform training programme. It is evidence that some leaders are significantly ahead and can teach the rest. Pair leaders across tier boundaries for structured peer conversations. Ask the AI Pioneer and AI Advanced leaders to share one habit or workflow in an upcoming leadership meeting. Influence (currently ${sectionAvgs.find(s => s.key === "influence").avg}/20) will rise naturally when AI use becomes visible at the leadership level.`,
               },
             ].map((step, i) => (
               <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
@@ -475,11 +458,7 @@ export default function FinnairSymDashboard() {
         </div>
 
         {/* Footer */}
-        <div style={{
-          textAlign: "center",
-          padding: "20px 0 0",
-          borderTop: "1px solid #e2e8f0",
-        }}>
+        <div style={{ textAlign: "center", padding: "20px 0 0", borderTop: "1px solid #e2e8f0" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 8 }}>
             <svg width="20" height="20" viewBox="0 0 100 100">
               <circle cx="50" cy="55" r="30" fill="#00BCD4" />
@@ -493,10 +472,10 @@ export default function FinnairSymDashboard() {
             <span style={{ color: "#00BCD4", fontWeight: 600, fontSize: 14 }}>CoachBay.ai</span>
           </div>
           <p style={{ fontSize: 13, color: "#475569", margin: 0 }}>
-            AI Leadership Diagnostic · Interim Report · Finnair · coach@coachbay.ai
+            Personal AI Diagnostic · Final Report · Finnair · coach@coachbay.ai
           </p>
         </div>
-        </div>{/* end page 3 wrapper */}
+        </div>
 
       </div>
     </div>
