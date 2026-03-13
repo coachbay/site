@@ -145,33 +145,34 @@ Weakest section: ${stats.lowest.label} (${stats.lowest.avg}/${cfg.max})
 VOICE AND STYLE RULES (non-negotiable):
 - Always use the actual numbers. Never say "scores suggest" when you can say "at 13.5/20".
 - Name the specific sections by name. Never say "technical skills" when you mean "Depth".
-- Be direct about what the data means for leadership behavior, not just performance.
+- Be direct about what the data means for team behavior, not just performance scores.
 - Takeaway titles should describe the insight, not just label the dimension.
-- Next steps should be concrete actions a leader could take this week, not program names.
+- Next steps should be concrete actions a manager could take this week, not program names.
 - Never use hyphens or em dashes. Use American English. No consultant jargon.
+- Refer to participants as "team members", "managers", or "participants" — never as "leaders".
 - Write as if you are briefing the HR director privately. Human, frank, specific.
 
-Here is a real example of the quality and style required. These are takeaways from a 19-person Finnair team with an average of 83/120:
+Here is a real example of the quality and style required. These are takeaways from a 19-person team with an average of 83/120:
 
-EXAMPLE TAKEAWAYS (match this depth and tone):
+EXAMPLE TAKEAWAYS (match this depth and tone exactly):
 Title: "A strong cohort at full picture"
-Text: "The group average of 83/120 places the full cohort solidly in the Gaining Momentum tier. 9 of 19 leaders are actively building AI habits, 2 have reached AI Advanced, and one has achieved AI Pioneer. This is a meaningfully strong result for a first diagnostic: the majority of this group is already using AI in ways that go beyond occasional experimentation."
+Text: "The group average of 83/120 places the full cohort solidly in the Gaining Momentum tier. 9 of 19 participants are actively building AI habits, 2 have reached AI Advanced, and one has achieved AI Pioneer. This is a meaningfully strong result for a first diagnostic: the majority of this group is already using AI in ways that go beyond occasional experimentation."
 
 Title: "Critical judgment is the standout strength"
-Text: "Judgment is the highest scoring dimension at 16.9/20. This group can evaluate AI output, recognise when it falls short, and use it as a starting point rather than an authority. That discernment is the foundation for safe, high-value AI use in a leadership context and is not something most groups start with."
+Text: "Judgment is the highest scoring dimension at 16.9/20. This group can evaluate AI output, recognise when it falls short, and use it as a starting point rather than an authority. That discernment is the foundation for safe, high-value AI use and is not something most groups start with."
 
 Title: "Deletion and Influence are the biggest opportunities"
-Text: "Deletion (10.9/20) and Influence (11.3/20) are the two weakest dimensions across the group. Leaders are using AI to support their own thinking but are not yet actively using it to remove unnecessary work or demonstrate that use visibly to their teams. These are the dimensions with the highest leadership leverage."
+Text: "Deletion (10.9/20) and Influence (11.3/20) are the two weakest dimensions across the group. Participants are using AI to support their own thinking but are not yet actively using it to remove unnecessary work or demonstrate that use visibly to their teams. These are the dimensions with the highest leverage."
 
 Title: "A wide spread signals an opportunity for peer learning"
-Text: "The 51-point gap between the lowest and highest scores reflects a significant range of AI maturity within a single cohort. This is not a problem to solve through more training. It is an opportunity to structure peer learning: the leaders at the top can accelerate the rest simply by sharing what they do."
+Text: "The 51-point gap between the lowest and highest scores reflects a significant range of AI maturity within a single cohort. This is not a problem to solve through more training. It is an opportunity to structure peer learning: the participants at the top can accelerate the rest simply by sharing what they do."
 
 EXAMPLE NEXT STEPS (match this specificity):
 Title: "Form a Pilot Squad from your top performers"
-Text: "With one AI Pioneer and two AI Advanced leaders already in this cohort, you have a natural starting point. Give this group a meaningful real business challenge and let them show the rest of the organisation what is possible."
+Text: "With one AI Pioneer and two AI Advanced participants already in this cohort, you have a natural starting point. Give this group a meaningful real business challenge and let them show the rest of the team what is possible."
 
-Title: "Make Deletion a team leadership habit"
-Text: "Deletion is the weakest dimension and also the most distinctly leadership-oriented one. Run a short exercise where each leader asks AI to audit one of their regular meetings, reports, or recurring processes and identify what could be removed or simplified."
+Title: "Make Deletion a shared team habit"
+Text: "Deletion is the weakest dimension. Run a short exercise where each participant asks AI to audit one of their regular meetings, reports, or recurring processes and identify what could be removed or simplified."
 
 Now write takeaways and next steps at this same level of insight and specificity for the team data provided above.
 
@@ -367,7 +368,8 @@ export default function LiveDashboard() {
 
   // ── Render dashboard ───────────────────────────────────────────────────────
   const cfg       = SECTION_CONFIG[activeType];
-  const typeName  = activeType.charAt(0).toUpperCase() + activeType.slice(1);
+  const TYPE_DISPLAY = { team: "Team", leader: "Manager", company: "Company" };
+  const typeName  = TYPE_DISPLAY[activeType] || (activeType.charAt(0).toUpperCase() + activeType.slice(1));
   const typeLabel = `${typeName} AI Diagnostic`;
 
   const radarData = stats.sectionAvgs.map((s) => ({
