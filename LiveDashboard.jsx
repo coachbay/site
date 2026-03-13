@@ -371,7 +371,7 @@ export default function LiveDashboard() {
   // ── Render dashboard ───────────────────────────────────────────────────────
   const cfg       = SECTION_CONFIG[activeType];
   const typeName  = activeType.charAt(0).toUpperCase() + activeType.slice(1);
-  const typeLabel = `${typeName} AI Diagnostic`;
+  const typeLabel = `${typeName} AI Readiness Report`;
 
   const radarData = stats.sectionAvgs.map((s) => ({
     subject: s.label, team: s.avg, fullMark: cfg.max,
@@ -434,9 +434,14 @@ export default function LiveDashboard() {
           </div>
           <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(26px, 4vw, 36px)",
             fontWeight: 400, color: "#1e293b", margin: "8px 0 6px", lineHeight: 1.2 }}>
-            {typeLabel} Results
+            {typeLabel}
           </h1>
           <p style={{ fontSize: 22, color: "#334155", margin: "0 0 4px", fontWeight: 500 }}>{client.name}</p>
+          {client.preparedFor && (
+            <p style={{ fontSize: 15, color: "#475569", margin: "0 0 2px" }}>
+              Prepared for {client.preparedFor}
+            </p>
+          )}
           <p style={{ fontSize: 14, color: "#475569", margin: 0 }}>
             {teamData.length} participant{teamData.length !== 1 ? "s" : ""} · Updated {dateStr}
           </p>
@@ -514,7 +519,7 @@ export default function LiveDashboard() {
           <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Section Breakdown</h2>
-            {stats.sectionAvgs.map((s) => (
+            {[...stats.sectionAvgs].sort((a, b) => a.avg - b.avg).map((s) => (
               <div key={s.id} style={{ marginBottom: 20 }} className="no-break">
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                   <span style={{ fontSize: 14, fontWeight: 600, color: "#1e293b" }}>{s.label}</span>
