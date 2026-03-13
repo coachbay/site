@@ -36,7 +36,7 @@ const clients = {
   "scchk-core": {
     name: "Swire Coca-Cola",
     assessments: ["team"],
-    preparedFor: "",  // add when known
+    preparedFor: "Lily Chu, Sales & Marketing Director",
   },
 };
 
