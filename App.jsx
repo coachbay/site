@@ -10,6 +10,7 @@ import FinnairSymDashboard from './FinnairSymDashboard'
 import ClientAssessment from './ClientAssessment'
 import ResultsDashboard from './ResultsDashboard'
 import ClientResultsDashboard from './ClientResultsDashboard'
+import LiveDashboard from './LiveDashboard'
 import clients, { CLIENT_SCRIPT_URL } from './clientConfig'
 import { companyConfig, leaderConfig, teamConfig } from './diagnosticData'
 
@@ -70,6 +71,19 @@ export default function App() {
         <Analytics />
       </>
     );
+  }
+
+  // Dynamic live dashboards: /[client-slug]-dashboard
+  if (path.endsWith("-dashboard")) {
+    const slug = path.replace(/^\//, "").replace(/-dashboard$/, "");
+    if (clients[slug]) {
+      return (
+        <>
+          <LiveDashboard />
+          <Analytics />
+        </>
+      );
+    }
   }
 
   // Client assessment routes: /assess/slug
