@@ -60,10 +60,11 @@ const avg = (arr) => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 
 // ── Parse raw sheet rows into scored participant objects ─────────────────────
 function parseRows(headers, rows, typeKey) {
   const h = headers.map((x) => (x || "").toLowerCase().trim());
-  const idx = (name) => h.indexOf(name);
+  // Flexible column finder — matches if header contains the keyword
+  const idx = (keyword) => h.findIndex((col) => col.includes(keyword));
 
   const nameI  = idx("name");
-  const scoreI = idx("score");
+  const scoreI = idx("total score");
   const tierI  = idx("tier");
   const cfg    = SECTION_CONFIG[typeKey];
 
@@ -76,8 +77,9 @@ function parseRows(headers, rows, typeKey) {
         total: parseInt(r[scoreI]) || 0,
         tier:  r[tierI]  || "",
       };
+      // Each section column is named e.g. "Integration Total" — match by section id keyword
       cfg.ids.forEach((sid) => {
-        const ci = idx(sid);
+        const ci = h.findIndex((col) => col.startsWith(sid) && col.includes("total"));
         obj[sid] = ci >= 0 ? (parseInt(r[ci]) || 0) : 0;
       });
       return obj;
