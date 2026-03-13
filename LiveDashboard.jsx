@@ -149,10 +149,12 @@ VOICE AND STYLE RULES (non-negotiable):
 - Takeaway titles should describe the insight, not just label the dimension.
 - Next steps should be concrete actions a manager could take this week, not program names.
 - Never use hyphens or em dashes. Use American English. No consultant jargon.
-- Refer to participants as "team members", "managers", or "participants" — never as "leaders".
+- For TEAM assessments: refer to participants as "team members" or "participants" — never as "leaders".
+- For LEADER assessments: refer to participants as "leaders" throughout.
+- For COMPANY assessments: refer to the organisation collectively.
 - Write as if you are briefing the HR director privately. Human, frank, specific.
 
-Here is a real example of the quality and style required. These are takeaways from a 19-person team with an average of 83/120:
+Here is a real example of the quality and style required. These are takeaways from a 19-person TEAM assessment with an average of 83/120 (note: uses "participants" because it is a team assessment):
 
 EXAMPLE TAKEAWAYS (match this depth and tone exactly):
 Title: "A strong cohort at full picture"
@@ -368,8 +370,7 @@ export default function LiveDashboard() {
 
   // ── Render dashboard ───────────────────────────────────────────────────────
   const cfg       = SECTION_CONFIG[activeType];
-  const TYPE_DISPLAY = { team: "Team", leader: "Manager", company: "Company" };
-  const typeName  = TYPE_DISPLAY[activeType] || (activeType.charAt(0).toUpperCase() + activeType.slice(1));
+  const typeName  = activeType.charAt(0).toUpperCase() + activeType.slice(1);
   const typeLabel = `${typeName} AI Diagnostic`;
 
   const radarData = stats.sectionAvgs.map((s) => ({
