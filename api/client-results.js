@@ -1,19 +1,26 @@
+import clients from "../clientConfig.js";
+
 const CLIENT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTL4-Si-hnlmh6oq9coGmHLcBhESRscifBZvuNVfiyDeSxvBtBVl17_5HWaFBcG14bbw/exec";
 
-// Companies and their available assessment types
-// Keep this in sync with clientConfig.js
-const CLIENTS = {
-  "Swire Properties": ["Company", "Leader", "Team"],
-  "Finnair": ["Team"],
-  "Swire Coca-Cola": ["Team"],
-};
+// Build the client list dynamically from clientConfig.js — no manual sync needed.
+// Maps slug config to { "Client Name": ["Company", "Leader", "Team"] } shape.
+function buildClientList() {
+  const list = {};
+  for (const slug of Object.keys(clients)) {
+    const client = clients[slug];
+    list[client.name] = client.assessments.map(
+      (a) => a.charAt(0).toUpperCase() + a.slice(1)
+    );
+  }
+  return list;
+}
 
 export default async function handler(req, res) {
   const { company, type } = req.query;
 
   // Return client list if no params
   if (!company && !type) {
-    return res.status(200).json(CLIENTS);
+    return res.status(200).json(buildClientList());
   }
 
   if (!company || !type) {
