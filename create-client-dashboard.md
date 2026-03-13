@@ -1,45 +1,121 @@
-# How to Create a Client Dashboard
+# Client Dashboards
 
-## What This Does
-Creates a branded team results dashboard at coachbay.ai/[client]-dashboard.
-The client shares this URL with their leadership team. It shows team assessment results with charts, insights, and next steps. Optimized for print (Ctrl+P produces a clean PDF).
+## How It Works Now (Automated)
 
-## What You Need From Tomas
-1. Client name (e.g. Swire Properties)
-2. URL slug (e.g. sprops-dashboard)
-3. Who it is prepared for (name + title, e.g. Christine Ling, HR Director)
-4. Team data. Per person you need:
-   - Total score and tier (see thresholds below)
-   - Section scores (see dimensions below)
-5. Executive summary: a paragraph summarizing what the data shows
-6. Key takeaways: 4 to 6 insights specific to this client results
-7. Recommended next steps: 2 to 3 actions for the client
+Dashboards are fully automated. No manual data entry needed.
 
-If Tomas only provides the raw scores, Claude can calculate tiers and write the summary/takeaways/next steps based on the data patterns.
+When a participant submits an assessment, their scores land in the Google Sheet automatically. When anyone opens the dashboard URL, the page fetches live data from the sheet and generates AI insights on the spot. Every load reflects the current state of the data.
+
+The URL for any client dashboard is always:
+**coachbay.ai/[client-slug]-dashboard**
+
+The slug is whatever is defined in clientConfig.js. No extra steps needed.
+
+Examples:
+- finnair-sym is in clientConfig.js → coachbay.ai/finnair-sym-dashboard
+- scchk-core is in clientConfig.js → coachbay.ai/scchk-core-dashboard
+- sprops-digital is in clientConfig.js → coachbay.ai/sprops-digital-dashboard
+
+Adding a new client to clientConfig.js automatically activates their dashboard with no other changes required.
+
+---
+
+## What Tomas Needs to Do
+
+1. Add the client to clientConfig.js (already done when setting up their assessment)
+2. Wait for participants to complete the assessment
+3. Open the dashboard URL to review before sharing with the client
+4. Send the URL to the client
+
+That is it. No data entry. No file creation. No manual steps.
+
+---
+
+## The Live Dashboard: LiveDashboard.jsx
+
+This single component powers all client dashboards. Key behaviours:
+
+- Reads the client slug from the URL path
+- Looks up the client name and assessment types from clientConfig.js
+- Fetches live data from the sheet via /api/client-results
+- Parses participant scores (handles column names like "Total Score", "Integration Total" etc.)
+- Calculates stats: team average, tier distribution, section averages, min/max/range
+- Calls the Claude API via /api/claude to generate insights
+- Renders the full dashboard with all sections
+
+For clients with multiple assessment types (e.g. Company + Leader + Team), tab buttons appear at the top to switch between them.
+
+---
+
+## AI Insight Generation
+
+The dashboard calls /api/claude with a structured prompt containing:
+- Company name and assessment type
+- Participant count, team average, tier breakdown
+- Section averages with min/max per dimension
+- Finnair example takeaways and next steps as a quality reference
+
+The AI returns JSON with three fields: summary, takeaways (4 items), nextSteps (3 items).
+
+### Language rules baked into the prompt
+- Team assessment: refer to participants as "team members" or "participants" — never "leaders"
+- Leader assessment: refer to participants as "leaders" throughout
+- Company assessment: refer to the organisation collectively
+- Always use actual numbers (e.g. "at 13.5/20" not "scores suggest")
+- Name sections by their actual names (Depth, Influence, Deletion etc.)
+- Titles must be insight-driven, not dimension labels
+- Next steps must be concrete actions, not program names
+- No hyphens or em dashes. American English. No jargon.
+
+---
+
+## Dashboard Design Rules
+
+### Layout (3 print pages)
+
+Page 1: Overview
+- Header: CoachBay logo + client name + participant count + date
+- Executive Summary (AI generated, 2 paragraphs)
+- 4 stat cards: Group Average, Score Range, Strongest Area, Growth Opportunity
+- 2-column row: Tier Distribution (colored bar chart) + Radar chart (capability profile)
+
+Page 2: Detail
+- Section Breakdown: one row per dimension with min/avg/max bar visualization
+  - Light cyan band shows the range from min to max
+  - Solid cyan marker shows the team average position
+
+Page 3: Insights
+- Key Takeaways: single card, 4 items stacked vertically with icon + bold title + 2-sentence text
+- Recommended Next Steps: cyan-tinted card, numbered 1 to 3 with title + explanation
+- Footer: CoachBay branding + participant count + date + Print button (hidden on print)
+
+### Colors
+- Background: #ffffff
+- Body text: #1e293b, #334155
+- Muted text: #475569, #64748b
+- Accent: #00BCD4 (CoachBay cyan)
+- Card background: #f8fafc, border: #e2e8f0
+- Next steps card background: rgba(0,188,212,0.04), border: rgba(0,188,212,0.15)
+- Tier colors: Starting Out #ef4444, Early Progress #f59e0b, Gaining Momentum #3b82f6, AI Advanced #00BCD4, AI Pioneer #7c3aed
+
+### Typography
+- Headings: DM Serif Display, font-weight 400
+- Body: DM Sans
+- Stat card values: DM Serif Display
+- Section labels: DM Sans 600
+
+### Print
+- @page size A4, margin 12mm 14mm
+- .print-page-break forces a page break before the element
+- .no-break prevents a section splitting across pages
+- .no-print hides the element (tab buttons, Print button)
+- All colors forced with print-color-adjust: exact
+
+---
 
 ## Assessment Structures
 
-### Company Assessment (5 sections x 5 questions = 25 total, max 125)
-Sections (each out of 25): Strategic Clarity, Leadership Readiness, Employee Sentiment, Culture of Change, Practical Foundations
-
-Tiers:
-- 25 to 49: Not Yet. And That's Okay
-- 50 to 74: Groundwork Needed
-- 75 to 99: Ready to Start, With Focus
-- 100 to 112: Ready to Accelerate
-- 113 to 125: AI-Driven Organization
-
-### Leader Assessment (6 sections x 4 questions = 24 total, max 120)
-Sections (each out of 20): Integration, Depth, Deletion, Enabling, Judgment, Environment
-
-Tiers:
-- 24 to 48: Untapped Potential
-- 49 to 72: Getting Started
-- 73 to 96: Active Explorer
-- 97 to 108: AI Advanced
-- 109 to 120: AI Pioneer
-
-### Personal/Team Assessment (6 sections x 4 questions = 24 total, max 120)
+### Team Assessment (6 sections x 4 questions, max 120)
 Sections (each out of 20): Integration, Depth, Deletion, Influence, Judgment, Environment
 
 Tiers:
@@ -49,85 +125,68 @@ Tiers:
 - 97 to 108: AI Advanced
 - 109 to 120: AI Pioneer
 
-## Steps
+### Leader Assessment (6 sections x 4 questions, max 120)
+Sections (each out of 20): Integration, Depth, Deletion, Enabling, Judgment, Environment
 
-### 1. Clone latest from GitHub
-cd /home/claude and git clone https://coachbay:TOKEN@github.com/coachbay/site.git coachbay-push
-Use the GitHub token from memory.
+Tiers:
+- 24 to 48: Untapped Potential
+- 49 to 72: Getting Started
+- 73 to 96: Active Explorer
+- 97 to 108: AI Advanced
+- 109 to 120: AI Pioneer
 
-### 2. Duplicate SwireDashboard.jsx as a template
-cp SwireDashboard.jsx [NewClient]Dashboard.jsx
+### Company Assessment (5 sections x 5 questions, max 125)
+Sections (each out of 25): Strategic Clarity, Leadership Readiness, Employee Sentiment, Culture of Change, Practical Foundations
 
-### 3. Edit the new dashboard file
-Replace these parts with the new client data:
+Tiers:
+- 25 to 49: Not Yet. And That's Okay
+- 50 to 74: Groundwork Needed
+- 75 to 99: Ready to Start, With Focus
+- 100 to 112: Ready to Accelerate
+- 113 to 125: AI-Driven Organization
 
-Component name: Rename the function export to match the new file name
+---
 
-Team data array (top of file):
-One object per team member with id, total, tier, and section scores.
-Note: section count and max scores depend on which assessment was used (see structures above).
+## Google Sheet Column Format
 
-Header section:
-- Client name
-- Prepared for line (name + title)
-- Team size + date line
+The sheet stores data with these column names (case-insensitive matching used):
+- Timestamp
+- Name
+- Email
+- Total Score
+- Tier
+- [Section] Total (e.g. Integration Total, Depth Total)
+- [Section] Q1, Q2, Q3, Q4 (individual question scores)
 
-Executive Summary:
-- Replace the paragraph text with client-specific summary
+The LiveDashboard parser matches columns by checking if the lowercase header contains the section id and "total". This is flexible and handles minor naming variations.
 
-Key Takeaways:
-- Replace the array of takeaway objects (each has icon, title, text)
-- Keep the same SVG icons, just update title and text
-- Some takeaways use dynamic data from the scores (tier counts, section averages). Keep those patterns where relevant
+---
 
-Recommended Next Steps:
-- Replace the numbered steps with client-specific recommendations
+## If Something Breaks
 
-Footer:
-- Update footer text if needed
+Common issues:
 
-### 4. Add the route in App.jsx
-Add an import at the top for the new dashboard component.
-Add a route block after existing dashboard blocks, before the /assess/ block.
+"No valid participant data found"
+- Check the Google Sheet has data for this client in the correct tab
+- Verify the client name in clientConfig.js exactly matches the sheet tab name
+- Check /api/client-results?company=[name]&type=[Team/Leader/Company] directly in the browser
 
-### 5. Build and test locally (recommended for first-time dashboards)
-npm install then npm run build. Check for build errors before pushing.
+"Could Not Load Dashboard"
+- Open the URL and check the error message shown on screen
+- If it says "No submissions found yet" the sheet tab is empty or the company name does not match
 
-### 6. Push to GitHub
-git add, commit with descriptive message, push origin main.
+AI insights not generating
+- Check /api/claude is returning a valid response
+- The ANTHROPIC_API_KEY environment variable must be set in Vercel
 
-### 7. Confirm to Tomas
-- Page goes live in ~30 seconds at coachbay.ai/[slug]
-- Client can print to PDF using Ctrl+P (print styles are built in)
-- No Vercel or Google Sheets changes needed
-
-## Dashboard Structure (2 to 3 print pages)
-
-Page 1: Overview
-- Header with CoachBay branding + client name + prepared for
-- Executive Summary paragraph
-- Three stat cards: Team Average, Score Range, Key Insight (biggest gap)
-- Tier Distribution (Where the Team Sits) with colored bars per tier
-- Radar chart (team capability profile across all dimensions)
-
-Page 2: Detail
-- Section Breakdown with min/avg/max bars for each dimension
-
-Page 3: Insights
-- Key Takeaways (4 to 6 items with icons)
-- Recommended Next Steps (numbered list)
-- CoachBay footer
-
-## Design Rules
-- White background (#ffffff), dark text (#1e293b)
-- DM Sans body, DM Serif Display headings
-- Primary accent: #00BCD4 (CoachBay cyan)
-- Tier colors: red (#ef4444), amber (#f59e0b), blue (#3b82f6), teal (#0d9488), cyan (#00BCD4)
-- Card style: #f8fafc background, 1px #e2e8f0 border, 14px border radius
-- Uses recharts library (already installed) for all charts
-- Print-optimized with page break classes
+---
 
 ## Key Files
-- SwireDashboard.jsx: the template to duplicate (do not edit this for new clients)
-- App.jsx: add the new route here
-- package.json: recharts is already a dependency, no changes needed
+
+| File | Purpose |
+|---|---|
+| LiveDashboard.jsx | Powers all automated dashboards |
+| clientConfig.js | Client slugs and assessment types |
+| api/client-results.js | Fetches data from Google Sheet |
+| api/claude.js | Proxies Claude API calls |
+| App.jsx | Routes [slug]-dashboard URLs to LiveDashboard |
