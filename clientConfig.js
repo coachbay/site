@@ -24,7 +24,7 @@ const clients = {
   "sprops-digital": {
     name: "Swire Properties",
     assessments: ["company", "leader", "team"],
-    preparedFor: "Christine Ling, HR Director",
+    preparedFor: "",  // add when known
   },
 
   "finnair-sym": {
@@ -36,7 +36,7 @@ const clients = {
   "scchk-core": {
     name: "Swire Coca-Cola",
     assessments: ["team"],
-    preparedFor: "Rachel Lam, Head of People",
+    preparedFor: "",  // add when known
   },
 };
 
