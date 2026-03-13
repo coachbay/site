@@ -24,7 +24,7 @@ const clients = {
   "sprops-digital": {
     name: "Swire Properties",
     assessments: ["company", "leader", "team"],
-    preparedFor: "",  // add when known
+    preparedFor: "Christine Ling, Director Human Resources",
   },
 
   "finnair-sym": {
