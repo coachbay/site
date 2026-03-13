@@ -142,21 +142,28 @@ ${sectionBreakdown}
 Strongest section: ${stats.highest.label} (${stats.highest.avg}/${cfg.max})
 Weakest section: ${stats.lowest.label} (${stats.lowest.avg}/${cfg.max})
 
-Write in CoachBay voice: professional but human, direct, specific to the numbers, no jargon. Never use hyphens or em dashes. Use American English.
+VOICE AND STYLE RULES (non-negotiable):
+- Always use the actual numbers. Never say "scores suggest" when you can say "at 13.5/20".
+- Name the specific sections by name. Never say "technical skills" when you mean "Depth".
+- Be direct about what the data means for leadership behavior, not just performance.
+- Takeaway titles should describe the insight, not just label the dimension. Bad: "Influence Skills Need Development". Good: "Influence is where AI use becomes visible as leadership".
+- Next steps should be concrete actions, not program names. Bad: "Launch an Influence Skills Program". Good: "Ask each leader to share one AI habit in the next team meeting."
+- Never use hyphens or em dashes. Use American English. No consultant jargon.
+- Write as if you are briefing the HR director privately. Human, frank, specific.
 
 Return ONLY a valid JSON object, no markdown, no backticks, with this exact structure:
 {
-  "summary": "Two paragraphs separated by \\n\\n. First: overall result and tier distribution in plain terms. Second: biggest strength and the clearest opportunity for growth, grounded in the section scores.",
+  "summary": "Two paragraphs separated by \\n\\n. First: what the overall result and tier spread actually means for this team in plain terms. Second: the most important strength and the single clearest growth opportunity, named specifically with the scores.",
   "takeaways": [
-    { "title": "Short title (4 to 6 words)", "text": "Two sentences grounded in the data." },
-    { "title": "Short title", "text": "Two sentences." },
-    { "title": "Short title", "text": "Two sentences." },
-    { "title": "Short title", "text": "Two sentences." }
+    { "title": "Insight-driven title (not a dimension label)", "text": "Two sentences. Use the actual numbers. Explain what the pattern means for how this team works, not just that a score is high or low." },
+    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." },
+    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." },
+    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." }
   ],
   "nextSteps": [
-    { "title": "Short action title", "text": "One to two sentences on what to do and why, specific to this team." },
-    { "title": "Short action title", "text": "One to two sentences." },
-    { "title": "Short action title", "text": "One to two sentences." }
+    { "title": "Specific action, not a program name", "text": "One to two sentences. Concrete. Tied to the actual scores. Explains why this action specifically." },
+    { "title": "Specific action", "text": "One to two sentences." },
+    { "title": "Specific action", "text": "One to two sentences." }
   ]
 }`;
 
