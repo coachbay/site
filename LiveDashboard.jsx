@@ -515,14 +515,16 @@ export default function LiveDashboard() {
         <div className="print-page-break">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 24, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Key Takeaways</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, marginBottom: 28 }}>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
-              <div key={i} style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px" }} className="no-break">
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+              <div key={i} style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 28 : 0 }} className="no-break">
+                <div style={{ flexShrink: 0, marginTop: 2 }}>
                   <TakeawayIcon index={i} />
-                  <span style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>{t.title}</span>
                 </div>
-                <p style={{ fontSize: 14, color: "#334155", lineHeight: 1.6, margin: 0 }}>{t.text}</p>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#1e293b", marginBottom: 6 }}>{t.title}</div>
+                  <p style={{ fontSize: 14, color: "#334155", lineHeight: 1.65, margin: 0 }}>{t.text}</p>
+                </div>
               </div>
             ))}
           </div>
