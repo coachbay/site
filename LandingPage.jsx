@@ -182,6 +182,135 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* AI Maturity Model */}
+      <div style={{ background: "#f8fafc", padding: "64px 24px" }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>
+              Where Is Your Team Right Now?
+            </h2>
+            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
+            <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
+              Most teams have access to AI tools. Far fewer are using them in ways that change how work actually gets done. This is the gap CoachBay is built to close.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 16 }} className="maturity-grid">
+            {[
+              {
+                num: "1",
+                label: "Try it",
+                desc: "Has tried AI tools but does not use them as part of regular work. Dips in and out. Results feel unpredictable. Not yet part of the daily routine.",
+                highlight: false,
+              },
+              {
+                num: "2",
+                label: "Use it",
+                desc: "Uses AI regularly but sticks to one or two familiar tasks. Gets reliable results in their comfort zone but rarely pushes beyond it. Habit is there but range is not.",
+                highlight: false,
+              },
+              {
+                num: "3",
+                label: "Own it",
+                desc: "Uses AI confidently across multiple types of work. Has real use cases that deliver results. AI is a genuine part of how they work every day.",
+                highlight: true,
+              },
+              {
+                num: "4",
+                label: "Change it",
+                desc: "Does not just use AI to work faster. Asks which tasks should exist at all. Builds repeatable workflows. Actively shapes how work gets done, for themselves and others around them.",
+                highlight: false,
+                top: true,
+              },
+            ].map((level) => (
+              <div
+                key={level.num}
+                style={{
+                  background: level.highlight ? "#E0F7FA" : "#fff",
+                  border: level.highlight ? `2px solid ${CYAN}` : "1px solid #e2e8f0",
+                  borderRadius: 16,
+                  padding: "28px 24px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  position: "relative",
+                }}
+              >
+                {level.highlight && (
+                  <div style={{
+                    display: "inline-block",
+                    background: CYAN,
+                    color: "#fff",
+                    fontSize: 11,
+                    fontWeight: 600,
+                    borderRadius: 6,
+                    padding: "3px 10px",
+                    marginBottom: 12,
+                    letterSpacing: "0.04em",
+                    alignSelf: "flex-start",
+                  }}>
+                    Target: 80% of team
+                  </div>
+                )}
+                <div style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: level.highlight ? `${CYAN}25` : "#f1f5f9",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: level.highlight ? CYAN : "#94a3b8",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  marginBottom: 10,
+                }}>
+                  {level.num}
+                </div>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: 22,
+                  color: level.highlight ? "#0097A7" : level.top ? "#1A1A2E" : "#1e293b",
+                  margin: "0 0 10px",
+                }}>
+                  {level.label}
+                </h3>
+                <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.7, margin: 0, flex: 1 }}>
+                  {level.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 28, display: "flex", alignItems: "center", gap: 0 }}>
+            <div style={{ flex: 1, height: 3, background: "#e2e8f0", borderRadius: 2 }} />
+            <div style={{ flex: 1, height: 3, background: "#e2e8f0", borderRadius: 2, marginLeft: 2 }} />
+            <div style={{ flex: 1, height: 3, background: CYAN, borderRadius: 2, marginLeft: 2 }} />
+            <div style={{ flex: 1, height: 3, background: "#0097A7", borderRadius: 2, marginLeft: 2 }} />
+            <div style={{ marginLeft: 8 }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke={CYAN} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: 24,
+            padding: "20px 24px",
+            background: "#fff",
+            border: "1px solid #e2e8f0",
+            borderRadius: 12,
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+          }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: CYAN, flexShrink: 0 }} />
+            <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+              Most teams start with the majority of their people at <strong style={{ color: "#1e293b" }}>Level 1 or 2.</strong> The goal is to get <strong style={{ color: "#1e293b" }}>80% to Level 3</strong> and build a critical mass of Level 4 people who pull the organisation forward.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Sprints */}
       <div id="sprints" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px 48px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
