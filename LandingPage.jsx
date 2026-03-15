@@ -299,6 +299,44 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* Diagnostics */}
+      <div id="diagnostics" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Find Out Where You Stand</h2>
+          <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Take a free diagnostic.<br className="mobile-br" /> Get personalized results in minutes.</p>
+        </div>
+        <div className="card-grid-2" style={{ padding: "0 24px" }}>
+          {diagnostics.map((d) => (
+            <div key={d.id} style={{
+              background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16,
+              padding: "28px 24px 24px", display: "flex", flexDirection: "column",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = CYAN; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.06)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            >
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: `${CYAN}10`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>{d.icon}</div>
+              <p style={{ color: CYAN, fontSize: 15, fontWeight: 700, letterSpacing: 1.5, margin: "0 0 4px" }}>{d.label}</p>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 12px" }}>{d.subtitle}</h3>
+              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>{d.description}</p>
+              <button onClick={() => onNavigate(d.id)} style={{
+                background: CYAN, border: "none", color: "#fff", borderRadius: 10,
+                padding: "12px 24px", fontSize: 15, fontWeight: 600, cursor: "pointer",
+                fontFamily: "'DM Sans', sans-serif", width: "100%",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              }}>
+                Take the Assessment
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <p style={{ color: "#475569", fontSize: 15, textAlign: "center", margin: "10px 0 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#94a3b8" strokeWidth="1.5"/><path d="M8 4.5v4l2.5 1.5" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                {d.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Sprints */}
       <div id="sprints" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px 48px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
@@ -391,44 +429,6 @@ export default function LandingPage({ onNavigate }) {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Diagnostics */}
-      <div id="diagnostics" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px" }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Find Out Where You Stand</h2>
-          <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Take a free diagnostic.<br className="mobile-br" /> Get personalized results in minutes.</p>
-        </div>
-        <div className="card-grid-2" style={{ padding: "0 24px" }}>
-          {diagnostics.map((d) => (
-            <div key={d.id} style={{
-              background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16,
-              padding: "28px 24px 24px", display: "flex", flexDirection: "column",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = CYAN; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.06)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-            >
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: `${CYAN}10`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>{d.icon}</div>
-              <p style={{ color: CYAN, fontSize: 15, fontWeight: 700, letterSpacing: 1.5, margin: "0 0 4px" }}>{d.label}</p>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 12px" }}>{d.subtitle}</h3>
-              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 20px", flex: 1 }}>{d.description}</p>
-              <button onClick={() => onNavigate(d.id)} style={{
-                background: CYAN, border: "none", color: "#fff", borderRadius: 10,
-                padding: "12px 24px", fontSize: 15, fontWeight: 600, cursor: "pointer",
-                fontFamily: "'DM Sans', sans-serif", width: "100%",
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-              }}>
-                Take the Assessment
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </button>
-              <p style={{ color: "#475569", fontSize: 15, textAlign: "center", margin: "10px 0 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#94a3b8" strokeWidth="1.5"/><path d="M8 4.5v4l2.5 1.5" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                {d.detail}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 
