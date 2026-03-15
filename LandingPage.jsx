@@ -191,7 +191,7 @@ export default function LandingPage({ onNavigate }) {
             </h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
             <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
-              Most teams have access to AI tools. Far fewer are using them in ways that change how work actually gets done. This is the gap CoachBay is built to close.
+              Most teams have access to AI tools. Far fewer are using them in ways that change how work actually gets done. I am on a mission to help close that gap.
             </p>
           </div>
 
@@ -235,22 +235,6 @@ export default function LandingPage({ onNavigate }) {
                   position: "relative",
                 }}
               >
-                {level.highlight && (
-                  <div style={{
-                    display: "inline-block",
-                    background: CYAN,
-                    color: "#fff",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    borderRadius: 6,
-                    padding: "3px 10px",
-                    marginBottom: 12,
-                    letterSpacing: "0.04em",
-                    alignSelf: "flex-start",
-                  }}>
-                    Target: 80% of team
-                  </div>
-                )}
                 <div style={{
                   width: 36,
                   height: 36,
@@ -277,6 +261,22 @@ export default function LandingPage({ onNavigate }) {
                 <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.7, margin: 0, flex: 1 }}>
                   {level.desc}
                 </p>
+                {level.highlight && (
+                  <div style={{
+                    display: "inline-block",
+                    background: CYAN,
+                    color: "#fff",
+                    fontSize: 11,
+                    fontWeight: 600,
+                    borderRadius: 6,
+                    padding: "3px 10px",
+                    marginTop: 16,
+                    letterSpacing: "0.04em",
+                    alignSelf: "flex-start",
+                  }}>
+                    Target: 80% of team
+                  </div>
+                )}
               </div>
             ))}
           </div>
