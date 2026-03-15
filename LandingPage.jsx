@@ -266,15 +266,15 @@ export default function LandingPage({ onNavigate }) {
                     display: "inline-block",
                     background: CYAN,
                     color: "#fff",
-                    fontSize: 11,
-                    fontWeight: 600,
+                    fontSize: 13,
+                    fontWeight: 700,
                     borderRadius: 6,
-                    padding: "3px 10px",
+                    padding: "5px 12px",
                     marginTop: 16,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.02em",
                     alignSelf: "flex-start",
                   }}>
-                    Target: 80% of team
+                    Target: <span style={{ fontSize: 16 }}>80%</span> of team
                   </div>
                 )}
               </div>
