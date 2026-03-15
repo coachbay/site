@@ -304,7 +304,7 @@ export default function LandingPage({ onNavigate }) {
             gap: 12,
           }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: CYAN, flexShrink: 0 }} />
-            <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, margin: 0 }}>
               Most teams start with the majority of their people at <strong style={{ color: "#1e293b" }}>Level 1 or 2.</strong> The goal is to get <strong style={{ color: "#1e293b" }}>80% to Level 3</strong> and build a critical mass of Level 4 people who pull the organisation forward.
             </p>
           </div>
