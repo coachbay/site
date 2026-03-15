@@ -236,17 +236,17 @@ export default function LandingPage({ onNavigate }) {
                 }}
               >
                 <div style={{
-                  width: 36,
-                  height: 36,
+                  width: 48,
+                  height: 48,
                   borderRadius: "50%",
                   background: level.highlight ? `${CYAN}25` : "#f1f5f9",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: level.highlight ? CYAN : "#94a3b8",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  marginBottom: 10,
+                  color: level.highlight ? CYAN : "#64748b",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  marginBottom: 12,
                 }}>
                   {level.num}
                 </div>
@@ -279,18 +279,6 @@ export default function LandingPage({ onNavigate }) {
                 )}
               </div>
             ))}
-          </div>
-
-          <div style={{ marginTop: 28, display: "flex", alignItems: "center", gap: 0 }}>
-            <div style={{ flex: 1, height: 3, background: "#e2e8f0", borderRadius: 2 }} />
-            <div style={{ flex: 1, height: 3, background: "#e2e8f0", borderRadius: 2, marginLeft: 2 }} />
-            <div style={{ flex: 1, height: 3, background: CYAN, borderRadius: 2, marginLeft: 2 }} />
-            <div style={{ flex: 1, height: 3, background: "#0097A7", borderRadius: 2, marginLeft: 2 }} />
-            <div style={{ marginLeft: 8 }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke={CYAN} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
           </div>
 
           <div style={{
