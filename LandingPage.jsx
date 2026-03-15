@@ -235,29 +235,31 @@ export default function LandingPage({ onNavigate }) {
                   position: "relative",
                 }}
               >
-                <div style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "50%",
-                  background: level.highlight ? `${CYAN}25` : "#f1f5f9",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: level.highlight ? CYAN : "#64748b",
-                  fontSize: 20,
-                  fontWeight: 700,
-                  marginBottom: 12,
-                }}>
-                  {level.num}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+                  <div style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: "50%",
+                    background: `${CYAN}15`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: CYAN,
+                    fontSize: 22,
+                    fontWeight: 700,
+                    flexShrink: 0,
+                  }}>
+                    {level.num}
+                  </div>
+                  <h3 style={{
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: 22,
+                    color: level.highlight ? "#0097A7" : "#1e293b",
+                    margin: 0,
+                  }}>
+                    {level.label}
+                  </h3>
                 </div>
-                <h3 style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: 22,
-                  color: level.highlight ? "#0097A7" : level.top ? "#1A1A2E" : "#1e293b",
-                  margin: "0 0 10px",
-                }}>
-                  {level.label}
-                </h3>
                 <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.7, margin: 0, flex: 1 }}>
                   {level.desc}
                 </p>
