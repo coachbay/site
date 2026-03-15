@@ -190,7 +190,7 @@ export default function LandingPage({ onNavigate }) {
               Where Is Your Team Right Now?
             </h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
-            <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
+            <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 720 }}>
               Most teams have access to AI tools. Far fewer are using them in ways that change how work actually gets done. I am on a mission to help close that gap.
             </p>
           </div>
