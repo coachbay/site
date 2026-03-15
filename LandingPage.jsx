@@ -254,7 +254,7 @@ export default function LandingPage({ onNavigate }) {
                   <h3 style={{
                     fontFamily: "'DM Serif Display', serif",
                     fontSize: 22,
-                    color: level.highlight ? "#0097A7" : "#1e293b",
+                    color: "#1e293b",
                     margin: 0,
                   }}>
                     {level.label}
