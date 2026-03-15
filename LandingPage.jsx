@@ -283,13 +283,17 @@ export default function LandingPage({ onNavigate }) {
 
           <div style={{
             marginTop: 24,
-            padding: "20px 24px",
+            padding: "24px 32px",
             background: "#fff",
             border: "1px solid #e2e8f0",
             borderRadius: 12,
+            textAlign: "center",
           }}>
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, margin: "0 0 8px" }}>
+              Most teams start with the majority of their people at <strong style={{ color: "#1e293b" }}>Level 1 or 2.</strong>
+            </p>
             <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, margin: 0 }}>
-              Most teams start with the majority of their people at <strong style={{ color: "#1e293b" }}>Level 1 or 2.</strong> The goal is to get <strong style={{ color: "#1e293b" }}>80% to Level 3</strong> and build a critical mass of Level 4 people who pull the organisation forward.
+              The goal is to get <strong style={{ color: "#1e293b" }}>80% to Level 3</strong> and build a critical mass of Level 4 people who pull the organisation forward.
             </p>
           </div>
         </div>
