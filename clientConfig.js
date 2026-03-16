@@ -39,6 +39,13 @@ const clients = {
     preparedFor: "Lily Chu, Sales & Marketing Director",
     closeDate: "2026-03-23",
   },
+
+  "cpcs-sym": {
+    name: "Cathay Dining",
+    assessments: ["team"],
+    preparedFor: "Sally Wong",
+    closeDate: "2026-03-21",
+  },
 };
 
 export default clients;
