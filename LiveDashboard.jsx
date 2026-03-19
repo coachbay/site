@@ -149,6 +149,7 @@ VOICE AND STYLE RULES (non-negotiable):
 - Takeaway titles should describe the insight, not just label the dimension.
 - Next steps should be concrete actions a manager could take this week, not program names.
 - Never use hyphens or em dashes. Use American English. No consultant jargon.
+- Never frame training and peer learning as either/or. A score spread may call for both structured support AND peer learning. Always consider whether top performers have the bandwidth to teach before recommending they carry the learning effort.
 - For TEAM assessments: refer to participants as "team members" or "participants" — never as "leaders".
 - For LEADER assessments: refer to participants as "leaders" throughout.
 - For COMPANY assessments: refer to the organisation collectively.
@@ -166,8 +167,8 @@ Text: "Judgment is the highest scoring dimension at 16.9/20. This group can eval
 Title: "Deletion and Influence are the biggest opportunities"
 Text: "Deletion (10.9/20) and Influence (11.3/20) are the two weakest dimensions across the group. Participants are using AI to support their own thinking but are not yet actively using it to remove unnecessary work or demonstrate that use visibly to their teams. These are the dimensions with the highest leverage."
 
-Title: "A wide spread signals an opportunity for peer learning"
-Text: "The 51-point gap between the lowest and highest scores reflects a significant range of AI maturity within a single cohort. This is not a problem to solve through more training. It is an opportunity to structure peer learning: the participants at the top can accelerate the rest simply by sharing what they do."
+Title: "A wide spread calls for structured support and peer learning working together"
+Text: "The 51-point gap between the lowest and highest scores reflects a significant range of AI maturity within a single cohort. Closing this gap takes two things in parallel: structured support to build foundational skills across the group, and deliberate peer learning where advanced participants share what they actually do. Consider the capacity and workload of top performers before relying on them to carry the learning effort alone."
 
 EXAMPLE NEXT STEPS (match this specificity):
 Title: "Form a Pilot Squad from your top performers"
