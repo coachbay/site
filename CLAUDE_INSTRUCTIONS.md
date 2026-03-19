@@ -160,3 +160,23 @@ The feature code lives in `DisruptionSprint.jsx`. The PDF uses `DisruptionSprint
 - **No assumptions on copy**: When in doubt about wording, ask — don't invent
 - **Explain in plain English**: Tomas is not a developer. Describe changes like you're explaining to a smart non-technical colleague
 - **One question at a time**: If clarification is needed, ask one question, wait for the answer, then continue
+
+## Client Dashboard URLs — Critical Rule
+
+Every slug in `clientConfig.js` automatically has a live dashboard. The URL is always:
+  coachbay.ai/[slug]-dashboard
+
+Examples:
+  cpcs-sym     → coachbay.ai/cpcs-sym-dashboard
+  scchk-core   → coachbay.ai/scchk-core-dashboard
+  finnair-sym  → coachbay.ai/finnair-sym-dashboard
+
+Before telling Tomas a dashboard does not exist or has not been built, always read
+clientConfig.js and derive the URL from the slug. The LiveDashboard.jsx component
+and dynamic routing in App.jsx handle all slugs automatically.
+
+The automation that runs for every client:
+- Dashboard loads live data from the Google Sheet on every page visit
+- AI generates fresh insights each time
+- Cron job fires at 9am HKT on the closeDate and emails Tomas with submission
+  count, dashboard link, and a draft client email ready to forward
