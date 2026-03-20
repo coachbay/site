@@ -177,6 +177,11 @@ Text: "With one AI Pioneer and two AI Advanced participants already in this coho
 Title: "Make Deletion a shared team habit"
 Text: "Deletion is the weakest dimension. Run a short exercise where each participant asks AI to audit one of their regular meetings, reports, or recurring processes and identify what could be removed or simplified."
 
+REQUIRED TAKEAWAY — always include this as one of the four takeaways, adapted to the company context:
+Title: "Beyond the official tool"
+Text: Even where a company has standardised on one AI platform, the highest-scoring team members often reach for other tools like Perplexity and Gemini to fill the gaps. It is worth understanding what they are using these tools for and whether the official platform is meeting the team's actual needs.
+Adapt the opening to reference the company by name where natural, but keep the substance identical.
+
 Now write takeaways and next steps at this same level of insight and specificity for the team data provided above.
 
 Return ONLY a valid JSON object, no markdown, no backticks, with this exact structure:
