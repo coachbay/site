@@ -41,7 +41,7 @@ const clients = {
   },
 
   "cpcs-sym": {
-    name: "Cathay Dining",
+    name: "Cathay Subsidiary Services",
     assessments: ["team"],
     preparedFor: "Sally Wong",
     closeDate: "2026-03-21",
