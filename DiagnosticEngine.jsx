@@ -86,6 +86,7 @@ const SECTION_ICONS = {
 };
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzp7051naVvv3IGLSzg0MKZ-UmPxyAxxcIW6yMjImhJyPUEghIyquWT4IHclcUxD5r8jw/exec";
+const EMAIL_SCRIPT_URL = "https://script.google.com/a/macros/coachbay.com/s/AKfycbybcrmGUhIKZl60phQoSGUyFdsUigEtpEV-CccqSg3-h16U3nLa1P3nkNGqxWdyb5cS/exec";
 
 function ScoreRing({ score, max, color, size = 120, strokeWidth = 10 }) {
   const radius = (size - strokeWidth) / 2;
@@ -148,6 +149,9 @@ export default function DiagnosticEngine({
   const [answers, setAnswers] = useState({});
   const [animating, setAnimating] = useState(false);
   const [autoAdvancing, setAutoAdvancing] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [emailStatus, setEmailStatus] = useState("idle");
   const questionRef = useRef(null);
 
   const questionsPerSection = sections.map(s => s.questions.length);
@@ -273,7 +277,7 @@ export default function DiagnosticEngine({
   };
 
 
-  const generatePDF = () => {
+  const buildPDFDoc = () => {
     const { sectionScores, grandTotal, tier } = calculateResults();
     const doc = new jsPDF({ unit: "mm", format: "a4" });
     const pageW = 210;
@@ -511,9 +515,42 @@ export default function DiagnosticEngine({
     doc.setTextColor(148, 163, 184);
     doc.text("coachbay.ai", margin + contentW, y, { align: "right" });
 
-    // Save
-    const filename = `CoachBay - ${title.replace(/\s+/g, " ")}.pdf`;
+    return { doc, filename: `CoachBay - ${title.replace(/\s+/g, " ")}.pdf` };
+  };
+
+  const generatePDF = () => {
+    const { doc, filename } = buildPDFDoc();
     doc.save(filename);
+  };
+
+  const handleEmailResults = async () => {
+    if (!emailAddress || !emailAddress.includes("@")) return;
+    setEmailStatus("sending");
+    try {
+      const { doc, filename } = buildPDFDoc();
+      const pdfBase64 = doc.output("datauristring").split(",")[1];
+      const { grandTotal, tier } = calculateResults();
+
+      await fetch(EMAIL_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          action: "emailResults",
+          email: emailAddress,
+          pdfBase64,
+          pdfFilename: filename,
+          diagnosticType,
+          score: grandTotal,
+          tier: tier.label,
+          assessmentTitle: title,
+        }),
+      });
+
+      setEmailStatus("sent");
+    } catch (err) {
+      console.error("Email send failed:", err);
+      setEmailStatus("error");
+    }
   };
 
   const canFinish = answeredCount === totalQuestions;
@@ -735,6 +772,18 @@ export default function DiagnosticEngine({
               >
                 Download Results (PDF)
               </button>
+              {EMAIL_SCRIPT_URL !== "__EMAIL_SCRIPT_URL__" && (
+                <button
+                  onClick={() => { setShowEmailModal(true); setEmailStatus("idle"); setEmailAddress(""); }}
+                  style={{
+                    background: "none", border: `2px solid ${CYAN}`, color: CYAN,
+                    borderRadius: 12, padding: "12px 28px", fontSize: 14, fontWeight: 600,
+                    cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                  }}
+                >
+                  Email my results
+                </button>
+              )}
               <button
                 onClick={() => {
                   setPhase("intro");
@@ -743,12 +792,12 @@ export default function DiagnosticEngine({
                   setAnswers({});
                 }}
                 style={{
-                  background: "none", border: `2px solid ${CYAN}`, color: CYAN,
+                  background: "none", border: `2px solid #d1d5db`, color: MID,
                   borderRadius: 12, padding: "12px 28px", fontSize: 14, fontWeight: 600,
                   cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                ← Retake Assessment
+                Retake Assessment
               </button>
               <button
                 onClick={onBack}
@@ -781,6 +830,113 @@ export default function DiagnosticEngine({
               </a>
             </div>
           </div>
+
+          {/* Email Modal */}
+          {showEmailModal && (
+            <div
+              style={{
+                position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+                background: "rgba(0,0,0,0.5)", display: "flex",
+                alignItems: "center", justifyContent: "center",
+                zIndex: 1000, padding: 24,
+              }}
+              onClick={() => { if (emailStatus !== "sending") { setShowEmailModal(false); } }}
+            >
+              <div
+                style={{
+                  background: "#fff", borderRadius: 20, padding: 32,
+                  maxWidth: 440, width: "100%",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+                }}
+                onClick={e => e.stopPropagation()}
+              >
+                {emailStatus === "sent" ? (
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{
+                      width: 56, height: 56, borderRadius: "50%", background: `${CYAN}15`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      margin: "0 auto 16px",
+                    }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <h3 style={{ color: DARK, fontSize: 20, fontWeight: 700, margin: "0 0 8px", fontFamily: "'DM Sans', sans-serif" }}>
+                      Results sent!
+                    </h3>
+                    <p style={{ color: MID, fontSize: 14, margin: "0 0 24px", lineHeight: 1.6 }}>
+                      Check your inbox at <strong>{emailAddress}</strong>
+                    </p>
+                    <button
+                      onClick={() => setShowEmailModal(false)}
+                      style={{
+                        background: CYAN, color: "#fff", border: "none", borderRadius: 12,
+                        padding: "12px 28px", fontSize: 14, fontWeight: 600,
+                        cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                      }}
+                    >Done</button>
+                  </div>
+                ) : (
+                  <>
+                    <h3 style={{ color: DARK, fontSize: 20, fontWeight: 700, margin: "0 0 8px", fontFamily: "'DM Serif Display', serif" }}>
+                      Email your results
+                    </h3>
+                    <p style={{ color: MID, fontSize: 14, margin: "0 0 24px", lineHeight: 1.6 }}>
+                      Enter your email and we will send a copy of your assessment results to your inbox.
+                    </p>
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      value={emailAddress}
+                      onChange={e => setEmailAddress(e.target.value)}
+                      onKeyDown={e => { if (e.key === "Enter" && emailAddress.includes("@")) handleEmailResults(); }}
+                      style={{
+                        width: "100%", padding: "12px 16px", fontSize: 15,
+                        border: "2px solid #e5e7eb", borderRadius: 12,
+                        fontFamily: "'DM Sans', sans-serif",
+                        outline: "none", boxSizing: "border-box",
+                        transition: "border-color 0.2s",
+                      }}
+                      onFocus={e => { e.target.style.borderColor = CYAN; }}
+                      onBlur={e => { e.target.style.borderColor = "#e5e7eb"; }}
+                      disabled={emailStatus === "sending"}
+                      autoFocus
+                    />
+                    {emailStatus === "error" && (
+                      <p style={{ color: "#ef4444", fontSize: 13, margin: "8px 0 0" }}>
+                        Something went wrong. Please try again.
+                      </p>
+                    )}
+                    <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
+                      <button
+                        onClick={() => setShowEmailModal(false)}
+                        style={{
+                          flex: 1, background: "none", border: "2px solid #d1d5db", color: MID,
+                          borderRadius: 12, padding: "12px", fontSize: 14, fontWeight: 600,
+                          cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                        }}
+                        disabled={emailStatus === "sending"}
+                      >Cancel</button>
+                      <button
+                        onClick={handleEmailResults}
+                        disabled={emailStatus === "sending" || !emailAddress.includes("@")}
+                        style={{
+                          flex: 1,
+                          background: (emailStatus === "sending" || !emailAddress.includes("@")) ? "#94a3b8" : CYAN,
+                          color: "#fff", border: "none", borderRadius: 12,
+                          padding: "12px", fontSize: 14, fontWeight: 600,
+                          cursor: (emailStatus === "sending" || !emailAddress.includes("@")) ? "default" : "pointer",
+                          fontFamily: "'DM Sans', sans-serif",
+                        }}
+                      >
+                        {emailStatus === "sending" ? "Sending..." : "Send Results"}
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
