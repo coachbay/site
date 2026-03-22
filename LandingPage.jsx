@@ -134,7 +134,7 @@ export default function LandingPage({ onNavigate }) {
               The best ones start with people.
             </h1>
             <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.7, margin: "0 0 8px" }}>
-              My name is Tomas Bay.<br className="mobile-br" /> I help leaders and organizations adopt AI in a way that actually sticks.
+              My name is Tomas Bay.<br className="mobile-br" /> I help leaders and organizations build AI fitness that actually sticks.
             </p>
             <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.6, margin: "0 0 32px" }}>
               25 years helping leaders navigate change<br className="mobile-br" /> across Asia Pacific.
@@ -304,8 +304,8 @@ export default function LandingPage({ onNavigate }) {
       {/* Diagnostics */}
       <div id="diagnostics" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Find Out Where You Stand</h2>
-          <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Take a free diagnostic.<br className="mobile-br" /> Get personalized results in minutes.</p>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 12px" }}>Take the AI Fitness Test</h2>
+          <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Every fitness program starts with an honest assessment.<br className="mobile-br" /> Take a free diagnostic. Get your results in minutes.</p>
         </div>
         <div className="card-grid-2" style={{ padding: "0 24px" }}>
           {diagnostics.map((d) => (
@@ -443,7 +443,7 @@ export default function LandingPage({ onNavigate }) {
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>I'm Tomas Bay, a leadership and change consultant based in Hong Kong.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>Over 25 years I have helped leaders and teams across Europe and Asia Pacific navigate change and turn ideas into real results. That includes 15 years with Maersk in general management and 19 years as a Principal Consultant with the Swire Group, working across diverse industries and cultures.</p>
               <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}>In January 2023, I started using ChatGPT. It changed how I work, how I coach, and how I think about what leaders and teams are capable of. Since then, I have helped individuals, leaders, and teams get more out of AI and become more effective at work.</p>
-              <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 28px" }}>I built CoachBay.ai to help other organizations make the same shift. Through sprints, diagnostics, and coaching, I help leaders and teams get comfortable with AI in a way that actually sticks.</p>
+              <p style={{ color: "#334155", fontSize: 16, lineHeight: 1.8, margin: "0 0 28px" }}>I built CoachBay.ai to help other organizations make the same shift. Through the AI Fitness Program, I help leaders and teams build lasting AI capability through diagnostics, focused sprints, and the habits that make it stick.</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
               <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
