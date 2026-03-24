@@ -531,8 +531,9 @@ export default function DiagnosticEngine({
       const pdfBase64 = doc.output("datauristring").split(",")[1];
       const { grandTotal, tier } = calculateResults();
 
-      await fetch(EMAIL_SCRIPT_URL, {
+      const resp = await fetch(EMAIL_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           action: "emailResults",
@@ -546,6 +547,8 @@ export default function DiagnosticEngine({
         }),
       });
 
+      // no-cors returns an opaque response so we cannot check resp.ok,
+      // but the request still reaches the server and the email is sent.
       setEmailStatus("sent");
     } catch (err) {
       console.error("Email send failed:", err);
