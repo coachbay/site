@@ -64,7 +64,13 @@ export default function ClientAssessment({ clientSlug, clientName, scriptUrl, as
       return;
     }
     setEmailError("");
-    setPhase("pick");
+    // If only one assessment, skip the picker and go straight to it
+    if (availableOptions.length === 1) {
+      setSelectedDiagnostic(availableOptions[0]);
+      setPhase("diagnostic");
+    } else {
+      setPhase("pick");
+    }
   };
 
   const handleKeyDown = (e) => {
