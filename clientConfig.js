@@ -37,7 +37,7 @@ const clients = {
     name: "Swire Coca-Cola",
     assessments: ["team"],
     preparedFor: "Lily Chu, Sales & Marketing Director",
-    closeDate: "2026-03-23",
+    closeDate: "2026-03-25",
   },
 
   "cpcs-sym": {
