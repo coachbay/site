@@ -58,7 +58,9 @@ async function sendEmail({ to, subject, html }) {
 
 export default async function handler(req, res) {
   // Secure the endpoint — only Vercel cron (or you) can call it
-  const secret = req.headers["x-cron-secret"] || req.query.secret;
+  // Vercel sends: Authorization: Bearer <CRON_SECRET>
+  const authHeader = req.headers["authorization"] || "";
+  const secret = authHeader.replace("Bearer ", "") || req.query.secret;
   if (secret !== process.env.CRON_SECRET) {
     return res.status(401).json({ error: "Unauthorized" });
   }
