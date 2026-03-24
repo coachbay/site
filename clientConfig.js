@@ -46,6 +46,13 @@ const clients = {
     preparedFor: "Sally Wong",
     closeDate: "2026-03-21",
   },
+
+  "swirehotels-sym": {
+    name: "Swire Hotels",
+    assessments: ["team"],
+    preparedFor: "Susan Lee",
+    closeDate: "2026-03-29",
+  },
 };
 
 export default clients;
