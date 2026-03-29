@@ -9,6 +9,9 @@
 //   preparedFor — name and title of the person receiving the report
 //                 shown in the dashboard header, e.g. "Jane Smith, HR Director"
 //                 ask Tomas for this when setting up each new client
+//   version     — assessment version (optional, defaults to 2)
+//                 1 = original format (24 questions team/leader, 25 company, max 120/125)
+//                 2 = expanded format (26 questions all, max 130) — March 2026 onward
 //
 // Assessment page:  coachbay.ai/assess/[slug]
 // Dashboard URL:    coachbay.ai/[slug]-dashboard
@@ -25,12 +28,14 @@ const clients = {
     name: "Swire Properties",
     assessments: ["company", "leader", "team"],
     preparedFor: "Christine Ling, Director Human Resources",
+    version: 1,
   },
 
   "finnair-sym": {
     name: "Finnair",
     assessments: ["team"],
     preparedFor: "Simon Large, Chief Customer Officer",
+    version: 1,
   },
 
   "scchk-core": {
@@ -38,6 +43,7 @@ const clients = {
     assessments: ["team"],
     preparedFor: "Lily Chu, Sales & Marketing Director",
     closeDate: "2026-03-25",
+    version: 1,
   },
 
   "cpcs-sym": {
@@ -45,6 +51,7 @@ const clients = {
     assessments: ["team"],
     preparedFor: "Sally Wong",
     closeDate: "2026-03-21",
+    version: 1,
   },
 
   "swirehotels-sym": {
@@ -52,6 +59,7 @@ const clients = {
     assessments: ["team"],
     preparedFor: "Susan Lee",
     closeDate: "2026-03-29",
+    version: 1,
   },
 };
 

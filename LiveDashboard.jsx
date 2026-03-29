@@ -5,8 +5,59 @@ import {
 } from "recharts";
 import clients from "./clientConfig";
 
-// ── Section config per assessment type ──────────────────────────────────────
-const SECTION_CONFIG = {
+// ── Section config per assessment type, versioned ──────────────────────────
+// v1 = original format (24 questions team/leader, 25 company)
+// v2 = expanded March 2026 (26 questions all types)
+const SECTION_CONFIG_V1 = {
+  team: {
+    ids: ["integration", "depth", "deletion", "influence", "judgment", "environment"],
+    labels: {
+      integration: "Integration", depth: "Depth", deletion: "Deletion",
+      influence: "Influence", judgment: "Judgment", environment: "Environment",
+    },
+    max: 20, total: 120,
+    tiers: [
+      { label: "Starting Out",      color: "#ef4444", range: [24, 48] },
+      { label: "Early Progress",    color: "#f59e0b", range: [49, 72] },
+      { label: "Gaining Momentum",  color: "#3b82f6", range: [73, 96] },
+      { label: "AI Advanced",       color: "#00BCD4", range: [97, 108] },
+      { label: "AI Pioneer",        color: "#7c3aed", range: [109, 120] },
+    ],
+  },
+  leader: {
+    ids: ["integration", "depth", "deletion", "enabling", "judgment", "environment"],
+    labels: {
+      integration: "Integration", depth: "Depth", deletion: "Deletion",
+      enabling: "Enabling", judgment: "Judgment", environment: "Environment",
+    },
+    max: 20, total: 120,
+    tiers: [
+      { label: "Untapped Potential", color: "#ef4444", range: [24, 48] },
+      { label: "Getting Started",    color: "#f59e0b", range: [49, 72] },
+      { label: "Active Explorer",    color: "#3b82f6", range: [73, 96] },
+      { label: "AI Advanced",        color: "#00BCD4", range: [97, 108] },
+      { label: "AI Pioneer",         color: "#7c3aed", range: [109, 120] },
+    ],
+  },
+  company: {
+    ids: ["clarity", "leadership", "sentiment", "culture", "foundations"],
+    labels: {
+      clarity: "Strategic Clarity", leadership: "Leadership Readiness",
+      sentiment: "Employee Sentiment", culture: "Culture of Change",
+      foundations: "Practical Foundations",
+    },
+    max: 25, total: 125,
+    tiers: [
+      { label: "Not Yet",                range: [25, 50],   color: "#ef4444" },
+      { label: "Groundwork Needed",      range: [51, 75],   color: "#f59e0b" },
+      { label: "Ready to Start",         range: [76, 100],  color: "#3b82f6" },
+      { label: "Ready to Accelerate",    range: [101, 112], color: "#00BCD4" },
+      { label: "AI-Driven Organization", range: [113, 125], color: "#7c3aed" },
+    ],
+  },
+};
+
+const SECTION_CONFIG_V2 = {
   team: {
     ids: ["integration", "depth", "deletion", "influence", "judgment", "environment"],
     labels: {
@@ -55,10 +106,14 @@ const SECTION_CONFIG = {
   },
 };
 
+function getSectionConfig(version) {
+  return version === 1 ? SECTION_CONFIG_V1 : SECTION_CONFIG_V2;
+}
+
 const avg = (arr) => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
 
 // ── Parse raw sheet rows into scored participant objects ─────────────────────
-function parseRows(headers, rows, typeKey) {
+function parseRows(headers, rows, typeKey, version) {
   const h = headers.map((x) => (x || "").toLowerCase().trim());
   // Flexible column finder — matches if header contains the keyword
   const idx = (keyword) => h.findIndex((col) => col.includes(keyword));
@@ -66,7 +121,7 @@ function parseRows(headers, rows, typeKey) {
   const nameI  = idx("name");
   const scoreI = idx("total score");
   const tierI  = idx("tier");
-  const cfg    = SECTION_CONFIG[typeKey];
+  const cfg    = getSectionConfig(version)[typeKey];
 
   return rows
     .filter((r) => r && r[scoreI] && !isNaN(Number(r[scoreI])))
@@ -87,8 +142,8 @@ function parseRows(headers, rows, typeKey) {
 }
 
 // ── Build stats summary for AI prompt ───────────────────────────────────────
-function buildStats(teamData, typeKey) {
-  const cfg = SECTION_CONFIG[typeKey];
+function buildStats(teamData, typeKey, version) {
+  const cfg = getSectionConfig(version)[typeKey];
   const totals = teamData.map((d) => d.total);
   const teamAvg = Math.round(avg(totals) * 10) / 10;
   const teamPct = Math.round((teamAvg / cfg.total) * 100);
@@ -113,8 +168,8 @@ function buildStats(teamData, typeKey) {
 }
 
 // ── Call Claude API for AI insights ─────────────────────────────────────────
-async function generateInsights(companyName, typeKey, teamData, stats) {
-  const cfg = SECTION_CONFIG[typeKey];
+async function generateInsights(companyName, typeKey, teamData, stats, version) {
+  const cfg = getSectionConfig(version)[typeKey];
   const typeName = typeKey.charAt(0).toUpperCase() + typeKey.slice(1);
 
   const tierBreakdown = stats.tierCounts
@@ -296,20 +351,25 @@ export default function LiveDashboard() {
 
       const headers = raw[0];
       const rows    = raw.slice(1);
-      const parsed  = parseRows(headers, rows, activeType);
+      const ver = client.version || 2;
+      const parsed  = parseRows(headers, rows, activeType, ver);
 
       if (!parsed.length) throw new Error("No valid participant data found.");
 
-      const computedStats = buildStats(parsed, activeType);
+      const computedStats = buildStats(parsed, activeType, ver);
       setTeamData(parsed);
       setStats(computedStats);
       setLastUpdated(new Date());
 
       // Now generate AI insights
       setLoadStatus("ai");
-      const ai = await generateInsights(company, activeType, parsed, computedStats);
+      const ai = await generateInsights(company, activeType, parsed, computedStats, ver);
       setAiContent(ai);
       setLoadStatus("ready");
+
+      // Update document title so Print/Save PDF uses a meaningful filename
+      const typeName = activeType.charAt(0).toUpperCase() + activeType.slice(1);
+      document.title = `CoachBay.ai | ${company} ${typeName} AI Readiness Report`;
 
     } catch (e) {
       setErrorMsg(e.message);
@@ -378,7 +438,7 @@ export default function LiveDashboard() {
   }
 
   // ── Render dashboard ───────────────────────────────────────────────────────
-  const cfg       = SECTION_CONFIG[activeType];
+  const cfg       = getSectionConfig(client.version || 2)[activeType];
   const typeName  = activeType.charAt(0).toUpperCase() + activeType.slice(1);
   const typeLabel = `${typeName} AI Readiness Report`;
 
