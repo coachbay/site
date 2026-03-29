@@ -466,10 +466,18 @@ export default function LiveDashboard() {
           .print-page-break { page-break-before: always; break-before: page; }
           .no-break { page-break-inside: avoid; break-inside: avoid; }
           .no-print { display: none !important; }
-          /* Tighten spacing for print */
-          .print-tight { margin-bottom: 16px !important; }
-          .print-snug { padding: 18px 18px !important; }
-          .print-gap-sm { gap: 12px !important; }
+          /* Tighten all panel spacing for print */
+          .print-tight { margin-bottom: 14px !important; }
+          .print-snug { padding: 16px 16px !important; }
+          .print-gap-sm { gap: 10px !important; }
+          /* Compact dimension cards in print only */
+          .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+          .dim-card { padding: 8px 10px !important; }
+          .dim-card-title { font-size: 11px !important; }
+          .dim-card-text { font-size: 10px !important; line-height: 1.4 !important; }
+          /* Compact takeaways in print */
+          .takeaway-gap { margin-bottom: 14px !important; }
+          .takeaway-text { font-size: 13px !important; line-height: 1.5 !important; }
         }
         @media screen {
           .print-page-break::before {
@@ -625,17 +633,17 @@ export default function LiveDashboard() {
 
         {/* Understanding the Dimensions */}
         {aiContent?.dimensions?.length > 0 && (
-          <div className="print-page-break" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
+          <div className="print-tight print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
             padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 6px", fontWeight: 400 }}>Understanding the Dimensions</h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 18px" }}>What each area of the assessment measures</p>
-            <div className="print-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            <div className="dim-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
               {aiContent.dimensions.map((d, i) => (
-                <div key={i} style={{ padding: "12px 14px", background: "rgba(0,188,212,0.04)",
+                <div key={i} className="dim-card" style={{ padding: "14px 16px", background: "rgba(0,188,212,0.04)",
                   border: "1px solid rgba(0,188,212,0.1)", borderRadius: 10 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "#1e293b", marginBottom: 3 }}>{d.name}</div>
-                  <div style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>{d.explanation}</div>
+                  <div className="dim-card-title" style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 4 }}>{d.name}</div>
+                  <div className="dim-card-text" style={{ fontSize: 13, color: "#475569", lineHeight: 1.55 }}>{d.explanation}</div>
                 </div>
               ))}
             </div>
@@ -643,18 +651,18 @@ export default function LiveDashboard() {
         )}
 
         {/* Key Takeaways */}
-        <div>
+        <div className="print-page-break">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 14px", fontWeight: 400 }}>Key Takeaways</h2>
           <div className="print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
-              <div key={i} style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }} className="no-break">
+              <div key={i} className="takeaway-gap" style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }}>
                 <div style={{ flexShrink: 0, marginTop: 2 }}>
                   <TakeawayIcon index={i} />
                 </div>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: "#1e293b", marginBottom: 6 }}>{t.title}</div>
-                  <p style={{ fontSize: 14, color: "#334155", lineHeight: 1.65, margin: 0 }}>{t.text}</p>
+                  <p className="takeaway-text" style={{ fontSize: 14, color: "#334155", lineHeight: 1.65, margin: 0 }}>{t.text}</p>
                 </div>
               </div>
             ))}
@@ -662,7 +670,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Recommended Next Steps */}
-        <div className="print-page-break" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
+        <div className="print-snug" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
           borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Recommended Next Steps</h2>
