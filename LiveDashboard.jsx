@@ -463,47 +463,50 @@ export default function LiveDashboard() {
           @page { size: A4; margin: 8mm 12mm; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
-          .no-break { page-break-inside: avoid; break-inside: avoid; }
+
+          /* Let content flow naturally — no forced keep-together */
+          .no-break { page-break-inside: auto !important; break-inside: auto !important; }
           .no-print { display: none !important; }
 
           /* Tighter header */
-          .print-header { padding: 20px 20px 16px !important; }
-          .print-header h1 { font-size: 28px !important; margin: 4px 0 4px !important; }
+          .print-header { padding: 18px 18px 14px !important; }
+          .print-header h1 { font-size: 26px !important; margin: 4px 0 2px !important; }
 
           /* Tighter body wrapper */
-          .print-body { padding: 16px 20px 24px !important; }
+          .print-body { padding: 14px 18px 16px !important; }
 
           /* All section boxes: less padding + smaller margins */
-          .print-section { padding: 16px 16px !important; margin-bottom: 16px !important; border-radius: 10px !important; }
-          .print-section h2 { font-size: 16px !important; margin-bottom: 10px !important; }
+          .print-section { padding: 14px 14px !important; margin-bottom: 12px !important; border-radius: 8px !important; }
+          .print-section h2 { font-size: 15px !important; margin-bottom: 8px !important; }
+          .print-section p { font-size: 12px !important; line-height: 1.45 !important; }
 
           /* Stat cards */
-          .print-stat-grid { gap: 10px !important; margin-bottom: 16px !important; }
+          .print-stat-grid { gap: 8px !important; margin-bottom: 12px !important; }
 
           /* Tier + Radar row */
-          .print-two-col { gap: 12px !important; margin-bottom: 16px !important; }
-          .print-two-col .recharts-responsive-container { height: 190px !important; max-height: 190px !important; }
+          .print-two-col { gap: 10px !important; margin-bottom: 12px !important; }
+          .print-two-col .recharts-responsive-container { height: 170px !important; max-height: 170px !important; }
 
           /* Section breakdown bars */
-          .print-breakdown-row { margin-bottom: 12px !important; }
+          .print-breakdown-row { margin-bottom: 10px !important; }
 
           /* Compact dimension cards */
           .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
-          .dim-card { padding: 6px 8px !important; }
-          .dim-card-title { font-size: 10px !important; }
-          .dim-card-text { font-size: 9px !important; line-height: 1.35 !important; }
+          .dim-card { padding: 5px 7px !important; }
+          .dim-card-title { font-size: 9px !important; }
+          .dim-card-text { font-size: 8.5px !important; line-height: 1.3 !important; }
 
           /* Takeaways */
-          .takeaway-gap { margin-bottom: 10px !important; }
-          .takeaway-text { font-size: 12px !important; line-height: 1.5 !important; }
+          .takeaway-gap { margin-bottom: 8px !important; }
+          .takeaway-text { font-size: 11.5px !important; line-height: 1.45 !important; }
 
           /* Next steps */
-          .print-step { margin-bottom: 10px !important; }
-          .print-step-title { font-size: 12px !important; }
-          .print-step-text { font-size: 12px !important; line-height: 1.5 !important; }
+          .print-step { margin-bottom: 8px !important; }
+          .print-step-title { font-size: 11.5px !important; }
+          .print-step-text { font-size: 11.5px !important; line-height: 1.45 !important; }
 
           /* Footer */
-          .print-footer { padding-top: 10px !important; margin-top: 0 !important; }
+          .print-footer { padding-top: 8px !important; margin-top: 0 !important; }
         }
       `}} />
 
