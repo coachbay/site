@@ -460,21 +460,55 @@ export default function LiveDashboard() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          @page { size: A4; margin: 10mm 14mm; }
+          @page { size: A4; margin: 8mm 12mm; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
           .no-break { page-break-inside: avoid; break-inside: avoid; }
           .no-print { display: none !important; }
-          /* Compact dimension cards in print only */
-          .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
-          .dim-card { padding: 8px 10px !important; }
-          .dim-card-title { font-size: 11px !important; }
-          .dim-card-text { font-size: 10px !important; line-height: 1.4 !important; }
+
+          /* Tighter header */
+          .print-header { padding: 20px 20px 16px !important; }
+          .print-header h1 { font-size: 28px !important; margin: 4px 0 4px !important; }
+
+          /* Tighter body wrapper */
+          .print-body { padding: 16px 20px 24px !important; }
+
+          /* All section boxes: less padding + smaller margins */
+          .print-section { padding: 16px 16px !important; margin-bottom: 16px !important; border-radius: 10px !important; }
+          .print-section h2 { font-size: 16px !important; margin-bottom: 10px !important; }
+
+          /* Stat cards */
+          .print-stat-grid { gap: 10px !important; margin-bottom: 16px !important; }
+
+          /* Tier + Radar row */
+          .print-two-col { gap: 12px !important; margin-bottom: 16px !important; }
+          .print-two-col .recharts-responsive-container { height: 190px !important; max-height: 190px !important; }
+
+          /* Section breakdown bars */
+          .print-breakdown-row { margin-bottom: 12px !important; }
+
+          /* Compact dimension cards */
+          .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+          .dim-card { padding: 6px 8px !important; }
+          .dim-card-title { font-size: 10px !important; }
+          .dim-card-text { font-size: 9px !important; line-height: 1.35 !important; }
+
+          /* Takeaways */
+          .takeaway-gap { margin-bottom: 10px !important; }
+          .takeaway-text { font-size: 12px !important; line-height: 1.5 !important; }
+
+          /* Next steps */
+          .print-step { margin-bottom: 10px !important; }
+          .print-step-title { font-size: 12px !important; }
+          .print-step-text { font-size: 12px !important; line-height: 1.5 !important; }
+
+          /* Footer */
+          .print-footer { padding-top: 10px !important; margin-top: 0 !important; }
         }
       `}} />
 
       {/* Header */}
-      <div style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
+      <div className="print-header" style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
         borderBottom: "1px solid rgba(0,188,212,0.2)", padding: "32px 24px 28px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -514,11 +548,11 @@ export default function LiveDashboard() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 24px 48px" }}>
+      <div className="print-body" style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 24px 48px" }}>
 
         {/* Executive Summary */}
         <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
-          padding: "24px 20px", marginBottom: 28 }} className="no-break">
+          padding: "24px 20px", marginBottom: 28 }} className="no-break print-section">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 12px", fontWeight: 400 }}>Executive Summary</h2>
           {summaryParagraphs.map((p, i) => (
@@ -527,7 +561,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Stat cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        <div className="print-stat-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: 16, marginBottom: 28 }}>
           <StatCard label="Group Average" value={stats.teamAvg}
             sub={`out of ${cfg.total} (${stats.teamPct}%)`} accent />
@@ -541,10 +575,10 @@ export default function LiveDashboard() {
         </div>
 
         {/* Tier distribution + Radar — 2 col on wide screens */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+        <div className="print-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
 
           {/* Tier distribution */}
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break">
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break print-section">
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Where the Team Sits</h2>
             {stats.tierCounts.map((t) => (
@@ -565,7 +599,7 @@ export default function LiveDashboard() {
           </div>
 
           {/* Radar chart */}
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break">
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break print-section">
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 4px", fontWeight: 400 }}>Capability Profile</h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 12px" }}>Team average across all dimensions</p>
@@ -582,11 +616,11 @@ export default function LiveDashboard() {
 
         {/* Section breakdown */}
         <div>
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div className="print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Section Breakdown</h2>
             {[...stats.sectionAvgs].sort((a, b) => a.avg - b.avg).map((s) => (
-              <div key={s.id} style={{ marginBottom: 20 }} className="no-break">
+              <div key={s.id} style={{ marginBottom: 20 }} className="no-break print-breakdown-row">
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                   <span style={{ fontSize: 14, fontWeight: 600, color: "#1e293b" }}>{s.label}</span>
                   <span style={{ fontSize: 13, color: "#475569" }}>avg {s.avg} / {cfg.max}</span>
@@ -618,7 +652,7 @@ export default function LiveDashboard() {
 
         {/* Understanding the Dimensions */}
         {aiContent?.dimensions?.length > 0 && (
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
+          <div className="print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
             padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 6px", fontWeight: 400 }}>Understanding the Dimensions</h2>
@@ -639,7 +673,7 @@ export default function LiveDashboard() {
         <div>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 14px", fontWeight: 400 }}>Key Takeaways</h2>
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div className="print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
               <div key={i} className="takeaway-gap" style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }}>
                 <div style={{ flexShrink: 0, marginTop: 2 }}>
@@ -655,25 +689,25 @@ export default function LiveDashboard() {
         </div>
 
         {/* Recommended Next Steps */}
-        <div style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
+        <div className="print-section" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
           borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Recommended Next Steps</h2>
           {(aiContent?.nextSteps || []).map((s, i) => (
-            <div key={i} style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.nextSteps?.length - 1) ? 18 : 0 }}>
+            <div key={i} className="print-step" style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.nextSteps?.length - 1) ? 18 : 0 }}>
               <div style={{ flexShrink: 0, width: 28, height: 28, borderRadius: "50%",
                 background: "#00BCD4", color: "#fff", display: "flex", alignItems: "center",
                 justifyContent: "center", fontSize: 13, fontWeight: 700 }}>{i + 1}</div>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 3 }}>{s.title}</div>
-                <div style={{ fontSize: 14, color: "#334155", lineHeight: 1.6 }}>{s.text}</div>
+                <div className="print-step-title" style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 3 }}>{s.title}</div>
+                <div className="print-step-text" style={{ fontSize: 14, color: "#334155", lineHeight: 1.6 }}>{s.text}</div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Footer */}
-        <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 20, display: "flex",
+        <div className="print-footer" style={{ borderTop: "1px solid #e2e8f0", paddingTop: 20, display: "flex",
           justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <RobotIcon size={22} />
