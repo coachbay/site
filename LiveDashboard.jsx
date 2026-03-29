@@ -460,54 +460,54 @@ export default function LiveDashboard() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          @page { size: A4; margin: 8mm 12mm; }
+          @page { size: A4; margin: 10mm 14mm; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
 
-          /* Keep individual items together, but allow large text blocks to split */
+          /* Keep visual blocks together */
           .no-break { page-break-inside: avoid; break-inside: avoid; }
+          /* Allow large containers to split between child items */
           .print-allow-split { page-break-inside: auto !important; break-inside: auto !important; }
           .no-print { display: none !important; }
 
-          /* Tighter header */
-          .print-header { padding: 18px 18px 14px !important; }
-          .print-header h1 { font-size: 26px !important; margin: 4px 0 2px !important; }
+          /* Slightly tighter header */
+          .print-header { padding: 24px 20px 20px !important; }
 
-          /* Tighter body wrapper */
-          .print-body { padding: 14px 18px 16px !important; }
+          /* Slightly tighter body wrapper */
+          .print-body { padding: 20px 20px 28px !important; }
 
-          /* All section boxes: less padding + smaller margins */
-          .print-section { padding: 14px 14px !important; margin-bottom: 12px !important; border-radius: 8px !important; }
-          .print-section h2 { font-size: 15px !important; margin-bottom: 8px !important; }
-          .print-section p { font-size: 12px !important; line-height: 1.45 !important; }
+          /* Section boxes: moderate compression */
+          .print-section { padding: 18px 18px !important; margin-bottom: 20px !important; }
+          .print-section h2 { font-size: 17px !important; margin-bottom: 12px !important; }
+          .print-section p { font-size: 13px !important; line-height: 1.5 !important; }
 
           /* Stat cards */
-          .print-stat-grid { gap: 8px !important; margin-bottom: 12px !important; }
+          .print-stat-grid { gap: 12px !important; margin-bottom: 20px !important; }
 
           /* Tier + Radar row */
-          .print-two-col { gap: 10px !important; margin-bottom: 12px !important; }
-          .print-two-col .recharts-responsive-container { height: 170px !important; max-height: 170px !important; }
+          .print-two-col { gap: 14px !important; margin-bottom: 20px !important; }
+          .print-two-col .recharts-responsive-container { height: 200px !important; max-height: 200px !important; }
 
           /* Section breakdown bars */
-          .print-breakdown-row { margin-bottom: 10px !important; }
+          .print-breakdown-row { margin-bottom: 14px !important; }
 
-          /* Compact dimension cards */
-          .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
-          .dim-card { padding: 5px 7px !important; }
-          .dim-card-title { font-size: 9px !important; }
-          .dim-card-text { font-size: 8.5px !important; line-height: 1.3 !important; }
+          /* Compact dimension cards in 3 cols */
+          .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+          .dim-card { padding: 8px 10px !important; }
+          .dim-card-title { font-size: 10px !important; }
+          .dim-card-text { font-size: 9.5px !important; line-height: 1.35 !important; }
 
           /* Takeaways */
-          .takeaway-gap { margin-bottom: 8px !important; }
-          .takeaway-text { font-size: 11.5px !important; line-height: 1.45 !important; }
+          .takeaway-gap { margin-bottom: 14px !important; }
+          .takeaway-text { font-size: 12.5px !important; line-height: 1.5 !important; }
 
           /* Next steps */
-          .print-step { margin-bottom: 8px !important; }
-          .print-step-title { font-size: 11.5px !important; }
-          .print-step-text { font-size: 11.5px !important; line-height: 1.45 !important; }
+          .print-step { margin-bottom: 12px !important; }
+          .print-step-title { font-size: 12.5px !important; }
+          .print-step-text { font-size: 12.5px !important; line-height: 1.5 !important; }
 
           /* Footer */
-          .print-footer { padding-top: 8px !important; margin-top: 0 !important; }
+          .print-footer { padding-top: 12px !important; }
         }
       `}} />
 
@@ -579,7 +579,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Tier distribution + Radar — 2 col on wide screens */}
-        <div className="print-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+        <div className="no-break print-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
 
           {/* Tier distribution */}
           <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break print-section">
@@ -620,7 +620,7 @@ export default function LiveDashboard() {
 
         {/* Section breakdown */}
         <div>
-          <div className="print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div className="print-allow-split print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Section Breakdown</h2>
             {[...stats.sectionAvgs].sort((a, b) => a.avg - b.avg).map((s) => (
