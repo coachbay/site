@@ -143,7 +143,7 @@ export default function ClientResultsDashboard() {
     const sectionCols = headers.map((h, i) => ({ label: h, i })).filter(({ label }) => label.endsWith(" Total"))
     const labels = sectionCols.map(({ label }) => label.replace(" Total", ""))
     const values = sectionCols.map(({ i }) => parseFloat(average(rows.map(r => r[i]))))
-    const maxVal = activeType === "Company" ? 25 : 20
+    const maxVal = activeType === "Company" ? 30 : 25
     if (chartInstance.current) chartInstance.current.destroy()
     const ctx = chartRef.current.getContext("2d")
     chartInstance.current = new window.Chart(ctx, {
@@ -171,8 +171,8 @@ export default function ClientResultsDashboard() {
   const tsIdx = headers.indexOf("Timestamp")
   const nameIdx = headers.indexOf("Name")
   const emailIdx = headers.indexOf("Email")
-  const maxScore = activeType === "Company" ? 125 : 120
-  const maxSection = activeType === "Company" ? 25 : 20
+  const maxScore = 130
+  const maxSection = activeType === "Company" ? 30 : 25
   const avgScore = totalIdx >= 0 ? average(rows.map(r => r[totalIdx])) : "—"
   const tierCounts = rows.reduce((acc, r) => { const t = r[tierIdx] || "Unknown"; acc[t] = (acc[t] || 0) + 1; return acc; }, {})
   const topTier = Object.entries(tierCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "—"

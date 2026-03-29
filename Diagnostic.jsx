@@ -452,7 +452,7 @@ export default function AIDiagnostic() {
             border: `2px solid ${tier.color}22`,
           }}>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-              <ScoreRing score={grandTotal} max={125} color={tier.color} size={140} strokeWidth={12} />
+              <ScoreRing score={grandTotal} max={130} color={tier.color} size={140} strokeWidth={12} />
             </div>
             <div style={{
               display: "inline-block",

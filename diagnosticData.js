@@ -3,12 +3,12 @@ const RED_ACCENT = "#ef4444";
 
 // ============================================
 // COMPANY DIAGNOSTIC - AI Readiness (v2)
-// 5 dimensions x 5 questions = 25 questions, max 125
+// 5 dimensions, 26 questions total, max 130
 // ============================================
 export const companyConfig = {
   title: "AI Readiness Diagnostic",
   subtitle: "Where does your organization actually sit on the AI adoption curve?",
-  description: "25 questions across 5 dimensions. Takes about 10 minutes.\nBe honest. This is a mirror, not a report card.",
+  description: "26 questions across 5 dimensions. Takes about 10 minutes.\nBe honest. This is a mirror, not a report card.",
   diagnosticType: "Company",
   empathyGap: { leadershipId: "leadership", sentimentId: "sentiment" },
   sections: [
@@ -75,32 +75,33 @@ export const companyConfig = {
         "There is a budget or willingness to invest in AI tools and training",
         "We can identify 5 to 10 enthusiastic early adopters who would join an AI pilot project tomorrow",
         "The AI tools we provide are good enough that employees do not need to find their own",
+        "Someone in our organization is clearly responsible for making sure AI is being used responsibly",
       ],
     },
   ],
   tierData: [
     {
-      range: [113, 125], label: "AI-Driven Organization", color: "#10b981",
+      range: [118, 130], label: "AI-Driven Organization", color: "#10b981",
       summary: "AI is embedded in how your organization operates. You have moved past pilots into systematic use. Processes have been retired, teams are enabled, and leadership is walking the talk.",
       action: "Your focus now is governance, scaling, and staying ahead. Build the systems that make AI adoption self-sustaining: shared prompt libraries, onboarding that includes AI, and regular reviews of what else can be retired. Your biggest risk is complacency.",
     },
     {
-      range: [100, 112], label: "Ready to Accelerate", color: "#059669",
+      range: [104, 117], label: "Ready to Accelerate", color: "#059669",
       summary: "Your organization has the foundations in place. Leadership is engaged, employees are willing, and you have clarity on what you are trying to achieve. There are still gaps to close before AI is truly embedded.",
       action: "Move from pockets of adoption to systematic rollout. Form a pilot group of 5 to 10 early adopters who solve real problems with AI. Focus on creating visible wins fast and scaling from there.",
     },
     {
-      range: [75, 99], label: "Ready to Start, With Focus", color: CYAN,
+      range: [78, 103], label: "Ready to Start, With Focus", color: CYAN,
       summary: "You have pockets of readiness but some gaps. Most likely, leadership is keen but employees are uncertain, or you have enthusiasm but lack structure.",
       action: "Start with the curious. Do not try to fix every gap first. Launch a small pilot and let the results build the case. Get your early adopters their first real AI experience this week.",
     },
     {
-      range: [50, 74], label: "Groundwork Needed", color: "#f59e0b",
+      range: [52, 77], label: "Groundwork Needed", color: "#f59e0b",
       summary: "There is interest but not enough safety, clarity, or trust to launch an initiative yet. Pushing ahead now risks creating compliance without buy-in.",
       action: "Start with leadership. Leaders need to use AI themselves first because you cannot coach what you have not practiced. Focus on building psychological safety and identifying your natural early adopters.",
     },
     {
-      range: [25, 49], label: "Not Yet. And That's Okay", color: RED_ACCENT,
+      range: [26, 51], label: "Not Yet. And That's Okay", color: RED_ACCENT,
       summary: "Your organization is not ready for an AI initiative right now. That does not mean it is a failure. It means other things need to come first: trust, change fatigue, leadership alignment, or basic access to tools.",
       action: "Do not force it. Work on the underlying culture of change first. Start with one-on-one conversations with leaders about what is really getting in the way. Come back to AI once the foundation of trust is stronger.",
     },
@@ -136,12 +137,12 @@ export const companyConfig = {
 
 // ============================================
 // LEADER DIAGNOSTIC - AI Leadership (v2)
-// 6 dimensions x 4 questions = 24 questions, max 120
+// 6 dimensions, 26 questions total, max 130
 // ============================================
 export const leaderConfig = {
   title: "AI Leadership Diagnostic",
   subtitle: "How is AI changing how you lead?",
-  description: "24 questions across 6 dimensions. Takes about 8 minutes.\nThis is about your personal AI leadership journey, not your organization's.",
+  description: "26 questions across 6 dimensions. Takes about 8 minutes.\nThis is about your personal AI leadership journey, not your organization's.",
   diagnosticType: "Leader",
   empathyGap: null,
   sections: [
@@ -191,6 +192,7 @@ export const leaderConfig = {
         "I know when AI is the wrong tool for a leadership decision and I choose not to use it",
         "I know that AI can sound certain even when it is wrong, and I check for that",
         "I can explain to others why I used AI and how I checked the result",
+        "I have deliberately chosen not to use AI for a task because the stakes were too high or the context too sensitive",
       ],
     },
     {
@@ -203,6 +205,7 @@ export const leaderConfig = {
         "I encourage my team to try AI, even if it does not work perfectly at first",
         "I have helped at least one person on my team move from basic AI use to something more meaningful",
         "I make time for my team to learn and experiment with AI, not just expect them to figure it out on their own",
+        "I can describe to my team what our work will look like in 12 months as AI becomes part of how we operate",
       ],
     },
     {
@@ -220,27 +223,27 @@ export const leaderConfig = {
   ],
   tierData: [
     {
-      range: [109, 120], label: "AI Pioneer", color: "#7c3aed",
+      range: [118, 130], label: "AI Pioneer", color: "#7c3aed",
       summary: "You are not just using AI as a leader. You are reshaping how your team works. You have retired old processes, you actively enable others, and you model wise AI use.",
       action: "Your biggest impact now is beyond your own team. Help other leaders in your organization see what is possible. Share your process openly. Coach your peers. Build the case for what AI leadership looks like.",
     },
     {
-      range: [97, 108], label: "AI Advanced", color: "#10b981",
+      range: [105, 117], label: "AI Advanced", color: "#10b981",
       summary: "AI is woven into how you lead. You are strong across most dimensions, but there are still one or two areas where you can go deeper, most likely in Deletion or Enabling.",
       action: "Look at which dimensions are pulling your score down. If Deletion is low, identify one process your team can stop doing the old way. If Enabling is low, share one prompt with your team this week. If Environment is low, ask your team: do you feel safe experimenting with AI?",
     },
     {
-      range: [73, 96], label: "Active Explorer", color: CYAN,
+      range: [79, 104], label: "Active Explorer", color: CYAN,
       summary: "You are using AI regularly and seeing real results. You have good personal habits forming, but there is room to go deeper on the leadership dimensions: enabling your team and retiring old processes.",
       action: "Look at which dimensions are lagging. If Deletion is low, identify one process your team can stop doing the old way this month. If Enabling is low, share one prompt with your team this week. If Environment is low, ask your team directly: do you feel safe experimenting with AI?",
     },
     {
-      range: [49, 72], label: "Getting Started", color: "#f59e0b",
+      range: [53, 78], label: "Getting Started", color: "#f59e0b",
       summary: "You have dipped into AI but it has not become part of how you lead yet. You probably use it for simple tasks and have not explored its potential as a strategic thinking partner or a team enabler.",
       action: "Pick one leadership task you do every week and commit to using AI for it. Preparing for a meeting, reviewing a proposal, thinking through a decision. Build the personal habit first. Then share what you learn with your team.",
     },
     {
-      range: [24, 48], label: "Untapped Potential", color: RED_ACCENT,
+      range: [26, 52], label: "Untapped Potential", color: RED_ACCENT,
       summary: "AI could transform how you lead, but you have not started yet. That is not a criticism. It is an opportunity. Most leaders are in the same position.",
       action: "Start with one conversation. Open an AI tool and say: \"I am a leader dealing with [your biggest challenge]. Ask me questions to help me think this through.\" That single experience often changes everything.",
     },
@@ -281,12 +284,12 @@ export const leaderConfig = {
 
 // ============================================
 // TEAM DIAGNOSTIC - Personal AI Use (v2)
-// 6 dimensions x 4 questions = 24 questions, max 120
+// 6 dimensions, 26 questions total, max 130
 // ============================================
 export const teamConfig = {
   title: "Personal AI Diagnostic",
   subtitle: "How is AI actually changing your work?",
-  description: "24 questions across 6 dimensions. Takes about 8 minutes.\nThis is about you, not your team or organization.",
+  description: "26 questions across 6 dimensions. Takes about 8 minutes.\nThis is about you, not your team or organization.",
   diagnosticType: "Team",
   empathyGap: null,
   sections: [
@@ -312,6 +315,7 @@ export const teamConfig = {
         "I have used AI to test my thinking before making a decision",
         "I go back and forth with AI to improve results, rather than accepting the first response",
         "AI has helped me see a problem differently than I would have on my own",
+        "I have built at least one reusable prompt or workflow that I come back to regularly",
       ],
     },
     {
@@ -360,32 +364,33 @@ export const teamConfig = {
         "My manager or leadership team openly encourages using AI and models it themselves",
         "The rules my organization has around AI help me rather than block me",
         "The AI tools my organization provides are good enough that I do not need to use other AI tools",
+        "When I think about AI becoming a bigger part of my work, I feel more excited than worried",
       ],
     },
   ],
   tierData: [
     {
-      range: [109, 120], label: "AI Pioneer", color: "#7c3aed",
+      range: [118, 130], label: "AI Pioneer", color: "#7c3aed",
       summary: "You are not just using AI. You are reshaping how work gets done around you. You have deleted old processes, you help others grow, and your judgment about AI is mature.",
       action: "Your biggest impact now is beyond your own work. Help your organization build the systems, habits, and culture that make AI adoption stick. You are the proof of what is possible.",
     },
     {
-      range: [97, 108], label: "AI Advanced", color: "#10b981",
+      range: [105, 117], label: "AI Advanced", color: "#10b981",
       summary: "AI is part of how you work, think, and collaborate. You are strong across most dimensions, but there are still one or two areas where you can go deeper.",
       action: "Look at which dimensions are pulling your score down. That is where your next breakthrough lives. If Deletion is lagging, challenge yourself to retire one more process. If Influence is low, start sharing what you know.",
     },
     {
-      range: [73, 96], label: "Gaining Momentum", color: CYAN,
+      range: [79, 104], label: "Gaining Momentum", color: CYAN,
       summary: "You have moved past experimentation into regular, meaningful use. AI is part of your toolkit, and you are starting to see real benefits. There is still room to go deeper.",
       action: "Look at which dimensions are lagging. If Depth is low, push yourself beyond basic tasks into using AI for real thinking. If Deletion is low, identify one manual process you can retire this week. If Influence is low, share one useful prompt with a colleague.",
     },
     {
-      range: [49, 72], label: "Early Progress", color: "#f59e0b",
+      range: [53, 78], label: "Early Progress", color: "#f59e0b",
       summary: "You are using AI, but it has not yet changed how you actually work. You are likely still doing everything the old way and adding AI as an extra step on top.",
       action: "Pick one recurring task and commit to doing it with AI for two weeks straight. Do not try to transform everything. Build one habit first. Once one workflow clicks, the rest follows naturally.",
     },
     {
-      range: [24, 48], label: "Starting Out", color: RED_ACCENT,
+      range: [26, 52], label: "Starting Out", color: RED_ACCENT,
       summary: "You are at the beginning. That is perfectly fine. Most people are here.",
       action: "Start with something simple and personal. Ask AI to help you draft an email, summarize a document, or explain a concept you have been meaning to learn. The first experience should feel easy and useful, not overwhelming.",
     },
