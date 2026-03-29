@@ -464,8 +464,9 @@ export default function LiveDashboard() {
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
 
-          /* Let content flow naturally — no forced keep-together */
-          .no-break { page-break-inside: auto !important; break-inside: auto !important; }
+          /* Keep individual items together, but allow large text blocks to split */
+          .no-break { page-break-inside: avoid; break-inside: avoid; }
+          .print-allow-split { page-break-inside: auto !important; break-inside: auto !important; }
           .no-print { display: none !important; }
 
           /* Tighter header */
@@ -555,7 +556,7 @@ export default function LiveDashboard() {
 
         {/* Executive Summary */}
         <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
-          padding: "24px 20px", marginBottom: 28 }} className="no-break print-section">
+          padding: "24px 20px", marginBottom: 28 }} className="print-allow-split print-section">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 12px", fontWeight: 400 }}>Executive Summary</h2>
           {summaryParagraphs.map((p, i) => (
@@ -676,9 +677,9 @@ export default function LiveDashboard() {
         <div>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 14px", fontWeight: 400 }}>Key Takeaways</h2>
-          <div className="print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div className="print-allow-split print-section" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
-              <div key={i} className="takeaway-gap" style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }}>
+              <div key={i} className="no-break takeaway-gap" style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }}>
                 <div style={{ flexShrink: 0, marginTop: 2 }}>
                   <TakeawayIcon index={i} />
                 </div>
@@ -692,12 +693,12 @@ export default function LiveDashboard() {
         </div>
 
         {/* Recommended Next Steps */}
-        <div className="print-section" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
+        <div className="print-allow-split print-section" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
           borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Recommended Next Steps</h2>
           {(aiContent?.nextSteps || []).map((s, i) => (
-            <div key={i} className="print-step" style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.nextSteps?.length - 1) ? 18 : 0 }}>
+            <div key={i} className="no-break print-step" style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.nextSteps?.length - 1) ? 18 : 0 }}>
               <div style={{ flexShrink: 0, width: 28, height: 28, borderRadius: "50%",
                 background: "#00BCD4", color: "#fff", display: "flex", alignItems: "center",
                 justifyContent: "center", fontSize: 13, fontWeight: 700 }}>{i + 1}</div>
