@@ -460,12 +460,16 @@ export default function LiveDashboard() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          @page { size: A4; margin: 12mm 14mm; }
+          @page { size: A4; margin: 10mm 14mm; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
           .print-page-break { page-break-before: always; break-before: page; }
           .no-break { page-break-inside: avoid; break-inside: avoid; }
           .no-print { display: none !important; }
+          /* Tighten spacing for print */
+          .print-tight { margin-bottom: 16px !important; }
+          .print-snug { padding: 18px 18px !important; }
+          .print-gap-sm { gap: 12px !important; }
         }
         @media screen {
           .print-page-break::before {
@@ -477,7 +481,7 @@ export default function LiveDashboard() {
       `}} />
 
       {/* Header */}
-      <div style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
+      <div className="print-snug" style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
         borderBottom: "1px solid rgba(0,188,212,0.2)", padding: "32px 24px 28px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -521,7 +525,7 @@ export default function LiveDashboard() {
 
         {/* Executive Summary */}
         <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
-          padding: "24px 20px", marginBottom: 28 }} className="no-break">
+          padding: "24px 20px", marginBottom: 28 }} className="no-break print-tight print-snug">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 12px", fontWeight: 400 }}>Executive Summary</h2>
           {summaryParagraphs.map((p, i) => (
@@ -530,7 +534,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Stat cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        <div className="print-tight print-gap-sm" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: 16, marginBottom: 28 }}>
           <StatCard label="Group Average" value={stats.teamAvg}
             sub={`out of ${cfg.total} (${stats.teamPct}%)`} accent />
@@ -544,7 +548,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Tier distribution + Radar — 2 col on wide screens */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+        <div className="print-tight print-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
 
           {/* Tier distribution */}
           <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break">
@@ -584,8 +588,8 @@ export default function LiveDashboard() {
         </div>
 
         {/* Section breakdown */}
-        <div className="print-page-break">
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+        <div>
+          <div className="print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Section Breakdown</h2>
             {[...stats.sectionAvgs].sort((a, b) => a.avg - b.avg).map((s) => (
@@ -621,17 +625,17 @@ export default function LiveDashboard() {
 
         {/* Understanding the Dimensions */}
         {aiContent?.dimensions?.length > 0 && (
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
-            padding: "24px 20px", marginBottom: 28 }} className="no-break">
+          <div className="print-page-break" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
+            padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 6px", fontWeight: 400 }}>Understanding the Dimensions</h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 18px" }}>What each area of the assessment measures</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            <div className="print-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
               {aiContent.dimensions.map((d, i) => (
-                <div key={i} style={{ padding: "14px 16px", background: "rgba(0,188,212,0.04)",
+                <div key={i} style={{ padding: "12px 14px", background: "rgba(0,188,212,0.04)",
                   border: "1px solid rgba(0,188,212,0.1)", borderRadius: 10 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 4 }}>{d.name}</div>
-                  <div style={{ fontSize: 13, color: "#475569", lineHeight: 1.55 }}>{d.explanation}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#1e293b", marginBottom: 3 }}>{d.name}</div>
+                  <div style={{ fontSize: 12, color: "#475569", lineHeight: 1.5 }}>{d.explanation}</div>
                 </div>
               ))}
             </div>
@@ -639,12 +643,12 @@ export default function LiveDashboard() {
         )}
 
         {/* Key Takeaways */}
-        <div className="print-page-break">
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 24, color: "#1e293b",
-            margin: "0 0 20px", fontWeight: 400 }}>Key Takeaways</h2>
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+        <div>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
+            margin: "0 0 14px", fontWeight: 400 }}>Key Takeaways</h2>
+          <div className="print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
-              <div key={i} style={{ display: "flex", gap: 16, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 28 : 0 }} className="no-break">
+              <div key={i} style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }} className="no-break">
                 <div style={{ flexShrink: 0, marginTop: 2 }}>
                   <TakeawayIcon index={i} />
                 </div>
@@ -658,8 +662,8 @@ export default function LiveDashboard() {
         </div>
 
         {/* Recommended Next Steps */}
-        <div style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
-          borderRadius: 14, padding: "24px 20px", marginBottom: 28 }} className="no-break">
+        <div className="print-page-break" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
+          borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Recommended Next Steps</h2>
           {(aiContent?.nextSteps || []).map((s, i) => (
