@@ -463,33 +463,18 @@ export default function LiveDashboard() {
           @page { size: A4; margin: 10mm 14mm; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
           body { margin: 0 !important; padding: 0 !important; }
-          .print-page-break { page-break-before: always; break-before: page; }
           .no-break { page-break-inside: avoid; break-inside: avoid; }
           .no-print { display: none !important; }
-          /* Tighten all panel spacing for print */
-          .print-tight { margin-bottom: 14px !important; }
-          .print-snug { padding: 16px 16px !important; }
-          .print-gap-sm { gap: 10px !important; }
           /* Compact dimension cards in print only */
           .dim-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
           .dim-card { padding: 8px 10px !important; }
           .dim-card-title { font-size: 11px !important; }
           .dim-card-text { font-size: 10px !important; line-height: 1.4 !important; }
-          /* Compact takeaways in print */
-          .takeaway-gap { margin-bottom: 14px !important; }
-          .takeaway-text { font-size: 13px !important; line-height: 1.5 !important; }
-        }
-        @media screen {
-          .print-page-break::before {
-            content: ''; display: block;
-            border-top: 2px dashed rgba(0,188,212,0.15);
-            margin-bottom: 8px;
-          }
         }
       `}} />
 
       {/* Header */}
-      <div className="print-snug" style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
+      <div style={{ background: "linear-gradient(135deg, rgba(0,188,212,0.06) 0%, rgba(0,188,212,0.02) 100%)",
         borderBottom: "1px solid rgba(0,188,212,0.2)", padding: "32px 24px 28px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -533,7 +518,7 @@ export default function LiveDashboard() {
 
         {/* Executive Summary */}
         <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
-          padding: "24px 20px", marginBottom: 28 }} className="no-break print-tight print-snug">
+          padding: "24px 20px", marginBottom: 28 }} className="no-break">
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 12px", fontWeight: 400 }}>Executive Summary</h2>
           {summaryParagraphs.map((p, i) => (
@@ -542,7 +527,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Stat cards */}
-        <div className="print-tight print-gap-sm" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: 16, marginBottom: 28 }}>
           <StatCard label="Group Average" value={stats.teamAvg}
             sub={`out of ${cfg.total} (${stats.teamPct}%)`} accent />
@@ -556,7 +541,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Tier distribution + Radar — 2 col on wide screens */}
-        <div className="print-tight print-gap-sm" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
 
           {/* Tier distribution */}
           <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px" }} className="no-break">
@@ -597,7 +582,7 @@ export default function LiveDashboard() {
 
         {/* Section breakdown */}
         <div>
-          <div className="print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 20px", fontWeight: 400 }}>Section Breakdown</h2>
             {[...stats.sectionAvgs].sort((a, b) => a.avg - b.avg).map((s) => (
@@ -633,7 +618,7 @@ export default function LiveDashboard() {
 
         {/* Understanding the Dimensions */}
         {aiContent?.dimensions?.length > 0 && (
-          <div className="print-tight print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
             padding: "24px 20px", marginBottom: 28 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
               margin: "0 0 6px", fontWeight: 400 }}>Understanding the Dimensions</h2>
@@ -651,10 +636,10 @@ export default function LiveDashboard() {
         )}
 
         {/* Key Takeaways */}
-        <div className="print-page-break">
+        <div>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b",
             margin: "0 0 14px", fontWeight: 400 }}>Key Takeaways</h2>
-          <div className="print-snug" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
             {(aiContent?.takeaways || []).map((t, i) => (
               <div key={i} className="takeaway-gap" style={{ display: "flex", gap: 14, marginBottom: i < (aiContent?.takeaways?.length - 1) ? 20 : 0 }}>
                 <div style={{ flexShrink: 0, marginTop: 2 }}>
@@ -670,7 +655,7 @@ export default function LiveDashboard() {
         </div>
 
         {/* Recommended Next Steps */}
-        <div className="print-snug" style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
+        <div style={{ background: "rgba(0,188,212,0.04)", border: "1px solid rgba(0,188,212,0.15)",
           borderRadius: 14, padding: "24px 20px", marginBottom: 28 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
             margin: "0 0 20px", fontWeight: 400 }}>Recommended Next Steps</h2>
