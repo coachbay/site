@@ -57,7 +57,7 @@ const clients = {
   "swirehotels-sym": {
     name: "Swire Hotels",
     assessments: ["team"],
-    preparedFor: "Susan Lee",
+    preparedFor: "Charissa Chan",
     closeDate: "2026-03-29",
     version: 1,
   },
