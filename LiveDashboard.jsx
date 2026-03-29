@@ -182,21 +182,24 @@ Title: "Beyond the official tool"
 Text: Even where a company has standardised on one AI platform, the highest-scoring team members often reach for other tools like Perplexity and Gemini to fill the gaps. It is worth understanding what they are using these tools for and whether the official platform is meeting the team's actual needs.
 Adapt the opening to reference the company by name where natural, but keep the substance identical.
 
-Now write takeaways and next steps at this same level of insight and specificity for the team data provided above.
+Now write takeaways, next steps, and dimension explanations at this same level of insight and specificity for the team data provided above.
 
 Return ONLY a valid JSON object, no markdown, no backticks, with this exact structure:
 {
   "summary": "Two paragraphs separated by \\n\\n. First: what the overall result and tier spread actually means for this team in plain terms. Second: the most important strength and the single clearest growth opportunity, named specifically with the scores.",
+  "dimensions": [
+    { "name": "Exact section name", "explanation": "One to two sentences in plain language explaining what this dimension measures and why it matters. Write as if the reader has never seen this assessment before. Do not reference the score here." }
+  ],
   "takeaways": [
-    { "title": "Insight-driven title (not a dimension label)", "text": "Two sentences. Use the actual numbers. Explain what the pattern means for how this team works, not just that a score is high or low." },
-    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." },
-    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." },
-    { "title": "Insight-driven title", "text": "Two sentences grounded in the data." }
+    { "title": "Insight-driven title (not a dimension label)", "text": "Three to four sentences. Use the actual numbers. Explain what the pattern means for how this team works, not just that a score is high or low. Connect the data point to a real workplace behavior or consequence." },
+    { "title": "Insight-driven title", "text": "Three to four sentences grounded in the data." },
+    { "title": "Insight-driven title", "text": "Three to four sentences grounded in the data." },
+    { "title": "Insight-driven title", "text": "Three to four sentences grounded in the data." }
   ],
   "nextSteps": [
-    { "title": "Specific action, not a program name", "text": "One to two sentences. Concrete. Tied to the actual scores. Explains why this action specifically." },
-    { "title": "Specific action", "text": "One to two sentences." },
-    { "title": "Specific action", "text": "One to two sentences." }
+    { "title": "Specific action, not a program name", "text": "Three to four sentences. Concrete and tied to the actual scores. Explain why this action matters, what it looks like in practice, and what outcome to expect." },
+    { "title": "Specific action", "text": "Three to four sentences." },
+    { "title": "Specific action", "text": "Three to four sentences." }
   ]
 }`;
 
@@ -205,7 +208,7 @@ Return ONLY a valid JSON object, no markdown, no backticks, with this exact stru
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
+      max_tokens: 2500,
       messages: [{ role: "user", content: prompt }],
     }),
   });
@@ -555,6 +558,25 @@ export default function LiveDashboard() {
             ))}
           </div>
         </div>
+
+        {/* Understanding the Dimensions */}
+        {aiContent?.dimensions?.length > 0 && (
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 14,
+            padding: "24px 20px", marginBottom: 28 }} className="no-break">
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b",
+              margin: "0 0 6px", fontWeight: 400 }}>Understanding the Dimensions</h2>
+            <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 18px" }}>What each area of the assessment measures</p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              {aiContent.dimensions.map((d, i) => (
+                <div key={i} style={{ padding: "14px 16px", background: "rgba(0,188,212,0.04)",
+                  border: "1px solid rgba(0,188,212,0.1)", borderRadius: 10 }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 4 }}>{d.name}</div>
+                  <div style={{ fontSize: 13, color: "#475569", lineHeight: 1.55 }}>{d.explanation}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Key Takeaways */}
         <div className="print-page-break">
