@@ -147,7 +147,7 @@ const S = {
   divider: { borderTop: "1px solid rgba(255,255,255,0.08)", margin: "20px 0" },
   summaryBox: { background: "rgba(0,188,212,0.06)", border: "1px solid rgba(0,188,212,0.2)", borderRadius: 12, padding: "20px 24px", marginBottom: 16, fontSize: 15, lineHeight: 1.7, color: "#cbd5e1" },
   discussionBox: { background: "rgba(255,255,255,0.07)", border: "2px solid rgba(255,255,255,0.2)", borderRadius: 12, padding: "20px 24px", marginBottom: 22 },
-  skepticBox: { background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 12, padding: "16px 20px", marginTop: 14 },
+  skepticBox: { background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.3)", borderRadius: 12, padding: "16px 20px", marginTop: 14 },
   sliderLabel: { display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "2px 8px", fontSize: 15, color: "#94a3b8", marginBottom: 7 },
   sliderValue: { fontSize: 19, fontWeight: 700, color: "#00BCD4" },
   errorBox: { background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 8, padding: "12px 16px", fontSize: 14, color: "#fca5a5", marginTop: 12 },
@@ -976,8 +976,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
       const updated = { ...ericAnswers, [e.id]: answer };
       setEricAnswers(updated);
       setEricSkeptic("loading");
-      const skepticPrompt = `A leadership team just answered this ERIC defense question:\n\nQuestion: ${e.title}: ${e.q}\nTheir answer: "${answer}"\n\nYour job: challenge THEIR answer specifically. Is it vague? Does it actually answer the question? Does it hold up under pressure? What assumption are they making that could be wrong?\n\nWrite ONE pointed skeptic reaction (1-2 sentences maximum). Start with "A skeptic would say:" Be direct about the weakness in their specific answer. No softening.`;
-      const reaction = await callClaude([{ role: "user", content: skepticPrompt }], "You are a board-level advisor who has watched companies produce impressive defense plans that never got implemented. Find the gap in every answer. Blunt. One to two sentences only.");
+      const skepticPrompt = `A leadership team just answered this ERIC defense question:\n\nQuestion: ${e.title}: ${e.q}\nTheir answer: "${answer}"\n\nYour job: help them strengthen their answer. First, identify what is strong or useful in their response (1 sentence). Then identify the one thing that is missing, vague, or worth pressure testing (1 sentence). Finally, suggest what they could add or sharpen to make it stronger (1 sentence).\n\nWrite exactly 3 sentences. Do not start with "A skeptic would say." Do not be dismissive. Be constructive and specific.`;
+      const reaction = await callClaude([{ role: "user", content: skepticPrompt }], "You are an experienced strategy coach. Your job is to help leadership teams sharpen their thinking. You are direct but respectful. You always acknowledge what is working before pointing out what could be stronger.");
       setEricSkeptic(cleanAI(reaction));
     }
 
@@ -1011,13 +1011,13 @@ export default function DisruptionSprint({ robotIcon = "" }) {
                 <p style={{ color: "#cbd5e1", fontSize: 14, margin: 0, lineHeight: 1.6 }}>{ericAnswers[e.id]}</p>
               </div>
               {ericSkeptic === "loading" ? (
-                <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", background: "rgba(239,68,68,0.06)", borderRadius: 12 }}>
-                  <Spinner small /><span style={{ color: "#94a3b8", fontSize: 14 }}>A skeptic is reviewing your answer...</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", background: "rgba(245,158,11,0.06)", borderRadius: 12 }}>
+                  <Spinner small /><span style={{ color: "#94a3b8", fontSize: 14 }}>Reviewing your answer...</span>
                 </div>
               ) : (
                 <div style={S.skepticBox}>
-                  <div style={{ fontSize: 11, color: "#ef4444", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>Skeptic</div>
-                  <p style={{ color: "#fca5a5", fontSize: 15, margin: 0, lineHeight: 1.65 }}>{ericSkeptic}</p>
+                  <div style={{ fontSize: 11, color: "#f59e0b", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 8 }}>Coach's Note</div>
+                  <p style={{ color: "#fcd34d", fontSize: 15, margin: 0, lineHeight: 1.65 }}>{ericSkeptic}</p>
                 </div>
               )}
               {ericSkeptic && ericSkeptic !== "loading" && (
