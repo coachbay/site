@@ -38,7 +38,7 @@ const S = StyleSheet.create({
   contentPage: {
     fontFamily: "Helvetica",
     backgroundColor: C.white,
-    paddingTop: 54,
+    paddingTop: 74,
     paddingBottom: 32,
     paddingHorizontal: 0,
     fontSize: 9,
@@ -109,7 +109,7 @@ const S = StyleSheet.create({
   // Page content wrapper
   content: {
     paddingHorizontal: 24,
-    paddingTop: 20,
+    paddingTop: 6,
   },
 
   // ── Cover page ──────────────────────────────────────────────────────────
