@@ -34,6 +34,16 @@ const S = StyleSheet.create({
     fontSize: 9,
     color: C.body,
   },
+  // Content pages need top padding to clear the fixed header on wrapped pages
+  contentPage: {
+    fontFamily: "Helvetica",
+    backgroundColor: C.white,
+    paddingTop: 54,
+    paddingBottom: 32,
+    paddingHorizontal: 0,
+    fontSize: 9,
+    color: C.body,
+  },
 
   // Header band — top of every page
   headerBand: {
@@ -453,13 +463,14 @@ export default function DisruptionSprintPDF({
       </Page>
 
       {/* ── CONTENT PAGES (flow naturally, wrap across pages) ─────────── */}
-      <Page size="A4" style={S.page} wrap>
+      {/* paddingTop on contentPage clears the fixed header on overflow pages */}
+      <Page size="A4" style={S.contentPage} wrap>
         <HeaderBand docLabel="DISRUPTION SPRINT" />
         <Footer date={today} />
 
         <View style={S.content}>
 
-          {/* ── Complaints ──────────────────────────────────────────── */}
+          {/* ── Complaints (short, keep together) ──────────────────── */}
           <SectionBand label="What Your Customers Are Already Saying" />
           {complaintParts.map((text, i) => (
             <View key={i} wrap={false}>
@@ -467,16 +478,14 @@ export default function DisruptionSprintPDF({
             </View>
           ))}
 
-          {/* ── Attack Plan ─────────────────────────────────────────── */}
+          {/* ── Attack Plan (long cards, allow natural wrapping) ────── */}
           <View style={{ marginTop: 14 }} />
           <SectionBand label={`Attack Plan: ${clean(startupName)}`} dark />
           {attackSections.map(({ label, body }, i) => (
-            <View key={i} wrap={false}>
-              <Card label={label} body={body} accent={i % 2 !== 0} />
-            </View>
+            <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
           ))}
 
-          {/* ── ERIC Defense Framework ──────────────────────────────── */}
+          {/* ── ERIC (short answers, keep together) ────────────────── */}
           <View style={{ marginTop: 14 }} />
           <SectionBand label="ERIC Defense Framework" dark />
           {ERIC.map((e, i) => (
@@ -489,13 +498,11 @@ export default function DisruptionSprintPDF({
             </View>
           ))}
 
-          {/* ── 90-Day First Step ───────────────────────────────────── */}
+          {/* ── 90-Day Plan (long cards, allow natural wrapping) ───── */}
           <View style={{ marginTop: 14 }} />
           <SectionBand label="90-Day First Step" />
           {actionSections.map(({ label, body }, i) => (
-            <View key={i} wrap={false}>
-              <Card label={label} body={body} accent={i % 2 !== 0} />
-            </View>
+            <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
           ))}
 
           {planEdits ? (
