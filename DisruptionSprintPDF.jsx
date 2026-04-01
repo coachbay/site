@@ -463,31 +463,37 @@ export default function DisruptionSprintPDF({
         </View>
       </Page>
 
-      {/* ── CONTENT PAGES (flow naturally, wrap across pages) ─────────── */}
-      {/* paddingTop on contentPage clears the fixed header on overflow pages */}
+      {/* ── COMPLAINTS ────────────────────────────────────────────────── */}
       <Page size="A4" style={S.contentPage} wrap>
         <HeaderBand docLabel="DISRUPTION SPRINT" />
         <Footer date={today} />
-
         <View style={S.content}>
-
-          {/* ── Complaints (short, keep together) ──────────────────── */}
           <SectionBand label="What Your Customers Are Already Saying" />
           {complaintParts.map((text, i) => (
             <View key={i} wrap={false}>
               <Card label={`Complaint ${i + 1}`} body={text} accent={i % 2 === 0} />
             </View>
           ))}
+        </View>
+      </Page>
 
-          {/* ── Attack Plan (long cards, allow natural wrapping) ────── */}
-          <View style={{ marginTop: 14 }} />
+      {/* ── ATTACK PLAN ──────────────────────────────────────────────── */}
+      <Page size="A4" style={S.contentPage} wrap>
+        <HeaderBand docLabel="DISRUPTION SPRINT" />
+        <Footer date={today} />
+        <View style={S.content}>
           <SectionBand label={`Attack Plan: ${clean(startupName)}`} dark />
           {attackSections.map(({ label, body }, i) => (
             <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
           ))}
+        </View>
+      </Page>
 
-          {/* ── ERIC (short answers, keep together) ────────────────── */}
-          <View style={{ marginTop: 14 }} />
+      {/* ── ERIC DEFENSE + 90-DAY PLAN ───────────────────────────────── */}
+      <Page size="A4" style={S.contentPage} wrap>
+        <HeaderBand docLabel="DISRUPTION SPRINT" />
+        <Footer date={today} />
+        <View style={S.content}>
           <SectionBand label="ERIC Defense Framework" dark />
           {ERIC.map((e, i) => (
             <View key={e.id} wrap={false}>
@@ -499,7 +505,6 @@ export default function DisruptionSprintPDF({
             </View>
           ))}
 
-          {/* ── 90-Day Plan (long cards, allow natural wrapping) ───── */}
           <View style={{ marginTop: 14 }} />
           <SectionBand label="90-Day First Step" />
           {actionSections.map(({ label, body }, i) => (
