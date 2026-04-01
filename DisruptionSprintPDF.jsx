@@ -4,16 +4,16 @@ import { Document, Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/
 Font.register({
   family: "DM Sans",
   fonts: [
-    { src: "/fonts/dm-sans-regular.woff2", fontWeight: 400 },
-    { src: "/fonts/dm-sans-bold.woff2",    fontWeight: 700 },
-    { src: "/fonts/dm-sans-italic.woff2",  fontWeight: 400, fontStyle: "italic" },
+    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZOIHTWEBlw.ttf", fontWeight: 400 },
+    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Cp2ywxg089UriASitCBimC3YBvBuY.ttf", fontWeight: 700 },
+    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Fp2ywxg089UriCZaIGDWCBl0O8Q.ttf", fontWeight: 400, fontStyle: "italic" },
   ],
 });
 
 Font.register({
   family: "DM Serif Display",
   fonts: [
-    { src: "/fonts/dm-serif-display-regular.woff2", fontWeight: 400 },
+    { src: "https://fonts.gstatic.com/s/dmseriftext/v12/rnCw-xZa_krGokauCeNq1wWyafOPXHIJErY.ttf", fontWeight: 400 },
   ],
 });
 
