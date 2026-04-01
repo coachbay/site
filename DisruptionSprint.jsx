@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { pdf } from "@react-pdf/renderer";
 import DisruptionSprintPDF from "./DisruptionSprintPDF";
 
 // ─── Access codes (add/change as needed) ──────────────────────────────────────
@@ -390,6 +390,8 @@ export default function DisruptionSprint({ robotIcon = "" }) {
   const [defendConvo, setDefendConvo] = useState([]);
   const [actionPlan, setActionPlan] = useState("");
   const [planOwner, setPlanOwner] = useState("");
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfError, setPdfError] = useState("");
 
 
   const archetype = ARCHETYPES.find(a => a.id === archetypeId) || ARCHETYPES[0];
@@ -722,7 +724,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </div>
           <p style={S.body}>They have studied your business. They know where you are slow and what your customers complain about. They are designing something better.</p>
           <div style={S.divider} />
-          <p style={S.hint}>Name the attacker, then help them sharpen their angle.</p>
+          <p style={{ fontSize: 18, color: "#f8fafc", fontWeight: 600, lineHeight: 1.5, marginBottom: 18 }}>Name the attacker, then help them sharpen their angle.</p>
           <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("archetype_select")}>← Back</button>
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => go("name_startup")}>Continue →</button>
@@ -799,7 +801,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div id="discuss-box-1" style={{ ...S.discussionBox, border: `1.5px solid ${archetype.color}60`, background: `${archetype.color}0d` }}
                ref={el => { if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 100); }}>
             <p style={{ fontSize: 16, color: "#ffffff", margin: "0 0 6px", fontWeight: 700, letterSpacing: "0.01em" }}>Discuss before moving on.</p>
-            <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
+            <p style={{ fontSize: 16, color: "#e2e8f0", margin: 0, lineHeight: 1.6 }}>Which of these hits closest to home? Who in the room has heard something like this before?</p>
           </div>
           <div style={S.row} className="cb-row">
             <button style={{ ...S.btnPrimary, background: archetype.color }} onClick={() => { window.scrollTo(0,0); go("attack_generating"); }}>Build the Attack Plan →</button>
@@ -1192,31 +1194,39 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
           {/* Actions */}
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }} className="cb-row-center">
-            <PDFDownloadLink
-              document={
-                <DisruptionSprintPDF
-                  startupName={startupName}
-                  archetype={archetype}
-                  industry={industry}
-                  likelihood={likelihood}
-                  impact={impact}
-                  complaints={complaints}
-                  attackPlan={attackPlan}
-                  ericAnswers={ericAnswers}
-                  actionPlan={actionPlan}
-                  planOwner={planOwner}
-                  ERIC={ERIC}
-                />
+            <button style={{ ...S.btnPrimary, minWidth: 190, opacity: pdfBusy ? 0.6 : 1 }} disabled={pdfBusy} onClick={async () => {
+              setPdfBusy(true); setPdfError("");
+              try {
+                const blob = await pdf(
+                  <DisruptionSprintPDF
+                    startupName={startupName}
+                    archetype={archetype}
+                    industry={industry}
+                    likelihood={likelihood}
+                    impact={impact}
+                    complaints={complaints}
+                    attackPlan={attackPlan}
+                    ericAnswers={ericAnswers}
+                    actionPlan={actionPlan}
+                    planOwner={planOwner}
+                    ERIC={ERIC}
+                  />
+                ).toBlob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `disruption-sprint-${(startupName || "report").toLowerCase().replace(/\s+/g, "-")}.pdf`;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              } catch (err) {
+                console.error("PDF generation failed:", err);
+                setPdfError("PDF generation failed. Please try again.");
               }
-              fileName={`disruption-sprint-${(startupName || "report").toLowerCase().replace(/\s+/g, "-")}.pdf`}
-              style={{ textDecoration: "none" }}
-            >
-              {({ loading }) => (
-                <button style={{ ...S.btnPrimary, opacity: loading ? 0.6 : 1, minWidth: 190 }} disabled={loading}>
-                  {loading ? "Preparing PDF..." : "Download PDF Summary"}
-                </button>
-              )}
-            </PDFDownloadLink>
+              setPdfBusy(false);
+            }}>
+              {pdfBusy ? "Preparing PDF..." : "Download PDF Summary"}
+            </button>
+            {pdfError && <p style={{ color: "#fca5a5", fontSize: 13, margin: "8px 0 0", textAlign: "center" }}>{pdfError}</p>}
             <button style={S.btnSecondary} onClick={() => {
               setArchetypeId("startup");
               setBizAnswers({}); setBizQIndex(0); setBizInput("");
