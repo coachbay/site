@@ -34,12 +34,12 @@ const S = StyleSheet.create({
     fontSize: 9,
     color: C.body,
   },
-  // Content pages need top padding to clear the fixed header on wrapped pages
-  // Header is ~49pt tall; we need generous clearance on overflow pages
+  // Content pages: header is NOT fixed (only shows on first page of each section).
+  // Overflow pages get clean top padding with no header overlap.
   contentPage: {
     fontFamily: "Helvetica",
     backgroundColor: C.white,
-    paddingTop: 100,
+    paddingTop: 24,
     paddingBottom: 32,
     paddingHorizontal: 0,
     fontSize: 9,
@@ -350,7 +350,7 @@ function parseSections(text) {
 // ── Sub-components ─────────────────────────────────────────────────────────
 function HeaderBand({ docLabel }) {
   return (
-    <View style={S.headerBand} fixed>
+    <View style={S.headerBand}>
       <View style={S.headerLogo}>
         <Image src="/coachbay-robot-transparent.png" style={{ width: 22, height: 28, marginTop: -4 }} />
         <View style={{ flexDirection: "row" }}>
