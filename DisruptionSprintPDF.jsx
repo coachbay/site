@@ -484,7 +484,9 @@ export default function DisruptionSprintPDF({
         <View style={S.content}>
           <SectionBand label={`Attack Plan: ${clean(startupName)}`} dark />
           {attackSections.map(({ label, body }, i) => (
-            <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
+            <View key={i} wrap={false}>
+              <Card label={label} body={body} accent={i % 2 !== 0} />
+            </View>
           ))}
         </View>
       </Page>
@@ -508,7 +510,9 @@ export default function DisruptionSprintPDF({
           <View style={{ marginTop: 14 }} />
           <SectionBand label="90-Day First Step" />
           {actionSections.map(({ label, body }, i) => (
-            <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
+            <View key={i} wrap={false}>
+              <Card label={label} body={body} accent={i % 2 !== 0} />
+            </View>
           ))}
 
           {planEdits ? (
