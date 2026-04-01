@@ -410,6 +410,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
   const [defendConvo, setDefendConvo] = useState([]);
   const [actionPlan, setActionPlan] = useState("");
+  const [planEdits, setPlanEdits] = useState("");
   const [planOwner, setPlanOwner] = useState("");
   const [pdfBusy, setPdfBusy] = useState(false);
   const [pdfError, setPdfError] = useState("");
@@ -444,6 +445,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           if (s.ericIndex != null) setEricIndex(s.ericIndex);
           if (s.defendConvo) setDefendConvo(s.defendConvo);
           if (s.actionPlan) setActionPlan(s.actionPlan);
+          if (s.planEdits) setPlanEdits(s.planEdits);
           if (s.planOwner) setPlanOwner(s.planOwner);
         }
       }
@@ -457,13 +459,13 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         screen, archetypeId, bizAnswers, bizQIndex, industry, startupName,
         aiReadiness, attackerConvo, complaints, attackPlan,
         likelihood, impact, ericAnswers, ericIndex,
-        defendConvo, actionPlan, planOwner
+        defendConvo, actionPlan, planEdits, planOwner
       }));
     } catch {}
   }, [screen, archetypeId, bizAnswers, bizQIndex, industry, startupName,
       aiReadiness, attackerConvo, complaints, attackPlan,
       likelihood, impact, ericAnswers, ericIndex,
-      defendConvo, actionPlan, planOwner]);
+      defendConvo, actionPlan, planEdits, planOwner]);
 
   function go(s) { setScreen(s); window.scrollTo(0, 0); }
   const AI_READINESS_LABELS = ["No AI in use — experimenting informally at best", "Some tools adopted — no strategy or coordination", "Active pilots underway — a few people driving it", "AI embedded in key workflows — leadership engaged", "AI is a core operational capability — strategy and governance in place"];
@@ -669,7 +671,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={28} />
           <div style={S.phase}>Phase 1: AI Readiness</div>
           <h2 style={S.h2}>How AI-ready is your organisation right now?</h2>
-          <p style={S.body}>This helps calibrate the attack and the defense to where you actually are, not where you want to be.</p>
+          <p style={S.body}>This directly shapes the attack you are about to face. A lower score means the attacker exploits your AI gaps. A higher score means they have to find a different angle. Be honest about where you actually are, not where you want to be.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 22, margin: "0 0 22px" }}>
             <div>
               <div style={S.sliderLabel}>
@@ -765,7 +767,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={38} />
           <div style={{ ...S.phase, color: archetype.color }}>Phase 2: {archetype.title}</div>
           <h2 style={S.h2}>Give the attacker a name.</h2>
-          <p style={S.body}>Making the threat specific makes it real.</p>
+          <p style={S.body}>This is a real entity that could exist in 18 months. Give it a name so your team has something concrete to refer back to after this session.</p>
           <input style={{ ...S.input, fontSize: 20, fontWeight: 700 }} placeholder="e.g. Volta, Meridian AI, Clearpath..." value={startupName} onChange={e => setStartupName(e.target.value)} autoFocus />
           <div style={S.row} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("attacker_intro")}>← Back</button>
@@ -1072,9 +1074,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <PageHeader />
           <ProgressBar pct={86} />
           <div style={S.phase}>Phase 3: Stress Testing the Defense</div>
-          <h2 style={S.h2}>Now let's find the weakest part.</h2>
-          <p style={S.body}>AI will challenge your ERIC response with up to three questions, looking for where your defense is most likely to fail.</p>
-          <p style={S.body}>Answer honestly. The goal is to find the gap before your attacker does.</p>
+          <h2 style={S.h2}>Now let's stress test the defense as a whole.</h2>
+          <p style={S.body}>The Coach's Notes challenged each ERIC answer individually. This is different. An AI advisor will look at your entire defense together and ask whether it holds up as a plan your organisation can actually execute.</p>
+          <p style={S.body}>Three questions. Be honest. The goal is to find the gap before your attacker does.</p>
           <div style={S.row} className="cb-row"><button style={S.btnPrimary} onClick={() => go("defend_ai")}>Start AI Stress Test →</button></div>
         </div>
       </div>
@@ -1120,7 +1122,12 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <div style={S.phase}>Phase 3: Your First Step</div>
           <h2 style={S.h2}>Your 90-day response plan.</h2>
           <div style={S.summaryBox}><MarkdownBlock text={actionPlan} /></div>
-          <NoteBox text="This is a starting point, not a prescription. The AI has designed this based on your session. Your team knows what is actually executable. Adjust it until it is genuinely owned, not just assigned." />
+          <NoteBox text="This is a starting point, not a prescription. The AI has designed this based on your session. Your team knows what is actually executable." />
+          <div style={{ ...S.discussionBox, marginTop: 4 }}>
+            <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>What would you change before you commit to this?</p>
+            <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 12px" }}>Adjust the plan until it feels genuinely owned, not just assigned. Leave blank if you are happy with it as is.</p>
+            <textarea autoComplete="off" style={{ ...S.textarea, minHeight: 80 }} placeholder="e.g. Change the timeline to 60 days, focus on segment X first, add a dependency on board approval..." value={planEdits} onChange={e => setPlanEdits(e.target.value)} />
+          </div>
           <div style={{ ...S.discussionBox, marginTop: 4 }}>
             <p style={{ fontSize: 15, color: "#f8fafc", fontWeight: 600, margin: "0 0 8px" }}>Before you leave this room: assign the owner.</p>
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 12px" }}>Who is responsible for making the first step happen?</p>
@@ -1179,14 +1186,20 @@ export default function DisruptionSprint({ robotIcon = "" }) {
 
           {/* 90-day plan — the focus */}
           <div style={{ fontSize: 12, color: "#22c55e", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Your 90-Day First Step</div>
-          <div style={{ ...S.summaryBox, border: "1px solid rgba(34,197,94,0.25)", marginBottom: 20 }}>
+          <div style={{ ...S.summaryBox, border: "1px solid rgba(34,197,94,0.25)", marginBottom: planEdits.trim() ? 10 : 20 }}>
             <MarkdownBlock text={actionPlan} />
           </div>
+          {planEdits.trim() && (
+            <div style={{ padding: "14px 18px", background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: 10, marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: "#22c55e", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 6 }}>Team Adjustments</div>
+              <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.65 }}>{planEdits}</p>
+            </div>
+          )}
 
           {/* Closing line */}
           <div style={{ ...S.discussionBox, textAlign: "center", marginBottom: 8 }}>
-            <p style={{ fontSize: 16, color: "#cbd5e1", margin: "0 0 4px" }}>The question is not whether the disruption is coming.</p>
-            <p style={{ fontSize: 16, color: "#f8fafc", fontWeight: 600, margin: 0 }}>The question is whether you move before it arrives.</p>
+            <p style={{ fontSize: 16, color: "#cbd5e1", margin: "0 0 4px" }}>{startupName} is not waiting. {planOwner.split(",")[0].split(" ")[0]} owns the first move.</p>
+            <p style={{ fontSize: 16, color: "#f8fafc", fontWeight: 600, margin: 0 }}>The next 90 days decide whether this was a conversation or a turning point.</p>
           </div>
           <div style={{ fontSize: 13, color: "#4a5568", textAlign: "center", marginBottom: 24 }}>{today}</div>
 
@@ -1231,6 +1244,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
                     attackPlan={sanitizeForPDF(attackPlan)}
                     ericAnswers={sEric}
                     actionPlan={sanitizeForPDF(actionPlan)}
+                    planEdits={sanitizeForPDF(planEdits)}
                     planOwner={sanitizeForPDF(planOwner)}
                     ERIC={ERIC}
                   />
@@ -1257,7 +1271,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               setAttackerConvo([]); setComplaints(""); setAttackPlan("");
               setLikelihood(3); setImpact(3);
               setEricIndex(0); setEricAnswers({}); setEricInput(""); setEricSkeptic(null);
-              setDefendConvo([]); setActionPlan(""); setPlanOwner("");
+              setDefendConvo([]); setActionPlan(""); setPlanEdits(""); setPlanOwner("");
               setCodeInput(""); setCodeError(false);
               sessionStorage.removeItem("disruption_sprint_session");
               go("gate");

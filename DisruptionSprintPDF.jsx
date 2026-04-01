@@ -397,7 +397,7 @@ function Card({ label, body, accent = false }) {
 // ── Main document ──────────────────────────────────────────────────────────
 export default function DisruptionSprintPDF({
   startupName, archetype, industry, likelihood, impact,
-  complaints, attackPlan, ericAnswers, actionPlan, planOwner,
+  complaints, attackPlan, ericAnswers, actionPlan, planEdits, planOwner,
   ERIC,
 }) {
   const today = new Date().toLocaleDateString("en-GB", {
@@ -443,10 +443,10 @@ export default function DisruptionSprintPDF({
 
           <View style={S.taglineBlock}>
             <Text style={S.taglineLine1}>
-              The question is not whether the disruption is coming.
+              {clean(startupName)} is not waiting.
             </Text>
             <Text style={S.taglineLine2}>
-              The question is whether you move before it arrives.
+              The next 90 days decide whether this was a conversation or a turning point.
             </Text>
           </View>
         </View>
@@ -492,6 +492,13 @@ export default function DisruptionSprintPDF({
           {actionSections.map(({ label, body }, i) => (
             <Card key={i} label={label} body={body} accent={i % 2 !== 0} />
           ))}
+
+          {planEdits ? (
+            <View style={{ marginTop: 8, padding: 10, backgroundColor: "#F0FDF4", borderWidth: 0.5, borderColor: "#BBF7D0", borderRadius: 4 }}>
+              <Text style={{ fontFamily: "Helvetica", fontWeight: 700, fontSize: 7, color: "#166534", letterSpacing: 0.8, marginBottom: 4 }}>TEAM ADJUSTMENTS</Text>
+              <Text style={{ fontSize: 9, color: C.body, lineHeight: 1.6 }}>{clean(planEdits)}</Text>
+            </View>
+          ) : null}
 
           <View style={S.ownerBox}>
             <Text style={S.ownerLabel}>OWNER</Text>
