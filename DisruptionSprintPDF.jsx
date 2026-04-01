@@ -35,10 +35,11 @@ const S = StyleSheet.create({
     color: C.body,
   },
   // Content pages need top padding to clear the fixed header on wrapped pages
+  // Header is ~49pt tall; we need generous clearance on overflow pages
   contentPage: {
     fontFamily: "Helvetica",
     backgroundColor: C.white,
-    paddingTop: 74,
+    paddingTop: 100,
     paddingBottom: 32,
     paddingHorizontal: 0,
     fontSize: 9,
@@ -109,7 +110,7 @@ const S = StyleSheet.create({
   // Page content wrapper
   content: {
     paddingHorizontal: 24,
-    paddingTop: 6,
+    paddingTop: 2,
   },
 
   // ── Cover page ──────────────────────────────────────────────────────────
