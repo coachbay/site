@@ -563,7 +563,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           </div>
           <div style={{ ...S.row, justifyContent: "space-between" }} className="cb-row">
             <button style={S.btnSecondary} onClick={() => go("welcome")}>← Back</button>
-            <button style={S.btnPrimary} onClick={() => go("biz_q")}>Let's go →</button>
+            <button style={S.btnPrimary} onClick={() => go("industry_q")}>Let's go →</button>
           </div>
         </div>
       </div>
@@ -584,7 +584,9 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <p style={S.hint}>{q.hint}</p>
           <textarea ref={bizTextareaRef} autoComplete="off" style={S.textarea} placeholder="Write your team's answer here..." value={bizInput} onChange={e => setBizInput(e.target.value)} />
           <div style={S.row} className="cb-row">
-            {bizQIndex > 0 && (
+            {bizQIndex === 0 ? (
+              <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
+            ) : (
               <button style={S.btnSecondary} onClick={() => { setBizQIndex(bizQIndex - 1); setBizInput(bizAnswers[BIZ_QUESTIONS[bizQIndex - 1].id] || ""); }}>← Back</button>
             )}
             <button style={{ ...S.btnPrimary, opacity: bizInput.trim() ? 1 : 0.4 }} onClick={() => {
@@ -595,7 +597,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
               const nextVal = nextId ? (updated[nextId] || "") : "";
               setBizInput(nextVal);
               if (bizQIndex < BIZ_QUESTIONS.length - 1) setBizQIndex(bizQIndex + 1);
-              else go("industry_q");
+              else go("ai_readiness");
             }}>
               {bizQIndex < BIZ_QUESTIONS.length - 1 ? "Next →" : "Finish & Continue →"}
             </button>
@@ -613,13 +615,13 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <div style={S.card}>
           <PageHeader />
           <ProgressBar pct={26} />
-          <div style={S.phase}>Phase 1: One Last Detail</div>
+          <div style={S.phase}>Phase 1: Set the Scene</div>
           <h2 style={S.h2}>What sector or industry are you in?</h2>
           <p style={S.hint}>e.g. Logistics, legal services, retail banking, media, hospitality</p>
           <input style={{ ...S.input, height: 54 }} placeholder="Your industry..." value={industry} onChange={e => setIndustry(e.target.value)} autoFocus />
           <div style={S.row} className="cb-row">
-            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
-            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) go("ai_readiness"); }}>Continue →</button>
+            <button style={S.btnSecondary} onClick={() => go("overview")}>← Back</button>
+            <button style={{ ...S.btnPrimary, opacity: industry.trim() ? 1 : 0.4 }} onClick={() => { if (industry.trim()) { setBizQIndex(0); setBizInput(bizAnswers[BIZ_QUESTIONS[0].id] || ""); go("biz_q"); } }}>Continue →</button>
           </div>
         </div>
       </div>
@@ -662,7 +664,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <p style={{ fontSize: 14, color: "#cbd5e1", margin: 0, lineHeight: 1.6 }}>{descriptions[aiReadiness - 1]}</p>
           </div>
           <div style={S.row} className="cb-row">
-            <button style={S.btnSecondary} onClick={() => go("industry_q")}>← Back</button>
+            <button style={S.btnSecondary} onClick={() => { setBizQIndex(3); setBizInput(bizAnswers[BIZ_QUESTIONS[3].id] || ""); go("biz_q"); }}>← Back</button>
             <button style={S.btnPrimary} onClick={() => go("archetype_select")}>Continue →</button>
           </div>
         </div>
