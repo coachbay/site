@@ -667,7 +667,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
         <div style={S.card}>
           <PageHeader />
           <ProgressBar pct={28} />
-          <div style={S.phase}>Phase 1: One Last Detail</div>
+          <div style={S.phase}>Phase 1: AI Readiness</div>
           <h2 style={S.h2}>How AI-ready is your organisation right now?</h2>
           <p style={S.body}>This helps calibrate the attack and the defense to where you actually are, not where you want to be.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 22, margin: "0 0 22px" }}>
@@ -970,7 +970,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
           <ProgressBar pct={73} />
           <div style={S.phase}>Phase 3: Defend</div>
           <h2 style={S.h2}>Build your response with ERIC.</h2>
-          <p style={S.body}>ERIC is a structured way to think across four dimensions. After each answer, a skeptic will challenge you.</p>
+          <p style={S.body}>ERIC is a structured way to think across four dimensions. After each answer, a coach will reflect back what you might be missing.</p>
           <div className="cb-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 22 }}>
             {ERIC.map(e => (
               <div key={e.id} style={{ padding: "12px 14px", background: "rgba(255,255,255,0.04)", borderRadius: 10 }}>
@@ -989,7 +989,7 @@ export default function DisruptionSprint({ robotIcon = "" }) {
     );
   }
 
-  // ── ERIC (inline skeptic) ─────────────────────────────────────────────────────
+  // ── ERIC (inline coach's note) ────────────────────────────────────────────────
   if (screen === "eric_q") {
     const e = ERIC[ericIndex];
     const isLast = ericIndex >= ERIC.length - 1;
