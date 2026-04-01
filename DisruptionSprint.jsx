@@ -14,6 +14,27 @@ function cleanAI(text) {
     .replace(/—/g, " ");
 }
 
+// ─── PDF text sanitizer ──────────────────────────────────────────────────────
+// Strips Unicode characters that cause react-pdf font glyph errors with woff2
+function sanitizeForPDF(text) {
+  if (!text) return text;
+  return String(text)
+    .replace(/[\u2018\u2019\u201A]/g, "'")   // smart single quotes
+    .replace(/[\u201C\u201D\u201E]/g, '"')   // smart double quotes
+    .replace(/[\u2013\u2014]/g, "-")          // en-dash, em-dash
+    .replace(/[\u2026]/g, "...")              // ellipsis
+    .replace(/[\u2022]/g, "*")               // bullet
+    .replace(/[\u00A0]/g, " ")               // non-breaking space
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "") // zero-width chars
+    .replace(/[\u2032\u2033]/g, "'")         // prime marks
+    .replace(/[\u00B7]/g, ".")               // middle dot
+    .replace(/[\u2010\u2011\u2012]/g, "-")   // various hyphens
+    .replace(/[\u2190-\u21FF]/g, "->")       // arrows
+    .replace(/[\u2500-\u257F]/g, "-")        // box drawing
+    .replace(/[^\x00-\x7F\u00C0-\u00FF\u0100-\u017F]/g, "") // strip remaining non-Latin
+    ;
+}
+
 async function callClaude(messages, systemPrompt = "", retries = 3) {
   let lastError = "no response";
   for (let attempt = 0; attempt < retries; attempt++) {
@@ -1197,18 +1218,20 @@ export default function DisruptionSprint({ robotIcon = "" }) {
             <button style={{ ...S.btnPrimary, minWidth: 190, opacity: pdfBusy ? 0.6 : 1 }} disabled={pdfBusy} onClick={async () => {
               setPdfBusy(true); setPdfError("");
               try {
+                const sEric = {};
+                Object.keys(ericAnswers).forEach(k => { sEric[k] = sanitizeForPDF(ericAnswers[k]); });
                 const blob = await pdf(
                   <DisruptionSprintPDF
-                    startupName={startupName}
+                    startupName={sanitizeForPDF(startupName)}
                     archetype={archetype}
-                    industry={industry}
+                    industry={sanitizeForPDF(industry)}
                     likelihood={likelihood}
                     impact={impact}
-                    complaints={complaints}
-                    attackPlan={attackPlan}
-                    ericAnswers={ericAnswers}
-                    actionPlan={actionPlan}
-                    planOwner={planOwner}
+                    complaints={sanitizeForPDF(complaints)}
+                    attackPlan={sanitizeForPDF(attackPlan)}
+                    ericAnswers={sEric}
+                    actionPlan={sanitizeForPDF(actionPlan)}
+                    planOwner={sanitizeForPDF(planOwner)}
                     ERIC={ERIC}
                   />
                 ).toBlob();
