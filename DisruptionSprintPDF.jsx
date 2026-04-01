@@ -1,22 +1,8 @@
 import { Document, Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/renderer";
 
 // ── Fonts ──────────────────────────────────────────────────────────────────
-Font.register({
-  family: "DM Sans",
-  fonts: [
-    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZOIHTWEBlw.ttf", fontWeight: 400 },
-    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Cp2ywxg089UriASitCBimC3YBvBuY.ttf", fontWeight: 700 },
-    { src: "https://fonts.gstatic.com/s/dmsans/v15/rP2Fp2ywxg089UriCZaIGDWCBl0O8Q.ttf", fontWeight: 400, fontStyle: "italic" },
-  ],
-});
-
-Font.register({
-  family: "DM Serif Display",
-  fonts: [
-    { src: "https://fonts.gstatic.com/s/dmseriftext/v12/rnCw-xZa_krGokauCeNq1wWyafOPXHIJErY.ttf", fontWeight: 400 },
-  ],
-});
-
+// Using Helvetica (built-in to react-pdf) for reliable PDF generation.
+// Custom woff2/ttf fonts cause glyph subsetting errors with dynamic content.
 Font.registerHyphenationCallback(word => [word]);
 
 // ── Colours ────────────────────────────────────────────────────────────────
@@ -40,7 +26,7 @@ const C = {
 // ── Styles ─────────────────────────────────────────────────────────────────
 const S = StyleSheet.create({
   page: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     backgroundColor: C.white,
     paddingTop: 0,
     paddingBottom: 32,
@@ -66,26 +52,26 @@ const S = StyleSheet.create({
     gap: 6,
   },
   headerLogoText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 18,
     color: C.navy,
   },
   headerLogoAccent: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 18,
     color: C.cyan,
   },
   headerDocLabel: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 400,
     fontSize: 8,
     color: C.muted,
     letterSpacing: 0.8,
   },
   headerText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 7,
     color: C.white,
@@ -105,7 +91,7 @@ const S = StyleSheet.create({
     paddingTop: 6,
   },
   footerText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontSize: 7,
     color: C.muted,
   },
@@ -118,7 +104,7 @@ const S = StyleSheet.create({
 
   // ── Cover page ──────────────────────────────────────────────────────────
   coverTitle: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 28,
     color: C.navy,
@@ -127,7 +113,7 @@ const S = StyleSheet.create({
     letterSpacing: -0.3,
   },
   coverSubtitle: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 18,
     color: C.cyan,
@@ -146,7 +132,7 @@ const S = StyleSheet.create({
     marginBottom: 8,
   },
   metaLabel: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 7,
     color: C.muted,
@@ -155,7 +141,7 @@ const S = StyleSheet.create({
     paddingTop: 2,
   },
   metaValue: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontSize: 9.5,
     color: C.navyText,
     flex: 1,
@@ -171,7 +157,7 @@ const S = StyleSheet.create({
     paddingVertical: 6,
   },
   threatText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 9,
     color: C.white,
@@ -186,7 +172,7 @@ const S = StyleSheet.create({
     marginTop: 4,
   },
   taglineLine1: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 400,
     fontStyle: "italic",
     fontSize: 11,
@@ -194,7 +180,7 @@ const S = StyleSheet.create({
     marginBottom: 4,
   },
   taglineLine2: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontStyle: "italic",
     fontSize: 11,
@@ -210,7 +196,7 @@ const S = StyleSheet.create({
     marginTop: 4,
   },
   sectionBandText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 7.5,
     letterSpacing: 1,
@@ -224,13 +210,13 @@ const S = StyleSheet.create({
     marginBottom: 8,
   },
   cardLabel: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 8.5,
     marginBottom: 5,
   },
   cardBody: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontSize: 8.5,
     color: C.body,
     lineHeight: 1.55,
@@ -248,7 +234,7 @@ const S = StyleSheet.create({
     lineHeight: 1.55,
   },
   bulletText: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontSize: 8.5,
     color: C.body,
     flex: 1,
@@ -267,7 +253,7 @@ const S = StyleSheet.create({
     marginTop: 4,
   },
   ownerLabel: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontWeight: 700,
     fontSize: 7.5,
     color: C.cyanDark,
@@ -275,7 +261,7 @@ const S = StyleSheet.create({
     marginRight: 8,
   },
   ownerValue: {
-    fontFamily: "DM Sans",
+    fontFamily: "Helvetica",
     fontSize: 9,
     color: C.navyText,
   },
