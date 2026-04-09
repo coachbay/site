@@ -43,46 +43,52 @@ const TeamIcon = () => (
 
 const sprints = [
   {
-    id: "core", num: "1",
-    title: "Core Sprint", tagline: "for skills",
-    detail: "Half day sprint for managers, team leads, and specialists.",
-    description: "Discover four AI roles that go far beyond basic chat. For anyone still using AI mainly as an assistant who wants to unlock its real potential.",
-    pdf: "/CoachBay_Core_Sprint.pdf",
+    id: "manifesto", num: "1",
+    line1: "Manifesto", line2: "Workshop", tagline: "for direction",
+    detail: "Full day workshop for C-Level executives and senior leaders.",
+    description: "Write your AI manifesto: a clear statement of what AI means to your organization, what you expect from your people, and how you will invest. Not a policy. A call to action.",
+    pdf: "/CoachBay_Manifesto_Workshop.pdf",
+    dlLabel: "Download Workshop Overview",
   },
   {
     id: "strategy", num: "2",
-    title: "Strategy Sprint", tagline: "for thinking",
+    line1: "Strategy", line2: "Sprint", tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
     description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
     pdf: "/CoachBay_Strategy_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
   },
   {
     id: "change", num: "3",
-    title: "Change Sprint", tagline: "for adoption",
+    line1: "Change", line2: "Sprint", tagline: "for adoption",
     detail: "Half day sprint for leaders driving AI adoption.",
     description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organization.",
     pdf: "/CoachBay_Change_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
   },
   {
-    id: "manifesto", num: "4",
-    title: "Manifesto Workshop", tagline: "for direction",
-    detail: "Full day workshop for senior leaders and directors.",
-    description: "Write your AI manifesto: a clear statement of what AI means to your organization, what you expect from your people, and how you will invest. Not a policy. A call to action.",
-    pdf: "/CoachBay_Manifesto_Workshop.pdf",
+    id: "core", num: "4",
+    line1: "Core", line2: "Sprint", tagline: "for skills",
+    detail: "Half day sprint for managers, team leads, and specialists.",
+    description: "Discover four AI roles that go far beyond basic chat. For anyone still using AI mainly as an assistant who wants to unlock its real potential.",
+    pdf: "/CoachBay_Core_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
   },
   {
     id: "cutcreate", num: "5",
-    title: "Cut & Create Sprint", tagline: "for focus",
+    line1: "Cut & Create", line2: "Sprint", tagline: "for focus",
     detail: "Half day sprint for managers, team leads, and specialists.",
     description: "Identify what to stop and what to start. Two structured exercises using original canvas tools to ensure AI adoption is not just about efficiency but about building something new.",
     pdf: "/CoachBay_Cut_Create_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
   },
   {
     id: "project", num: "6",
-    title: "Project Sprint", tagline: "for results",
+    line1: "Project", line2: "Sprint", tagline: "for results",
     detail: "Half day sprint for cross functional project teams.",
     description: "Bring a real business challenge and work through it as a cross functional team with AI as your thinking partner. The right people in the room, combined with the right AI tools, to find new and better ways forward.",
     pdf: "/CoachBay_Project_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
   },
 ];
 
@@ -388,7 +394,7 @@ export default function LandingPage({ onNavigate }) {
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
                 <div style={{ width: 48, height: 48, borderRadius: "50%", background: `${CYAN}15`, display: "flex", alignItems: "center", justifyContent: "center", color: CYAN, fontSize: 22, fontWeight: 700 }}>{s.num}</div>
                 <div>
-                  <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: 0 }}>{s.title}</h3>
+                  <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: 0, lineHeight: 1.2 }}>{s.line1}<br />{s.line2}</h3>
                   <p style={{ color: CYAN, fontSize: 15, fontWeight: 600, margin: 0 }}>{s.tagline}</p>
                 </div>
               </div>
@@ -403,7 +409,7 @@ export default function LandingPage({ onNavigate }) {
                 border: "1.5px solid #e2e8f0", borderRadius: 10, padding: "10px 20px", width: "100%",
               }}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Download Sprint Overview
+                {s.dlLabel}
               </a>
             </div>
           ))}
