@@ -199,18 +199,19 @@ SPRINTS = [
         "audience": "Senior leaders and directors",
         "format": "3.5 to 4 hours. In person or online.",
         "class_size": "8 to 15 people",
-        "what_you_do": "For leadership teams who need to move beyond AI policies and governance into a clear, bold statement of intent. This session uses diagnostic data, the Three Buckets exercise (Cut, Create, Strengths), and a culture framework (Tolerate, Don't Tolerate, Reward) to build a manifesto that is specific to your organization.",
+        "what_you_do": "For leadership teams who need to move beyond AI policies and governance into a clear, bold statement of intent. This session covers vision, strategy, culture, ownership, and investment. Using diagnostic data, the Three Buckets exercise (Cut, Create, Strengths), and a culture framework (Tolerate, Don't Tolerate, Reward), your leadership team drafts a manifesto that is specific to your organization and ready to share.",
         "after_this": [
             "Diagnose your current state using CoachBay's AI Fitness Diagnostic, including the Empathy Gap between what leaders think and what employees experience.",
+            "Define your AI vision: a clear statement of what AI means to your organization and what it enables you to become.",
             "Sort your company's work into Three Buckets: what to hand to AI (the Cut), what new work to start (the Create), and what makes your organization unique (your Strengths).",
             "Define your AI culture by agreeing on what you tolerate, what you do not tolerate, and what you reward when it comes to AI use.",
-            "Draft your AI manifesto in the room: a 2 to 4 page document with assigned ownership and a timeline for sign off.",
+            "Set ownership, governance, and budget: who is in charge, how decisions get made, and what you will invest in tools, training, and experimentation.",
         ],
         "takeaways": [
-            "A draft AI manifesto ready for refinement and sign off.",
+            "A draft AI manifesto (2 to 4 pages) covering vision, strategy, culture, governance, and budget.",
             "Three Buckets clarity: what to cut, what to create, and what to protect.",
             "Cultural norms: what you tolerate, what you reward, and where the hard lines are.",
-            "Assigned owner and a clear timeline for the next steps.",
+            "Clear ownership: who runs it, how it gets updated, and what gets funded.",
         ],
     },
     {
