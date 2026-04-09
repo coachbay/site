@@ -51,19 +51,19 @@ const sprints = [
     dlLabel: "Download Workshop Overview",
   },
   {
-    id: "strategy", num: "2",
+    id: "leadership", num: "2",
+    line1: "Leadership", line2: "Sprint", tagline: "for leading",
+    detail: "Half day sprint for senior managers and executives.",
+    description: "Hold up a mirror, then build habits. Start with the AI Leader Assessment to see where you really stand, then make the shift from a leader who uses AI to an AI leader. Research shows this can jump team adoption from 15% to 55%.",
+    pdf: "/CoachBay_Leadership_Sprint.pdf",
+    dlLabel: "Download Sprint Overview",
+  },
+  {
+    id: "strategy", num: "3",
     line1: "Strategy", line2: "Sprint", tagline: "for thinking",
     detail: "Half day sprint for senior managers and executives.",
     description: "Use AI as a thinking partner on the decisions that actually matter. For leaders who want AI to sharpen their judgment, not just save time.",
     pdf: "/CoachBay_Strategy_Sprint.pdf",
-    dlLabel: "Download Sprint Overview",
-  },
-  {
-    id: "change", num: "3",
-    line1: "Change", line2: "Sprint", tagline: "for adoption",
-    detail: "Half day sprint for leaders driving AI adoption.",
-    description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organization.",
-    pdf: "/CoachBay_Change_Sprint.pdf",
     dlLabel: "Download Sprint Overview",
   },
   {
