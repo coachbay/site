@@ -78,27 +78,27 @@ def draw_section_title(c, y, text, size=12):
     c.line(MARGIN, y - 2 * mm, MARGIN + c.stringWidth(text, "Helvetica-Bold", size), y - 2 * mm)
     return y - 8 * mm
 
-def draw_body_text(c, y, text, wrap=95):
-    c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
+def draw_body_text(c, y, text, wrap=115):
+    c.setFont("Helvetica", 9); c.setFillColor(BODY)
     for line in textwrap.wrap(text, wrap):
         c.drawString(MARGIN, y, line); y -= 5 * mm
     return y - 4 * mm
 
 def draw_bullets(c, y, items):
     for item in items:
-        lines = textwrap.wrap(item, width=88)
+        lines = textwrap.wrap(item, width=110)
         first = True
         for line in lines:
             if first:
-                c.setFont("Helvetica-Bold", 8); c.setFillColor(CYAN)
+                c.setFont("Helvetica-Bold", 9); c.setFillColor(CYAN)
                 c.drawString(MARGIN, y, "•"); first = False
-            c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
+            c.setFont("Helvetica", 9); c.setFillColor(BODY)
             c.drawString(MARGIN + 4 * mm, y, line); y -= 5 * mm
         y -= 1.5 * mm
     return y - 1 * mm
 
 def draw_takeaway_box(c, y, items):
-    line_count = sum(len(textwrap.wrap(item, 82)) for item in items)
+    line_count = sum(len(textwrap.wrap(item, 100)) for item in items)
     box_h = (line_count * 5 + len(items) * 1.5 + 14) * mm
     c.setFillColor(CYAN_LIGHT); c.setStrokeColor(CYAN_BORDER); c.setLineWidth(0.5)
     c.roundRect(MARGIN, y - box_h, CONTENT_W, box_h, 3, fill=1, stroke=1)
@@ -106,21 +106,21 @@ def draw_takeaway_box(c, y, items):
     c.drawString(MARGIN + 4 * mm, y - 7 * mm, "What you walk away with")
     ty = y - 14 * mm
     for item in items:
-        lines = textwrap.wrap(item, width=82)
+        lines = textwrap.wrap(item, width=100)
         first = True
         for line in lines:
             if first:
-                c.setFont("Helvetica-Bold", 8); c.setFillColor(CYAN)
+                c.setFont("Helvetica-Bold", 9); c.setFillColor(CYAN)
                 c.drawString(MARGIN + 4 * mm, ty, "•"); first = False
-            c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
+            c.setFont("Helvetica", 9); c.setFillColor(BODY)
             c.drawString(MARGIN + 8 * mm, ty, line); ty -= 5 * mm
         ty -= 1.5 * mm
     return y - box_h - 8 * mm
 
 def draw_pitstop(c, y):
     y = draw_section_title(c, y, "Optional: Pit Stops", size=10)
-    c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
-    for line in textwrap.wrap("Each session can be followed by two Pit Stops (1 hour each, max 6 people) to turn learning into lasting habits.", 95):
+    c.setFont("Helvetica", 9); c.setFillColor(BODY)
+    for line in textwrap.wrap("Each session can be followed by two Pit Stops (1 hour each, max 6 people) to turn learning into lasting habits.", 115):
         c.drawString(MARGIN, y, line); y -= 5 * mm
     return y
 
@@ -280,7 +280,7 @@ for sprint in SPRINTS:
     c.setStrokeColor(DIVIDER); c.setLineWidth(0.5)
     c.line(MARGIN, y, W - MARGIN, y); y -= 7 * mm
     c.setFont("Helvetica-Oblique", 9.5); c.setFillColor(MUTED)
-    for line in textwrap.wrap(sprint["tagline"], 90):
+    for line in textwrap.wrap(sprint["tagline"], 115):
         c.drawString(MARGIN, y, line); y -= 5.5 * mm
     y -= 5 * mm
     y = draw_info_box(c, y, sprint["audience"], sprint["format"], sprint["class_size"])
