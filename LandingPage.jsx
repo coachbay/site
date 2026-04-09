@@ -65,10 +65,10 @@ const sprints = [
   },
   {
     id: "manifesto", num: "4",
-    title: "Manifesto Sprint", tagline: "for direction",
-    detail: "Half day sprint for senior leaders and directors.",
+    title: "Manifesto Workshop", tagline: "for direction",
+    detail: "Full day workshop for senior leaders and directors.",
     description: "Write your AI manifesto: a clear statement of what AI means to your organization, what you expect from your people, and how you will invest. Not a policy. A call to action.",
-    pdf: "/CoachBay_Manifesto_Sprint.pdf",
+    pdf: "/CoachBay_Manifesto_Workshop.pdf",
   },
   {
     id: "cutcreate", num: "5",
@@ -368,7 +368,7 @@ export default function LandingPage({ onNavigate }) {
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
           <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
-            Six half day sprints that build real capability. They work standalone, or can be sequenced as a journey for maximum impact.
+            Five half day sprints and a full day workshop that build real capability. They work standalone, or can be sequenced as a journey for maximum impact.
           </p>
           <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.6, margin: "12px auto 0", maxWidth: 560, textAlign: "center" }}>
             Delivered virtually or in person. Designed for teams of 8 to 20.
