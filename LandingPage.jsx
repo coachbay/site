@@ -63,6 +63,27 @@ const sprints = [
     description: "Learn to drive adoption through pull, not push. For leaders responsible for getting AI working across their organization.",
     pdf: "/CoachBay_Change_Sprint.pdf",
   },
+  {
+    id: "manifesto", num: "4",
+    title: "Manifesto Sprint", tagline: "for direction",
+    detail: "Half day sprint for senior leaders and directors.",
+    description: "Write your AI manifesto: a clear statement of what AI means to your organization, what you expect from your people, and how you will invest. Not a policy. A call to action.",
+    pdf: "/CoachBay_Manifesto_Sprint.pdf",
+  },
+  {
+    id: "cutcreate", num: "5",
+    title: "Cut & Create Sprint", tagline: "for focus",
+    detail: "Half day sprint for managers, team leads, and specialists.",
+    description: "Identify what to stop and what to start. Two structured exercises using original canvas tools to ensure AI adoption is not just about efficiency but about building something new.",
+    pdf: "/CoachBay_Cut_Create_Sprint.pdf",
+  },
+  {
+    id: "project", num: "6",
+    title: "Project Sprint", tagline: "for results",
+    detail: "Half day sprint for cross functional project teams.",
+    description: "Bring a real business challenge and work through it as a cross functional team with AI as your thinking partner. The right people in the room, combined with the right AI tools, to find new and better ways forward.",
+    pdf: "/CoachBay_Project_Sprint.pdf",
+  },
 ];
 
 const diagnostics = [
@@ -343,11 +364,11 @@ export default function LandingPage({ onNavigate }) {
       <div id="sprints" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px 48px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>
-            Three Ways to Start
+            The AI Fitness Program
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
           <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
-            Each Sprint is a half day session that delivers real results, not just awareness. They work standalone, or can be sequenced as a journey for maximum impact.
+            Six half day sprints that build real capability. They work standalone, or can be sequenced as a journey for maximum impact.
           </p>
           <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.6, margin: "12px auto 0", maxWidth: 560, textAlign: "center" }}>
             Delivered virtually or in person. Designed for teams of 8 to 20.
