@@ -54,17 +54,22 @@ def draw_footer(c):
     c.drawRightString(W - MARGIN, 9 * mm, "coach@coachbay.ai")
 
 def draw_info_box(c, y, audience, fmt, class_size):
-    box_h = 22 * mm
+    col_w = CONTENT_W / 3
+    char_limit = 30
+    values = [audience, fmt, class_size]
+    wrapped = [textwrap.wrap(v, char_limit) for v in values]
+    max_lines = max(len(w) for w in wrapped)
+    box_h = max((7 + max_lines * 5 + 3) * mm, 22 * mm)
     c.setFillColor(BG); c.setStrokeColor(DIVIDER); c.setLineWidth(0.4)
     c.roundRect(MARGIN, y - box_h, CONTENT_W, box_h, 3, fill=1, stroke=1)
-    col_w = CONTENT_W / 3
-    for i, (label, value) in enumerate(zip(["AUDIENCE", "FORMAT", "CLASS SIZE"], [audience, fmt, class_size])):
+    for i, (label, lines) in enumerate(zip(["AUDIENCE", "FORMAT", "CLASS SIZE"], wrapped)):
         x = MARGIN + i * col_w + 4 * mm
         c.setFont("Helvetica-Bold", 7); c.setFillColor(CYAN_DARK)
         c.drawString(x, y - 7 * mm, label)
         c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
-        c.drawString(x, y - 13 * mm, value)
-    return y - box_h - 12 * mm
+        for j, line in enumerate(lines):
+            c.drawString(x, y - 13 * mm - j * 4.5 * mm, line)
+    return y - box_h - 10 * mm
 
 def draw_section_title(c, y, text, size=12):
     c.setFont("Helvetica-Bold", size); c.setFillColor(NAVY)
@@ -110,12 +115,12 @@ def draw_takeaway_box(c, y, items):
             c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
             c.drawString(MARGIN + 8 * mm, ty, line); ty -= 5 * mm
         ty -= 1.5 * mm
-    return y - box_h - 10 * mm
+    return y - box_h - 8 * mm
 
 def draw_pitstop(c, y):
     y = draw_section_title(c, y, "Optional: Pit Stops", size=10)
     c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
-    for line in textwrap.wrap("Each Sprint can be followed by two Pit Stops (1 hour each, max 6 people) to turn learning into lasting habits.", 95):
+    for line in textwrap.wrap("Each session can be followed by two Pit Stops (1 hour each, max 6 people) to turn learning into lasting habits.", 95):
         c.drawString(MARGIN, y, line); y -= 5 * mm
     return y
 
@@ -196,8 +201,8 @@ SPRINTS = [
         "title": "AI Manifesto Workshop",
         "subtitle": "for direction",
         "tagline": "Helping leadership teams write their AI manifesto: a clear statement of what AI means to the organization, what is expected of people, and how to invest.",
-        "audience": "Senior leaders and directors",
-        "format": "Full day (~7 hours including breaks and lunch). In person or online.",
+        "audience": "C-Level executives and senior leaders",
+        "format": "Full day (~7 hours). In person or online.",
         "class_size": "8 to 15 people",
         "what_you_do": "For leadership teams who need to move beyond AI policies and governance into a clear, bold statement of intent. This full day workshop covers vision, strategy, culture, ownership, guardrails, and investment. Using diagnostic data, the Three Buckets exercise (Cut, Create, Amplify), and a culture framework (Tolerate, Don't Tolerate, Reward), your leadership team drafts, reviews, and pressure tests a manifesto that is specific to your organization and ready to share.",
         "after_this": [
@@ -206,7 +211,6 @@ SPRINTS = [
             "Sort your company's work into Three Buckets: what to hand to AI (the Cut), what new work to start (the Create), and what to amplify (what makes your organization unique).",
             "Define your AI culture by agreeing on what you tolerate, what you do not tolerate, and what you reward when it comes to AI use.",
             "Set ownership, governance, budget, and guardrails: who is in charge, what you will invest, and where the hard lines are.",
-            "Draft, review, and refine the manifesto as a full room, leaving with a document the team believes in.",
         ],
         "takeaways": [
             "A pressure tested draft AI manifesto (2 to 4 pages) covering vision, strategy, culture, governance, guardrails, and budget.",
