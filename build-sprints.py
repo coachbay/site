@@ -201,7 +201,7 @@ SPRINTS = [
         "title": "AI Manifesto Workshop",
         "subtitle": "for direction",
         "tagline": "Helping organizations write their AI manifesto: a clear statement of what AI means, what is expected of people, and how to invest. Not a policy. A call to action.",
-        "audience": "Organizations with 100+ employees",
+        "audience": "Organizations with 50+ employees",
         "format": "Two half day sessions (3.5 to 4 hours each), delivered one to two weeks apart. In person or online.",
         "class_size": "Session 1: 5 to 8 people. Session 2: 8 to 15 people.",
         "what_you_do": "This workshop runs in two sessions. In Session 1, a small team of AI active employees from across your company uses diagnostic data, the Three Buckets exercise (Cut, Create, Amplify), and a culture framework (Tolerate, Don't Tolerate, Reward) to build the first draft of your manifesto. In Session 2, senior leaders review the draft, shape the vision, make decisions on ownership, governance, budget, and guardrails, and sign off. The result is a manifesto grounded in real AI experience and backed by leadership authority.",

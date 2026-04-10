@@ -45,7 +45,7 @@ const sprints = [
   {
     id: "manifesto", num: "1",
     line1: "Manifesto", line2: "Workshop", tagline: "for direction",
-    detail: "Two half day sessions for organizations with 100+ employees.",
+    detail: "Two sessions for organizations with 50+ employees.",
     description: "A small team of AI active employees builds the first draft. Senior leaders shape the vision, make key decisions, and sign off. Two sessions, one manifesto. Not a policy. A call to action.",
     pdf: "/CoachBay_Manifesto_Workshop.pdf",
     dlLabel: "Download Workshop Overview",

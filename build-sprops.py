@@ -268,7 +268,7 @@ WORKSHOPS = [
     {
         "num": "1",
         "name": "The AI Manifesto",
-        "audience": "Organizations with 100+ employees. Session 1: 5 to 8 AI active employees. Session 2: 8 to 15 senior leaders.",
+        "audience": "Organizations with 50+ employees. Session 1: 5 to 8 AI active employees. Session 2: 8 to 15 senior leaders.",
         "description": (
             "A two session workshop delivered one to two weeks apart. In Session 1, a small "
             "team of AI active employees builds the first draft using diagnostic data, the "
