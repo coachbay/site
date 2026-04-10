@@ -219,10 +219,9 @@ def build_page1(c):
     # Italic footnote
     c.setFont("Helvetica-Oblique", 9); c.setFillColor(MUTED)
     note = (
-        "The AI Manifesto is a full day workshop (~7 hours). All sprints are standalone "
-        "half day sessions (3 to 4 hours). They can be delivered individually or as a "
-        "connected sequence. All workshops are hands on and practical, designed for "
-        "groups of 8 to 20 people."
+        "The AI Manifesto Workshop is two half day sessions delivered one to two weeks apart. "
+        "All sprints are standalone half day sessions (3 to 4 hours). They can be delivered "
+        "individually or as a connected sequence. All workshops are hands on and practical."
     )
     for line in textwrap.wrap(note, 120):
         c.drawString(MARGIN, y, line); y -= 4.5 * mm
@@ -269,17 +268,17 @@ WORKSHOPS = [
     {
         "num": "1",
         "name": "The AI Manifesto",
-        "audience": "C-Level executives and Senior Leaders (8 to 15 people)",
+        "audience": "Organizations with 100+ employees. Session 1: 5 to 8 AI active employees. Session 2: 8 to 15 senior leaders.",
         "description": (
-            "A focused full day workshop (~7 hours) where your leadership team writes "
-            "a draft AI manifesto: a clear statement of what AI means to this organisation, "
-            "what you expect from your people, and how you will invest. The workshop covers "
-            "vision, strategy, culture, ownership, governance, guardrails, and budget. This "
-            "is not a policy document. It is a call to action. Section AI data shows only "
-            "10% of companies have one. Those that do see dramatically higher adoption."
+            "A two session workshop delivered one to two weeks apart. In Session 1, a small "
+            "team of AI active employees builds the first draft using diagnostic data, the "
+            "Three Buckets exercise (Cut, Create, Amplify), and a culture framework (Tolerate, "
+            "Don't Tolerate, Reward). In Session 2, senior leaders shape the vision, make "
+            "decisions on ownership, governance, budget, and guardrails, and sign off. Not a "
+            "policy. A call to action. Section AI data shows only 10% of companies have one."
         ),
         "takeaways": [
-            "Draft AI manifesto (2 to 4 pages) covering vision, strategy, culture, governance, guardrails, and budget",
+            "Leadership approved AI manifesto (3 to 5 pages) covering vision, strategy, culture, governance, guardrails, and budget",
             "Three Buckets clarity: what to cut, what to create, what to amplify",
             "Cultural norms: what you tolerate, what you reward, where the hard lines are",
             "Clear ownership and guardrails: who runs it, how it gets updated, what gets funded, and what stays off limits",
@@ -464,13 +463,13 @@ def build_page3(c):
 
     # Suggested Next Step box
     next_step = (
-        "We recommend starting with The AI Manifesto for senior leaders to set strategic "
-        "direction, followed by the AI Leadership Sprint to equip senior managers "
-        "with the habits to lead the change. The Strategy Sprint deepens strategic "
-        "thinking for senior managers. Core Sprint builds capability across Change "
-        "Agents and wider staff. The Cut & Create Sprint can run alongside or after "
-        "the Core Sprint to move from skills to action. Each workshop stands alone, "
-        "but the full sequence creates lasting organisational change."
+        "We recommend starting with The AI Manifesto Workshop to set strategic "
+        "direction. A small drafting team builds the first version, then senior leaders "
+        "shape the vision and sign off. Next, the AI Leadership Sprint equips senior "
+        "managers with the habits to lead the change. The Strategy Sprint deepens "
+        "strategic thinking. Core Sprint builds capability across Change Agents and "
+        "wider staff. The Cut & Create Sprint moves teams from skills to action. Each "
+        "workshop stands alone, but the full sequence creates lasting change."
     )
     wrapped = textwrap.wrap(next_step, 108)
     box_h = (8 + len(wrapped) * 4.5 + 6) * mm
@@ -499,7 +498,7 @@ def build_page3(c):
     c.setFont("Helvetica", 8.5); c.setFillColor(MUTED)
     c.drawString(MARGIN + tb_w, fy - 5 * mm, "   |  coach@coachbay.com  |  coachbay.ai")
     c.setFont("Helvetica-Oblique", 7.5); c.setFillColor(MUTED)
-    c.drawRightString(W - MARGIN, fy - 5 * mm, "Sprints are half day (3 to 4 hours). Manifesto Workshop is full day (~7 hours).")
+    c.drawRightString(W - MARGIN, fy - 5 * mm, "Sprints are half day (3 to 4 hours). Manifesto Workshop is two half day sessions.")
 
 
 # ── Build ───────────────────────────────────────────────────────

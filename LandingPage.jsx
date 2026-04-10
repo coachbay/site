@@ -45,8 +45,8 @@ const sprints = [
   {
     id: "manifesto", num: "1",
     line1: "Manifesto", line2: "Workshop", tagline: "for direction",
-    detail: "Full day workshop for C-Level executives and senior leaders.",
-    description: "Write your AI manifesto: a clear statement of what AI means to your organization, what you expect from your people, and how you will invest. Not a policy. A call to action.",
+    detail: "Two half day sessions for organizations with 100+ employees.",
+    description: "A small team of AI active employees builds the first draft. Senior leaders shape the vision, make key decisions, and sign off. Two sessions, one manifesto. Not a policy. A call to action.",
     pdf: "/CoachBay_Manifesto_Workshop.pdf",
     dlLabel: "Download Workshop Overview",
   },
@@ -374,7 +374,7 @@ export default function LandingPage({ onNavigate }) {
           </h2>
           <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
           <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.6, margin: "0 auto", maxWidth: 560 }}>
-            Five half day sprints and a full day workshop that build real capability. They work standalone, or can be sequenced as a journey for maximum impact.
+            Five half day sprints and a two session workshop that build real capability. They work standalone, or can be sequenced as a journey for maximum impact.
           </p>
           <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.6, margin: "12px auto 0", maxWidth: 560, textAlign: "center" }}>
             Delivered virtually or in person. Designed for teams of 8 to 20.
