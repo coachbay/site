@@ -441,18 +441,6 @@ export const rolloutConfig = {
   empathyGap: null,
   sections: [
     {
-      id: "the_what",
-      title: "The What",
-      subtitle: "Are you clear about what AI is being used for and who it affects?",
-      icon: "target",
-      questions: [
-        "We have mapped every role that will be touched by this AI rollout, not just the power users",
-        "We have been honest with the team about which tasks will be reduced, removed, or changed",
-        "We have specifically checked whether entry level roles are disproportionately affected",
-        "We are introducing AI as a tool for people, not as a replacement for people, and our actions match that message",
-      ],
-    },
-    {
       id: "the_why",
       title: "The Why",
       subtitle: "Does every level of your team understand why this is happening?",
@@ -462,6 +450,18 @@ export const rolloutConfig = {
         "We have explained what gets better for the people doing the work, not just for the business",
         "We have directly addressed the fear that AI might eliminate jobs, rather than avoiding the conversation",
         "There is a real, psychologically safe way for people to raise concerns about AI without it becoming a performance issue",
+      ],
+    },
+    {
+      id: "the_what",
+      title: "The What",
+      subtitle: "Are you clear about what AI is being used for and who it affects?",
+      icon: "target",
+      questions: [
+        "We have mapped every role that will be touched by this AI rollout, not just the power users",
+        "We have been honest with the team about which tasks will be reduced, removed, or changed",
+        "We have specifically checked whether entry level roles are disproportionately affected",
+        "We are introducing AI as a tool for people, not as a replacement for people, and our actions match that message",
       ],
     },
     {
@@ -481,7 +481,7 @@ export const rolloutConfig = {
   tierData: [
     {
       range: [56, 65], label: "Ready to Roll Out", color: "#10b981",
-      summary: "You have done the work. Your team understands the what, the why, and the how. Every level has been considered. This is rare and it matters.",
+      summary: "You have done the work. Your team understands the why, the what, and the how. Every level has been considered. This is rare and it matters.",
       action: "Roll out with confidence and keep checking in. As the rollout scales and new people join, run this check again. The gaps that appear later are often different from the ones you planned for.",
     },
     {
@@ -497,7 +497,7 @@ export const rolloutConfig = {
     {
       range: [13, 26], label: "Stop and Rethink", color: RED_ACCENT,
       summary: "Your team is not prepared for this rollout. The good news: you caught it before launching. 95% of enterprise AI projects fail, and the failures are almost always human, not technical.",
-      action: "Go back to basics. Before any AI rollout, every affected person needs to understand what is changing, why it is happening, and how they will be supported. Start there. Build the foundation of trust and clarity first. Everything else follows from that.",
+      action: "Go back to basics. Before any AI rollout, every affected person needs to understand why it is happening, what is changing, and how they will be supported. Start there. Build the foundation of trust and clarity first. Everything else follows from that.",
     },
   ],
   sectionAdvice: {
