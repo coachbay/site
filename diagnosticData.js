@@ -430,13 +430,13 @@ export const teamConfig = {
 };
 
 // ============================================
-// ROLLOUT CHECK - Nobody Left Behind (v1)
-// 3 dimensions, 13 questions total, max 65
+// ROLLOUT CHECK - Nobody Left Behind (v2)
+// 3 dimensions, 21 statements total, max 105
 // ============================================
 export const rolloutConfig = {
   title: "Nobody Left Behind",
   subtitle: "Is your AI rollout ready for every level of your team?",
-  description: "15 questions across 3 dimensions. Takes about 5 minutes.\nThis is not about whether your organization is ready for AI. It is about whether your people are ready for your rollout.",
+  description: "21 statements across 3 dimensions. Takes about 7 minutes.\nThis is not about whether your organization is ready for AI. It is about whether your people are ready for your rollout.\n\nSome of these statements may not apply to your organization yet. That is useful information. A low score tells you where to focus before your AI rollout goes further. This is not a test you pass or fail. It is a map of what still needs to happen.",
   diagnosticType: "Rollout",
   empathyGap: null,
   sections: [
@@ -446,11 +446,13 @@ export const rolloutConfig = {
       subtitle: "Does every level of your team understand why this is happening?",
       icon: "leader",
       questions: [
-        "Someone two levels below leadership can explain why the company is adopting AI in words that make sense to them",
-        "We have explained what gets better for the people doing the work, not just for the business",
-        "We have directly addressed the fear that AI might eliminate jobs, rather than avoiding the conversation",
-        "There is a real, psychologically safe way for people to raise concerns about AI without it becoming a performance issue",
-        "We have shown the team what AI will help them create and achieve, not just what it will cut or automate",
+        "We have considered our team's recent experience with change and whether they have capacity for another transformation",
+        "Someone two levels below me could explain why the company is adopting AI in a way that makes sense to the person doing the work",
+        "We have explained what gets better for the people, not just the business",
+        "We have openly acknowledged our team's fears about AI and explained what we are doing to address them",
+        "We have shown the team what AI will help them create and build, not just what it will cut or automate",
+        "Someone on our team could say \"I do not understand AI and I am worried about it\" without it being held against them",
+        "We have a real feedback channel where people can raise concerns about AI safely, and people actually use it",
       ],
     },
     {
@@ -460,10 +462,12 @@ export const rolloutConfig = {
       icon: "target",
       questions: [
         "We have mapped every role that will be touched by this AI rollout, not just the power users",
-        "We have been honest with the team about which tasks will be reduced, removed, or changed",
-        "We have specifically checked whether entry level roles are disproportionately affected",
-        "We are introducing AI as a tool for people, not as a replacement for people, and our actions match that message",
-        "We have a clear answer for what people will do with the time and capacity that AI frees up",
+        "We have identified which specific roles and tasks will be most affected by AI in this rollout",
+        "We have communicated honestly and early about how roles and responsibilities will change, before people were surprised",
+        "We have checked whether entry level roles are disproportionately affected and we have a plan for how those people grow",
+        "We are introducing AI as a tool that helps people do better work, not as a replacement for people",
+        "We have a clear answer for what people will do with the time AI frees up, and we have communicated it",
+        "We know whether people are already using AI tools we have not officially provided, and we understand why",
       ],
     },
     {
@@ -472,51 +476,53 @@ export const rolloutConfig = {
       subtitle: "Are you actually equipping people to succeed with AI?",
       icon: "tools",
       questions: [
-        "Every level of the team is receiving real, hands on, role specific AI training, not just a webinar or FAQ link",
-        "We are not assuming our youngest team members already know AI just because they are digital natives",
-        "Everyone who needs AI tools has access to the paid, full featured versions, not stripped down free versions",
-        "There is a clear follow up plan after training so that people actually build habits, not just attend a session",
-        "Managers have been equipped and encouraged to support their teams through this change, not just told to make it happen",
+        "Every level of the team is receiving real, hands on, role specific AI training, not just a one hour webinar",
+        "We are not assuming our youngest team members already know how to use AI. We are giving them the same structured support as everyone else",
+        "Every team member, not just a selected few, has access to paid AI tools that enable them to deliver real results",
+        "Our managers are equipped with the skills and information they need to support their teams through this change",
+        "Our managers have been trained to have honest conversations about AI with their teams, including addressing job security fears",
+        "When someone finishes AI training, they know exactly what to do next and who to go to when they get stuck",
+        "We have a structured follow up plan for 30, 60, and 90 days after the initial AI training, with leadership visibility and accountability",
       ],
     },
   ],
   tierData: [
     {
-      range: [65, 75], label: "Ready to Roll Out", color: "#10b981",
+      range: [90, 105], label: "Ready to Roll Out", color: "#10b981",
       summary: "You have done the work. Your team understands the why, the what, and the how. Every level has been considered. This is rare and it matters.",
       action: "Roll out with confidence and keep checking in. As the rollout scales and new people join, run this check again. The gaps that appear later are often different from the ones you planned for.",
     },
     {
-      range: [50, 64], label: "Gaps to Close", color: CYAN,
+      range: [70, 89], label: "Gaps to Close", color: CYAN,
       summary: "Good foundations, but there are blind spots. Look at which section scored lowest. That is where your rollout is most likely to hit resistance.",
       action: "Address the gaps before going further. The most common miss at this level is the How: leaders communicate the vision well but skip the training, the tools, or the follow up. Check whether every level of your team has what they actually need to succeed.",
     },
     {
-      range: [31, 49], label: "Not Yet Ready", color: "#f59e0b",
+      range: [40, 69], label: "Not Yet Ready", color: "#f59e0b",
       summary: "Significant gaps in communication, training, or both. Pushing ahead now risks creating the anger and sabotage the research warns about. 44% of Gen Z workers have admitted to sabotaging AI rollouts when they feel excluded.",
       action: "Pause and address the gaps first. Start with the Why: make sure every level of the team understands the purpose in terms that matter to them. Then move to the How: real training, real tools, real follow up. The technology will still be there when your people are ready.",
     },
     {
-      range: [15, 30], label: "Stop and Rethink", color: RED_ACCENT,
+      range: [21, 39], label: "Stop and Rethink", color: RED_ACCENT,
       summary: "Your team is not prepared for this rollout. The good news: you caught it before launching. 95% of enterprise AI projects fail, and the failures are almost always human, not technical.",
       action: "Go back to basics. Before any AI rollout, every affected person needs to understand why it is happening, what is changing, and how they will be supported. Start there. Build the foundation of trust and clarity first. Everything else follows from that.",
     },
   ],
   sectionAdvice: {
+    the_why: {
+      low: "Your team does not yet understand why this is happening, or they do not feel safe enough to engage honestly. Before going further, focus on communication, fear acknowledgment, and psychological safety. Research shows 76% of executives believe their employees are enthusiastic about AI, while only 31% actually are. That is a 2.5x perception gap. Close it by explaining what gets better for the people doing the work, not just the business. Address the fear directly: 63% of Gen Z workers worry AI will eliminate their jobs. And check whether your team has the capacity for another change. If they have been through a major transformation recently, acknowledge that before asking them to absorb another one.",
+      mid: "There is a why but it may not be reaching every level. Test it: ask someone two or three levels below you to explain why the company is adopting AI. If their answer sounds like a press release or a blank stare, the message has not landed yet. Also check the emotional temperature: can people openly say they are worried? If not, your communication may be landing as a broadcast, not a conversation.",
+      high: "Excellent. Your team understands the purpose behind the rollout, feels heard, and feels safe enough to raise concerns. This is rare and valuable. When people understand the why, they bring energy to the how. Your job now is to maintain this clarity as the rollout evolves and new questions come up.",
+    },
     the_what: {
-      low: "You are rolling out AI without being clear about who it affects and how. This is the number one driver of resistance. Before going further, map every role that will be touched. Be specific about what changes. And check whether your youngest, newest team members are disproportionately affected. Research shows AI hits junior roles hardest: data entry, basic reporting, first draft writing, scheduling. If you are automating the bottom rung of the career ladder and saying nothing, do not be surprised when people push back. Just as important: if you cannot tell people what they will do with the time AI frees up, they will assume the answer is nothing, and that their role is shrinking.",
+      low: "You are rolling out AI without being clear about who it affects and how. This is the number one driver of resistance. Before going further, map every role that will be touched. Be specific about what changes. Check whether your youngest, newest team members are disproportionately affected. Research shows AI hits junior roles hardest: data entry, basic reporting, first draft writing, scheduling. If you cannot tell people what they will do with the time AI frees up, they will assume the answer is nothing. And check whether your people are already using AI tools you have not officially provided. If they are, that tells you something important about whether your formal rollout is meeting real needs.",
       mid: "You have some clarity but it may not be reaching everyone. The people closest to the work need to hear, in plain language, what is changing for them specifically. General announcements are not enough. Test it: can someone in an entry level role describe what this rollout means for their day to day work? If not, the message has not landed yet.",
       high: "Strong clarity on what AI is being used for and who it affects. Your team knows what is changing and why. This transparency is what builds trust during a transition. Protect it by keeping communication specific as the rollout evolves. What was true at launch may shift, and your people need to hear about those shifts from you, not discover them on their own.",
     },
-    the_why: {
-      low: "Your team does not understand why this is happening, or they understand it in a way that makes them afraid. Research shows 76% of executives believe their employees are enthusiastic about AI, while only 31% actually are. That is a 2.5x perception gap. Close it by explaining what gets better for the people doing the work, not just the business. And address the fear directly. 63% of Gen Z workers worry AI will eliminate their jobs. Ignoring that fear does not make it go away. Most importantly, if the only story your team hears about AI is cutting costs and automating tasks, they will assume they are next. Show them what AI helps them create, not just what it replaces.",
-      mid: "There is a why but it may not be reaching every level. Test it: ask someone two or three levels below you to explain why the company is adopting AI. If their answer sounds like a press release or a blank stare, the message has not landed yet. The goal is not agreement. It is understanding.",
-      high: "Excellent. Your team understands the purpose behind the rollout and feels heard. This is rare and valuable. When people understand the why, they bring energy to the how. Your job now is to maintain this clarity as the rollout evolves and new questions come up.",
-    },
     the_how: {
-      low: "This is where most rollouts fail. 68% of employees receive zero formal AI training from their companies. Companies are spending billions on AI tools and cutting training budgets at the same time. If your people do not have real training, real tools (not free, stripped down versions), and real follow up support, you are setting them up to fail. And the assumption that your youngest team members already know AI because they are digital natives is a myth. Research shows Gen Z workers actually feel more overlooked during tech rollouts than older employees. Start with the basics: get proper tools in everyone's hands, build role specific training, and make sure managers know how to support their teams.",
-      mid: "Some elements are in place but there are gaps. Common ones: training happened but there is no follow up plan, or paid tools were given to some teams but not others, or managers were told to support AI adoption but not shown how. McKinsey found only 33% of entry level men and just 21% of entry level women report their managers encouraged them to use AI. Find the weakest link and fix it.",
-      high: "Your people have real tools, real training, and real support. This is the foundation that turns a rollout into lasting change. The next step is making sure it stays this way as the rollout scales and new people join. Every new hire, every new team, every new phase needs the same quality of preparation.",
+      low: "This is where most rollouts fail. 68% of employees receive zero formal AI training from their companies. If your people do not have real training, real tools (not free, stripped down versions), and real follow up support, you are setting them up to fail. The assumption that your youngest team members already know AI because they are digital natives is a myth. Research shows Gen Z workers actually feel more overlooked during tech rollouts than older employees. And check your managers: McKinsey found only 33% of entry level men and just 21% of entry level women report their managers encouraged them to use AI. Managers need both the skills and the confidence to have honest conversations about AI with their teams, including addressing job security fears. Finally, training without a follow up plan is a waste of time. Build reinforcement into the first 30, 60, and 90 days.",
+      mid: "Some elements are in place but there are gaps. Common ones: training happened but there is no follow up plan, or paid tools were given to some teams but not others, or managers were told to support AI adoption but not shown how. Check whether people know what to do after training ends and whether managers can have honest conversations about job security fears. Find the weakest link and fix it.",
+      high: "Your people have real tools, real training, and real support. Managers are equipped to lead the change, not just pass along instructions. This is the foundation that turns a rollout into lasting change. The next step is making sure it stays this way as the rollout scales and new people join. Every new hire, every new team, every new phase needs the same quality of preparation.",
     },
   },
 };
