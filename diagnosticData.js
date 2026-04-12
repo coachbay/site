@@ -454,7 +454,7 @@ export const rolloutConfig = {
       subtitle: "Does every level of your team understand why this is happening?",
       icon: "leader",
       questions: [
-        "We have considered our team's recent experience with change and whether they have capacity for another transformation",
+        "We have a clear vision for AI and we have communicated it to all employees",
         "Someone two levels below me could explain why the company is adopting AI in a way that makes sense to the person doing the work",
         "We have explained what gets better for the people, not just the business",
         "We have openly acknowledged our team's fears about AI and explained what we are doing to address them",
