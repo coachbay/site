@@ -85,7 +85,7 @@ const SECTION_ICONS = {
   ),
 };
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzp7051naVvv3IGLSzg0MKZ-UmPxyAxxcIW6yMjImhJyPUEghIyquWT4IHclcUxD5r8jw/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycTO_eQjfzSLAFNzD19fzXU5AREGR8q8SG5n7IDrAPlveBokC57HljETbGAYtC6juzhw/exec";
 const EMAIL_SCRIPT_URL = "https://script.google.com/a/macros/coachbay.com/s/AKfycbybcrmGUhIKZl60phQoSGUyFdsUigEtpEV-CccqSg3-h16U3nLa1P3nkNGqxWdyb5cS/exec";
 
 function ScoreRing({ score, max, color, size = 120, strokeWidth = 10 }) {
