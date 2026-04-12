@@ -610,7 +610,7 @@ export default function DiagnosticEngine({
                 <div style={{ fontWeight: 700, fontSize: 17, color: "#fff", marginBottom: 4 }}>
                   {opt.label}
                 </div>
-                <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.5 }}>
+                <div style={{ fontSize: 16, color: "#94a3b8", lineHeight: 1.5 }}>
                   {opt.description}
                 </div>
               </button>
@@ -620,11 +620,11 @@ export default function DiagnosticEngine({
             onClick={() => setPhase("intro")}
             style={{
               background: "none", border: "none", color: "#64748b",
-              fontSize: 14, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+              fontSize: 15, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
               textDecoration: "underline", textUnderlineOffset: 4, marginTop: 24,
             }}
           >
-            \u2190 Back
+            ← Back
           </button>
         </div>
       </div>
@@ -672,7 +672,7 @@ export default function DiagnosticEngine({
           <p style={{ color: "#94a3b8", fontSize: 17, lineHeight: 1.7, margin: "0 0 12px" }}>
             {subtitle}
           </p>
-          <p style={{ color: "#64748b", fontSize: 14, lineHeight: 1.7, margin: "0 0 40px" }}>
+          <p style={{ color: "#64748b", fontSize: 16, lineHeight: 1.7, margin: "0 0 40px" }}>
             {description}
           </p>
           <button
@@ -694,17 +694,17 @@ export default function DiagnosticEngine({
               onClick={onBack}
               style={{
                 background: "none", border: "none", color: "#64748b",
-                fontSize: 14, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+                fontSize: 15, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
                 textDecoration: "underline", textUnderlineOffset: 4,
               }}
             >
               ← {clientMode ? "Back to assessments" : "Back to CoachBay.ai"}
             </button>
           </div>
-          <p style={{ color: "#475569", fontSize: 12, marginTop: 24 }}>
+          <p style={{ color: "#475569", fontSize: 14, marginTop: 24 }}>
             Designed by CoachBay
           </p>
-          <p style={{ color: "#475569", fontSize: 13, marginTop: 8 }}>
+          <p style={{ color: "#475569", fontSize: 15, marginTop: 8 }}>
             Tomas Bay · <a href="mailto:coach@coachbay.ai" style={{ color: CYAN, textDecoration: "none" }}>coach@coachbay.ai</a>
           </p>
         </div>
