@@ -473,7 +473,7 @@ export const rolloutConfig = {
         "We know which specific roles and tasks will be most affected by AI in this rollout",
         "We are being honest and upfront about how roles and responsibilities will change, so people are not caught off guard",
         "We understand whether entry level roles are disproportionately affected and we have a plan for how those people grow",
-        "We are introducing AI as a tool that helps people do better work, not as a replacement for people",
+        "We have been clear with our team about how AI will change the nature of their work, whether that means new responsibilities, different roles, or fewer roles",
         "We have a clear answer for what people will do with the time AI frees up, and we are making sure they know it",
         "We know whether people are already using AI tools we have not officially provided, and we understand why",
       ],
