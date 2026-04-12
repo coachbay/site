@@ -140,6 +140,7 @@ export default function DiagnosticEngine({
   sectionAdvice,
   diagnosticType,
   empathyGap,
+  stageQuestion,
   onBack,
   clientMode,
 }) {
@@ -148,6 +149,7 @@ export default function DiagnosticEngine({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [animating, setAnimating] = useState(false);
+  const [stage, setStage] = useState(null);
   const [autoAdvancing, setAutoAdvancing] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
@@ -177,6 +179,7 @@ export default function DiagnosticEngine({
         type: diagnosticType,
         score: grandTotal,
         tier: tier.label,
+        stage: stage || "not set",
       });
 
       // Add respondent info in client mode
@@ -369,7 +372,16 @@ export default function DiagnosticEngine({
     const summaryLines = wrapText(tier.summary, contentW - 44, 10);
     doc.text(summaryLines, margin + 44, y + 18);
 
-    y += 18 + summaryLines.length * 5 + 12;
+    // Stage label
+    if (stage) {
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(0, 188, 212);
+      doc.text("AI Journey Stage: " + stage.charAt(0).toUpperCase() + stage.slice(1), margin + 44, y + 18 + summaryLines.length * 5 + 2);
+      y += 18 + summaryLines.length * 5 + 10;
+    } else {
+      y += 18 + summaryLines.length * 5 + 12;
+    }
 
     // ========== YOUR NEXT MOVE ==========
     doc.setFillColor(tr, tg, tb);
@@ -383,7 +395,8 @@ export default function DiagnosticEngine({
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(55, 65, 81);
-    const actionLines = wrapText(tier.action, contentW - 12, 10);
+    const actionText = (stage && tier.actionByStage && tier.actionByStage[stage]) ? tier.actionByStage[stage] : tier.action;
+    const actionLines = wrapText(actionText, contentW - 12, 10);
     doc.text(actionLines, margin + 8, y + 13);
 
     const moveBoxH = 16 + actionLines.length * 5;
@@ -557,7 +570,68 @@ export default function DiagnosticEngine({
   };
 
   const canFinish = answeredCount === totalQuestions;
-  const section = sections[currentSection];
+
+  // Stage selection screen
+  if (phase === "stage") {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        background: `linear-gradient(135deg, ${DARK} 0%, #16213e 100%)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 24, fontFamily: "'DM Sans', sans-serif",
+      }}>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+        <div style={{ maxWidth: 560, width: "100%", textAlign: "center" }}>
+          <h2 style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: 28, color: "#fff", margin: "0 0 8px", lineHeight: 1.3,
+          }}>
+            {stageQuestion.prompt}
+          </h2>
+          <div style={{ width: 50, height: 3, background: CYAN, margin: "16px auto 32px", borderRadius: 2 }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {stageQuestion.options.map((opt) => (
+              <button
+                key={opt.id}
+                onClick={() => { setStage(opt.id); setPhase("assessment"); }}
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1.5px solid rgba(255,255,255,0.12)",
+                  borderRadius: 14,
+                  padding: "18px 24px",
+                  textAlign: "left",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => { e.target.style.background = "rgba(0,188,212,0.12)"; e.target.style.borderColor = CYAN; }}
+                onMouseLeave={(e) => { e.target.style.background = "rgba(255,255,255,0.06)"; e.target.style.borderColor = "rgba(255,255,255,0.12)"; }}
+              >
+                <div style={{ fontWeight: 700, fontSize: 17, color: "#fff", marginBottom: 4 }}>
+                  {opt.label}
+                </div>
+                <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.5 }}>
+                  {opt.description}
+                </div>
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setPhase("intro")}
+            style={{
+              background: "none", border: "none", color: "#64748b",
+              fontSize: 14, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
+              textDecoration: "underline", textUnderlineOffset: 4, marginTop: 24,
+            }}
+          >
+            \u2190 Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+    const section = sections[currentSection];
   const question = section?.questions[currentQuestion];
   const currentAnswer = answers[`${currentSection}-${currentQuestion}`];
 
@@ -602,7 +676,7 @@ export default function DiagnosticEngine({
             {description}
           </p>
           <button
-            onClick={() => setPhase("assessment")}
+            onClick={() => setPhase(stageQuestion ? "stage" : "assessment")}
             style={{
               background: CYAN, color: "#fff", border: "none", borderRadius: 14,
               padding: "14px 40px", fontSize: 17, fontWeight: 600,
@@ -678,6 +752,11 @@ export default function DiagnosticEngine({
             <p style={{ color: MID, fontSize: 15, lineHeight: 1.7, margin: "12px 0 0", maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
               {tier.summary}
             </p>
+            {stage && (
+              <p style={{ color: "#94a3b8", fontSize: 13, marginTop: 12 }}>
+                AI Journey Stage: <span style={{ color: CYAN, fontWeight: 600 }}>{stage.charAt(0).toUpperCase() + stage.slice(1)}</span>
+              </p>
+            )}
           </div>
 
           {/* What to do next */}
@@ -691,7 +770,7 @@ export default function DiagnosticEngine({
               ✦ Your Next Move
             </div>
             <p style={{ color: "#374151", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-              {tier.action}
+              {(stage && tier.actionByStage && tier.actionByStage[stage]) ? tier.actionByStage[stage] : tier.action}
             </p>
           </div>
 
