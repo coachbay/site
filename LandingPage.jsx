@@ -366,6 +366,113 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+
+      {/* How We Think About Change */}
+      <div id="change-principles" style={{ background: "#f8fafc", padding: "64px 24px" }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>
+              How We Think About Change
+            </h2>
+            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, margin: "0 auto", maxWidth: 720 }}>
+              AI is a change challenge, not a technology challenge.<br className="mobile-br" /> Four proven principles, backed by research and Tomas's own experience, guide everything CoachBay does.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 20 }} className="card-grid-2">
+            {[
+              {
+                num: "1",
+                title: "Leaders go first",
+                body: "Change starts at the top or it stalls. Teams read their leaders before they read the memo. If the CEO is using AI openly, the organization follows. If the CEO delegates AI to a task force, so does everyone else.",
+              },
+              {
+                num: "2",
+                title: "Start with the willing",
+                body: "Convert the curious, not the skeptics. A small Pilot Squad of early adopters creates the evidence that pulls the rest of the organization along. Skeptics change their minds when they see their colleagues winning, not when they are told to.",
+              },
+              {
+                num: "3",
+                title: "Experience beats a lecture",
+                body: "People change when they feel it, not when they hear about it. Demos and slides can set the stage, but the real shift happens when participants do the work themselves. Every Sprint is built around a real problem, not a theory. You leave with something you built.",
+              },
+              {
+                num: "4",
+                title: "Build habits, not knowledge",
+                body: "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. Pit Stop sessions after each Sprint turn new skills into permanent habits.",
+              },
+            ].map((p) => (
+              <div
+                key={p.num}
+                style={{
+                  background: "#fff",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: 16,
+                  padding: "32px 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 12,
+                  background: `${CYAN}10`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: CYAN,
+                  fontSize: 20,
+                  fontWeight: 700,
+                  marginBottom: 16,
+                }}>
+                  {p.num}
+                </div>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: 22,
+                  color: "#1e293b",
+                  margin: "0 0 12px",
+                }}>
+                  {p.title}
+                </h3>
+                <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <a
+              href="/CoachBay_Change_Principles.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#fff",
+                color: CYAN,
+                border: `1.5px solid ${CYAN}`,
+                borderRadius: 10,
+                padding: "12px 20px",
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: "none",
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Download the one page summary
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Sprints */}
       <div id="sprints" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px 48px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
