@@ -140,7 +140,7 @@ def build_pdf(path):
         ("3", "Experience beats a lecture",
          "People change when they feel it, not when they hear about it. Demos and slides can set the stage, but the real shift happens when participants do the work themselves. Every Sprint is built around a real problem, not a theory. You leave with something you built."),
         ("4", "Build habits, not knowledge",
-         "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. Pit Stop sessions after each Sprint turn new skills into permanent habits."),
+         "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals that make AI part of how work gets done: weekly sharing of AI wins, managers asking 'how can AI help you with this?', Pit Stop sessions after each Sprint. Small habits, repeated, turn new skills into permanent ones."),
     ]
 
     gap = 5 * mm

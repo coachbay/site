@@ -400,7 +400,7 @@ export default function LandingPage({ onNavigate }) {
               {
                 num: "4",
                 title: "Build habits, not knowledge",
-                body: "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. Pit Stop sessions after each Sprint turn new skills into permanent habits.",
+                body: "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals: weekly AI sharing, Pit Stop sessions, managers asking \"how can AI help?\" Small habits, repeated, become permanent.",
               },
             ].map((p) => (
               <div
