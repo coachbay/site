@@ -55,18 +55,18 @@ def draw_footer(c):
 
 def draw_title_block(c, y):
     c.setFont("Helvetica-Bold", 22); c.setFillColor(NAVY)
-    c.drawString(MARGIN, y, "How We Think About Change")
+    c.drawString(MARGIN, y, "How I Think About Change")
     c.setFillColor(CYAN)
     c.rect(MARGIN, y - 5 * mm, 18 * mm, 1.1 * mm, fill=1, stroke=0)
 
     paragraphs = [
-        ("CoachBay subscribes to four key change principles and they are not new. Each "
-         "one sits on decades of research in how organizations change, how adults learn, "
-         "and how habits form. We did not invent them. We stress tested them over 25 "
-         "years, across companies from Maersk to Swire, and kept the four that held up "
-         "every time."),
-        ("What CoachBay adds is not the theory. It is the discipline of applying all four "
-         "at once, inside a single organization, over the course of a program. Most change "
+        ("I subscribe to four key change principles and they are not new. Each one sits "
+         "on decades of research in how organizations change, how adults learn, and how "
+         "habits form. I did not invent them. I have stress tested them over 25 years, "
+         "across companies from Maersk to Swire, and kept the four that held up every "
+         "time."),
+        ("What I add is not the theory. It is the discipline of applying all four at "
+         "once, inside a single organization, over the course of a program. Most change "
          "efforts get one or two right. The real work is refusing to skip any of them."),
     ]
     c.setFont("Helvetica", 10); c.setFillColor(BODY)

@@ -367,16 +367,16 @@ export default function LandingPage({ onNavigate }) {
       </div>
 
 
-      {/* How We Think About Change */}
+      {/* How I Think About Change */}
       <div id="change-principles" style={{ background: "#f8fafc", padding: "64px 24px" }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>
-              How We Think About Change
+              How I Think About Change
             </h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 16px", borderRadius: 2 }} />
             <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, margin: "0 auto", maxWidth: 720 }}>
-              AI is a change challenge, not a technology challenge.<br className="mobile-br" /> Four proven principles, backed by research and Tomas's own experience, guide everything CoachBay does.
+              AI is a change challenge, not a technology challenge.<br className="mobile-br" /> Four proven principles, backed by research and my own experience, guide everything I do.
             </p>
           </div>
 
