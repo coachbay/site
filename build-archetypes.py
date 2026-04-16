@@ -148,7 +148,7 @@ def build_pdf(path):
         draw_archetype_card(c, x, y, card_w, card_h, num, title, body, emoji)
 
     # Closing question under the grid
-    closing_y = row_y + gap - 6 * mm
+    closing_y = row_y + gap - 14 * mm
     c.setFont("Helvetica-Bold", 12); c.setFillColor(NAVY)
     closing = "Can you name each one on your team?"
     cw = c.stringWidth(closing, "Helvetica-Bold", 12)
