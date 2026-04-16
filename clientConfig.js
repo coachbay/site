@@ -31,6 +31,14 @@ const clients = {
     version: 1,
   },
 
+  "sprops-changeagents": {
+    name: "Swire Properties",
+    assessments: ["team"],
+    preparedFor: "Christine Ling, Director Human Resources",
+    closeDate: "2026-04-30",
+    version: 2,
+  },
+
   "finnair-sym": {
     name: "Finnair",
     assessments: ["team"],
