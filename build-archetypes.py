@@ -155,7 +155,7 @@ def build_pdf(path):
     c.drawString((W - cw) / 2, closing_y, closing)
 
     # CTA banner
-    cta_y = closing_y - 10 * mm
+    cta_y = closing_y - 16 * mm
     c.setFillColor(CYAN_LIGHT)
     c.roundRect(MARGIN, cta_y - 6 * mm, CONTENT_W, 14 * mm, 3, fill=1, stroke=0)
     c.setFont("Helvetica", 9); c.setFillColor(CYAN_DARK)
