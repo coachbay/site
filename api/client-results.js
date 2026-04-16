@@ -8,9 +8,17 @@ function buildClientList() {
   const list = {};
   for (const slug of Object.keys(clients)) {
     const client = clients[slug];
-    list[client.name] = client.assessments.map(
+    const types = client.assessments.map(
       (a) => a.charAt(0).toUpperCase() + a.slice(1)
     );
+    if (list[client.name]) {
+      // Merge — add any new assessment types without duplicates
+      types.forEach((t) => {
+        if (!list[client.name].includes(t)) list[client.name].push(t);
+      });
+    } else {
+      list[client.name] = types;
+    }
   }
   return list;
 }
