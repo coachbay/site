@@ -5,7 +5,6 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
-import textwrap
 
 W, H = A4
 MARGIN = 20 * mm
@@ -20,8 +19,6 @@ MUTED = colors.HexColor("#64748B")
 DIVIDER = colors.HexColor("#E2E8F0")
 WHITE = colors.white
 
-# Bucket accent palette. Cyan stays the brand anchor (Amplify = the sweet spot).
-# Red and amber echo the visual metaphor of LinkedIn Post 31 (red, orange, teal buckets).
 BUCKET_COLORS = [
     {  # 1. CUT (red)
         "chip": colors.HexColor("#E53935"),
@@ -44,6 +41,27 @@ ROBOT = "public/coachbay-robot-transparent.png"
 ROBOT_H = 10 * mm
 ROBOT_W = ROBOT_H * 0.768
 HEADER_H = 18 * mm
+
+
+def _wrap(c, text, font, size, max_w):
+    words = text.split()
+    lines = []
+    cur = []
+    cur_w = 0
+    space_w = c.stringWidth(" ", font, size)
+    for word in words:
+        ww = c.stringWidth(word, font, size)
+        add = ww + (space_w if cur else 0)
+        if cur and cur_w + add > max_w:
+            lines.append(" ".join(cur))
+            cur = [word]
+            cur_w = ww
+        else:
+            cur.append(word)
+            cur_w += add
+    if cur:
+        lines.append(" ".join(cur))
+    return lines
 
 
 def draw_header(c, doc_label):
@@ -79,42 +97,19 @@ def draw_title_block(c, y):
     c.rect(MARGIN, y - 5 * mm, 18 * mm, 1.1 * mm, fill=1, stroke=0)
 
     intro = (
-        "In the age of AI, every role is being redefined one task at a time. "
-        "The Three Buckets is a simple sorting exercise I use in my Manifesto "
-        "Workshop and Leadership Sprint. List about a dozen tasks you do in a "
-        "typical week. Sort each into one of the three buckets below. Over "
-        "time, shift your energy from Cut toward Amplify. Your buckets will "
-        "change as you grow and as the tools improve."
+        "The Three Buckets is a simple sorting exercise I use in my Manifesto Workshop "
+        "and Leadership Sprint. List about a dozen tasks you do in a typical week, sort "
+        "each into one of the three buckets below, and over time shift your energy from "
+        "Cut toward Amplify."
     )
     c.setFont("Helvetica", 10); c.setFillColor(BODY)
-    y2 = y - 12 * mm
-    for line in textwrap.wrap(intro, 100):
-        c.drawString(MARGIN, y2, line); y2 -= 5 * mm
-    return y2 - 4 * mm
+    y2 = y - 11 * mm
+    for line in _wrap(c, intro, "Helvetica", 10, CONTENT_W):
+        c.drawString(MARGIN, y2, line); y2 -= 4.8 * mm
+    return y2 - 3 * mm
 
 
-def _wrap_by_width(c, text, font, size, max_w):
-    words = text.split()
-    lines = []
-    cur = []
-    cur_w = 0
-    space_w = c.stringWidth(" ", font, size)
-    for word in words:
-        ww = c.stringWidth(word, font, size)
-        add = ww + (space_w if cur else 0)
-        if cur and cur_w + add > max_w:
-            lines.append(" ".join(cur))
-            cur = [word]
-            cur_w = ww
-        else:
-            cur.append(word)
-            cur_w += add
-    if cur:
-        lines.append(" ".join(cur))
-    return lines
-
-
-def draw_bucket_card(c, x, y, w, h, number, label, title, body, examples, palette):
+def draw_bucket_card(c, x, y, w, h, number, label, title, body, examples, questions, palette):
     # Card shell
     c.setFillColor(WHITE); c.setStrokeColor(DIVIDER); c.setLineWidth(0.5)
     c.roundRect(x, y - h, w, h, 4, fill=1, stroke=1)
@@ -145,32 +140,40 @@ def draw_bucket_card(c, x, y, w, h, number, label, title, body, examples, palett
     body_max_w = w - 2 * body_indent
     c.setFont("Helvetica", 9); c.setFillColor(BODY)
     ty = y - 19 * mm
-    for line in _wrap_by_width(c, body, "Helvetica", 9, body_max_w):
-        c.drawString(x + body_indent, ty, line); ty -= 4.5 * mm
+    for line in _wrap(c, body, "Helvetica", 9, body_max_w):
+        c.drawString(x + body_indent, ty, line); ty -= 4.3 * mm
 
     # Examples line (italic, muted)
-    ty -= 1.5 * mm
+    ty -= 1 * mm
     c.setFont("Helvetica-BoldOblique", 8.5); c.setFillColor(MUTED)
     c.drawString(x + body_indent, ty, "Examples:")
-    ex_w = c.stringWidth("Examples:", "Helvetica-BoldOblique", 8.5)
+    ex_prefix_w = c.stringWidth("Examples:", "Helvetica-BoldOblique", 8.5) + 1.5 * mm
     c.setFont("Helvetica-Oblique", 8.5); c.setFillColor(MUTED)
-
-    prefix_w = ex_w + 1.5 * mm
-    first_line_max = body_max_w - prefix_w
-    # Split examples across lines, first line has narrower width
-    lines_out = []
-    remaining = examples
-    # First pass: first line
-    first_lines = _wrap_by_width(c, examples, "Helvetica-Oblique", 8.5, first_line_max)
-    if first_lines:
-        lines_out.append(first_lines[0])
-        rest = examples[len(first_lines[0]):].lstrip()
+    first_line_w = body_max_w - ex_prefix_w
+    ex_lines = _wrap(c, examples, "Helvetica-Oblique", 8.5, first_line_w)
+    if ex_lines:
+        c.drawString(x + body_indent + ex_prefix_w, ty, ex_lines[0])
+        ty -= 4 * mm
+        rest = " ".join(ex_lines[1:]) if len(ex_lines) > 1 else ""
         if rest:
-            more = _wrap_by_width(c, rest, "Helvetica-Oblique", 8.5, body_max_w)
-            lines_out.extend(more)
-    for i, ln in enumerate(lines_out):
-        xx = x + body_indent + (prefix_w if i == 0 else 0)
-        c.drawString(xx, ty, ln); ty -= 4.2 * mm
+            for ln in _wrap(c, rest, "Helvetica-Oblique", 8.5, body_max_w):
+                c.drawString(x + body_indent, ty, ln); ty -= 4 * mm
+
+    # Ask yourself block
+    ty -= 1 * mm
+    c.setFont("Helvetica-Bold", 8.5); c.setFillColor(palette["chip"])
+    c.drawString(x + body_indent, ty, "Ask yourself:")
+    ty -= 4 * mm
+    c.setFont("Helvetica", 9); c.setFillColor(BODY)
+    bullet = "\u2022"  # round bullet
+    bullet_indent = 3 * mm
+    for q in questions:
+        c.setFillColor(palette["chip"])
+        c.drawString(x + body_indent, ty, bullet)
+        c.setFillColor(BODY)
+        q_lines = _wrap(c, q, "Helvetica", 9, body_max_w - bullet_indent)
+        for i, ln in enumerate(q_lines):
+            c.drawString(x + body_indent + bullet_indent, ty, ln); ty -= 4.3 * mm
 
 
 def build_pdf(path):
@@ -178,35 +181,50 @@ def build_pdf(path):
     draw_header(c, "The Three Buckets")
     draw_footer(c)
 
-    y_after_title = draw_title_block(c, H - HEADER_H - 14 * mm)
+    y_after_title = draw_title_block(c, H - HEADER_H - 12 * mm)
 
     buckets = [
         (
             "1", "CUT", "Tasks AI can do now or soon",
-            "The efficiency work. Hand it to AI so you get your time back for the work that matters. Every hour saved here becomes an hour you can spend in Create or Amplify.",
+            "The efficiency work. Hand it to AI so you get your time back for the work that matters. Every hour saved here becomes an hour for Create or Amplify.",
             "first drafts, meeting notes, quick summaries, routine analysis, basic coding, scheduling, data cleanup",
+            [
+                "What do I do every week that feels mechanical?",
+                "Which tasks drain me because they are tedious, not because they are hard?",
+                "What could a capable assistant do with clear instructions?",
+            ],
         ),
         (
             "2", "CREATE", "New things you can do because of AI",
             "The stretch work. AI makes the ceiling higher for everyone. Learn a skill you thought was out of reach, bridge an expertise gap, or take on a project that used to feel too big.",
             "build a prototype, learn a new field, ship an idea you could not ship alone, analyze something you never had time for",
+            [
+                "What have I wanted to build or learn but felt I lacked the time or skill?",
+                "Where does my expertise stop, and could AI help bridge the gap?",
+                "What project have I shelved because it felt too ambitious?",
+            ],
         ),
         (
             "3", "AMPLIFY", "What is uniquely you",
             "The work only you can do. Deep judgment, complex relationships, original ideas, your distinct strengths. This is where the time you save lets you double down. No one beats you at being you.",
             "coaching a team member, closing a tough deal, making a hard call, shaping culture, telling your story",
+            [
+                "What work gives me energy instead of draining me?",
+                "When do people tell me that only I could have done that?",
+                "What would I never delegate, even to a trusted colleague?",
+            ],
         ),
     ]
 
-    gap = 6 * mm
-    card_h = 45 * mm
+    gap = 4 * mm
+    card_h = 62 * mm
     card_w = CONTENT_W
     y = y_after_title
-    for (num, label, title, body, examples), palette in zip(buckets, BUCKET_COLORS):
-        draw_bucket_card(c, MARGIN, y, card_w, card_h, num, label, title, body, examples, palette)
+    for (num, label, title, body, examples, questions), palette in zip(buckets, BUCKET_COLORS):
+        draw_bucket_card(c, MARGIN, y, card_w, card_h, num, label, title, body, examples, questions, palette)
         y -= card_h + gap
 
-    # Closing italic lines, anchored to the footer so the white space sits above them
+    # Closing italic lines, anchored to the footer
     footer_top = 14 * mm
     closing_y = footer_top + 22 * mm
     c.setFont("Helvetica-Oblique", 10); c.setFillColor(MUTED)
