@@ -1,6 +1,7 @@
-# 8 AI Archetypes one page handout — run with: python3 build-archetypes.py
+# 9 AI Archetypes one page handout — run with: python3 build-archetypes.py
 # Generates /public/CoachBay_AI_Archetypes.pdf using ReportLab.
 # Matches the Sprint PDF look: robot header, cyan accents, DM Sans (Helvetica stand in).
+# Layout: 3 groups of 3, each group with a label and description.
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
@@ -55,43 +56,50 @@ def draw_footer(c):
 
 
 def draw_title_block(c, y):
-    c.setFont("Helvetica-Bold", 22); c.setFillColor(NAVY)
-    c.drawString(MARGIN, y, "The 8 People in Every AI Rollout")
+    c.setFont("Helvetica-Bold", 20); c.setFillColor(NAVY)
+    c.drawString(MARGIN, y, "The 9 People in Every AI Rollout")
     # Cyan accent bar
     c.setFillColor(CYAN)
-    c.rect(MARGIN, y - 5 * mm, 18 * mm, 1.1 * mm, fill=1, stroke=0)
+    c.rect(MARGIN, y - 4.5 * mm, 18 * mm, 1.1 * mm, fill=1, stroke=0)
     # Intro paragraph
     intro = ("Every organization has the same cast of characters when AI arrives. "
-             "Knowing who is who is the first step to moving everyone forward. "
-             "Where does each person on your team sit?")
-    c.setFont("Helvetica", 10.5); c.setFillColor(BODY)
-    y2 = y - 12 * mm
-    for line in textwrap.wrap(intro, 95):
-        c.drawString(MARGIN, y2, line); y2 -= 5.2 * mm
-    return y2 - 4 * mm
+             "They fall into three groups. Knowing who is who is the first step "
+             "to moving everyone forward.")
+    c.setFont("Helvetica", 9.5); c.setFillColor(BODY)
+    y2 = y - 10 * mm
+    for line in textwrap.wrap(intro, 100):
+        c.drawString(MARGIN, y2, line); y2 -= 4.5 * mm
+    return y2 - 3 * mm
 
 
-def draw_archetype_card(c, x, y, w, h, number, title, body, emoji):
+def draw_group_label(c, y, label, description):
+    """Draw a group heading with cyan left bar and description."""
+    # Cyan left accent bar
+    c.setFillColor(CYAN)
+    c.rect(MARGIN, y - 9 * mm, 1.2 * mm, 10 * mm, fill=1, stroke=0)
+    # Group label
+    c.setFont("Helvetica-Bold", 11); c.setFillColor(NAVY)
+    c.drawString(MARGIN + 4 * mm, y, label)
+    # Description
+    c.setFont("Helvetica", 8); c.setFillColor(MUTED)
+    c.drawString(MARGIN + 4 * mm, y - 5 * mm, description)
+    return y - 13 * mm
+
+
+def draw_archetype_card(c, x, y, w, h, title, body):
+    """Draw a single archetype card without a number chip."""
     # Card background
     c.setFillColor(WHITE); c.setStrokeColor(DIVIDER); c.setLineWidth(0.5)
     c.roundRect(x, y - h, w, h, 4, fill=1, stroke=1)
-    # Number chip top left
-    chip_x = x + 5 * mm
-    chip_y = y - 11 * mm
-    c.setFillColor(CYAN_LIGHT); c.setStrokeColor(CYAN_BORDER); c.setLineWidth(0.5)
-    c.roundRect(chip_x, chip_y, 8 * mm, 8 * mm, 2, fill=1, stroke=1)
-    c.setFont("Helvetica-Bold", 10); c.setFillColor(CYAN_DARK)
-    num_w = c.stringWidth(number, "Helvetica-Bold", 10)
-    c.drawString(chip_x + (8 * mm - num_w) / 2, chip_y + 2.4 * mm, number)
     # Title
-    c.setFont("Helvetica-Bold", 11); c.setFillColor(NAVY)
-    c.drawString(x + 16 * mm, y - 9 * mm, title)
+    c.setFont("Helvetica-Bold", 10); c.setFillColor(NAVY)
+    c.drawString(x + 5 * mm, y - 7 * mm, title)
     # Body
-    c.setFont("Helvetica", 9); c.setFillColor(BODY)
-    ty = y - 16 * mm
-    wrap_chars = 46
+    c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
+    ty = y - 13 * mm
+    wrap_chars = int((w - 10 * mm) / (8.5 * 0.45))
     for line in textwrap.wrap(body, wrap_chars):
-        c.drawString(x + 5 * mm, ty, line); ty -= 4.2 * mm
+        c.drawString(x + 5 * mm, ty, line); ty -= 3.8 * mm
 
 
 def build_pdf(path):
@@ -100,68 +108,58 @@ def build_pdf(path):
     draw_footer(c)
 
     # Title block
-    y_after_title = draw_title_block(c, H - HEADER_H - 14 * mm)
+    y = draw_title_block(c, H - HEADER_H - 12 * mm)
 
-    # 8 archetypes in a 2x4 grid
-    archetypes = [
-        ("1", "The Skeptic",
-         "Refuses to engage. Thinks AI is overhyped or dangerous. Will not try it until forced to.",
-         None),
-        ("2", "The Anxious",
-         "Worried AI will take their job. Avoids the topic. Needs reassurance before they can learn.",
-         None),
-        ("3", "The Coaster",
-         "Uses AI for basic tasks every day. Never pushes beyond the obvious. Comfortable, not growing.",
-         None),
-        ("4", "The Overconfident",
-         "Had one good aha moment and now thinks they know AI. Dangerous because they do not know what they do not know.",
-         None),
-        ("5", "The Gatekeeper",
-         "Uses AI but hides it. Keeps the advantage to themselves. Blocks team progress without realizing it.",
-         None),
-        ("6", "The Tinkerer",
-         "Builds their own AI tools at home for fun. Often hidden from the organization. Huge untapped potential.",
-         None),
-        ("7", "The Principled",
-         "Could use AI well but holds back on ethical grounds. Needs a framework, not a sales pitch.",
-         None),
-        ("8", "The Fluent",
-         "Uses AI across their work. Shares wins. Keeps learning. The person you want everyone to become.",
-         None),
+    # Groups and archetypes
+    groups = [
+        ("Not Starting", "On the sidelines. Different reasons, same result: no AI use. Your job: get them in the door.",
+         [
+             ("The Skeptic", "Refuses to engage. Thinks AI is overhyped or dangerous. Will not try it until forced to."),
+             ("The Anxious", "Worried AI will take their job. Avoids the topic. Needs reassurance before they can learn."),
+             ("The Principled", "Could use AI well but holds back on ethical grounds. Needs a framework, not a sales pitch."),
+         ]),
+        ("Using But Stuck", "Doing something with AI but not reaching their potential. Your job: push them further.",
+         [
+             ("The Coaster", "Uses AI for basic tasks every day. Never pushes beyond the obvious. Comfortable, not growing."),
+             ("The Overconfident", "Had one good aha moment and now thinks they know AI. Dangerous because they do not know what they do not know."),
+             ("The Humble", "Making real progress with AI but does not see it as impressive. Quietly effective. Needs a stage, not a push."),
+         ]),
+        ("Skilled But Not Scaling", "Real AI skills, but the organization is not benefiting. Your job: unlock their impact.",
+         [
+             ("The Gatekeeper", "Uses AI well but hides it. Keeps the advantage to themselves. Blocks team progress without realizing it."),
+             ("The Tinkerer", "Builds their own AI tools at home for fun. Often hidden from the organization. Huge untapped potential."),
+             ("The Fluent", "Uses AI across their work. Shares wins. Keeps learning. The person you want everyone to become."),
+         ]),
     ]
 
-    gap = 5 * mm
-    card_w = (CONTENT_W - gap) / 2
+    gap = 4 * mm
+    card_w = (CONTENT_W - 2 * gap) / 3
     card_h = 38 * mm
+    group_gap = 6 * mm
 
-    # Calculate positions for 4 rows x 2 columns
-    positions = []
-    row_y = y_after_title
-    for row in range(4):
-        for col in range(2):
-            px = MARGIN + col * (card_w + gap)
-            py = row_y
-            positions.append((px, py))
-        row_y -= card_h + gap
+    for group_label, group_desc, archetypes in groups:
+        y = draw_group_label(c, y, group_label, group_desc)
+        # Draw 3 cards in a row
+        for i, (title, body) in enumerate(archetypes):
+            cx = MARGIN + i * (card_w + gap)
+            draw_archetype_card(c, cx, y, card_w, card_h, title, body)
+        y -= card_h + group_gap
 
-    for (num, title, body, emoji), (x, y) in zip(archetypes, positions):
-        draw_archetype_card(c, x, y, card_w, card_h, num, title, body, emoji)
-
-    # Closing question under the grid
-    closing_y = row_y + gap - 14 * mm
-    c.setFont("Helvetica-Bold", 12); c.setFillColor(NAVY)
+    # Closing question
+    closing_y = y - 2 * mm
+    c.setFont("Helvetica-Bold", 11); c.setFillColor(NAVY)
     closing = "Can you name each one on your team?"
-    cw = c.stringWidth(closing, "Helvetica-Bold", 12)
+    cw = c.stringWidth(closing, "Helvetica-Bold", 11)
     c.drawString((W - cw) / 2, closing_y, closing)
 
     # CTA banner
-    cta_y = closing_y - 16 * mm
+    cta_y = closing_y - 12 * mm
     c.setFillColor(CYAN_LIGHT)
-    c.roundRect(MARGIN, cta_y - 6 * mm, CONTENT_W, 14 * mm, 3, fill=1, stroke=0)
-    c.setFont("Helvetica", 9); c.setFillColor(CYAN_DARK)
+    c.roundRect(MARGIN, cta_y - 5 * mm, CONTENT_W, 12 * mm, 3, fill=1, stroke=0)
+    c.setFont("Helvetica", 8.5); c.setFillColor(CYAN_DARK)
     cta = "Want to move your team from Skeptic to Fluent? Take the free AI Fitness Test or book a Sprint at coachbay.ai"
-    cta_w = c.stringWidth(cta, "Helvetica", 9)
-    c.drawString((W - cta_w) / 2, cta_y - 1 * mm, cta)
+    cta_w = c.stringWidth(cta, "Helvetica", 8.5)
+    c.drawString((W - cta_w) / 2, cta_y - 0.5 * mm, cta)
 
     c.showPage()
     c.save()
