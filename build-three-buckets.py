@@ -209,9 +209,9 @@ def build_pdf(path):
             "The work only you can do. Deep judgment, complex relationships, original ideas, your distinct strengths. This is where the time you save lets you double down. No one beats you at being you.",
             "coaching a team member, closing a tough deal, making a hard call, shaping culture, telling your story",
             [
-                "What work gives me energy instead of draining me?",
-                "When do people tell me that only I could have done that?",
-                "What would I never delegate, even to a trusted colleague?",
+                "What can we get better at that we are already great at?",
+                "What do people consistently come to me for?",
+                "Where could AI make my strongest work even stronger?",
             ],
         ),
     ]
