@@ -170,10 +170,11 @@ VOICES = [
 
 
 def draw_tip_box(c, y):
-    text = ("Run two or three voices, not all six. Pick the ones that matter most for this "
-            "specific project. Read the responses out loud, then ask the team which pushback "
-            "is fair and what the plan needs to address.")
-    lines = textwrap.wrap(text, 118)
+    # Explicit two line split at the sentence boundary so it reads cleanly.
+    lines = [
+        "Run two or three voices, not all six. Pick the ones that matter most for this specific project.",
+        "Read the responses out loud, then ask the team which pushback is fair and what the plan needs to address.",
+    ]
     box_h = (6 + len(lines) * 4) * mm + 3 * mm
     c.setFillColor(CYAN_LIGHT); c.setStrokeColor(CYAN_BORDER); c.setLineWidth(0.5)
     c.roundRect(MARGIN, y - box_h, CONTENT_W, box_h, 2, fill=1, stroke=1)
