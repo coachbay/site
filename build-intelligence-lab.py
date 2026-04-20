@@ -6,7 +6,7 @@
 #   - CoachBay_Intelligence_Lab_Day3_Agenda.pdf  (Wednesday 29 April 2026)
 #
 # Day 2 is revised from Day 1 based on what worked on April 20:
-#   - CRIT Demo shortened, new Personal CRIT Try block added
+#   - CRIT Demo shortened, new Personal CRIT Test block added
 #   - Define shortened, extra mid-morning break added
 #   - Discover expanded
 #   - Debate split into two halves with break
@@ -60,7 +60,7 @@ DAY2_MORNING = [
     ("09:35 - 10:10", "CRIT Framework: Live Demonstration",
      "Walk through CRIT (Context, Role, Interview, Task). Live demo on a real challenge from someone in the room. Short debrief: what you noticed, what to steal, where the quality jumps.", 35),
     ("10:10 - 10:20", "__break__", "", 10),
-    ("10:20 - 10:45", "Personal CRIT Try",
+    ("10:20 - 10:45", "Personal CRIT Test",
      "Each participant runs a short CRIT on a personal challenge of their own. Hands on practice before the case work begins. Quick share of what surprised them.", 25),
     ("10:45 - 10:55", "Case Introduction",
      "Hand out the case sheets. Each team receives their own case. Teams read. Quick clarifications.", 10),
