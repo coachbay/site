@@ -91,7 +91,7 @@ def draw_voice_card(c, x, y, w, h, name, lens, prompt):
     c.drawString(inner_x, cur_y, "LENS")
     cur_y -= 3.8 * mm
     c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
-    for line in textwrap.wrap(lens, 60):
+    for line in textwrap.wrap(lens, 58):
         c.drawString(inner_x, cur_y, line); cur_y -= 3.8 * mm
     cur_y -= 1.5 * mm
 
@@ -99,7 +99,7 @@ def draw_voice_card(c, x, y, w, h, name, lens, prompt):
     c.drawString(inner_x, cur_y, "PROMPT")
     cur_y -= 3.8 * mm
     c.setFont("Helvetica-Oblique", 8); c.setFillColor(BODY)
-    for line in textwrap.wrap(prompt, 64):
+    for line in textwrap.wrap(prompt, 58):
         c.drawString(inner_x, cur_y, line); cur_y -= 3.3 * mm
 
 
