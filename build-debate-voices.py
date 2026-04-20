@@ -91,7 +91,7 @@ def draw_voice_card(c, x, y, w, h, name, lens, prompt):
     c.drawString(inner_x, cur_y, "LENS")
     cur_y -= 3.8 * mm
     c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
-    for line in textwrap.wrap(lens, 58):
+    for line in textwrap.wrap(lens, 60):
         c.drawString(inner_x, cur_y, line); cur_y -= 3.8 * mm
     cur_y -= 1.5 * mm
 
@@ -100,7 +100,7 @@ def draw_voice_card(c, x, y, w, h, name, lens, prompt):
     cur_y -= 3.8 * mm
     c.setFont("Helvetica-Oblique", 8); c.setFillColor(BODY)
     for line in textwrap.wrap(prompt, 64):
-        c.drawString(inner_x, cur_y, line); cur_y -= 3.5 * mm
+        c.drawString(inner_x, cur_y, line); cur_y -= 3.3 * mm
 
 
 VOICES = [
@@ -173,7 +173,7 @@ def draw_tip_box(c, y):
     text = ("Run two or three voices, not all six. Pick the ones that matter most for this "
             "specific project. Read the responses out loud, then ask the team which pushback "
             "is fair and what the plan needs to address.")
-    lines = textwrap.wrap(text, 95)
+    lines = textwrap.wrap(text, 118)
     box_h = (6 + len(lines) * 4) * mm + 3 * mm
     c.setFillColor(CYAN_LIGHT); c.setStrokeColor(CYAN_BORDER); c.setLineWidth(0.5)
     c.roundRect(MARGIN, y - box_h, CONTENT_W, box_h, 2, fill=1, stroke=1)
