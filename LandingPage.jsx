@@ -558,7 +558,7 @@ export default function LandingPage({ onNavigate }) {
             {[
               { quote: "Tomas shifted how I think about Copilot. Not an answer machine, but a thinking and structuring partner.", name: "Steve K.", role: "Manufacturing Engineering" },
               { quote: "Very effective and fit for purpose. A solid foundation for Copilot usage.", name: "Aaron L.", role: "Finance" },
-              { quote: "I now use the same tips and prompts in my day to day work. I already experienced how effective they were.", name: "Joe O.", role: "Commercial Leadership" },
+              { quote: "I now use the same tips and prompts in my day to day work.\nI already experienced how effective they were.", name: "Joe O.", role: "Commercial Leadership" },
               { quote: "It has significantly changed the way I think about interacting with AI.", name: "Cherry C.", role: "HR Graduate Trainee" },
             ].map((t, i) => (
               <div key={i} style={{
@@ -569,7 +569,7 @@ export default function LandingPage({ onNavigate }) {
                 <svg width="28" height="20" viewBox="0 0 28 20" fill="none" style={{ marginBottom: 16 }}>
                   <path d="M5 20c-2.8 0-5-2.2-5-5V9c0-5 4-9 9-9h1v4H9c-2.8 0-5 2.2-5 5v1h5v10H5zm17 0c-2.8 0-5-2.2-5-5V9c0-5 4-9 9-9h1v4h-1c-2.8 0-5 2.2-5 5v1h5v10h-4z" fill={CYAN}/>
                 </svg>
-                <p style={{ color: "#1e293b", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px", flex: 1, fontStyle: "italic" }}>{t.quote}</p>
+                <p style={{ color: "#1e293b", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px", flex: 1, fontStyle: "italic", whiteSpace: "pre-line" }}>{t.quote}</p>
                 <div style={{ width: 40, height: 2, background: CYAN, marginBottom: 14, borderRadius: 2 }} />
                 <p style={{ color: "#1e293b", fontSize: 15, fontWeight: 600, margin: 0 }}>{t.name}</p>
                 <p style={{ color: "#64748b", fontSize: 14, margin: "2px 0 0" }}>{t.role}</p>
