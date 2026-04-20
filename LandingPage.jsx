@@ -548,21 +548,23 @@ export default function LandingPage({ onNavigate }) {
 
 
       {/* What People Say */}
-      <div id="testimonials" style={{ background: "#E0F7FA", padding: "64px 24px" }}>
+      <div id="testimonials" style={{ background: "#1A1A2E", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>What People Say</h2>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#fff", margin: "0 0 8px" }}>What People Say</h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 0", borderRadius: 2 }} />
           </div>
-          <div className="card-grid" style={{ padding: "0 24px" }}>
+          <div className="testimonials-grid" style={{ padding: "0 24px" }}>
             {[
+              { quote: "Tomas shifted how I think about Copilot. Not an answer machine, but a thinking and structuring partner.", name: "Steve K.", role: "Manufacturing Engineering" },
               { quote: "Very effective and fit for purpose. A solid foundation for Copilot usage.", name: "Aaron L.", role: "Finance" },
               { quote: "I now use the same tips and prompts in my day to day work. I already experienced how effective they were.", name: "Joe O.", role: "Commercial Leadership" },
               { quote: "It has significantly changed the way I think about interacting with AI.", name: "Cherry C.", role: "HR Graduate Trainee" },
             ].map((t, i) => (
               <div key={i} style={{
-                background: "#fff", border: "1px solid #80DEEA", borderRadius: 16,
-                padding: "32px 28px 28px", display: "flex", flexDirection: "column",
+                background: "#fff", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16,
+                padding: "32px 32px 28px", display: "flex", flexDirection: "column",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
               }}>
                 <svg width="28" height="20" viewBox="0 0 28 20" fill="none" style={{ marginBottom: 16 }}>
                   <path d="M5 20c-2.8 0-5-2.2-5-5V9c0-5 4-9 9-9h1v4H9c-2.8 0-5 2.2-5 5v1h5v10H5zm17 0c-2.8 0-5-2.2-5-5V9c0-5 4-9 9-9h1v4h-1c-2.8 0-5 2.2-5 5v1h5v10h-4z" fill={CYAN}/>

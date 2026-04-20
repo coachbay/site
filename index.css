@@ -23,6 +23,14 @@ body {
   margin: 0 auto;
 }
 
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .card-grid-2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -67,7 +75,8 @@ body {
   }
 
   .card-grid,
-  .card-grid-2 {
+  .card-grid-2,
+  .testimonials-grid {
     grid-template-columns: 1fr !important;
     max-width: 400px;
     margin: 0 auto;
