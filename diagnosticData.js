@@ -73,7 +73,7 @@ export const companyConfig = {
         "Employees have access to at least one AI tool (Copilot, Gemini, ChatGPT, Claude, etc.)",
         "We have basic guidelines about what data can and cannot go into AI tools",
         "There is a budget or willingness to invest in AI tools and training",
-        "We can identify 5 to 10 enthusiastic early adopters who would join an AI pilot project tomorrow",
+        "We can identify 5 to 10 enthusiastic early adopters who would join an AI Champions group tomorrow",
         "The AI tools we provide are good enough that employees do not need to find their own",
         "Someone in our organization is clearly responsible for making sure AI is being used responsibly",
       ],
@@ -88,12 +88,12 @@ export const companyConfig = {
     {
       range: [104, 117], label: "Ready to Accelerate", color: "#059669",
       summary: "Your organization has the foundations in place. Leadership is engaged, employees are willing, and you have clarity on what you are trying to achieve. There are still gaps to close before AI is truly embedded.",
-      action: "Move from pockets of adoption to systematic rollout. Form a pilot group of 5 to 10 early adopters who solve real problems with AI. Focus on creating visible wins fast and scaling from there.",
+      action: "Move from pockets of adoption to systematic rollout. Form an AI Champions group of 5 to 10 early adopters who solve real problems with AI. Focus on creating visible wins fast and scaling from there.",
     },
     {
       range: [78, 103], label: "Ready to Start, With Focus", color: CYAN,
       summary: "You have pockets of readiness but some gaps. Most likely, leadership is keen but employees are uncertain, or you have enthusiasm but lack structure.",
-      action: "Start with the curious. Do not try to fix every gap first. Launch a small pilot and let the results build the case. Get your early adopters their first real AI experience this week.",
+      action: "Start with the curious. Do not try to fix every gap first. Launch a small AI Champions group and let their results build the case. Get your early adopters their first real AI experience this week.",
     },
     {
       range: [52, 77], label: "Groundwork Needed", color: "#f59e0b",
@@ -120,7 +120,7 @@ export const companyConfig = {
     sentiment: {
       low: "Employees are likely fearful or hiding their AI use. This is the biggest red flag because it means people do not feel safe. Before any initiative, create psychological safety. Start by asking (not telling) how people feel. The question \"Are you already using AI?\" asked without judgment can surface a lot.",
       mid: "There is a mix of curiosity and caution. Some people are experimenting quietly. Your job is to bring those quiet experimenters into the light. Celebrate them, give them a platform, and let their peers see that it is safe to try.",
-      high: "Employees are open and willing. This is your fuel. Do not waste it with heavy-handed rollouts. Channel this energy into a pilot group where their enthusiasm can produce visible results.",
+      high: "Employees are open and willing. This is your fuel. Do not waste it with heavy-handed rollouts. Channel this energy into an AI Champions group where their enthusiasm can produce visible results.",
     },
     culture: {
       low: "This is not an AI problem. It is a trust and change fatigue problem. Your organization has been through too many initiatives that did not stick. Address the underlying culture before adding more change. AI will still be there when you are ready.",

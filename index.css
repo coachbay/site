@@ -39,8 +39,8 @@ body {
   margin: 0 auto;
 }
 
-/* Pit Stops: full width within parent */
-.pitstop-card {
+/* Boosters: full width within parent */
+.booster-card {
   box-sizing: border-box;
 }
 
@@ -88,7 +88,7 @@ body {
     margin: 0 auto;
   }
 
-  .pitstop-card {
+  .booster-card {
     max-width: 400px;
   }
 

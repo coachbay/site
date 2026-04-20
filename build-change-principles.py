@@ -136,11 +136,11 @@ def build_pdf(path):
         ("1", "Leaders go first",
          "Change starts at the top or it stalls. Teams read their leaders before they read the memo. If the CEO is using AI openly, the organization follows. If the CEO delegates AI to a task force, so does everyone else."),
         ("2", "Start with the willing",
-         "Convert the curious, not the skeptics. A small Pilot Squad of early adopters creates the evidence that pulls the rest of the organization along. Skeptics change their minds when they see their colleagues winning, not when they are told to."),
+         "Convert the curious, not the skeptics. A small group of AI Champions creates the evidence that pulls the rest of the organization along. Skeptics change their minds when they see their colleagues winning, not when they are told to."),
         ("3", "Experience beats a lecture",
          "People change when they feel it, not when they hear about it. Demos and slides can set the stage, but the real shift happens when participants do the work themselves. Every Sprint is built around a real problem, not a theory. You leave with something you built."),
         ("4", "Build habits, not knowledge",
-         "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals that make AI part of how work gets done: weekly sharing of AI wins, managers asking 'how can AI help you with this?', Pit Stop sessions after each Sprint. Small habits, repeated, turn new skills into permanent ones."),
+         "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals that make AI part of how work gets done: weekly sharing of AI wins, managers asking 'how can AI help you with this?', Booster sessions after each Sprint. Small habits, repeated, turn new skills into permanent ones."),
     ]
 
     gap = 5 * mm

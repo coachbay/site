@@ -226,7 +226,7 @@ Title: "A wide spread calls for structured support and peer learning working tog
 Text: "The 51-point gap between the lowest and highest scores reflects a significant range of AI maturity within a single cohort. Closing this gap takes two things in parallel: structured support to build foundational skills across the group, and deliberate peer learning where advanced participants share what they actually do. Consider the capacity and workload of top performers before relying on them to carry the learning effort alone."
 
 EXAMPLE NEXT STEPS (match this specificity):
-Title: "Form a Pilot Squad from your top performers"
+Title: "Form an AI Champions group from your top performers"
 Text: "With one AI Pioneer and two AI Advanced participants already in this cohort, you have a natural starting point. Give this group a meaningful real business challenge and let them show the rest of the team what is possible."
 
 Title: "Make Deletion a shared team habit"

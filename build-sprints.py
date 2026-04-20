@@ -117,10 +117,10 @@ def draw_takeaway_box(c, y, items):
         ty -= 1.5 * mm
     return y - box_h - 8 * mm
 
-def draw_pitstop(c, y):
-    y = draw_section_title(c, y, "Optional: Pit Stops", size=10)
+def draw_booster(c, y):
+    y = draw_section_title(c, y, "Optional: Boosters", size=10)
     c.setFont("Helvetica", 9); c.setFillColor(BODY)
-    for line in textwrap.wrap("Each session can be followed by two Pit Stops (1 hour each, max 6 people) to turn learning into lasting habits.", 115):
+    for line in textwrap.wrap("Each session can be followed by two Boosters (1 hour each, max 6 people) to turn learning into lasting habits.", 115):
         c.drawString(MARGIN, y, line); y -= 5 * mm
     return y
 
@@ -289,7 +289,7 @@ for sprint in SPRINTS:
     y = draw_section_title(c, y, "After this, you can")
     y = draw_bullets(c, y, sprint["after_this"])
     y = draw_takeaway_box(c, y, sprint["takeaways"])
-    y = draw_pitstop(c, y)
+    y = draw_booster(c, y)
     c.save()
     print(f"Built {path}")
 

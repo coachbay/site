@@ -417,10 +417,10 @@ export default function LandingPage({ onNavigate }) {
           ))}
         </div>
 
-        {/* Pit Stops */}
+        {/* Boosters */}
         <div style={{ padding: "0 24px" }}>
-          <div className="pitstop-card" style={{ textAlign: "center", marginTop: 28, padding: "28px 28px 24px", background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, width: "100%" }}>
-            <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 4px" }}>Optional Pit Stops</h3>
+          <div className="booster-card" style={{ textAlign: "center", marginTop: 28, padding: "28px 28px 24px", background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, width: "100%" }}>
+            <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: "#1e293b", margin: "0 0 4px" }}>Optional Boosters</h3>
             <p style={{ color: CYAN, fontSize: 15, fontWeight: 600, margin: "0 0 12px" }}>for habits</p>
             <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: 0 }}>Short virtual sessions after each Sprint to reinforce learning and build lasting habits.</p>
           </div>
@@ -519,7 +519,7 @@ export default function LandingPage({ onNavigate }) {
               {
                 num: "2",
                 title: "Start with the willing",
-                body: "Convert the curious, not the skeptics. A small Pilot Squad of early adopters creates the evidence that pulls the rest of the organization along. Skeptics change their minds when they see their colleagues winning, not when they are told to.",
+                body: "Convert the curious, not the skeptics. A small group of AI Champions creates the evidence that pulls the rest of the organization along. Skeptics change their minds when they see their colleagues winning, not when they are told to.",
               },
               {
                 num: "3",
@@ -529,7 +529,7 @@ export default function LandingPage({ onNavigate }) {
               {
                 num: "4",
                 title: "Build habits, not knowledge",
-                body: "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals: weekly AI sharing, Pit Stop sessions, managers asking \"how can AI help?\" Small habits, repeated, become permanent.",
+                body: "One workshop does not change behavior. Fitness is not a fact you learn. It is a practice you keep. I help teams build simple rituals: weekly AI sharing, Booster sessions, managers asking \"how can AI help?\" Small habits, repeated, become permanent.",
               },
             ].map((p) => (
               <div

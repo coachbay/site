@@ -430,8 +430,8 @@ export default function FinnairSymDashboard() {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {[
               {
-                title: "Form a Pilot Squad from your top performers",
-                text: "With one AI Pioneer and two AI Advanced leaders already in this cohort, you have a natural starting point. A Pilot Squad is a small group of 5 to 10 early adopters working on a real business challenge together with AI. Rather than starting with training, start with a problem. Give this group a meaningful task and let them show the rest of the organisation what is possible. Visible results create pull; mandates create resistance.",
+                title: "Form an AI Champions group from your top performers",
+                text: "With one AI Pioneer and two AI Advanced leaders already in this cohort, you have a natural starting point. AI Champions are a small group of 5 to 10 early adopters working on a real business challenge together with AI. Rather than starting with training, start with a problem. Give this group a meaningful task and let them show the rest of the organisation what is possible. Visible results create pull; mandates create resistance.",
               },
               {
                 title: "Make Deletion a team leadership habit",

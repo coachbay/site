@@ -499,7 +499,7 @@ export default function SwirePropertiesDashboard() {
               <div>
                 <div style={{ fontSize: 15, fontWeight: 600, color: "#1e293b", marginBottom: 4 }}>Activate your AI champions</div>
                 <div style={{ fontSize: 14, color: "#475569", lineHeight: 1.55 }}>
-                  Your 5 AI-Fluent team members are ready to help others. Consider forming a small Pilot Squad where they share real workflows, demonstrate prompting techniques, and pair up with colleagues who want to build their skills. Peer learning is more effective than formal training because it starts with real work, not theory.
+                  Your 5 AI-Fluent team members are ready to help others. Consider forming a small group of AI Champions where they share real workflows, demonstrate prompting techniques, and pair up with colleagues who want to build their skills. Peer learning is more effective than formal training because it starts with real work, not theory.
                 </div>
               </div>
             </div>
