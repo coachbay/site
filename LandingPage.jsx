@@ -213,7 +213,7 @@ export default function LandingPage({ onNavigate }) {
               For leaders serious about closing the gap between AI at the top and AI on the ground.
             </p>
             <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.7, margin: "0 0 32px" }}>
-              My name is Tomas Bay.<br className="mobile-br" /> I help leaders and organizations build AI fitness that actually sticks.
+              My name is Tomas Bay.<br className="mobile-br" /> I help leaders and teams build AI fitness that actually sticks.
             </p>
             <div className="hero-buttons" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
               <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" style={{
