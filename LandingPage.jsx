@@ -209,6 +209,9 @@ export default function LandingPage({ onNavigate }) {
             <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 44, color: CYAN, margin: "0 0 24px", lineHeight: 1.2 }}>
               The best ones start with people.
             </h1>
+            <p style={{ color: "#1e293b", fontSize: 20, fontWeight: 500, lineHeight: 1.5, margin: "0 0 28px", maxWidth: 560 }}>
+              For leaders serious about closing the gap between AI at the top and AI on the ground.
+            </p>
             <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.7, margin: "0 0 8px" }}>
               My name is Tomas Bay.<br className="mobile-br" /> I help leaders and organizations build AI fitness that actually sticks.
             </p>
