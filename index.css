@@ -70,6 +70,13 @@ body {
   display: none;
 }
 
+/* Keep section tops visible when scrolled to, since the sticky nav is 64px */
+#diagnostics, #sprints, #testimonials, #process, #about {
+  scroll-margin-top: 80px;
+}
+
+
+
 @media (max-width: 768px) {
   .mobile-br {
     display: block;
