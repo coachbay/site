@@ -119,7 +119,7 @@ const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior:
 
 export default function LandingPage({ onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const go = (id) => { setMenuOpen(false); scrollTo(id); };
+  const go = (id) => { setMenuOpen(false); setTimeout(() => scrollTo(id), 120); };
 
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", fontFamily: "'DM Sans', sans-serif", color: "#1e293b" }}>
