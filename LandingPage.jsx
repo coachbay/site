@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const CYAN = "#00BCD4";
 
 const RobotIcon = ({ size = 72 }) => (
@@ -116,6 +118,9 @@ const diagnostics = [
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 export default function LandingPage({ onNavigate }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const go = (id) => { setMenuOpen(false); scrollTo(id); };
+
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", fontFamily: "'DM Sans', sans-serif", color: "#1e293b" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
@@ -148,7 +153,50 @@ export default function LandingPage({ onNavigate }) {
               borderRadius: 8, padding: "8px 20px",
             }}>Get in touch</a>
           </div>
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 8, color: "#1e293b" }}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              {menuOpen ? (
+                <>
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="6" y1="18" x2="18" y2="6" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
+        {menuOpen && (
+          <div className="nav-mobile-panel" style={{
+            background: "#fff", borderTop: "1px solid #e2e8f0",
+            padding: "16px 24px 20px", display: "flex", flexDirection: "column", gap: 14,
+          }}>
+            <a onClick={() => go("diagnostics")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Diagnostics</a>
+            <a onClick={() => go("sprints")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Sprints</a>
+            <a onClick={() => go("testimonials")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Testimonials</a>
+            <a onClick={() => go("process")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Process</a>
+            <a onClick={() => go("about")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>About</a>
+            <a href="https://www.linkedin.com/in/coachbay/" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, textDecoration: "none", padding: "6px 0", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1e293b"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="mailto:coach@coachbay.ai?subject=Interested%20in%20CoachBay%20AI%20Sprints" onClick={() => setMenuOpen(false)} style={{
+              display: "inline-block", background: CYAN, color: "#fff",
+              fontSize: 16, fontWeight: 600, textDecoration: "none",
+              borderRadius: 8, padding: "12px 20px", textAlign: "center", marginTop: 6,
+            }}>Get in touch</a>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}

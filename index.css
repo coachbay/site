@@ -64,14 +64,25 @@ body {
   flex-shrink: 0;
 }
 
+
+/* Hamburger button hidden on desktop */
+.nav-hamburger {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mobile-br {
     display: block;
   }
 
-  /* Hide text nav links on mobile, keep CTA button */
-  .nav-text-link {
+  /* Hide desktop nav on mobile, show hamburger */
+  .nav-links {
     display: none !important;
+  }
+  .nav-hamburger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   .card-grid,
