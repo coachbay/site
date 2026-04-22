@@ -447,7 +447,7 @@ export default function LandingPage({ onNavigate }) {
       </div>
 
       {/* Breakthrough Session */}
-      <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px 120px", borderBottom: "1px solid #e2e8f0" }}>
+      <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px 120px" }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
 
           {/* Header */}
