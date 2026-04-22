@@ -297,7 +297,7 @@ export default function LandingPage({ onNavigate }) {
 
           {/* Stories */}
           <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 48 }}>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", textAlign: "center", marginBottom: 28 }}>What actually happens</p>
+            <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#1e293b", textAlign: "center", marginBottom: 28, marginTop: 0 }}>What Actually Happens</h3>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
               {[
                 { moment: "She went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
