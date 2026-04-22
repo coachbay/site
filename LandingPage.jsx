@@ -139,6 +139,7 @@ export default function LandingPage({ onNavigate }) {
             </span>
           </div>
           <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
+            <a className="nav-text-link" onClick={() => scrollTo("breakthrough")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Breakthrough Session</a>
             <a className="nav-text-link" onClick={() => scrollTo("diagnostics")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Diagnostics</a>
             <a className="nav-text-link" onClick={() => scrollTo("sprints")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Sprints</a>
             <a className="nav-text-link" onClick={() => scrollTo("testimonials")} style={{ color: "#475569", fontSize: 15, fontWeight: 500, cursor: "pointer", textDecoration: "none" }}>Testimonials</a>
@@ -181,6 +182,7 @@ export default function LandingPage({ onNavigate }) {
             background: "#fff", borderTop: "1px solid #e2e8f0",
             padding: "16px 24px 20px", display: "flex", flexDirection: "column", gap: 14,
           }}>
+            <a onClick={() => go("breakthrough")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Breakthrough Session</a>
             <a onClick={() => go("diagnostics")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Diagnostics</a>
             <a onClick={() => go("sprints")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Sprints</a>
             <a onClick={() => go("testimonials")} style={{ color: "#1e293b", fontSize: 17, fontWeight: 500, cursor: "pointer", textDecoration: "none", padding: "6px 0" }}>Testimonials</a>
@@ -237,6 +239,76 @@ export default function LandingPage({ onNavigate }) {
           <div className="hero-photo">
             <div className="hero-photo-circle" style={{ width: 280, height: 280, borderRadius: "50%", overflow: "hidden", border: `3px solid ${CYAN}33`, boxShadow: "0 8px 32px rgba(0,0,0,0.08)" }}>
               <img src="/tomas.jpg" alt="Tomas Bay" className="hero-photo-img" style={{ width: 280, height: 280, borderRadius: "50%", objectFit: "cover", objectPosition: "center 15%", transform: "scale(1.4)" }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Breakthrough Session */}
+      <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px", borderBottom: "1px solid #e2e8f0" }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 52 }}>
+            <span style={{ display: "inline-block", background: "#E0F7FA", color: "#0097A7", fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 4, marginBottom: 14 }}>The Front Door</span>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, color: "#1e293b", margin: "0 0 8px" }}>The Breakthrough Session</h2>
+            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, maxWidth: 600, margin: "0 auto" }}>
+              One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.
+            </p>
+          </div>
+
+          {/* Two column: copy + feature cards */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start", marginBottom: 56 }} className="breakthrough-grid">
+            <div>
+              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
+                Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
+              </p>
+              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 32 }}>
+                I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
+              </p>
+              <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
+                textDecoration: "none", borderRadius: 10, padding: "13px 28px",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                Book a Breakthrough Session
+              </a>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {[
+                { icon: <svg width="28" height="28" viewBox="0 0 32 32" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="16" r="12" stroke="#00BCD4"/><circle cx="16" cy="16" r="4" stroke="#00BCD4"/><line x1="16" y1="4" x2="16" y2="8" stroke="#00BCD4"/><line x1="16" y1="24" x2="16" y2="28" stroke="#00BCD4"/><line x1="4" y1="16" x2="8" y2="16" stroke="#00BCD4"/><line x1="24" y1="16" x2="28" y2="16" stroke="#00BCD4"/></svg>, title: "One real problem", desc: "You bring your biggest stuck challenge. Not a hypothetical. The one that is actually keeping you up at night." },
+                { icon: <svg width="28" height="28" viewBox="0 0 32 32" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 26v-2a4 4 0 0 1-4-4c0-1 .4-2 1-2.7A5 5 0 0 1 8 12a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5 5 5 0 0 1-1 3.3c.6.7 1 1.7 1 2.7a4 4 0 0 1-4 4v2" stroke="#00BCD4"/><line x1="13" y1="20" x2="19" y2="20" stroke="#00BCD4"/><line x1="16" y1="26" x2="16" y2="28" stroke="#00BCD4"/><line x1="13" y1="28" x2="19" y2="28" stroke="#00BCD4"/></svg>, title: "AI as thinking partner", desc: "We use AI to crack open the problem in ways you and your team have not thought of yet." },
+                { icon: <svg width="28" height="28" viewBox="0 0 32 32" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 5a8 8 0 0 1 4.5 14.6V22a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1v-2.4A8 8 0 0 1 16 5z" stroke="#00BCD4"/><line x1="13" y1="26" x2="19" y2="26" stroke="#00BCD4"/><line x1="14" y1="28.5" x2="18" y2="28.5" stroke="#00BCD4"/></svg>, title: "Ideas before you leave", desc: "You walk out with genuine new directions. Same day. Often the same hour." },
+                { icon: <svg width="28" height="28" viewBox="0 0 32 32" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 16h20" stroke="#00BCD4"/><path d="M20 10l6 6-6 6" stroke="#00BCD4"/><path d="M6 8v16" stroke="#00BCD4"/></svg>, title: "The natural next step", desc: "Most leaders go deeper after this. A sprint, ongoing coaching, or a team session." },
+              ].map(f => (
+                <div key={f.title} style={{ display: "flex", gap: 16, alignItems: "flex-start", background: "#f8fafc", borderRadius: 12, padding: "16px 18px", border: "1px solid #e2e8f0" }}>
+                  <div style={{ flexShrink: 0, marginTop: 2 }}>{f.icon}</div>
+                  <div>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 15, color: "#1e293b", margin: "0 0 4px" }}>{f.title}</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#475569", lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stories */}
+          <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 48 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", textAlign: "center", marginBottom: 28 }}>What actually happens</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
+              {[
+                { moment: "She went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
+                { moment: "He bought a MacBook two weeks later.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. Two weeks later he had restructured his team meetings around AI and bought his own laptop to go deeper.", result: "One session. Organization-wide change." },
+                { moment: "The email arrived at 11pm.", story: "A commercial manager volunteered her team's biggest stuck problem during one of my workshops. By the end, genuinely new ideas were on the table. That evening at 11pm I received an email asking for the full session output.", result: "Immediate action. New thinking unlocked." },
+              ].map((s, i) => (
+                <div key={i} style={{ background: "#1A1A2E", borderRadius: 14, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 14 }}>
+                  <p style={{ fontFamily: "'DM Serif Display', serif", fontStyle: "italic", fontSize: 18, color: CYAN, lineHeight: 1.4, margin: 0 }}>"{s.moment}"</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: 0 }}>{s.story}</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: CYAN, fontWeight: 600, margin: 0, marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.08)" }}>{s.result}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
