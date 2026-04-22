@@ -385,9 +385,9 @@ export default function LandingPage({ onNavigate }) {
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>Start Where It Makes Sense for You</h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
-            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Three ways to build lasting AI capability. Each one designed for a different starting point.</p>
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Three ways to build AI Fitness. Each one designed for a different starting point.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="card-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "stretch" }} className="card-grid">
 
             {/* Card 1: Diagnostics */}
             <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
@@ -398,7 +398,7 @@ export default function LandingPage({ onNavigate }) {
                 </svg>
               </div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Not sure where you stand?</p>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px" }}>Take a Free Diagnostic</h3>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Take a Free Diagnostic</h3>
               <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Understand where you and your team actually stand before doing anything else. Three free assessments. No commitment. Results in minutes.</p>
               <a href="#diagnostics" onClick={(e) => { e.preventDefault(); scrollTo("diagnostics"); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: CYAN, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
                 See the diagnostics
@@ -415,7 +415,7 @@ export default function LandingPage({ onNavigate }) {
                 </svg>
               </div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Have a real problem to solve?</p>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#ffffff", margin: "0 0 14px" }}>Book a Breakthrough Session</h3>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#ffffff", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Book a Breakthrough Session</h3>
               <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.</p>
               <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600, textDecoration: "none", borderRadius: 8, padding: "11px 22px", alignSelf: "flex-start" }}>
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -434,7 +434,7 @@ export default function LandingPage({ onNavigate }) {
                 </svg>
               </div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Ready to train your team?</p>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px" }}>Browse the Sprints</h3>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Browse the Sprints</h3>
               <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Six focused half day workshops for every level and challenge. From building skills to shaping strategy to driving adoption across the organization.</p>
               <a href="#sprints" onClick={(e) => { e.preventDefault(); scrollTo("sprints"); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: CYAN, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
                 See the sprints
