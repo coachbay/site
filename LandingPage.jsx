@@ -487,22 +487,10 @@ export default function LandingPage({ onNavigate }) {
             ))}
           </div>
 
-          {/* CTA below cards */}
-          <div style={{ textAlign: "center" }}>
-            <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
-              textDecoration: "none", borderRadius: 10, padding: "13px 28px",
-            }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              Book a Breakthrough Session
-            </a>
-          </div>
-
           {/* Stories */}
           <div style={{ paddingTop: 48 }}>
             <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#1e293b", textAlign: "center", marginBottom: 28, marginTop: 0 }}>What Actually Happens</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 40 }} className="stories-grid">
               {[
                 { moment: "She walked out and went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
                 { moment: "He went back and changed how his whole team works.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. He went straight back and restructured his team around AI, introducing weekly AI review meetings. Two weeks later, he bought his own MacBook to go deeper.", result: "One session. Team-wide change." },
@@ -514,6 +502,16 @@ export default function LandingPage({ onNavigate }) {
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: CYAN, fontWeight: 600, margin: 0, marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.08)" }}>{s.result}</p>
                 </div>
               ))}
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
+                textDecoration: "none", borderRadius: 10, padding: "13px 28px",
+              }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                Book a Breakthrough Session
+              </a>
             </div>
           </div>
         </div>
