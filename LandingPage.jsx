@@ -250,7 +250,6 @@ export default function LandingPage({ onNavigate }) {
 
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 52 }}>
-            <span style={{ display: "inline-block", background: "#E0F7FA", color: "#0097A7", fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 4, marginBottom: 14 }}>The Front Door</span>
             <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, color: "#1e293b", margin: "0 0 8px" }}>The Breakthrough Session</h2>
             <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
             <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, maxWidth: 600, margin: "0 auto" }}>
@@ -260,22 +259,6 @@ export default function LandingPage({ onNavigate }) {
 
           {/* Two column: copy + feature cards */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start", marginBottom: 56 }} className="breakthrough-grid">
-            <div>
-              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
-                Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
-              </p>
-              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 32 }}>
-                I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
-              </p>
-              <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
-                textDecoration: "none", borderRadius: 10, padding: "13px 28px",
-              }}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                Book a Breakthrough Session
-              </a>
-            </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {[
                 { icon: <svg width="28" height="28" viewBox="0 0 32 32" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="16" r="12" stroke="#00BCD4"/><circle cx="16" cy="16" r="4" stroke="#00BCD4"/><line x1="16" y1="4" x2="16" y2="8" stroke="#00BCD4"/><line x1="16" y1="24" x2="16" y2="28" stroke="#00BCD4"/><line x1="4" y1="16" x2="8" y2="16" stroke="#00BCD4"/><line x1="24" y1="16" x2="28" y2="16" stroke="#00BCD4"/></svg>, title: "One real problem", desc: "You bring your biggest stuck challenge. Not a hypothetical. The one that is actually keeping you up at night." },
@@ -291,6 +274,24 @@ export default function LandingPage({ onNavigate }) {
                   </div>
                 </div>
               ))}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 24 }}>
+              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+                Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
+              </p>
+              <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+                I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
+              </p>
+              <div>
+                <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
+                  textDecoration: "none", borderRadius: 10, padding: "13px 28px",
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  Book a Breakthrough Session
+                </a>
+              </div>
             </div>
           </div>
 
