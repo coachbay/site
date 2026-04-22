@@ -500,7 +500,7 @@ export default function LandingPage({ onNavigate }) {
           </div>
 
           {/* Stories */}
-          <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 48 }}>
+          <div style={{ paddingTop: 48 }}>
             <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#1e293b", textAlign: "center", marginBottom: 28, marginTop: 0 }}>What Actually Happens</h3>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
               {[
