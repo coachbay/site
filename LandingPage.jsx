@@ -435,7 +435,7 @@ export default function LandingPage({ onNavigate }) {
               </div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Ready to train your team?</p>
               <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Browse the Sprints</h3>
-              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Six focused half day workshops for every level and challenge. From building skills to shaping strategy to driving adoption across the organization.</p>
+              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Six focused workshops for every level and challenge. From building skills to shaping strategy to driving adoption across the organization.</p>
               <a href="#sprints" onClick={(e) => { e.preventDefault(); scrollTo("sprints"); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: CYAN, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
                 See the sprints
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
