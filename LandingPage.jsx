@@ -244,79 +244,6 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
-      {/* Breakthrough Session */}
-      <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px", borderBottom: "1px solid #e2e8f0" }}>
-        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
-
-          {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: 52 }}>
-            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, color: "#1e293b", margin: "0 0 8px" }}>The Breakthrough Session</h2>
-            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
-            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, maxWidth: 600, margin: "0 auto" }}>
-              One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.
-            </p>
-          </div>
-
-          {/* Text */}
-          <div style={{ maxWidth: 1060, margin: "0 auto 52px", textAlign: "center" }}>
-            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
-              Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
-            </p>
-            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-              I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
-            </p>
-          </div>
-
-          {/* 2x2 numbered grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }} className="breakthrough-grid">
-            {[
-              { num: "1", title: "One real problem", desc: "You bring your biggest stuck challenge. Not a hypothetical. The one that is actually keeping you up at night." },
-              { num: "2", title: "AI as thinking partner", desc: "We use AI to crack open the problem in ways you and your team have not thought of yet." },
-              { num: "3", title: "Ideas before you leave", desc: "You walk out with genuine new directions. Same day. Often the same hour." },
-              { num: "4", title: "The natural next step", desc: "Most leaders go deeper after this. A sprint, ongoing coaching, or a team session." },
-            ].map(f => (
-              <div key={f.num} style={{ display: "flex", gap: 16, alignItems: "flex-start", background: "#f8fafc", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0" }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${CYAN}18`, display: "flex", alignItems: "center", justifyContent: "center", color: CYAN, fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 700, flexShrink: 0 }}>{f.num}</div>
-                <div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 15, color: "#1e293b", margin: "0 0 6px" }}>{f.title}</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#475569", lineHeight: 1.65, margin: 0 }}>{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA below cards */}
-          <div style={{ textAlign: "center" }}>
-            <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
-              textDecoration: "none", borderRadius: 10, padding: "13px 28px",
-            }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              Book a Breakthrough Session
-            </a>
-          </div>
-
-          {/* Stories */}
-          <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 48 }}>
-            <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#1e293b", textAlign: "center", marginBottom: 28, marginTop: 0 }}>What Actually Happens</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
-              {[
-                { moment: "She walked out and went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
-                { moment: "He went back and changed how his whole team works.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. He went straight back and restructured his team around AI, introducing weekly AI review meetings. Two weeks later, he bought his own MacBook to go deeper.", result: "One session. Organization-wide change." },
-                { moment: "She could not wait until morning and emailed me at 11pm.", story: "A commercial manager volunteered her team's biggest stuck problem during one of my workshops. By the end, genuinely new ideas were on the table. That evening at 11pm I received an email asking for the full session output.", result: "Immediate action. New thinking unlocked." },
-              ].map((s, i) => (
-                <div key={i} style={{ background: "#1A1A2E", borderRadius: 14, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 14 }}>
-                  <p style={{ fontFamily: "'DM Serif Display', serif", fontStyle: "italic", fontSize: 18, color: CYAN, lineHeight: 1.4, margin: 0 }}>"{s.moment}"</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: 0 }}>{s.story}</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: CYAN, fontWeight: 600, margin: 0, marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.08)" }}>{s.result}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Problem Section */}
       <div style={{ background: "#1e293b", padding: "56px 24px" }}>
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
@@ -451,6 +378,80 @@ export default function LandingPage({ onNavigate }) {
           </div>
         </div>
       </div>
+
+      {/* Breakthrough Session */}
+      <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px", borderBottom: "1px solid #e2e8f0" }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 52 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, color: "#1e293b", margin: "0 0 8px" }}>The Breakthrough Session</h2>
+            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.7, maxWidth: 600, margin: "0 auto" }}>
+              One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.
+            </p>
+          </div>
+
+          {/* Text */}
+          <div style={{ maxWidth: 1060, margin: "0 auto 52px", textAlign: "center" }}>
+            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
+              Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
+            </p>
+            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+              I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
+            </p>
+          </div>
+
+          {/* 2x2 numbered grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }} className="breakthrough-grid">
+            {[
+              { num: "1", title: "One real problem", desc: "You bring your biggest stuck challenge. Not a hypothetical. The one that is actually keeping you up at night." },
+              { num: "2", title: "AI as thinking partner", desc: "We use AI to crack open the problem in ways you and your team have not thought of yet." },
+              { num: "3", title: "Ideas before you leave", desc: "You walk out with genuine new directions. Same day. Often the same hour." },
+              { num: "4", title: "The natural next step", desc: "Most leaders go deeper after this. A sprint, ongoing coaching, or a team session." },
+            ].map(f => (
+              <div key={f.num} style={{ display: "flex", gap: 16, alignItems: "flex-start", background: "#f8fafc", borderRadius: 12, padding: "20px 22px", border: "1px solid #e2e8f0" }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${CYAN}18`, display: "flex", alignItems: "center", justifyContent: "center", color: CYAN, fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 700, flexShrink: 0 }}>{f.num}</div>
+                <div>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 15, color: "#1e293b", margin: "0 0 6px" }}>{f.title}</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#475569", lineHeight: 1.65, margin: 0 }}>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA below cards */}
+          <div style={{ textAlign: "center" }}>
+            <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
+              textDecoration: "none", borderRadius: 10, padding: "13px 28px",
+            }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              Book a Breakthrough Session
+            </a>
+          </div>
+
+          {/* Stories */}
+          <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 48 }}>
+            <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: "#1e293b", textAlign: "center", marginBottom: 28, marginTop: 0 }}>What Actually Happens</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
+              {[
+                { moment: "She walked out and went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
+                { moment: "He went back and changed how his whole team works.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. He went straight back and restructured his team around AI, introducing weekly AI review meetings. Two weeks later, he bought his own MacBook to go deeper.", result: "One session. Organization-wide change." },
+                { moment: "She could not wait until morning and emailed me at 11pm.", story: "A commercial manager volunteered her team's biggest stuck problem during one of my workshops. By the end, genuinely new ideas were on the table. That evening at 11pm I received an email asking for the full session output.", result: "Immediate action. New thinking unlocked." },
+              ].map((s, i) => (
+                <div key={i} style={{ background: "#1A1A2E", borderRadius: 14, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 14 }}>
+                  <p style={{ fontFamily: "'DM Serif Display', serif", fontStyle: "italic", fontSize: 18, color: CYAN, lineHeight: 1.4, margin: 0 }}>"{s.moment}"</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: 0 }}>{s.story}</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: CYAN, fontWeight: 600, margin: 0, marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.08)" }}>{s.result}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       {/* Diagnostics */}
       <div id="diagnostics" style={{ maxWidth: 1060, margin: "0 auto", padding: "64px 24px" }}>
