@@ -257,26 +257,18 @@ export default function LandingPage({ onNavigate }) {
             </p>
           </div>
 
-          {/* Text + CTA */}
+          {/* Text */}
           <div style={{ maxWidth: 1060, margin: "0 auto 52px", textAlign: "center" }}>
             <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
               Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
             </p>
-            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 32 }}>
+            <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, margin: 0 }}>
               I work with you one to one, using AI to open up thinking your team has not had access to yet. Most leaders leave with more ideas than they expected. Many go deeper with a sprint or ongoing coaching after.
             </p>
-            <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
-              textDecoration: "none", borderRadius: 10, padding: "13px 28px",
-            }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              Book a Breakthrough Session
-            </a>
           </div>
 
           {/* 2x2 numbered grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="breakthrough-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }} className="breakthrough-grid">
             {[
               { num: "1", title: "One real problem", desc: "You bring your biggest stuck challenge. Not a hypothetical. The one that is actually keeping you up at night." },
               { num: "2", title: "AI as thinking partner", desc: "We use AI to crack open the problem in ways you and your team have not thought of yet." },
@@ -291,6 +283,18 @@ export default function LandingPage({ onNavigate }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* CTA below cards */}
+          <div style={{ textAlign: "center" }}>
+            <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600,
+              textDecoration: "none", borderRadius: 10, padding: "13px 28px",
+            }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              Book a Breakthrough Session
+            </a>
           </div>
 
           {/* Stories */}
