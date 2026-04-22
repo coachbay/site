@@ -258,7 +258,7 @@ export default function LandingPage({ onNavigate }) {
           </div>
 
           {/* Text + CTA */}
-          <div style={{ maxWidth: 680, margin: "0 auto 52px", textAlign: "center" }}>
+          <div style={{ maxWidth: 1060, margin: "0 auto 52px", textAlign: "center" }}>
             <p style={{ color: "#334155", fontSize: 17, lineHeight: 1.75, marginBottom: 20 }}>
               Not a workshop. Not a course. A focused 60 minute session on the problem that is actually keeping you up at night.
             </p>
