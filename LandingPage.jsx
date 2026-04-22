@@ -379,6 +379,73 @@ export default function LandingPage({ onNavigate }) {
         </div>
       </div>
 
+      {/* Start Where It Makes Sense */}
+      <div style={{ background: "#f8fafc", padding: "72px 24px", borderBottom: "1px solid #e2e8f0" }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: "#1e293b", margin: "0 0 8px" }}>Start Where It Makes Sense for You</h2>
+            <div style={{ width: 50, height: 3, background: CYAN, margin: "12px auto 20px", borderRadius: 2 }} />
+            <p style={{ color: "#475569", fontSize: 17, lineHeight: 1.6, margin: 0 }}>Three ways to build lasting AI capability. Each one designed for a different starting point.</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="card-grid">
+
+            {/* Card 1: Diagnostics */}
+            <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: `${CYAN}15`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9" stroke={CYAN}/>
+                  <path d="M12 8v4l3 3" stroke={CYAN}/>
+                </svg>
+              </div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Not sure where you stand?</p>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px" }}>Take a Free Diagnostic</h3>
+              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Understand where you and your team actually stand before doing anything else. Three free assessments. No commitment. Results in minutes.</p>
+              <a href="#diagnostics" onClick={(e) => { e.preventDefault(); scrollTo("diagnostics"); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: CYAN, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
+                See the diagnostics
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </div>
+
+            {/* Card 2: Breakthrough Session - featured */}
+            <div style={{ background: "#1A1A2E", border: "2px solid #1A1A2E", borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: `${CYAN}25`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3a7 7 0 0 1 3.5 13.1V18a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-1.9A7 7 0 0 1 12 3z" stroke={CYAN}/>
+                  <line x1="10" y1="21" x2="14" y2="21" stroke={CYAN}/>
+                </svg>
+              </div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Have a real problem to solve?</p>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#ffffff", margin: "0 0 14px" }}>Book a Breakthrough Session</h3>
+              <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.</p>
+              <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600, textDecoration: "none", borderRadius: 8, padding: "11px 22px", alignSelf: "flex-start" }}>
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                Book a session
+              </a>
+            </div>
+
+            {/* Card 3: Sprints */}
+            <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: `${CYAN}15`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1" stroke={CYAN}/>
+                  <rect x="14" y="3" width="7" height="7" rx="1" stroke={CYAN}/>
+                  <rect x="3" y="14" width="7" height="7" rx="1" stroke={CYAN}/>
+                  <rect x="14" y="14" width="7" height="7" rx="1" stroke={CYAN}/>
+                </svg>
+              </div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Ready to train your team?</p>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px" }}>Browse the Sprints</h3>
+              <p style={{ color: "#475569", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>Six focused half day workshops for every level and challenge. From building skills to shaping strategy to driving adoption across the organization.</p>
+              <a href="#sprints" onClick={(e) => { e.preventDefault(); scrollTo("sprints"); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: CYAN, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
+                See the sprints
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0l-3-3m3 3l-3 3" stroke={CYAN} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       {/* Breakthrough Session */}
       <div id="breakthrough" style={{ background: "#ffffff", padding: "80px 24px", borderBottom: "1px solid #e2e8f0" }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
@@ -438,7 +505,7 @@ export default function LandingPage({ onNavigate }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="stories-grid">
               {[
                 { moment: "She walked out and went straight to her boss.", story: "A senior leader was stuck on a major business challenge her team had been circling for months. We ran it through AI as a thinking partner in one conversation. She walked out and went directly to her boss to say they needed to move on this.", result: "New client engagement followed." },
-                { moment: "He went back and changed how his whole team works.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. He went straight back and restructured his team around AI, introducing weekly AI review meetings. Two weeks later, he bought his own MacBook to go deeper.", result: "One session. Organization-wide change." },
+                { moment: "He went back and changed how his whole team works.", story: "A GM came to me for coaching on a complex stakeholder management challenge. We cracked it open with AI in one session. He went straight back and restructured his team around AI, introducing weekly AI review meetings. Two weeks later, he bought his own MacBook to go deeper.", result: "One session. Team-wide change." },
                 { moment: "She could not wait until morning and emailed me at 11pm.", story: "A commercial manager volunteered her team's biggest stuck problem during one of my workshops. By the end, genuinely new ideas were on the table. That evening at 11pm I received an email asking for the full session output.", result: "Immediate action. New thinking unlocked." },
               ].map((s, i) => (
                 <div key={i} style={{ background: "#1A1A2E", borderRadius: 14, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 14 }}>
