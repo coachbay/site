@@ -407,16 +407,16 @@ export default function LandingPage({ onNavigate }) {
             </div>
 
             {/* Card 2: Breakthrough Session - featured */}
-            <div style={{ background: "#1A1A2E", border: "2px solid #1A1A2E", borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
-              <div style={{ width: 44, height: 44, borderRadius: 10, background: `${CYAN}25`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+            <div style={{ background: "#E0F7FA", border: `2px solid ${CYAN}`, borderRadius: 16, padding: "32px 28px", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: `${CYAN}30`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3a7 7 0 0 1 3.5 13.1V18a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-1.9A7 7 0 0 1 12 3z" stroke={CYAN}/>
                   <line x1="10" y1="21" x2="14" y2="21" stroke={CYAN}/>
                 </svg>
               </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: CYAN, textTransform: "uppercase", margin: "0 0 10px" }}>Have a real problem to solve?</p>
-              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#ffffff", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Book a Breakthrough Session</h3>
-              <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#0097A7", textTransform: "uppercase", margin: "0 0 10px" }}>Have a real problem to solve?</p>
+              <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "#1e293b", margin: "0 0 14px", minHeight: 60, display: "flex", alignItems: "flex-start" }}>Book a Breakthrough Session</h3>
+              <p style={{ color: "#334155", fontSize: 15, lineHeight: 1.7, margin: "0 0 28px", flex: 1 }}>One leader. One real problem. One focused conversation using AI as a thinking partner. You leave with ideas you did not have when you walked in.</p>
               <a href="mailto:coach@coachbay.ai?subject=Book a Breakthrough Session" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: CYAN, color: "#fff", fontSize: 15, fontWeight: 600, textDecoration: "none", borderRadius: 8, padding: "11px 22px", alignSelf: "flex-start" }}>
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#fff" strokeWidth="1.5" fill="none"/><path d="M1 5l7 4 7-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 Book a session
