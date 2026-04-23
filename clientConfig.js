@@ -77,6 +77,14 @@ const clients = {
     closeDate: "2026-03-29",
     version: 1,
   },
+
+  "swire-actionlabs": {
+    name: "Swire Pacific",
+    assessments: ["team"],
+    preparedFor: "Carol Fairbairn",
+    closeDate: "2026-04-30",
+    version: 2,
+  },
 };
 
 export default clients;
