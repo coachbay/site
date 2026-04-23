@@ -251,7 +251,7 @@ SPRINTS = [
         "audience": "Cross functional project teams",
         "format": "3.5 to 4 hours. In person or online.",
         "class_size": "8 to 20 people",
-        "what_you_do": "For teams with a real business challenge who want to make tangible progress in a single session. Each team brings a genuine project, whether it is revenue, operations, supply chain, or customer experience. Using the CRIT framework and AI as a thinking partner, teams pressure test their assumptions, discover options they had not considered, and build sharper plans. Cross functional composition ensures the context and answers are richer and more useful.",
+        "what_you_do": "For teams with a real business challenge who want to make tangible progress in a single session. Each team brings a genuine project, whether it is revenue, operations, supply chain, or customer experience. Using the CRIO framework and AI as a thinking partner, teams pressure test their assumptions, discover options they had not considered, and build sharper plans. Cross functional composition ensures the context and answers are richer and more useful.",
         "after_this": [
             "Define the real challenge clearly using structured prompts that give AI the context it needs to add genuine value.",
             "Discover new options by having AI interview your team about context, constraints, and goals before proposing tailored moves.",

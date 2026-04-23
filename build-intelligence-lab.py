@@ -6,7 +6,7 @@
 #   - CoachBay_Intelligence_Lab_Day3_Agenda.pdf  (Wednesday 29 April 2026)
 #
 # Day 2 is revised from Day 1 based on what worked on April 20:
-#   - CRIT Demo shortened, new Personal CRIT Test block added
+#   - CRIO Demo shortened, new Personal CRIO Test block added
 #   - Define shortened, extra mid-morning break added
 #   - Discover expanded
 #   - Debate split into two halves with break
@@ -57,18 +57,18 @@ DAY2_MORNING = [
      "Welcome, group assignments, agenda, outcomes.", 10),
     ("09:10 - 09:35", "Assessment and Debrief",
      "Individual AI readiness assessment followed by group conversation on what it surfaced. Sets the tone for the day.", 25),
-    ("09:35 - 10:10", "CRIT Framework: Live Demonstration",
-     "Walk through CRIT (Context, Role, Interview, Task). Live demo on a real challenge from someone in the room. Short debrief: what you noticed, what to steal, where the quality jumps.", 35),
+    ("09:35 - 10:10", "CRIO Framework: Live Demonstration",
+     "Walk through CRIO (Context, Role, Interview, Output). Live demo on a real challenge from someone in the room. Short debrief: what you noticed, what to steal, where the quality jumps.", 35),
     ("10:10 - 10:20", "__break__", "", 10),
-    ("10:20 - 10:45", "Personal CRIT Test",
-     "Each participant runs a short CRIT on a personal challenge of their own. Hands on practice before the case work begins. Quick share of what surprised them.", 25),
+    ("10:20 - 10:45", "Personal CRIO Test",
+     "Each participant runs a short CRIO on a personal challenge of their own. Hands on practice before the case work begins. Quick share of what surprised them.", 25),
     ("10:45 - 10:55", "Case Introduction",
      "Hand out the case sheets. Each team receives their own case. Teams read. Quick clarifications.", 10),
     ("10:55 - 11:10", "DEFINE",
      "Team huddle without AI. What is the real challenge here, what does a good outcome look like, what are we not solving.", 15),
     ("11:10 - 11:20", "__break__", "", 10),
     ("11:20 - 12:30", "DISCOVER",
-     "Apply CRIT to the case. Build the prompt, generate first solution directions, react to what AI gives back.", 70),
+     "Apply CRIO to the case. Build the prompt, generate first solution directions, react to what AI gives back.", 70),
     ("12:30 - 13:30", "__lunch__", "", 60),
 ]
 
@@ -89,8 +89,8 @@ DAY2_AFTERNOON = [
      "Group debrief: what AI did well, where human judgment mattered most. Each participant commits to one AI use for next week. Close.", 20),
 ]
 
-DAY2_FOOTER = ("Day 2 timings refined after Day 1 delivery on 20 April. The main shifts: a shorter CRIT demo "
-               "followed by personal CRIT practice, one case per team instead of one shared case, an extra break before "
+DAY2_FOOTER = ("Day 2 timings refined after Day 1 delivery on 20 April. The main shifts: a shorter CRIO demo "
+               "followed by personal CRIO practice, one case per team instead of one shared case, an extra break before "
                "Presentations, and Lovable added as a prototyping option for teams with a digital solution.")
 
 

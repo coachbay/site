@@ -41,7 +41,7 @@ Sizes in docx-js are in half-points, so divide by 2 to get the point size.
 
 | Element | docx size | Point size |
 |---|---|---|
-| Large title (e.g. CRIT) | 96 | 48pt |
+| Large title (e.g. CRIO) | 96 | 48pt |
 | Section heading | 32 | 16pt |
 | Subheading | 28 | 14pt |
 | Pull quote / closing heading | 28 | 14pt |
@@ -167,5 +167,5 @@ new Paragraph({
 
 ## Source Files
 
-- `crit-doc.js` — the CRIT framework doc, the first document built to these standards. Use it as the template when creating new docs.
+- `crio-doc.js` — the CRIO framework doc, the first document built to these standards. Use it as the template when creating new docs.
 - `favicon.svg` — source for the robot icon. Remove the background rect before exporting to PNG for documents.

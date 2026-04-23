@@ -97,7 +97,7 @@ const doc = new Document({
                             type: "png",
                           }),
                           new TextRun({ text: " CoachBay.ai", bold: true, color: CYAN, size: 26, font: "DM Sans", position: 3 }),
-                          new TextRun({ text: "   |   CRIT Framework", color: GRAY, size: 26, font: "DM Sans", position: 3 }),
+                          new TextRun({ text: "   |   CRIO Framework", color: GRAY, size: 26, font: "DM Sans", position: 3 }),
                         ],
                         spacing: { after: 0 },
                       }),
@@ -128,7 +128,7 @@ const doc = new Document({
 
       // ── TITLE BLOCK ──
       new Paragraph({
-        children: [new TextRun({ text: "CRIT", bold: true, color: CYAN, size: 96, font: "DM Sans" })],
+        children: [new TextRun({ text: "CRIO", bold: true, color: CYAN, size: 96, font: "DM Sans" })],
         spacing: { before: 240, after: 40 },
       }),
       new Paragraph({
@@ -171,7 +171,7 @@ const doc = new Document({
                 width: { size: 9638, type: WidthType.DXA },
                 children: [
                   new Paragraph({
-                    children: [new TextRun({ text: "That is what CRIT gives you. Not just a better answer. Hope.", bold: true, color: DARK, size: 28, font: "DM Sans", italics: true })],
+                    children: [new TextRun({ text: "That is what CRIO gives you. Not just a better answer. Hope.", bold: true, color: DARK, size: 28, font: "DM Sans", italics: true })],
                   }),
                 ],
               }),
@@ -181,7 +181,7 @@ const doc = new Document({
       }),
 
       new Paragraph({
-        children: [new TextRun({ text: "The shift is simple but significant. Most people ask: how can I do this? CRIT teaches you to ask: how can AI help me do this? That one change in framing opens up a completely different kind of conversation.", color: DARK_TEXT, size: 22, font: "DM Sans" })],
+        children: [new TextRun({ text: "The shift is simple but significant. Most people ask: how can I do this? CRIO teaches you to ask: how can AI help me do this? That one change in framing opens up a completely different kind of conversation.", color: DARK_TEXT, size: 22, font: "DM Sans" })],
         spacing: { before: 200, after: 120 },
       }),
 
@@ -221,7 +221,7 @@ const doc = new Document({
       // T
       ...componentBox(
         "T",
-        "Task",
+        "Output",
         "Now tell AI exactly what you want back. Not a general ask. A specific, concrete deliverable that you could actually use.\n\nOptions with trade-offs. A decision memo. Three possible approaches with a recommendation. A first draft of the communication. A list of the assumptions you should pressure-test before you commit.\n\nThe more precise your task, the more usable the output. Vague tasks produce vague answers.",
         "Here is exactly what I want you to produce for me."
       ),
@@ -281,7 +281,7 @@ const doc = new Document({
                   }),
                   new Paragraph({
                     children: [
-                      new TextRun({ text: "Task:  ", bold: true, color: CYAN, size: 22, font: "DM Sans" }),
+                      new TextRun({ text: "Output:  ", bold: true, color: CYAN, size: 22, font: "DM Sans" }),
                       new TextRun({ text: "Once you have enough context, give me a suggested structure for the all-hands communication, the three things I must say to maintain trust, and the one thing I should avoid saying even if it feels reassuring.", color: DARK_TEXT, size: 22, font: "DM Sans" }),
                     ],
                     spacing: { after: 0 },
@@ -347,7 +347,7 @@ const doc = new Document({
                 children: [
                   new Paragraph({
                     alignment: AlignmentType.CENTER,
-                    children: [new TextRun({ text: "Want to bring CRIT into your leadership team?", bold: true, color: DARK, size: 24, font: "DM Sans" })],
+                    children: [new TextRun({ text: "Want to bring CRIO into your leadership team?", bold: true, color: DARK, size: 24, font: "DM Sans" })],
                     spacing: { after: 80 },
                   }),
                   new Paragraph({
@@ -370,6 +370,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(buffer => {
-  fs.writeFileSync('/home/claude/CRIT_CoachBay.docx', buffer);
+  fs.writeFileSync('/home/claude/CRIO_CoachBay.docx', buffer);
   console.log('Done');
 });

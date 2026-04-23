@@ -91,7 +91,7 @@ const tierData = [
     summary:
       "You have pockets of readiness but some gaps. Most likely, leadership is keen but employees are uncertain, or you have enthusiasm but lack structure.",
     action:
-      "Start with the curious. Don't try to fix every gap first. Launch a small pilot and let the results build the case. Get your early adopters their first real AI experience this week using a simple prompt framework like CRIT (Context, Role, Interview, Task).",
+      "Start with the curious. Don't try to fix every gap first. Launch a small pilot and let the results build the case. Get your early adopters their first real AI experience this week using a simple prompt framework like CRIO (Context, Role, Interview, Output).",
   },
   {
     range: [50, 74],

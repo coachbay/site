@@ -316,7 +316,7 @@ WORKSHOPS = [
         ),
         "takeaways": [
             "Strategic thinking skills: evaluate AI opportunities with judgement, not hype",
-            "Practice with the CRIT framework for challenging AI outputs",
+            "Practice with the CRIO framework for challenging AI outputs",
             "A personal AI strategy connected to their role and department goals",
             "Confidence to lead AI conversations with their teams",
         ],

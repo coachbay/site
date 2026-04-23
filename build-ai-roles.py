@@ -25,7 +25,7 @@ TW = W - ML - MR  # text width
 ROBOT_PATH = "/home/claude/coachbay-push/public/coachbay-robot-transparent.png"
 
 def header(c, title="The Five AI Roles"):
-    """Top header band — matches CRIT style."""
+    """Top header band — matches CRIO style."""
     HEADER_H = 14*mm
     # White background
     c.setFillColor(WHITE)
