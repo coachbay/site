@@ -45,7 +45,7 @@ def draw_header(c, page_num, total):
     cb_w = c.stringWidth("CoachBay", "Helvetica-Bold", 13)
     c.setFillColor(CYAN)
     c.drawString(MARGIN + ROBOT_W + 2.5 * mm + cb_w, text_y, ".ai")
-    label = f"CRIO EXAMPLES  |  SWIRE PROPERTIES  |  PAGE {page_num} OF {total}"
+    label = f"CRIO™ EXAMPLES  |  SWIRE PROPERTIES  |  PAGE {page_num} OF {total}"
     c.setFont("Helvetica", 7.5); c.setFillColor(MUTED)
     c.drawRightString(W - MARGIN, text_y, label)
 
@@ -61,14 +61,14 @@ def draw_footer(c):
 
 def draw_page_intro(c, y):
     c.setFont("Helvetica-Bold", 18); c.setFillColor(NAVY)
-    c.drawString(MARGIN, y, "CRIO Examples")
+    c.drawString(MARGIN, y, "CRIO™ Examples")
     y -= 5 * mm
     c.setFont("Helvetica", 10); c.setFillColor(CYAN_DARK)
     c.drawString(MARGIN, y, "4D Discover phase. Tuned for Swire Properties.")
     c.setStrokeColor(CYAN); c.setLineWidth(1.2)
     c.line(MARGIN, y - 2.5 * mm, MARGIN + 50 * mm, y - 2.5 * mm)
     y -= 7 * mm
-    intro = ("Three worked prompts you can copy, adjust, and paste into Copilot. Each uses the CRIO pattern: Context, Role, "
+    intro = ("Three worked prompts you can copy, adjust, and paste into Copilot. Each uses the CRIO™ pattern: Context, Role, "
              "Interview, Output. The Interview step is the one most people skip. Let the AI ask you questions before it answers.")
     c.setFont("Helvetica", 8.5); c.setFillColor(BODY)
     for line in textwrap.wrap(intro, 108):

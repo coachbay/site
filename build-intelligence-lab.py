@@ -57,8 +57,8 @@ DAY2_MORNING = [
      "Welcome, group assignments, agenda, outcomes.", 10),
     ("09:10 - 09:35", "Assessment and Debrief",
      "Individual AI readiness assessment followed by group conversation on what it surfaced. Sets the tone for the day.", 25),
-    ("09:35 - 10:10", "CRIO Framework: Live Demonstration",
-     "Walk through CRIO (Context, Role, Interview, Output). Live demo on a real challenge from someone in the room. Short debrief: what you noticed, what to steal, where the quality jumps.", 35),
+    ("09:35 - 10:10", "CRIO™ Framework: Live Demonstration",
+     "Walk through CRIO™ (Context, Role, Interview, Output). Live demo on a real challenge from someone in the room. Short debrief: what you noticed, what to steal, where the quality jumps.", 35),
     ("10:10 - 10:20", "__break__", "", 10),
     ("10:20 - 10:45", "Personal CRIO Test",
      "Each participant runs a short CRIO on a personal challenge of their own. Hands on practice before the case work begins. Quick share of what surprised them.", 25),
@@ -68,7 +68,7 @@ DAY2_MORNING = [
      "Team huddle without AI. What is the real challenge here, what does a good outcome look like, what are we not solving.", 15),
     ("11:10 - 11:20", "__break__", "", 10),
     ("11:20 - 12:30", "DISCOVER",
-     "Apply CRIO to the case. Build the prompt, generate first solution directions, react to what AI gives back.", 70),
+     "Apply CRIO™ to the case. Build the prompt, generate first solution directions, react to what AI gives back.", 70),
     ("12:30 - 13:30", "__lunch__", "", 60),
 ]
 
