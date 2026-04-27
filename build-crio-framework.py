@@ -87,12 +87,15 @@ def component(c, y, letter, name, body, plain):
 # ── PAGE 1: title + intro + all four components ────────────────────────────────
 
 def page1(c):
-    draw_header(c, "CRIO Framework")
-    y = H - HEADER_H - 12 * mm
+    draw_header(c, "CRIO™ Framework")
+    y = H - HEADER_H - 18 * mm
 
-    # Title
+    # Title with TM superscript
     c.setFont("Helvetica-Bold", 48); c.setFillColor(CYAN)
     c.drawString(MARGIN, y, "CRIO")
+    crio_w = c.stringWidth("CRIO", "Helvetica-Bold", 48)
+    c.setFont("Helvetica-Bold", 18); c.setFillColor(CYAN)
+    c.drawString(MARGIN + crio_w + 0.5 * mm, y + 8 * mm, "™")
     y -= 8 * mm
     c.setFont("Helvetica-Oblique", 10.5); c.setFillColor(NAVY)
     c.drawString(MARGIN, y, "A framework for getting real value from AI conversations")
@@ -170,8 +173,8 @@ def page1(c):
 # ── PAGE 2: worked example + shift + CTA ──────────────────────────────────────
 
 def page2(c):
-    draw_header(c, "CRIO Framework")
-    y = H - HEADER_H - 12 * mm
+    draw_header(c, "CRIO™ Framework")
+    y = H - HEADER_H - 18 * mm
 
     # Worked example
     c.setFont("Helvetica-Bold", 13); c.setFillColor(NAVY)
