@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Beyond The Prompt — AI Intelligence Library</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan: #06B6D4;
+    --cyan-dark: #0891B2;
+    --cyan-deep: #0E7490;
+    --cyan-light: #CFFAFE;
+    --cyan-pale: #ECFEFF;
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --surface2: #F4F3F0;
+    --border: rgba(0,0,0,0.1);
+    --border-soft: rgba(0,0,0,0.06);
+    --text: #1A1917;
+    --text-mid: #5C5A55;
+    --text-soft: #9A9890;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111110;
+      --surface: #1C1C1A;
+      --surface2: #252523;
+      --border: rgba(255,255,255,0.1);
+      --border-soft: rgba(255,255,255,0.06);
+      --text: #F0EFE8;
+      --text-mid: #A8A69E;
+      --text-soft: #6E6C66;
+      --cyan-light: #0A2A2E;
+      --cyan-pale: #051618;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  }
+
+  html, body { height: 100%; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
+
+  /* API KEY SCREEN */
+  #key-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 2rem;
+  }
+  .key-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2.5rem; max-width: 480px; width: 100%;
+    box-shadow: var(--shadow-md);
+  }
+  .key-card-logo { font-size: 13px; font-weight: 600; color: var(--cyan-deep); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .key-card h1 { font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+  .key-card p { font-size: 14px; color: var(--text-mid); margin-bottom: 1.5rem; line-height: 1.6; }
+  .key-input-wrap { display: flex; gap: 8px; margin-bottom: 1rem; }
+  .key-input-wrap input {
+    flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface2); color: var(--text); font-size: 14px; font-family: monospace;
+  }
+  .key-input-wrap input:focus { outline: none; border-color: var(--cyan); }
+  .btn-primary {
+    padding: 10px 20px; background: var(--cyan); color: #0A2D35; border: none;
+    border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; cursor: pointer;
+    white-space: nowrap; transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--cyan-dark); color: var(--cyan-light); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .key-note { font-size: 12px; color: var(--text-soft); }
+  .key-note a { color: var(--cyan-deep); }
+  #key-error { color: #c0392b; font-size: 13px; margin-top: 8px; display: none; }
+
+  /* MAIN APP */
+  #app { display: none; height: 100vh; display: none; flex-direction: column; }
+  #app.visible { display: flex; }
+
+  .app-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 52px; background: var(--surface);
+    border-bottom: 1px solid var(--border); flex-shrink: 0;
+  }
+  .app-header-left { display: flex; align-items: center; gap: 12px; }
+  .app-logo { font-size: 13px; font-weight: 700; color: var(--cyan-deep); letter-spacing: 0.05em; text-transform: uppercase; }
+  .app-title { font-size: 14px; color: var(--text-mid); }
+  .app-badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 100px;
+    background: var(--cyan-light); color: var(--cyan-deep); font-weight: 600;
+  }
+  .btn-ghost {
+    padding: 6px 12px; background: transparent; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 12px; color: var(--text-mid);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn-ghost:hover { background: var(--surface2); color: var(--text); }
+
+  .app-body { display: grid; grid-template-columns: 280px 1fr; flex: 1; overflow: hidden; }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; border-right: 1px solid var(--border); overflow: hidden; background: var(--surface); }
+  .sidebar-search { padding: 12px; border-bottom: 1px solid var(--border-soft); }
+  .sidebar-search input {
+    width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); background: var(--surface2);
+    color: var(--text); font-size: 13px;
+  }
+  .sidebar-search input:focus { outline: none; border-color: var(--cyan); }
+  .sidebar-filters { display: flex; gap: 6px; padding: 10px 12px; flex-wrap: wrap; border-bottom: 1px solid var(--border-soft); }
+  .filter-chip {
+    font-size: 11px; padding: 3px 8px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--text-mid);
+    cursor: pointer; background: transparent; transition: all 0.1s;
+  }
+  .filter-chip.active { background: var(--cyan); border-color: var(--cyan); color: #0A2D35; font-weight: 600; }
+  .filter-chip:hover:not(.active) { background: var(--surface2); color: var(--text); }
+  .ep-list { flex: 1; overflow-y: auto; padding: 8px; }
+  .ep-card {
+    padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer;
+    border: 1px solid transparent; margin-bottom: 3px; transition: all 0.1s;
+  }
+  .ep-card:hover { background: var(--surface2); }
+  .ep-card.active { border-color: var(--cyan); background: var(--cyan-pale); }
+  .ep-card-title { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 2px; }
+  .ep-card-guest { font-size: 11px; color: var(--text-mid); }
+  .ep-card-date { font-size: 10px; color: var(--text-soft); margin-top: 2px; }
+  .ep-card-themes { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+  .theme-pip {
+    font-size: 10px; padding: 2px 6px; border-radius: 100px;
+    background: var(--surface2); color: var(--text-mid);
+    border: 1px solid var(--border-soft);
+  }
+  .ep-card.active .theme-pip { background: rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.3); color: var(--cyan-deep); }
+
+  /* MAIN PANEL */
+  .main-panel { display: flex; flex-direction: column; overflow: hidden; background: var(--bg); }
+  .tab-bar { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .tab-btn { padding: 12px 18px; font-size: 13px; font-weight: 500; color: var(--text-mid); cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; transition: all 0.1s; }
+  .tab-btn.active { color: var(--cyan-dark); border-bottom-color: var(--cyan); }
+  .tab-btn:hover:not(.active) { color: var(--text); background: var(--surface2); }
+
+  .tab-pane { display: none; flex: 1; overflow: hidden; flex-direction: column; }
+  .tab-pane.active { display: flex; }
+
+  /* ASK TAB */
+  .ask-input-area { padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
+  .ask-label { font-size: 11px; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .ask-textarea {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface2); color: var(--text); font-size: 14px; font-family: inherit;
+    resize: none; line-height: 1.5; min-height: 72px;
+  }
+  .ask-textarea:focus { outline: none; border-color: var(--cyan); }
+  .ask-actions { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
+  .suggested-wrap { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sug-chip {
+    font-size: 11px; padding: 5px 10px; border: 1px solid var(--border);
+    border-radius: 100px; cursor: pointer; color: var(--text-mid);
+    background: var(--surface); white-space: nowrap; transition: all 0.1s;
+    max-width: 240px; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sug-chip:hover { background: var(--cyan-light); border-color: var(--cyan); color: var(--cyan-deep); }
+
+  .ask-results { flex: 1; overflow-y: auto; padding: 20px; }
+  .result-answer {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding: 20px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .result-answer h1{font-size:18px;font-weight:600;color:var(--text);margin:16px 0 8px;line-height:1.3}
+  .result-answer h2{font-size:16px;font-weight:600;color:var(--text);margin:14px 0 6px;line-height:1.3}
+  .result-answer h3{font-size:14px;font-weight:600;color:var(--cyan-deep);margin:12px 0 4px;text-transform:uppercase;letter-spacing:0.03em}
+  .result-answer p{margin:0 0 10px}.result-answer p:last-of-type{margin-bottom:0}
+  .result-answer strong{font-weight:600;color:var(--text)}
+  .result-answer em{font-style:italic;color:var(--text-mid)}
+  .result-answer ul,.result-answer ol{padding-left:20px;margin:8px 0 12px}
+  .result-answer li{margin-bottom:5px;line-height:1.6}
+  .result-answer blockquote{border-left:3px solid var(--cyan);padding:8px 14px;margin:12px 0;color:var(--text-mid);font-style:italic;background:var(--surface2);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .result-answer hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+  .result-answer h1:first-child,.result-answer h2:first-child,.result-answer h3:first-child{margin-top:0}
+  .result-footer { font-size: 11px; color: var(--text-soft); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-soft); }
+  .chat-bubble{margin-bottom:14px;padding:14px 16px;border-radius:var(--radius);font-size:14px;line-height:1.75;max-width:100%}
+  .chat-bubble.user{background:var(--cyan-light);color:var(--cyan-deep);font-weight:500;border-radius:var(--radius) var(--radius) var(--radius-sm) var(--radius);margin-left:40px}
+  .chat-bubble.assistant{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:var(--radius-sm) var(--radius) var(--radius) var(--radius)}
+  .chat-bubble.assistant h1{font-size:17px;font-weight:600;color:var(--text);margin:14px 0 6px}
+  .chat-bubble.assistant h2{font-size:15px;font-weight:600;color:var(--text);margin:12px 0 5px}
+  .chat-bubble.assistant h3{font-size:13px;font-weight:600;color:var(--cyan-deep);margin:10px 0 4px;text-transform:uppercase;letter-spacing:0.03em}
+  .chat-bubble.assistant h1:first-child,.chat-bubble.assistant h2:first-child,.chat-bubble.assistant h3:first-child{margin-top:0}
+  .chat-bubble.assistant p{margin:0 0 8px}.chat-bubble.assistant p:last-of-type{margin-bottom:0}
+  .chat-bubble.assistant strong{font-weight:600;color:var(--text)}
+  .chat-bubble.assistant ul,.chat-bubble.assistant ol{padding-left:20px;margin:6px 0 10px}
+  .chat-bubble.assistant li{margin-bottom:4px;line-height:1.6}
+  .chat-bubble.assistant blockquote{border-left:3px solid var(--cyan);padding:6px 12px;margin:10px 0;color:var(--text-mid);font-style:italic;background:var(--surface2);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .chat-bubble.assistant hr{border:none;border-top:1px solid var(--border);margin:12px 0}
+  .loading-bubble{padding:12px 16px}
+  .copy-btn{margin-top:10px;padding:5px 12px;font-size:11px;font-weight:500;color:var(--text-soft);background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;transition:all 0.15s;display:inline-flex;align-items:center;gap:5px}
+  .copy-btn:hover{background:var(--cyan-light);color:var(--cyan-deep);border-color:var(--cyan)}
+  .copy-btn.copied{background:var(--cyan-light);color:var(--cyan-deep);border-color:var(--cyan)}
+  .history-item{padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:8px;cursor:pointer;transition:all 0.1s;background:var(--surface)}
+  .history-item:hover{border-color:var(--cyan);background:var(--cyan-pale)}
+  .history-item-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .history-item-meta{font-size:11px;color:var(--text-soft);display:flex;justify-content:space-between;align-items:center}
+  .history-item-del{font-size:11px;color:var(--text-soft);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:3px}
+  .history-item-del:hover{color:#c0392b;background:rgba(192,57,43,0.1)}
+  .ask-empty { color: var(--text-soft); font-size: 14px; padding: 32px 20px; line-height: 1.7; }
+  .loading-dots { display: flex; align-items: center; gap: 8px; padding: 24px 20px; color: var(--text-mid); font-size: 13px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); animation: pulse 1.2s ease-in-out infinite; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%,80%,100% { opacity: 0.25; } 40% { opacity: 1; } }
+
+  /* DETAIL TAB */
+  .detail-pane { flex: 1; overflow-y: auto; padding: 20px; }
+  .detail-empty { color: var(--text-soft); font-size: 14px; padding: 24px 0; }
+  .detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+  .detail-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+  .detail-guest { font-size: 13px; color: var(--text-mid); margin-bottom: 12px; }
+  .detail-themes { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  .detail-theme { font-size: 11px; padding: 3px 10px; border-radius: 100px; background: var(--cyan-light); color: var(--cyan-deep); font-weight: 500; }
+  .detail-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-soft); }
+  .detail-section-label { font-size: 11px; font-weight: 700; color: var(--cyan-deep); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .detail-section-text { font-size: 13px; color: var(--text); line-height: 1.7; white-space: pre-line; }
+  .transcript-link {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 16px;
+    font-size: 12px; color: var(--cyan-deep); text-decoration: none; font-weight: 500;
+  }
+  .transcript-link:hover { color: var(--cyan-dark); }
+
+  /* SETTINGS MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.open{display:flex}
+  .modal-card{background:var(--surface);border-radius:var(--radius);padding:28px;max-width:520px;width:100%;box-shadow:var(--shadow-md);max-height:90vh;overflow-y:auto}
+  .modal-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px}
+  .modal-sub{font-size:13px;color:var(--text-mid);margin-bottom:22px;line-height:1.5}
+  .field-group{margin-bottom:16px}
+  .field-label{font-size:11px;font-weight:700;color:var(--cyan-deep);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;display:block}
+  .field-input{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);color:var(--text);font-size:14px;font-family:inherit}
+  .field-input:focus{outline:none;border-color:var(--cyan)}
+  .field-textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);color:var(--text);font-size:14px;font-family:inherit;resize:vertical;min-height:72px;line-height:1.5}
+  .field-textarea:focus{outline:none;border-color:var(--cyan)}
+
+  .upload-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:12px;font-weight:500;color:var(--cyan-deep);background:var(--cyan-light);border:1px dashed var(--cyan);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.15s;font-family:inherit;margin-top:8px}
+  .upload-btn:hover{background:var(--cyan);color:#0A2D35}
+  .upload-status{font-size:11px;color:var(--text-soft);margin-top:6px;min-height:16px}
+  .upload-status.success{color:var(--cyan-deep)}
+  .upload-status.error{color:#c0392b}
+  #s-file-input{display:none}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:22px}
+  .profile-banner{background:var(--cyan-light);border:1px solid var(--cyan);border-radius:var(--radius-sm);padding:10px 14px;font-size:12px;color:var(--cyan-deep);margin-bottom:0;display:none}
+  .profile-banner.visible{display:block}
+</style>
+</head>
+<body>
+
+<!-- API KEY SETUP SCREEN -->
+<div id="key-screen">
+  <div class="key-card">
+    <div class="key-card-logo">Beyond The Prompt</div>
+    <h1>AI Intelligence Library</h1>
+    <p>A searchable, conversational library of every Beyond The Prompt podcast episode. Personalised to your role and business. Enter your Anthropic API key once to get started — it is saved in your browser only, never shared.</p>
+    <div class="key-input-wrap">
+      <input type="password" id="api-key-input" placeholder="sk-ant-api03-..." autocomplete="off">
+      <button class="btn-primary" onclick="saveKey()">Start →</button>
+    </div>
+    <p class="key-note">Free to get at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> — create an account, go to API Keys, click + Create key. Cost is a few cents per session. Stored in your browser only.</p>
+    <p id="key-error">Please enter a valid Anthropic API key.</p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="app-header">
+    <div class="app-header-left">
+      <span class="app-logo">BTP</span>
+      <span class="app-title">Beyond The Prompt — AI Intelligence Library</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="app-badge" id="ep-count-badge">49 episodes</span>
+      <button class="btn-ghost" onclick="openSettings()">⚙ My profile</button>
+      <button class="btn-ghost" onclick="resetKey()">Change API key</button>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-search">
+        <input type="text" id="ep-search" placeholder="Search episodes, guests…" oninput="filterEpisodes()">
+      </div>
+      <div class="sidebar-filters" id="theme-filters"></div>
+      <div class="ep-list" id="ep-list"></div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="main-panel">
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tab-btn-ask" onclick="switchTab('ask', this)">Ask the library</button>
+        <button class="tab-btn" id="tab-btn-detail" onclick="switchTab('detail', this)">Episode detail</button>
+        <button class="tab-btn" id="tab-btn-history" onclick="switchTab('history', this)">History</button>
+        <div style="flex:1"></div>
+        <button onclick="startNewConversation()" style="margin:6px 10px;padding:5px 14px;background:var(--cyan);color:#0A2D35;border:none;border-radius:var(--radius-sm);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;" title="Start fresh">+ New conversation</button>
+      </div>
+
+      <div class="tab-pane active" id="tab-ask">
+        <div class="ask-input-area">
+          <div id="profile-banner" class="profile-banner"></div>
+          <div class="ask-label" style="margin-top:10px">Your question</div>
+          <textarea class="ask-textarea" id="ask-input" placeholder="Ask anything across all episodes…&#10;e.g. What do leaders say about AI adoption challenges?"></textarea>
+          <div class="ask-actions">
+            <div class="suggested-wrap" id="suggested-wrap"></div>
+            <button class="btn-primary" id="ask-btn" onclick="runQuery()">Ask →</button>
+          </div>
+        </div>
+        <div class="ask-results" id="ask-results">
+          <p class="ask-empty">Select a suggested question or type your own. I will synthesize insights across all episodes and cite my sources.</p>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-detail">
+        <div class="detail-pane" id="detail-pane">
+          <p class="detail-empty">Click any episode in the sidebar to see its full details here.</p>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab-history">
+        <div class="detail-pane" id="history-pane">
+          <p class="detail-empty" id="history-empty">No saved conversations yet. Your conversations will appear here after you start chatting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal-card">
+    <div class="modal-title">Your profile</div>
+    <div class="modal-sub">The more context you give, the more relevant your answers will be. Fill in the fields below — or upload a document that describes you, your company, and how you work. The library will read it and use it to personalise every answer.</div>
+
+    <!-- UPLOAD SECTION -->
+    <div style="background:var(--cyan-pale);border:1px dashed var(--cyan);border-radius:var(--radius-sm);padding:16px;margin-bottom:20px;text-align:center">
+      <div style="font-size:13px;font-weight:600;color:var(--cyan-deep);margin-bottom:4px">Upload a document</div>
+      <div style="font-size:12px;color:var(--text-mid);margin-bottom:12px;line-height:1.5">Upload any .md or .txt file — a company brief, a framework document, a personal bio, meeting notes. The full content will be used as your context.</div>
+      <input type="file" id="s-file-input" accept=".md,.txt" onchange="handleFileUpload(this)" style="display:none">
+      <label for="s-file-input" class="upload-btn" style="display:inline-flex;margin:0 auto">&#128196; Choose a file (.md or .txt)</label>
+      <div class="upload-status" id="upload-status" style="margin-top:10px"></div>
+    </div>
+
+    <div style="text-align:center;font-size:15px;font-weight:700;color:var(--text);margin:4px 0 18px;letter-spacing:0.01em">— or fill in the fields below —</div>
+
+    <div class="field-group">
+      <label class="field-label">Your name</label>
+      <input type="text" class="field-input" id="s-name" placeholder="e.g. Sarah Chen">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your role</label>
+      <input type="text" class="field-input" id="s-role" placeholder="e.g. Head of Learning & Development">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Company and what it does</label>
+      <textarea class="field-textarea" id="s-company" placeholder="e.g. Jardine Matheson — a Hong Kong-based conglomerate operating in retail, engineering, and property across Asia"></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">How you use AI at work</label>
+      <textarea class="field-textarea" id="s-ai-use" placeholder="e.g. I use AI for writing, research, and starting to roll out Copilot across the HR team. We are early stage."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Frameworks, methodologies or additional context</label>
+      <textarea class="field-textarea" id="s-frameworks" placeholder="e.g. We use OKRs for goal setting, agile sprints in product, and GROW model in coaching." style="min-height:90px"></textarea>
+      <div style="font-size:11px;color:var(--text-soft);margin-top:4px">This field is also populated automatically when you upload a document above.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeSettings()">Cancel</button>
+      <button class="btn-primary" onclick="saveSettings()">Save profile</button>
+    </div>
+  </div>
+</div>
+<script>
+const EPISODES = [
+  {id:1,title:"Proof of Craft: What It Takes to Stand Out When Everything Looks Good",guest:"Laura Jones",role:"CMO, Instacart",date:"Apr 29 2026",themes:["Leadership","Innovation","Culture Change"],summary:"When AI gets everyone to pretty good, the bar for originality rises. Brand becomes trust when products converge. The best ideas come from human plus AI plus human collaboration, not AI alone. Real insight still requires observing real behavior.",nuggets:"1. Mediocre is easier than ever — raises the bar for originality\n2. Only do what only you can do\n3. Human + bot + human beats AI alone\n4. Need-finding cannot be shortcut\n5. Brand is the answer when products are identical",coachbay:"Relevant to coaching leaders on AI adoption and output quality. Applies to CRIO framing around creative output.",transcript:"https://podcast.beyondtheprompt.ai/episodes/proof-of-craft-what-it-takes-to-stand-out-when-everything-looks-good-with-laura-jones-cmo-of-instacart/transcript"},
+  {id:2,title:"Nobody Is Getting New Manager Training for Their AI Team",guest:"Dan Klein",role:"UC Berkeley / CTO, Scaled Cognition",date:"Apr 15 2026",themes:["Leadership","Adoption","Future of Work","Productivity"],summary:"AI generates answers based on language patterns, not verified knowledge. The jagged frontier means AI performs brilliantly in some areas and poorly in others, but fluent responses hide those limits. Working with AI effectively is itself a skill most people are not trained for.",nuggets:"1. AI is designed to sound right, not to know it's right\n2. You have to learn where AI works and where it doesn't\n3. Working with AI shifts you from creator to editor\n4. Most people are using AI without knowing how to manage it\n5. Delegation, verification, and judgment are the new essential skills",coachbay:"Core to AI coaching. The enterprise literacy gap is exactly the space CoachBay operates in.",transcript:"https://podcast.beyondtheprompt.ai/episodes/nobody-is-getting-new-manager-training-for-their-ai-team-with-dan-klein-uc-berkeley/transcript"},
+  {id:3,title:"AI-Native or Not: The Defining Choice for Companies Right Now",guest:"Melissa Cheals",role:"CEO, Smartly",date:"Apr 1 2026",themes:["Leadership","Strategy","Culture Change","Adoption"],summary:"Companies face a fundamental choice: become AI-native or layer AI onto existing systems. AI exposes silos and bottlenecks. Leaders must engage with AI themselves to challenge assumptions. AI shifts thinking from scarcity to abundance.",nuggets:"1. Becoming AI-native is a defining strategic decision\n2. AI shifts us from scarcity to abundance thinking\n3. AI is a leadership amplifier\n4. Leaders cannot delegate AI\n5. Cross-functional collaboration is critical as AI exposes silos",coachbay:"The AI-native decision framework is directly usable in executive coaching. Echoes CoachBay core message.",transcript:"https://podcast.beyondtheprompt.ai/episodes/ai-native-or-not-the-defining-choice-for-companies-right-now-with-melissa-cheals-ceo-of-smartly/transcript"},
+  {id:4,title:"Why Most Companies Are Not Seeing ROI On AI Yet",guest:"Greg Shove",role:"CEO, Section",date:"Mar 18 2026",themes:["Adoption","Leadership","Productivity","Strategy"],summary:"AI ROI is leaking to employees, not the organization. Around 10-15% of employees drive most AI adoption. Capability boundaries are breaking as individuals take on cross-functional work. Leaders must decide what to do with the time AI creates.",nuggets:"1. AI's ROI is leaking to employees, not the organization\n2. A small superuser group drives most of the value\n3. AI is breaking capability boundaries across job roles\n4. Most companies lack a clear point of view on AI\n5. Leaders must define new higher-value work or the gains disappear",coachbay:"Central to CoachBay positioning. Superuser concept and ROI leakage highly relevant to Sprint design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/greg-shove-on-why-most-companies-are-not-seeing-roi-on-ai-yet/transcript"},
+  {id:5,title:"How to Subtract: The Most Underrated Skill of the AI Era",guest:"Leidy Klotz",role:"Academic and Author",date:"Mar 4 2026",themes:["Strategy","Leadership","Productivity","Innovation"],summary:"Humans default to adding rather than removing. AI amplifies this bias by making creation frictionless. Organizations risk indigestion from too many tools and projects. Stop-doing lists and default kill dates are practical countermeasures.",nuggets:"1. We default to adding, not subtracting\n2. AI amplifies additive bias\n3. More organizations die from indigestion than starvation\n4. Architecture beats willpower\n5. Protect what matters before adding more",coachbay:"Powerful reframe for clients overwhelmed by tools. Directly relevant for Sprint design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-to-subtract-the-most-underrated-skill-of-the-ai-era-with-leidy-klotz/transcript"},
+  {id:6,title:"From Roadmaps to R&D: How AI Is Changing Product Development",guest:"Richard White",role:"Founder, Fathom AI",date:"Feb 18 2026",themes:["Innovation","Strategy","Future of Work","Productivity"],summary:"AI has made effort and impact harder to predict, shifting product development from roadmap execution to experimentation. The Jenga model tests different models and use cases to find where resistance is lowest.",nuggets:"1. Estimating effort and impact is becoming harder\n2. Product development increasingly resembles R&D\n3. Separate exploratory AI work from core engineering\n4. Rapid model updates create operational pressure\n5. Qualitative judgment plays a larger role as output gets cheaper",coachbay:"Jenga model and experimentation mindset map directly to Sprint design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/from-roadmaps-to-rd-how-ai-is-changing-product-development-with-richard-white-founder-of-fathom-ai/transcript"},
+  {id:7,title:"Here's How to Know If You're Getting the Most Out of AI",guest:"Bryan McCann",role:"CTO, You.com",date:"Feb 4 2026",themes:["Productivity","Leadership","Future of Work","Adoption"],summary:"Productivity shifts from doing the work yourself to designing plans that machines can run continuously. Try AI first, then treat what it cannot do as a research problem. Organizations may increasingly resemble neural networks.",nuggets:"1. Keeping the GPUs full is the new measure of productivity\n2. Prompting is likely a temporary skill\n3. Try AI first, then learn from what it cannot do\n4. Leadership is about scaling others, not yourself\n5. Organizations may benefit from neural-network-like design",coachbay:"The shift from doing to designing is a core coaching reframe. Applies directly to CRIO.",transcript:"https://podcast.beyondtheprompt.ai/episodes/heres-how-to-know-if-youre-getting-the-most-out-of-ai-with-bryan-mccann-cto-of-youcom/transcript"},
+  {id:8,title:"Building An Enterprise AI Innovation Lab: A Master Class",guest:"Humza Teherany",role:"Chief Strategy Officer, MLSE",date:"Jan 21 2026",themes:["Leadership","Innovation","Culture Change","Adoption"],summary:"Humza rebuilt his technical fluency during a vacation and used it to shift MLSE's entire approach. Build-in-a-day model lets more people shape the future. Empower superusers first rather than training everyone at once.",nuggets:"1. Leaders should not delegate the AI moment\n2. Technical fluency builds credibility and better decisions\n3. Speed enables inclusion: moving fast changes who gets to participate\n4. Empower your superusers first\n5. Idea execution is the new differentiator",coachbay:"One of the strongest episodes for CoachBay positioning. Superuser strategy maps directly to Sprint.",transcript:"https://podcast.beyondtheprompt.ai/episodes/building-an-enterprise-ai-innovation-lab-a-master-class-with-humza-teherany-chief-strategy-officer-of-maple-leaf-sports-and-entertainment/transcript"},
+  {id:9,title:"The Future of AI with the Man Who Put the T in GPT",guest:"Illia Polosukhin",role:"Co-author, Attention Is All You Need",date:"Dec 8 2025",themes:["Future of Work","Strategy","Innovation"],summary:"Illia co-authored the transformer paper underpinning modern AI. He explores how blockchain can create trust and provenance, and why personal AI ownership will matter as autonomous agents act on our behalf.",nuggets:"1. The transformer breakthrough was years in the making before markets were ready\n2. Trust and provenance are the unsolved problems of the AI era\n3. Personal AI ownership will matter as agents act autonomously\n4. Large-scale manipulation is a real infrastructure risk\n5. Breakthroughs require the right timing, not just the right technology",coachbay:"Useful background for leadership conversations about the future of AI and trust infrastructure.",transcript:"https://podcast.beyondtheprompt.ai/episodes/the-future-of-ai-with-illia-polosukhin-the-man-who-put-the-t-in-gpt/transcript"},
+  {id:10,title:"Kevin Kelly's Mind Bending Predictions of Our AI Future",guest:"Kevin Kelly",role:"Author and Co-founder of Wired",date:"Nov 1 2025",themes:["Future of Work","Innovation","Strategy"],summary:"Kevin Kelly offers a long-view perspective on AI, drawing on decades of observing technology waves. He explores what AI means for creativity, expertise, and the human advantage.",nuggets:"1. Every technology wave creates more jobs than it destroys, eventually\n2. The human advantage shifts with each wave\n3. Expertise becomes more valuable when AI handles the routine\n4. The best AI outcomes are always human-AI collaboration\n5. Think in decades, not quarters",coachbay:"Useful for executive coaching conversations about fear and opportunity. Long-view framing.",transcript:"https://podcast.beyondtheprompt.ai/episodes/kevin-kellys-mind-bending-predictions-of-our-fascinating-ai-future/transcript"},
+  {id:11,title:"Eric Porres Is Rewiring Logitech's Org for the AI Age",guest:"Eric Porres",role:"Chief Marketing Officer, Logitech",date:"Oct 15 2025",themes:["Adoption","Culture Change","Leadership","Productivity"],summary:"Eric trained 800 people himself before scaling AI adoption at Logitech. He uses a simple heuristic: count the interactions in your AI conversation. If only one person is talking, it is not a conversation.",nuggets:"1. Use AI to improve itself: a powerful onboarding technique\n2. Count interactions in your conversation as a quality signal\n3. Most people treat AI as a prompt, not a conversation — 20 years of Google conditioning\n4. Training at scale requires leaders going first\n5. Rewiring the org requires rewiring behavior, not just tools",coachbay:"Extremely relevant to CoachBay Sprint facilitation. The conversation vs prompt distinction maps directly to CRIO.",transcript:"https://podcast.beyondtheprompt.ai/episodes/eric-porres-trained-800-people-himself-now-hes-rewiring-logitechs-brain-for-the-ai-age/transcript"},
+  {id:12,title:"How Do You Strategize in the AI Era?",guest:"Martin Reeves",role:"Chairman, BCG Henderson Institute",date:"Sep 30 2025",themes:["Strategy","Leadership","Future of Work","Innovation"],summary:"Strategy has always required two jobs: playing the current game effectively while inventing the next game. AI compresses timescales. Leaders must do both at once.",nuggets:"1. There are always two jobs in business: play the current game and invent the next one\n2. AI is compressing strategic timescales\n3. The two jobs are contradictory but both essential\n4. You need the funds from the current game to buy the future\n5. Nothing lasts forever in business",coachbay:"Two-game strategy concept is directly usable in leadership coaching for AI adoption decisions.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-do-you-strategize-in-the-ai-era-with-martin-reeves-head-of-bcgsthinktank/transcript"},
+  {id:13,title:"The AI Playbook Every Leader Needs",guest:"Adam Brotman & Andy Sack",role:"Co-founders of Forum3",date:"Sep 15 2025",themes:["Leadership","Strategy","Adoption","Future of Work"],summary:"Companies not engaging with AI are already behind. Being AI-first means truly augmenting every interaction. Decision velocity in paired human-AI relationships can fundamentally transform organizations.",nuggets:"1. If you are not engaging with AI your business is behind\n2. AI-first means being augmented in every decision\n3. Decision velocity in human-AI pairs creates a totally different organization\n4. Reducing the space between insight and output is AI's core value\n5. Massive resistance and chaos are coming while the technology advances",coachbay:"AI-first playbook concept highly relevant to CoachBay executive coaching and Sprint facilitation.",transcript:"https://podcast.beyondtheprompt.ai/episodes/the-ai-playbook-every-leader-needs-a-chat-with-adam-brotman-andy-sack/transcript"},
+  {id:14,title:"What Everybody's Missing About AI in Business",guest:"Ethan Mollick",role:"Wharton Professor",date:"Aug 1 2025",themes:["Adoption","Leadership","Future of Work","Strategy"],summary:"Organizations are not grasping the full implications of AI. He draws lessons from the social media mistake of assuming things would be fine. Leaders need to actively engage, not observe from a distance.",nuggets:"1. Learn the mistakes from social media before AI becomes deeply integrated\n2. Leaders must actively engage, not observe\n3. AI changes what is possible at every level\n4. The implications run deeper than most organizations realize\n5. Assumptions of safety are dangerous",coachbay:"His framing of the social media lesson is highly applicable to change management conversations in CoachBay coaching.",transcript:"https://podcast.beyondtheprompt.ai/episodes/practical-strategies-for-leveraging-ai-in-your-business-wharton-professor-ethan-mollick/transcript"},
+  {id:15,title:"Creatives Should Stop Being Afraid of AI",guest:"Jenny Nicholson",role:"Advertising Creative and AI Educator",date:"Jul 1 2025",themes:["Innovation","Adoption","Culture Change"],summary:"Jenny completed 31 AI projects in 31 days to explore AI-human creative collaboration. She teaches large language models what it means to be human and teaches humans how to work with AI so together they are greater than either alone.",nuggets:"1. AI and humans together are greater than either alone\n2. Show people how to start and let them find their own path\n3. Make your thinking visible\n4. Intrinsic intelligence is what makes AI work for you\n5. Fear of AI in creative work is the real barrier",coachbay:"The show-rather-than-tell approach maps directly to CoachBay facilitation philosophy.",transcript:"https://podcast.beyondtheprompt.ai/episodes/beyond-boundaries-jenny-nicholson-on-ai-and-creativity/transcript"},
+  {id:16,title:"Founder of the Future: AI-Powered Sustainable Fashion",guest:"Diarra Bousso",role:"Founder, Diarrablu",date:"Jun 1 2025",themes:["Innovation","Adoption","Productivity"],summary:"Diarra uses AI across her entire business: from hiring to operations to managing warehouse disputes. She shows her team rather than telling them and uses AI to synthesize decisions from every meeting.",nuggets:"1. Show people how to start, then let them find their own approach\n2. Dump all meeting notes into AI to synthesize decisions\n3. Make your thinking visible as a leader\n4. AI enables transparency in hiring and performance management\n5. Once people see it work, adoption follows naturally",coachbay:"Show-do-not-tell approach aligns with CoachBay facilitation philosophy. Practical examples for Sprint workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/founder-of-the-future-diarra-bousso-on-ai-powered-sustainable-fashion/transcript"},
+  {id:17,title:"Redefining User Experience in the Age of AI",guest:"David Okuniev",role:"Co-founder, Typeform",date:"May 1 2025",themes:["Innovation","Strategy","Future of Work"],summary:"David built Typeform on the belief that how you ask questions changes the answers you get. AI now enables conversational interfaces that replace traditional forms.",nuggets:"1. How you ask changes what you get\n2. Conversational interfaces replace forms in the AI era\n3. Many organizations ask what AI can do rather than what experience they want to create\n4. AI forms and video bring personalization at scale\n5. Start with the experience, then work backwards to the technology",coachbay:"Experience-first framing is useful in Sprint facilitation. Question design philosophy aligns with CRIO.",transcript:"https://podcast.beyondtheprompt.ai/episodes/david-okuniev-typeform-redefining-user-experience-in-the-age-of-ai/transcript"},
+  {id:18,title:"Use AI to Make You and Your Business Better",guest:"Dan Shipper",role:"CEO, Every",date:"Apr 1 2025",themes:["Productivity","Innovation","Adoption"],summary:"Dan explores how AI can help individuals think better, write better, and make better decisions. The real value is in augmenting cognition, not just automating tasks.",nuggets:"1. AI is most powerful as a thinking partner, not just a task executor\n2. Use AI to externalise and improve your own thinking\n3. The best AI workflows are personal and tailored\n4. Writing with AI changes how you think, not just what you produce\n5. Augmenting cognition is the real frontier",coachbay:"Focus on AI as a thinking partner is directly relevant to how CoachBay positions AI coaching.",transcript:"https://podcast.beyondtheprompt.ai/episodes/dan-shipper-every-use-ai-to-make-you-and-your-business-better/transcript"},
+  {id:19,title:"Why AI Gets People Wrong: The Real Source of Insight",guest:"Mikkel B. Rasmussen",role:"Founder, Human Activity Laboratory",date:"Jan 6 2026",themes:["Adoption","Innovation","Strategy"],summary:"Mikkel, an applied anthropologist who has worked with LEGO, explains that real insight begins with being wrong — the gap between how we think the world works and how it actually does. Surprise is the clearest signal that something meaningful has been found. AI can accelerate experimentation but cannot replace embodied human understanding.",nuggets:"1. Insight starts with being wrong — it is the gap between assumption and reality\n2. Surprise is the clearest signal you have found something real\n3. The pain of not knowing is a necessary stage, not failure\n4. AI can accelerate experimentation and outperform humans in some interview contexts\n5. Better insights begin with better questions, not better data",coachbay:"Powerful framing for CoachBay coaching: leaders need discomfort and surprise to get real insight. Applies to Sprint discovery phase design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/why-ai-gets-people-wrong-the-real-source-of-insight-with-anthropologist-mikkel-b-rasmussen/transcript"},
+  {id:20,title:"How the World's Leading AI-First Fashion House Flips the Cash Flow Equation",guest:"Diarra Bousso",role:"Founder, Diarrablu",date:"Dec 24 2025",themes:["Innovation","Adoption","Productivity"],summary:"Diarra returns to explain how she now sells AI-generated products before they exist, cutting out waste and wait times entirely. AI has fundamentally restructured her cash flow model using scientific rigor to test marketing ideas and create on-demand collections.",nuggets:"1. Sell products before they exist using AI-generated visuals\n2. Scientific rigor in testing marketing ideas reduces waste\n3. On-demand collections eliminate inventory risk\n4. AI restructures cash flow, not just operations\n5. Life is an experiment — test everything",coachbay:"Powerful case study for Sprint workshops: AI-first business model transformation. Shows what full adoption looks like.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-the-worlds-leading-ai-first-fashion-house-flips-the-cash-flow-equation-with-diarra-bousso/transcript"},
+  {id:21,title:"AI's Next Frontier: World Models Explained",guest:"Christian Keller",role:"AI Researcher",date:"Nov 26 2025",themes:["Future of Work","Innovation","Strategy"],summary:"Christian explains how world models are shaping the next stage of generative AI. Video adds a sense of continuity, change, and cause-and-effect that text alone cannot provide. Multimodal AI opens up new possibilities beyond text generation.",nuggets:"1. World models give AI a sense of continuity and causality\n2. Video enables AI to understand change over time\n3. Multimodal AI moves beyond text into richer real-world understanding\n4. Model fidelity and hallucinations are the key practical challenges\n5. AI is already reshaping workflows in ways most people do not notice",coachbay:"Useful background for leaders who want to understand where AI is heading beyond chatbots. Good context for long-term AI strategy conversations.",transcript:"https://podcast.beyondtheprompt.ai/episodes/ais-next-frontier-world-models-explained-by-christiankeller/transcript"},
+  {id:22,title:"IBM's Client Zero: How 150,000 Employees Became AI Champions",guest:"Mohamad Ali",role:"Head of IBM Consulting",date:"Oct 28 2025",themes:["Leadership","Adoption","Culture Change","Strategy"],summary:"Mohamad Ali led IBM's transformation by making IBM its own Client Zero — testing every AI solution internally before market. Massive hackathons involving 150,000 employees turned curiosity into capability and drove $3.5 billion in cost savings.",nuggets:"1. Make your own company the first client for every AI solution\n2. Hackathons at scale (150,000 people) turn curiosity into capability\n3. Leadership alignment is non-negotiable before broad rollout\n4. Process redesign must accompany AI deployment — tools alone do not transform\n5. $3.5B in savings came from adoption, not just technology",coachbay:"One of the most relevant enterprise AI transformation case studies in the library. Client Zero concept and hackathon approach are directly applicable to Sprint design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/ibm-client-zero-mohamad-ali/transcript"},
+  {id:23,title:"The Human Side of AI Transformation",guest:"Tim Creasey & Paul Gonzalez",role:"Leaders at Prosci",date:"Nov 12 2025",themes:["Culture Change","Adoption","Leadership"],summary:"Tim and Paul share what research says about why most AI rollouts stall at the human level. The technical side of AI is rarely the problem — it is the human adoption side that determines success or failure.",nuggets:"1. Technology is rarely the barrier — human adoption is\n2. Change management must be designed alongside AI deployment, not added later\n3. Resistance is information, not opposition\n4. Leaders who model adoption get faster team uptake\n5. Most organizations are not moving as fast as the technology is",coachbay:"Directly validates CoachBay's positioning: human behaviour and adoption is the real work. Strong reference for coaching conversations with HR and transformation leaders.",transcript:"https://podcast.beyondtheprompt.ai/episodes/tim-creasey-paul-gonzalez-prosci-human-side-of-ai/transcript"},
+  {id:24,title:"Inside Zapier's Code Red: How CEO Wade Foster Hit Pause to Reinvent for AI",guest:"Wade Foster",role:"CEO, Zapier",date:"Aug 18 2025",themes:["Leadership","Culture Change","Adoption","Innovation"],summary:"When Zapier declared a company-wide code red on AI, Wade Foster pushed the organization to experiment more, act faster, and rethink established ways of working. Changing culture proved harder than shipping new features.",nuggets:"1. A code red can be the catalyst that forces real change\n2. Culture is harder to change than technology\n3. Reward curiosity and share internal examples to drive adoption\n4. Duplication of efforts across teams can uncover better solutions faster\n5. Leadership means balancing urgency with care for people doing the work",coachbay:"The code red concept is a powerful case study for enterprise coaching. Culture-before-tools message is central to CoachBay's approach.",transcript:"https://podcast.beyondtheprompt.ai/episodes/inside-zapiers-code-red-how-ceo-wade-foster-hit-pause-to-reinvent-for-ai/transcript"},
+  {id:25,title:"Can AI Replace Me? Evan Ratliff on Letting an AI Clone Live His Life",guest:"Evan Ratliff",role:"Journalist",date:"Aug 4 2025",themes:["Future of Work","Innovation"],summary:"Evan Ratliff spent six months building an AI version of himself that could answer phone calls, conduct interviews, and fool friends and family. He explores what this means for identity, creativity, and the future of work.",nuggets:"1. AI cloning is not theoretical — it can be built in months by a journalist\n2. The line between person and AI representation becomes genuinely blurry\n3. Voice and identity are more replicable than most people assume\n4. Creative and journalistic work is more vulnerable than expected\n5. Experimenting with your own AI replica reveals assumptions about authenticity",coachbay:"Useful for coaching conversations about AI and identity, creativity, and what is truly irreplaceable about human judgment. Good provocation for leadership workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/can-ai-replace-me-evan-ratliff-on-letting-an-ai-clone-live-his-life/transcript"},
+  {id:26,title:"The AI Implementation Audit: What Section's CEO Learned in 18 Months",guest:"Greg Shove",role:"CEO, Section",date:"Jun 23 2025",themes:["Adoption","Leadership","Strategy"],summary:"Greg Shove returns for an honest audit of 18 months of AI implementation at Section. He examines the gap between early enthusiasm and sustained organizational change, and what most companies are still getting wrong.",nuggets:"1. 18 months in, most companies are still in early adoption phase\n2. The gap between individual and organizational AI value has not closed\n3. Leaders who set AI direction from the top see faster uptake\n4. Measurement of AI impact is still largely informal in most orgs\n5. The real test is whether AI changes outputs, not just effort",coachbay:"Excellent follow-up to Greg's first episode. The audit framing is useful for CoachBay coaching engagements measuring AI adoption maturity.",transcript:"https://podcast.beyondtheprompt.ai/episodes/the-ai-implementation-audit-what-sections-ceo-learned-in-18-months/transcript"},
+  {id:27,title:"Rebuilding from Inside: How John Waldmann Led an AI Shift Without Breaking His Team",guest:"John Waldmann",role:"CEO, Homebase",date:"Jun 10 2025",themes:["Leadership","Culture Change","Adoption","Innovation"],summary:"John Waldmann blew up Homebase's roadmap and rebuilt around AI from top to bottom. He shifted from 20-page PRDs to lightning-fast demos, took back product leadership, and pushed teams into their AI moment. He walks through the leadership reckoning, cultural resistance, and practical playbook.",nuggets:"1. You cannot wait for buy-in — leadership means pushing the shift\n2. The move to prototype speed changes how ideas get prioritized\n3. Pushing teams into their 'oh shit' moment with AI is a leadership act\n4. Cultural resistance must be named, not avoided\n5. Small businesses are where AI adoption will have its biggest visible impact",coachbay:"One of the strongest leadership and change management episodes. John's playbook is directly applicable to coaching CEOs navigating AI transformation.",transcript:"https://podcast.beyondtheprompt.ai/episodes/rebuilding-from-inside-how-john-waldmann-led-an-ai-shift-without-breaking-his-team/transcript"},
+  {id:28,title:"Why HR, Not CTOs, Will Lead AI Augmentation",guest:"Joshua Wöhle",role:"CEO, Mindstone",date:"May 26 2025",themes:["Adoption","Leadership","Future of Work","Productivity"],summary:"Joshua Wöhle argues that AI augmentation is fundamentally a human development challenge, not a technical one — which means HR should lead it, not IT. He shares personal frameworks for spotting high-leverage automation opportunities.",nuggets:"1. HR, not the CTO, should lead AI augmentation in most organizations\n2. Spotting high-leverage automation requires deliberate weekly rituals\n3. Iteration is more important than speed in unlocking AI's value\n4. Non-technical teams can build custom tools without code\n5. The shift from SaaS to tailored internal tools is underway",coachbay:"Highly relevant to CoachBay's positioning: the human adoption angle is validated. The HR-as-AI-lead argument is a useful challenge for corporate coaching conversations.",transcript:"https://podcast.beyondtheprompt.ai/episodes/ai-isnt-its-job-anymore-joshua-wohle-on-how-hr-will-lead-ai-augmentation/transcript"},
+  {id:29,title:"What AI Can't Replace: CEO of The Atlantic on Journalism and Intelligence",guest:"Nicholas Thompson",role:"CEO, The Atlantic",date:"May 12 2025",themes:["Future of Work","Innovation","Strategy"],summary:"Nicholas Thompson explores what AI genuinely cannot replace in journalism: story selection, editorial judgment, and the instinct for what matters. He explains how The Atlantic is integrating AI while protecting what makes journalism irreplaceable.",nuggets:"1. Story selection and editorial judgment are the last things AI will replicate\n2. Trust is built through consistency of human judgment, not automation\n3. AI accelerates production but cannot replace the instinct for what matters\n4. Publishers who cede editorial judgment to AI risk losing their identity\n5. The question is not AI or not — it is where human intelligence is irreplaceable",coachbay:"Useful for coaching conversations about what is uniquely human in any knowledge-work role. Strong complement to the creativity themes from Laura Jones and Jenny Nicholson.",transcript:"https://podcast.beyondtheprompt.ai/episodes/unwired-intelligence-ceo-of-the-atlantic-nicholas-thompson-on-what-ai-cant-replace/transcript"},
+  {id:30,title:"Prompting for Originality: How Devin McNulty Turned 15 Years of Facilitation into an AI Approach",guest:"Devin McNulty",role:"Facilitator and AI Coach",date:"Apr 28 2025",themes:["Innovation","Adoption","Productivity"],summary:"Devin McNulty shares how 15 years of facilitation experience translated into a distinctive approach to prompting AI for original ideas. He argues that prompting is a facilitation skill, and that the techniques that get great ideas from people also work for getting great ideas from AI.",nuggets:"1. Prompting AI is a facilitation skill, not a technical one\n2. The techniques that surface great ideas from people also work on AI\n3. Originality comes from specificity, context, and creative constraint\n4. Most prompts are too generic — the more personal the context, the better the output\n5. 15 years of human facilitation translates directly to better AI collaboration",coachbay:"Directly validates CRIO: the Interview step in CRIO is a facilitation act. Devin's framework complements how CoachBay teaches prompting. Useful for Sprint facilitation design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/prompting-for-originality-how-devin-mcnulty-turned-15-years-of-fun-into-an-ai-facilitator/transcript"},
+  {id:31,title:"How to Build a Business with AI: Nicholas Thorne on the New Rules of Entrepreneurship",guest:"Nicholas Thorne",role:"Founder, Audos",date:"Feb 17 2025",themes:["Innovation","Strategy","Future of Work"],summary:"Nicholas Thorne explains how AI has fundamentally changed the rules of entrepreneurship. The barriers to building have collapsed. He walks through the Five Ps framework: powers, passions, possessions, positions, and potentials.",nuggets:"1. The barriers to building a business have collapsed with AI\n2. The Five Ps framework: powers, passions, possessions, positions, and potentials\n3. Resourcefulness is the defining entrepreneurial skill in the AI era\n4. Thinking like a founder, even inside a job, is now accessible to everyone\n5. AI compresses the time from idea to market from years to weeks",coachbay:"Useful for executive coaching conversations about entrepreneurial mindset within corporations. The Five Ps framework is applicable in CoachBay leadership workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-to-build-a-business-with-ai-founder-of-audos-nicholas-thorne-on-the-new-rules-of-entrepreneurship/transcript"},
+  {id:32,title:"How to Make an AI-Driven Culture: Lessons from Moderna's Head of AI",guest:"Brice Challamel",role:"Head of AI, Moderna",date:"Jan 6 2025",themes:["Leadership","Culture Change","Adoption","Innovation"],summary:"Brice Challamel explains how to catalyze genuine AI culture transformation. Drawing on Moderna's pandemic-era experience, he explains why it is reckless not to integrate AI, and shares strategies including a champion network of 100 ambassadors.",nuggets:"1. It is reckless not to integrate AI into your processes\n2. Build a network of 100 AI champions — if they stop doing the job, they fall out\n3. Use AI to improve AI: a meta-trick that unlocks enormous possibility\n4. Culture transformation requires naming resistance, not bypassing it\n5. Most assumptions about change timelines are wrong",coachbay:"One of the most practical culture change episodes. The champion network model is directly applicable to Sprint design. Brice is frequently cited by other guests including Eric Porres.",transcript:"https://podcast.beyondtheprompt.ai/episodes/catalyzing-an-ai-driven-culture-transformation-with-modernas-head-of-ai-brice-callamel/transcript"},
+  {id:33,title:"How You Can Leverage AI for Big Decisions: Geoff Woods on AI as a Thought Partner",guest:"Geoff Woods",role:"Author, The AI Driven Leader",date:"Dec 16 2024",themes:["Leadership","Productivity","Strategy"],summary:"Geoff Woods, bestselling author of The AI Driven Leader, reveals how leaders can use AI to tackle big decisions. His core mindset shift: stop asking 'How can I do this?' and start asking 'How can AI help me do this?'",nuggets:"1. Stop asking 'How can I do this?' — ask 'How can AI help me do this?'\n2. AI as a thought partner changes the quality of strategic decisions\n3. High-stakes scenarios like debt restructuring benefit most\n4. The leader's job is to define the problem clearly — AI amplifies from there\n5. Most leaders underestimate how much AI can contribute to their own thinking",coachbay:"Geoff's book (The AI Driven Leader) is referenced across CoachBay's work. This episode is foundational for executive AI adoption coaching. Note: CRIT framework in The Breakthrough book attributes insight to Geoff Woods.",transcript:"https://podcast.beyondtheprompt.ai/episodes/the-ai-thought-partner-geoff-woods-on-amplifying-leadership-with-generative-ai/transcript"},
+  {id:34,title:"How Peter Hollens Uses AI to Build a Successful YouTube Channel",guest:"Peter Hollens",role:"Creator, 3M YouTube Subscribers",date:"Dec 3 2024",themes:["Innovation","Adoption","Productivity"],summary:"Peter Hollens has grown his YouTube channel to over 3 million followers using AI to streamline production and spark creative ideas. He shares how AI tools transformed his content creation workflow while preserving the human connection that makes his channel work.",nuggets:"1. AI can streamline creative production without removing the human touch\n2. The creator economy is being fundamentally restructured by AI tools\n3. Audience connection comes from authenticity — AI accelerates execution, not identity\n4. AI can spark ideas a creator would never have reached alone\n5. Ethics of AI in creative work require ongoing reflection",coachbay:"Useful for coaching conversations about AI and creative identity. AI ethics in creative work comes up regularly in corporate training contexts.",transcript:"https://podcast.beyondtheprompt.ai/episodes/redefining-music-and-creativity-peter-hollens-on-the-power-and-ethics-of-ai/transcript"},
+  {id:35,title:"Using AI for Better Decision Making: David Boyle on Organizational Intelligence",guest:"David Boyle",role:"Strategy Advisor",date:"Sep 17 2024",themes:["Strategy","Leadership","Productivity"],summary:"David Boyle explores how organizations can use AI to make better decisions at scale. He examines why most organizations default to using AI for efficiency rather than intelligence — and why the bigger opportunity is in better thinking, not faster execution.",nuggets:"1. Most organizations use AI for efficiency — the bigger opportunity is better decisions\n2. Organizational intelligence requires combining AI with good information flows\n3. AI does not automatically improve decisions — leaders must define what good looks like\n4. The behavioral side of decision-making has the least predictable AI effects\n5. Embedding AI into decision processes requires redesigning those processes first",coachbay:"Useful for executive coaching conversations about AI and organizational intelligence. The efficiency-versus-intelligence framing is a strong opening for leadership workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/unlocking-ais-potential-david-boyle-on-ai-organizational-decision-makin/transcript"},
+  {id:36,title:"A Sobering Talk About Ethical AI Data Labelling",guest:"Phoebe Yao",role:"Founder & CEO, Pareto.ai",date:"Aug 27 2024",themes:["Future of Work","Strategy","Innovation"],summary:"Phoebe Yao addresses the ethical and practical challenges of AI data labelling. She explains the critical role domain experts play in training AI, the need for higher standards, and the broader implications for the future of work.",nuggets:"1. Data labellers are the invisible workforce behind every AI model\n2. Domain expertise in labelling directly determines AI output quality\n3. Ethical data practices are a competitive advantage, not just a moral obligation\n4. The data labelling industry urgently needs higher standards\n5. The future of work in AI is being shaped now by how we treat the humans training it",coachbay:"Useful for coaching conversations about AI ethics and the human foundations of AI systems. Good grounding for leaders thinking about AI governance.",transcript:"https://podcast.beyondtheprompt.ai/episodes/building-a-fair-future-in-ai-data-labelling-phoebe-yaos-leadership-at-paretoai/transcript"},
+  {id:37,title:"How to Make AI Bets: Notion's AI Engineering Lead on High-Risk, High-Reward Projects",guest:"Shir Yehoshua",role:"Engineering Lead, Notion AI",date:"Jul 29 2024",themes:["Innovation","Strategy","Productivity"],summary:"Shir Yehoshua shares how Notion decides which AI bets to take. She discusses the culture of experimentation and embracing failure that drives product development, and explains Notion's approach to high-risk, high-reward AI projects.",nuggets:"1. High-risk AI bets require a culture that normalizes failure as part of learning\n2. Experimentation speed is the competitive advantage, not model size\n3. Consumer AI products require different instincts than enterprise AI\n4. The best AI features solve real friction, not hypothetical use cases\n5. Teams that ship often learn faster than teams that plan longer",coachbay:"Useful for coaching product and innovation leaders. The experimentation culture model is applicable to Sprint design and internal AI lab setup.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-best-to-making-ai-bets-notions-ai-engineering-lead-shir-yehoshua-on-transforming-notion-with-high-risk-high-reward-ai-projects/transcript"},
+  {id:38,title:"No-Code Guide to Leveraging ChatGPT for App Development",guest:"Juan Carlos",role:"Documentary Filmmaker",date:"Jun 23 2024",themes:["Innovation","Adoption","Productivity"],summary:"Documentary filmmaker Juan Carlos explains how he used ChatGPT without any coding background to build applications and automate his creative workflow. He walks through the specific techniques he used and why no-code AI development is accessible to anyone willing to experiment.",nuggets:"1. No coding background is needed to build useful AI-powered tools\n2. The barrier to building is curiosity and willingness to experiment, not technical skill\n3. ChatGPT can guide you through its own use if you ask it the right questions\n4. Creative professionals are among the most effective early AI adopters\n5. Documentation and filmmaking are two fields where AI adds immediate value",coachbay:"Useful in Sprint workshops to show non-technical participants that AI tools are within reach. Validates CoachBay's message that AI is a human skill, not just a technical one.",transcript:"https://podcast.beyondtheprompt.ai/episodes/juan-carloss-no-code-guide-to-leveraging-chatgpt-for-app-development/transcript"},
+  {id:39,title:"Reinventing Recruiting: Using AI to Automate Hiring",guest:"Anvisha Pai",role:"Founder, AI Recruiting Platform",date:"May 1 2024",themes:["Innovation","Future of Work","Productivity"],summary:"Anvisha Pai explores how AI is transforming recruiting and hiring, automating repetitive parts of the process while preserving human judgment in final evaluation. She discusses what AI-native recruiting teams look like.",nuggets:"1. AI can automate the repetitive parts of recruiting without losing candidate quality\n2. Human judgment in final evaluation becomes more important, not less\n3. AI-native recruiting teams are structurally different from traditional ones\n4. Speed of hiring improves dramatically when AI handles screening\n5. Bias in hiring is addressable through intentional AI design",coachbay:"Relevant for coaching HR leaders and talent teams. Useful context for Sprint workshops that include HR participants.",transcript:"https://podcast.beyondtheprompt.ai/episodes/reinventing-recruiting-anvisha-pai-on-using-ai-to-automate-hiring/transcript"},
+  {id:40,title:"New Research: How to Get Better Ideas with AI",guest:"Kian Gohar, Jeremy Utley & David McRaney",role:"Researchers and Podcast Hosts",date:"Feb 20 2024",themes:["Innovation","Productivity","Strategy"],summary:"New research reveals how AI changes the ideation process. AI can dramatically increase the quantity and quality of ideas generated, but only when humans know how to direct it properly. Combining human and AI ideation outperforms either alone.",nuggets:"1. AI can increase both quantity and quality of ideas generated\n2. Direction matters more than the tool — undirected AI prompting produces mediocre ideas\n3. Combining human and AI ideation outperforms either alone\n4. The research validates that prompting skill is a genuine competitive advantage\n5. Idea diversity increases significantly when AI is included in brainstorming",coachbay:"Directly validates the ideation value of CRIO. The research framing is useful for convincing skeptical leaders. Strong reference for Innovation Garden and Sprint facilitation.",transcript:"https://podcast.beyondtheprompt.ai/episodes/new-research-on-how-to-get-better-ideas-with-ai-with-kian-gohar-jeremy-utley-david-mcraney-henrik-werdelin/transcript"},
+  {id:41,title:"Greg Shove: 'AI Is Like Testosterone for My Brain'",guest:"Greg Shove",role:"CEO, Section",date:"Dec 15 2023",themes:["Adoption","Leadership","Strategy"],summary:"The very first episode of Beyond The Prompt. Greg Shove explains how AI amplifies executive thinking, why the AI class is emerging, and why prompting is still harder than it should be. Agents are the next frontier.",nuggets:"1. AI is like testosterone for the brain — it amplifies what is already there\n2. The bus has left the station: if you are not engaging with AI, you are behind\n3. Prompting is still harder than it should be — agents are the next frontier\n4. AI allows people to reduce the space between insight and output\n5. The emergence of an AI class will redefine education and upskilling",coachbay:"The founding episode. Greg's framing of AI as amplification is directly relevant to CoachBay positioning. His Section AI Mini MBA is referenced repeatedly by other guests.",transcript:"https://podcast.beyondtheprompt.ai/episodes/greg-shove-ceo-section-ai-is-like-testosterone-for-my-brain/transcript"},
+  {id:42,title:"From Exploration to Exploitation: Noah Brier on AI and the Future of Bespoke Software",guest:"Noah Brier",role:"Founder, BrXnd.ai",date:"Nov 18 2024",themes:["Innovation","Strategy","Future of Work"],summary:"Noah Brier explores the balance between exploration and exploitation in AI strategy. He argues bespoke software is replacing SaaS, and tacit organizational knowledge must be captured before AI can leverage it effectively.",nuggets:"1. The shift from exploration to exploitation is where most companies get stuck\n2. Bespoke software is replacing one-size-fits-all SaaS in AI-native companies\n3. Tacit organizational knowledge must be captured before AI can leverage it\n4. Hands-on experimentation matters more than theoretical AI planning\n5. Competitive advantage now lies in proprietary data and proprietary workflows",coachbay:"Useful for coaching conversations about AI strategy and the build-vs-buy decision. The bespoke software argument is relevant to enterprise coaching.",transcript:"https://podcast.beyondtheprompt.ai/episodes/from-exploration-to-exploitation-noah-brier-on-ais-present-power-and-the-future-of-bespoke-software/transcript"},
+  {id:43,title:"Special Episode: Paige Costello on AI in Product Management",guest:"Paige Costello",role:"Head of AI, Asana",date:"Oct 31 2024",themes:["Innovation","Productivity","Adoption"],summary:"Paige Costello explains how AI-generated status reports, bug triaging, and task management are eliminating busywork at Asana. Jeremy and Henrik explore user testing, model choices, and balancing AI control with user flexibility.",nuggets:"1. AI-generated status reports eliminate one of the most time-consuming management tasks\n2. Bug triaging with AI frees engineers for higher-value creative work\n3. Balancing AI control with user flexibility is the central design challenge\n4. The best AI features are invisible — they just make work feel less heavy\n5. User testing for AI products requires different methods than traditional software",coachbay:"Useful for coaching product leaders and innovation teams. The busywork-elimination framing is a strong entry point for Sprint workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/special-episode-paige-costello-on-ai-in-product-management-insights-from-crafted-and-beyond-the-prompt/transcript"},
+  {id:44,title:"Stephen Kosslyn on Revolutionizing Learning: How AI and Active Learning Are Shaping Education",guest:"Stephen Kosslyn",role:"Former Harvard Professor, Cognitive Scientist",date:"Oct 16 2024",themes:["Future of Work","Adoption","Innovation"],summary:"Stephen Kosslyn explains why learning by doing leads to deeper understanding and how AI can amplify memory and critical thinking. He explores where AI still falls short and the enduring power of the humanities.",nuggets:"1. Learning by doing leads to deeper understanding than passive consumption\n2. AI can amplify memory and critical thinking when used as an active partner\n3. The humanities become more valuable, not less, as AI handles routine tasks\n4. Truly flourishing in the AI era requires knowing when not to use it\n5. AI still falls short on judgment, nuance, and contextual wisdom",coachbay:"Useful for coaching conversations about AI and learning culture. The active learning framing applies directly to how CoachBay designs Sprint facilitation.",transcript:"https://podcast.beyondtheprompt.ai/episodes/stephen-kosslyn-on-revolutionizing-learning-how-ai-and-active-learning-are-shaping-the-future-of-education/transcript"},
+  {id:45,title:"BONUS: Boris Eldagsen — Why AI-Generated Images Aren't Photography",guest:"Boris Eldagsen",role:"Artist and Promptographer",date:"Mar 12 2025",themes:["Innovation","Future of Work"],summary:"Boris Eldagsen won then refused the Sony World Photography Awards after revealing his winning image was AI-generated. He explains his concept of promptography as a new creative category and why clear definitions matter.",nuggets:"1. Promptography is a new creative discipline, distinct from photography\n2. Clear definitions matter when AI enters established creative fields\n3. AI-generated images require a different form of craft: the quality of the prompt\n4. Provoking institutions forces necessary conversations about authenticity\n5. The line between tool and author is being fundamentally redrawn by AI",coachbay:"Useful for coaching conversations about AI and creative identity. The promptography concept is a useful provocation for creative teams in Sprint workshops.",transcript:"https://podcast.beyondtheprompt.ai/episodes/bonus-episode-boris-eldagsen-why-ai-generated-images-arent-photography-30rFMz_9/transcript"},
+  {id:46,title:"Future-Proofing Your Career and Income in the Age of AI",guest:"Dr. Joan Palmiter Bajorek",role:"Entrepreneur, Investor and Author",date:"Mar 5 2025",themes:["Future of Work","Adoption","Strategy"],summary:"Dr. Joan Palmiter Bajorek shares practical strategies for building a personal brand, navigating gender bias in AI, and future-proofing income. She covers AI's impact on job searches, career transitions, and the balance between automation and authenticity.",nuggets:"1. Build your personal brand before AI makes it harder to stand out\n2. AI tools can accelerate job searching and interview preparation significantly\n3. Gender and racial bias in AI systems is documented and ongoing\n4. Career security in the AI era comes from continuous learning, not credentials\n5. An emergency fund is the most practical AI-era financial safety net",coachbay:"Useful for coaching conversations about individual AI adoption and career strategy. The personal brand framing is relevant to leadership coaching.",transcript:"https://podcast.beyondtheprompt.ai/episodes/future-proofing-your-career-and-income-in-the-age-of-ai-with-dr-joan-palmiter-bajorek-VpmVGdNq/transcript"},
+  {id:47,title:"How Mihir Shukla Is Reimagining Work With 300 Million AI Agents",guest:"Mihir Shukla",role:"CEO, Automation Anywhere",date:"Apr 15 2025",themes:["Future of Work","Innovation","Strategy","Adoption"],summary:"Mihir Shukla explains how Automation Anywhere is building an autonomous enterprise where AI performs work, not just assists it. With 300 million AI agents in action, he argues the future of work is unfolding now, not ahead.",nuggets:"1. The autonomous enterprise is not the future — it is unfolding now\n2. Spotting high-impact automation starts with studying how work actually flows\n3. Culture, not technology, is the biggest blocker to AI transformation\n4. AI can move people from minimum wage to six-figure careers in months with upskilling\n5. The global productivity crisis is a moral argument for AI adoption at scale",coachbay:"Useful for coaching conversations about the scale and urgency of AI adoption. The moral imperative to upskill at scale resonates with CoachBay's mission.",transcript:"https://podcast.beyondtheprompt.ai/episodes/mihir-shukla-is-reimagining-work-at-automation-anywherewith-300m-ai-agents-and-counting/transcript"},
+  {id:48,title:"How Entrepreneurs Can Compete in the Age of AI: Henrik Werdelin and Nicholas Thorne on Their New Book",guest:"Henrik Werdelin & Nicholas Thorne",role:"Authors of Me, My Customer, and AI",date:"Sep 2 2025",themes:["Innovation","Strategy","Future of Work"],summary:"Henrik Werdelin steps into the guest seat alongside Nicholas Thorne to discuss their book Me, My Customer, and AI. They explore the Five Ps framework, the 'it sucks that...' approach to problem-finding, and how AI shifts founders from operating to orchestrating.",nuggets:"1. The Five Ps framework: powers, passions, possessions, positions, and potentials\n2. Start problem identification with 'it sucks that...' to find real friction\n3. AI is shifting founders from operating to orchestrating\n4. More people inside companies need to think entrepreneurially\n5. AI compresses the leap from idea to execution dramatically",coachbay:"Directly relevant to CoachBay's innovation coaching work. The orchestration framing and entrepreneurial mindset inside large organizations maps to Sprint design.",transcript:"https://podcast.beyondtheprompt.ai/episodes/how-entrepreneurs-can-compete-in-the-age-of-ai-henrik-werdelin-nicholas-thorne/transcript"},
+  {id:49,title:"You Can't Vibe Code a 100-Ton Truck: Inside Applied Intuition's Approach to Safety-Critical AI",guest:"Qasar Younis & Peter Ludwig",role:"Co-founders, Applied Intuition",date:"Oct 28 2025",themes:["Innovation","Strategy","Future of Work"],summary:"Applied Intuition's co-founders explain what it takes to bring AI into the physical world. They share why the graveyard of autonomy companies is full of those who moved too fast, and why radical pragmatism is their defining operating principle.",nuggets:"1. The graveyard of autonomy is real — most companies that moved fast ended up there\n2. Moving slower has been Applied Intuition's biggest competitive advantage\n3. Radical pragmatism guides every product decision where failure is not an option\n4. Consumer AI metaphors break down completely when software meets the physical world\n5. The next frontier of AI is off the screen — it is machines that think, move, and decide",coachbay:"Useful context for leadership coaching about AI risk and the difference between consumer AI and safety-critical AI. The pragmatism message contrasts powerfully with hype-driven adoption.",transcript:"https://podcast.beyondtheprompt.ai/episodes/you-cant-vibe-code-a-100-ton-truck-inside-applied-intuitions-approach-to-safety-criticalai/transcript"}
+];
+
+const SUGGESTED_QUERIES = [
+  "What do guests say about the role of leadership in AI adoption?",
+  "Give me 10 things companies have successfully applied from these episodes",
+  "What examples are relevant for running an AI Sprint or hackathon?",
+  "What do guests say about free vs paid AI and adoption?",
+  "Synthesize a change management framework from these episodes",
+  "Which episodes are most relevant to the CRIO framework and AI prompting?"
+];
+
+const ALL_THEMES = [...new Set(EPISODES.flatMap(e => e.themes))].sort();
+let activeTheme = null;
+let activeEpId = null;
+let apiKey = localStorage.getItem('btp_public_api_key') || '';
+
+function init() {
+  if (apiKey && apiKey.startsWith('sk-ant')) {
+    showApp();
+  } else {
+    document.getElementById('key-screen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+}
+
+function saveKey() {
+  const val = document.getElementById('api-key-input').value.trim();
+  if (!val.startsWith('sk-ant')) {
+    document.getElementById('key-error').style.display = 'block';
+    return;
+  }
+  localStorage.setItem('btp_public_api_key', val);
+  apiKey = val;
+  showApp();
+}
+
+function resetKey() {
+  localStorage.removeItem('btp_public_api_key');
+  apiKey = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('key-screen').style.display = 'flex';
+  document.getElementById('api-key-input').value = '';
+}
+
+function showApp() {
+  document.getElementById('key-screen').style.display = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+  app.classList.add('visible');
+  renderThemeFilters();
+  renderEpisodes();
+  renderSuggested();
+  updateProfileBanner();
+  // Open profile setup automatically on first launch
+  if (!getUserProfile()) {
+    setTimeout(() => openSettings(), 400);
+  }
+}
+
+function renderThemeFilters() {
+  const wrap = document.getElementById('theme-filters');
+  wrap.innerHTML = ALL_THEMES.map(t =>
+    `<button class="filter-chip${activeTheme===t?' active':''}" onclick="setTheme('${t}')">${t}</button>`
+  ).join('');
+}
+
+function setTheme(t) {
+  activeTheme = activeTheme === t ? null : t;
+  renderThemeFilters();
+  renderEpisodes();
+}
+
+function renderEpisodes() {
+  const q = document.getElementById('ep-search').value.toLowerCase();
+  const filtered = EPISODES.filter(ep => {
+    const matchQ = !q || ep.title.toLowerCase().includes(q) || ep.guest.toLowerCase().includes(q) || ep.summary.toLowerCase().includes(q);
+    const matchT = !activeTheme || ep.themes.includes(activeTheme);
+    return matchQ && matchT;
+  });
+  document.getElementById('ep-count-badge').textContent = filtered.length + ' episodes';
+  const list = document.getElementById('ep-list');
+  if (!filtered.length) { list.innerHTML = '<p style="padding:12px;font-size:12px;color:var(--text-soft)">No episodes match.</p>'; return; }
+  list.innerHTML = filtered.map(ep => `
+    <div class="ep-card${activeEpId===ep.id?' active':''}" onclick="selectEp(${ep.id})">
+      <div class="ep-card-title">${ep.title}</div>
+      <div class="ep-card-guest">${ep.guest}</div>
+      <div class="ep-card-date">${ep.date}</div>
+      <div class="ep-card-themes">${ep.themes.slice(0,2).map(t=>`<span class="theme-pip">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function selectEp(id) {
+  activeEpId = id;
+  const ep = EPISODES.find(e => e.id === id);
+  renderEpisodes();
+  const pane = document.getElementById('detail-pane');
+  pane.innerHTML = `
+    <div class="detail-card">
+      <div class="detail-title">${ep.title}</div>
+      <div class="detail-guest">${ep.guest} · ${ep.role} · ${ep.date}</div>
+      <div class="detail-themes">${ep.themes.map(t=>`<span class="detail-theme">${t}</span>`).join('')}</div>
+      <div class="detail-section">
+        <div class="detail-section-label">Summary</div>
+        <div class="detail-section-text">${ep.summary}</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Golden Nuggets</div>
+        <div class="detail-section-text">${ep.nuggets}</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">CoachBay Relevance</div>
+        <div class="detail-section-text">${ep.coachbay}</div>
+      </div>
+      <a class="transcript-link" href="${ep.transcript}" target="_blank">Read full transcript →</a>
+    </div>`;
+  switchTab('detail', document.querySelectorAll('.tab-btn')[1]);
+}
+
+function renderSuggested() {
+  document.getElementById('suggested-wrap').innerHTML = SUGGESTED_QUERIES.slice(0,4).map(q =>
+    `<button class="sug-chip" title="${q}" onclick="useSuggested('${q.replace(/'/g,"\\'")}')">
+      ${q.length > 52 ? q.slice(0,50) + '…' : q}
+    </button>`
+  ).join('');
+}
+
+function useSuggested(q) {
+  document.getElementById('ask-input').value = q;
+  runQuery();
+}
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'history') renderHistory();
+}
+
+// CONVERSATION HISTORY
+const HISTORY_KEY = 'btp_public_chat_history';
+let currentSessionId = Date.now().toString();
+
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveHistory(sessions) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(sessions.slice(-50))); }
+  catch(e) {}
+}
+
+function saveCurrentSession() {
+  if (!conversationHistory.length) return;
+  const sessions = loadHistory();
+  const firstQ = conversationHistory.find(m => m.role === 'user');
+  const title = firstQ ? firstQ.content.slice(0, 80) : 'Conversation';
+  const existing = sessions.findIndex(s => s.id === currentSessionId);
+  const session = {
+    id: currentSessionId,
+    title,
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    messages: conversationHistory
+  };
+  if (existing >= 0) sessions[existing] = session;
+  else sessions.unshift(session);
+  saveHistory(sessions);
+}
+
+function renderHistory() {
+  const pane = document.getElementById('history-pane');
+  const sessions = loadHistory();
+  if (!sessions.length) {
+    pane.innerHTML = '<p class="detail-empty">No saved conversations yet. Your conversations will appear here after you start chatting.</p>';
+    return;
+  }
+  pane.innerHTML = sessions.map(s => `
+    <div class="history-item" onclick="loadSession(\'${s.id}\')">
+      <div class="history-item-title">${s.title}</div>
+      <div class="history-item-meta">
+        <span>${s.date} · ${Math.floor(s.messages.length / 2)} exchange${s.messages.length > 2 ? 's' : ''}</span>
+        <button class="history-item-del" onclick="deleteSession(event,\'${s.id}\')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function loadSession(id) {
+  saveCurrentSession();
+  const sessions = loadHistory();
+  const session = sessions.find(s => s.id === id);
+  if (!session) return;
+  currentSessionId = session.id;
+  conversationHistory = session.messages;
+  const results = document.getElementById('ask-results');
+  results.innerHTML = '';
+  session.messages.forEach(m => addMessageToChat(m.role, m.content));
+  switchTab('ask', document.getElementById('tab-btn-ask'));
+}
+
+function deleteSession(e, id) {
+  e.stopPropagation();
+  const sessions = loadHistory().filter(s => s.id !== id);
+  saveHistory(sessions);
+  renderHistory();
+}
+
+function startNewConversation() {
+  saveCurrentSession();
+  currentSessionId = Date.now().toString();
+  conversationHistory = [];
+  const results = document.getElementById('ask-results');
+  results.innerHTML = `<p class="ask-empty">New conversation started. Ask anything across all ${EPISODES.length} episodes.</p>`;
+  const clearBtn = document.getElementById('clear-btn');
+  if (clearBtn) clearBtn.parentElement.remove();
+  switchTab('ask', document.getElementById('tab-btn-ask'));
+  document.getElementById('ask-input').focus();
+}
+
+function renderMarkdown(text) {
+  return text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+    .replace(/^---$/gm, '<hr>')
+    .replace(/^\d+\. (.+)$/gm, '<li class="ol-item">$1</li>')
+    .replace(/^[-•] (.+)$/gm, '<li class="ul-item">$1</li>')
+    .replace(/(<li class="ol-item">.*<\/li>\n?)+/g, m => `<ol>${m}</ol>`)
+    .replace(/(<li class="ul-item">.*<\/li>\n?)+/g, m => `<ul>${m}</ul>`)
+    .replace(/\n{2,}/g, '</p><p>')
+    .replace(/^(?!<[houbl]|<p|<hr|<block)(.+)$/gm, '$1')
+    .replace(/^(.+[^>])$/gm, (m) => m.startsWith('<') ? m : m)
+    .split('\n').join('<br>')
+    .replace(/<br>(<\/?(?:h[123]|ul|ol|li|hr|blockquote|p))/g, '$1')
+    .replace(/(<\/(?:h[123]|ul|ol|hr|blockquote)>)<br>/g, '$1')
+    .replace(/<br><br>/g, '</p><p>')
+    .replace(/^(.)/,'<p>$1').replace(/(.)$/, '$1</p>');
+}
+
+// Conversation history — persists across follow-up questions
+let conversationHistory = [];
+
+function getContext() {
+  return EPISODES.map(ep =>
+    `EPISODE: "${ep.title}"\nGUEST: ${ep.guest} (${ep.role})\nDATE: ${ep.date}\nTHEMES: ${ep.themes.join(', ')}\nSUMMARY: ${ep.summary}\nGOLDEN NUGGETS:\n${ep.nuggets}\nCOACHBAY RELEVANCE: ${ep.coachbay}`
+  ).join('\n\n---\n\n');
+}
+
+function getUserProfile() {
+  try { return JSON.parse(localStorage.getItem('btp_public_user_profile') || 'null'); }
+  catch(e) { return null; }
+}
+
+function getSystemPrompt() {
+  const profile = getUserProfile();
+  const profileSection = profile ? `
+## ABOUT THE USER
+Name: ${profile.name || 'Not specified'}
+Company: ${profile.company || 'Not specified'}
+Role: ${profile.role || 'Not specified'}
+How they use AI: ${profile.aiUse || 'Not specified'}
+Frameworks or methodologies they use: ${profile.frameworks || 'None specified'}
+
+When answering questions, always connect podcast insights to this person's specific context, role, and business. Reference their company, their AI use cases, and their frameworks where relevant. Be specific and directly actionable for their situation.
+` : `
+## ABOUT THE USER
+No profile set up yet. Answer questions helpfully across the episode library. Encourage the user to set up their profile via the "My profile" button in the top right for more personalised answers.
+`;
+
+  return `You are a research assistant helping professionals extract insights from the Beyond The Prompt podcast — a show by Jeremy Utley and Henrik Werdelin about how to use AI in business. Every guest is a senior leader or practitioner sharing real-world experience.
+
+Your job is to help the user synthesise insights from the episode library, connect them to their own work, and turn podcast knowledge into practical action.
+${profileSection}
+## HOW TO ANSWER
+- Always cite specific episodes and guests by name
+- Connect insights directly to the user's role and context when a profile is set
+- Be specific and actionable — not generic
+- This is a conversation: build on previous answers, never start fresh within a session
+- Format responses with markdown: ## for headings, **bold** for key terms, lists for clarity
+
+---
+EPISODE LIBRARY:
+
+${getContext()}`;
+}
+
+function addMessageToChat(role, content) {
+  const results = document.getElementById('ask-results');
+
+  // Remove empty state if present
+  const empty = results.querySelector('.ask-empty');
+  if (empty) empty.remove();
+
+  const bubble = document.createElement('div');
+  bubble.className = role === 'user' ? 'chat-bubble user' : 'chat-bubble assistant';
+
+  if (role === 'user') {
+    bubble.textContent = content;
+  } else {
+    bubble.innerHTML = renderMarkdown(content);
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.innerHTML = '&#128203; Copy';
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(content).then(() => {
+        copyBtn.innerHTML = '&#10003; Copied';
+        copyBtn.classList.add('copied');
+        setTimeout(() => { copyBtn.innerHTML = '&#128203; Copy'; copyBtn.classList.remove('copied'); }, 2000);
+      });
+    };
+    bubble.appendChild(copyBtn);
+  }
+
+  results.appendChild(bubble);
+
+  // Add a clear conversation button after first assistant reply
+  if (role === 'assistant' && !document.getElementById('clear-btn')) {
+    const clearRow = document.createElement('div');
+    clearRow.style.cssText = 'text-align:right;padding:4px 0 12px';
+    clearRow.innerHTML = `<button id="clear-btn" onclick="clearConversation()" style="font-size:11px;color:var(--text-soft);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:4px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-soft)'">Start new conversation ↺</button>`;
+    results.appendChild(clearRow);
+  }
+
+  results.scrollTop = results.scrollHeight;
+}
+
+function addLoadingIndicator() {
+  const results = document.getElementById('ask-results');
+  const loader = document.createElement('div');
+  loader.id = 'chat-loader';
+  loader.className = 'chat-bubble assistant loading-bubble';
+  loader.innerHTML = `<div class="loading-dots" style="padding:0"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+  results.appendChild(loader);
+  results.scrollTop = results.scrollHeight;
+}
+
+function removeLoadingIndicator() {
+  const loader = document.getElementById('chat-loader');
+  if (loader) loader.remove();
+}
+
+function clearConversation() {
+  startNewConversation();
+}
+
+async function runQuery() {
+  const question = document.getElementById('ask-input').value.trim();
+  if (!question) return;
+  const btn = document.getElementById('ask-btn');
+  btn.disabled = true;
+  document.getElementById('ask-input').value = '';
+  switchTab('ask', document.querySelectorAll('.tab-btn')[0]);
+
+  // Add user message to UI and history
+  addMessageToChat('user', question);
+  conversationHistory.push({ role: 'user', content: question });
+  addLoadingIndicator();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        system: getSystemPrompt(),
+        messages: conversationHistory
+      })
+    });
+
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const answer = data.content[0].text;
+
+    // Add assistant reply to history and UI
+    conversationHistory.push({ role: 'assistant', content: answer });
+    removeLoadingIndicator();
+    addMessageToChat('assistant', answer);
+    saveCurrentSession();
+
+  } catch(e) {
+    removeLoadingIndicator();
+    const results = document.getElementById('ask-results');
+    const err = document.createElement('div');
+    err.style.cssText = 'color:#c0392b;font-size:13px;padding:12px 0';
+    err.textContent = 'Error: ' + e.message;
+    results.appendChild(err);
+    // Remove failed message from history
+    conversationHistory.pop();
+  }
+  btn.disabled = false;
+}
+
+document.getElementById('ep-search').addEventListener('input', renderEpisodes);
+document.getElementById('api-key-input').addEventListener('keydown', e => { if (e.key === 'Enter') saveKey(); });
+document.getElementById('ask-input').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) runQuery(); });
+
+
+// SETTINGS / USER PROFILE
+function openSettings() {
+  const profile = getUserProfile();
+  if (profile) {
+    document.getElementById('s-name').value = profile.name || '';
+    document.getElementById('s-company').value = profile.company || '';
+    document.getElementById('s-role').value = profile.role || '';
+    document.getElementById('s-ai-use').value = profile.aiUse || '';
+    document.getElementById('s-frameworks').value = profile.frameworks || '';
+  }
+  document.getElementById('settings-modal').classList.add('open');
+}
+
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+}
+
+
+function handleFileUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const status = document.getElementById('upload-status');
+  const maxSize = 500 * 1024; // 500KB limit
+
+  if (file.size > maxSize) {
+    status.textContent = 'File is too large. Please use a file under 500KB.';
+    status.className = 'upload-status error';
+    return;
+  }
+
+  status.textContent = 'Reading ' + file.name + '...';
+  status.className = 'upload-status';
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let text = e.target.result;
+
+    // For PDF, we can only get raw bytes — warn the user
+    if (file.name.endsWith('.pdf')) {
+      status.textContent = 'PDF files cannot be read as text directly. Please use .md or .txt instead.';
+      status.className = 'upload-status error';
+      return;
+    }
+
+    // Truncate if very long (keep first 4000 chars)
+    if (text.length > 4000) {
+      text = text.slice(0, 4000) + '\n\n[Document truncated to 4000 characters]';
+    }
+
+    const existing = document.getElementById('s-frameworks').value.trim();
+    document.getElementById('s-frameworks').value = existing
+      ? existing + '\n\n--- Uploaded from ' + file.name + ' ---\n' + text
+      : '--- From ' + file.name + ' ---\n' + text;
+
+    status.textContent = '✓ ' + file.name + ' added (' + Math.round(file.size / 1024) + 'KB)';
+    status.className = 'upload-status success';
+    input.value = ''; // Reset so same file can be re-uploaded
+  };
+  reader.onerror = function() {
+    status.textContent = 'Could not read file. Please try again.';
+    status.className = 'upload-status error';
+  };
+  reader.readAsText(file);
+}
+
+function saveSettings() {
+  const profile = {
+    name: document.getElementById('s-name').value.trim(),
+    company: document.getElementById('s-company').value.trim(),
+    role: document.getElementById('s-role').value.trim(),
+    aiUse: document.getElementById('s-ai-use').value.trim(),
+    frameworks: document.getElementById('s-frameworks').value.trim()
+  };
+  localStorage.setItem('btp_public_user_profile', JSON.stringify(profile));
+  closeSettings();
+  updateProfileBanner();
+  toast('Profile saved. Your answers will now be personalised to your context.');
+}
+
+function updateProfileBanner() {
+  const profile = getUserProfile();
+  const banner = document.getElementById('profile-banner');
+  if (!banner) return;
+  if (profile && profile.name) {
+    banner.textContent = 'Answers personalised for ' + profile.name + ' · ' + (profile.role || '') + (profile.company ? ' at ' + profile.company.split('—')[0].trim() : '');
+    banner.classList.add('visible');
+  } else {
+    banner.classList.remove('visible');
+  }
+}
+
+// Close modal on overlay click — deferred to after DOM is ready
+function bindModalOverlay() {
+  const m = document.getElementById('settings-modal');
+  if (m) m.addEventListener('click', function(e) { if (e.target === this) closeSettings(); });
+}
+
+bindModalOverlay();
+init();
+updateProfileBanner();
+</script>
+
+</body>
+</html>
