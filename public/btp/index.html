@@ -225,6 +225,13 @@
   .detail-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-soft); }
   .detail-section-label { font-size: 11px; font-weight: 700; color: var(--cyan-deep); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
   .detail-section-text { font-size: 13px; color: var(--text); line-height: 1.7; white-space: pre-line; }
+
+  .relevance-btn{display:inline-flex;align-items:center;gap:7px;margin-top:16px;padding:9px 18px;background:var(--cyan);color:#0A2D35;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s}
+  .relevance-btn:hover{background:var(--cyan-dark)}
+  .relevance-btn:disabled{opacity:0.5;cursor:not-allowed}
+  .relevance-section{margin-top:16px;padding-top:16px;border-top:1px solid var(--border-soft);display:none}
+  .relevance-section.visible{display:block}
+  .relevance-loading{display:flex;align-items:center;gap:8px;color:var(--text-mid);font-size:13px;padding:8px 0}
   .transcript-link {
     display: inline-flex; align-items: center; gap: 5px; margin-top: 16px;
     font-size: 12px; color: var(--cyan-deep); text-decoration: none; font-weight: 500;
@@ -527,6 +534,11 @@ function selectEp(id) {
   const ep = EPISODES.find(e => e.id === id);
   renderEpisodes();
   const pane = document.getElementById('detail-pane');
+  const profile = getUserProfile();
+  const profilePrompt = profile && profile.name
+    ? `The user is ${profile.name}, ${profile.role || ''} at ${profile.company || 'their company'}. How they use AI: ${profile.aiUse || 'not specified'}. Frameworks they use: ${profile.frameworks || 'none specified'}.`
+    : null;
+
   pane.innerHTML = `
     <div class="detail-card">
       <div class="detail-title">${ep.title}</div>
@@ -540,13 +552,90 @@ function selectEp(id) {
         <div class="detail-section-label">Golden Nuggets</div>
         <div class="detail-section-text">${ep.nuggets}</div>
       </div>
-      <div class="detail-section">
-        <div class="detail-section-label">CoachBay Relevance</div>
-        <div class="detail-section-text">${ep.coachbay}</div>
+      <div id="relevance-section" class="relevance-section"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:10px">
+        <button class="relevance-btn" id="relevance-btn" onclick="generateRelevance(${ep.id})" ${!profilePrompt ? 'title="Set up your profile first for a personalised analysis"' : ''}>
+          ${profilePrompt ? '✦ What does this mean for me?' : '✦ Set up your profile to personalise this'}
+        </button>
+        <a class="transcript-link" style="margin-top:0" href="${ep.transcript}" target="_blank">Read full transcript →</a>
       </div>
-      <a class="transcript-link" href="${ep.transcript}" target="_blank">Read full transcript →</a>
     </div>`;
   switchTab('detail', document.querySelectorAll('.tab-btn')[1]);
+}
+
+async function generateRelevance(id) {
+  const ep = EPISODES.find(e => e.id === id);
+  const profile = getUserProfile();
+  const btn = document.getElementById('relevance-btn');
+  const section = document.getElementById('relevance-section');
+
+  if (!profile || !profile.name) {
+    openSettings();
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Analysing...';
+  section.className = 'relevance-section visible';
+  section.innerHTML = `<div class="relevance-loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Generating your personalised analysis...</span></div>`;
+
+  const prompt = `You are analysing a Beyond The Prompt podcast episode and explaining its relevance to a specific person.
+
+THE EPISODE:
+Title: ${ep.title}
+Guest: ${ep.guest} (${ep.role})
+Date: ${ep.date}
+Themes: ${ep.themes.join(', ')}
+Summary: ${ep.summary}
+Key insights:
+${ep.nuggets}
+
+THE PERSON:
+Name: ${profile.name}
+Role: ${profile.role || 'not specified'}
+Company: ${profile.company || 'not specified'}
+How they use AI: ${profile.aiUse || 'not specified'}
+Frameworks and context: ${profile.frameworks || 'none specified'}
+
+Write a concise, specific analysis (3 to 5 paragraphs) explaining:
+1. Which insights from this episode are most relevant to this person's specific role and context
+2. How they could practically apply one or two of the golden nuggets in their work
+3. Any specific connection to their frameworks or how they currently use AI
+
+Be direct, specific, and avoid generic statements. Address the person by name. Use markdown formatting.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 800,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const answer = data.content[0].text;
+
+    section.innerHTML = `
+      <div class="detail-section-label" style="margin-bottom:8px">What this means for ${profile.name}</div>
+      <div class="detail-section-text">${renderMarkdown(answer)}</div>`;
+
+    btn.textContent = '✦ Regenerate analysis';
+    btn.disabled = false;
+
+  } catch(e) {
+    section.innerHTML = `<p style="color:#c0392b;font-size:13px">Error: ${e.message}</p>`;
+    btn.textContent = '✦ What does this mean for me?';
+    btn.disabled = false;
+  }
 }
 
 function renderSuggested() {
